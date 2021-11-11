@@ -1,1721 +1,1987 @@
 # JS相关
 
-## 函数相关
+## JS 数据类型
 
-### 函数声明提升
+数据类型除了 Number 、 String 、 Boolean 、 Object、 null 和 undefined ，还新增了 Symbol
 
-具名函数有声明提升的特点（可以先调用再声明）
+- Symbol 是原始数据类型
 
-```js
-fun()
-function fun () {
-  console.log('123')
-}
+> 什么是原始数据类型？什么是引用数据类型？
 
-// 123
-```
-
-但是将匿名函数赋值给一个变量时，是没有声明提升的特点的
-
-```js
-fun()
-const fun = function () {
-  console.log('123')
-}
-
-// Uncaught ReferenceError: Cannot access 'fun' before initialization
-// 这时就会报错：未捕获的引用错误：初始化前无法访问“fun”
-```
+- 原始数据类型：Undefined，Null，Boolean，Number、String
+- 引用数据类型：对象、数组、函数
 
 
 
-### arguments 参数
+## Unicode码
 
-比如在做求和运算时，往往参数的数量是不确定的。那么 arguments 就可以解决这个问题
+可以在网页上打印 Unicode 编码的汉字数字或者字母
 
-```js
-function add () {
-  console.log(arguments)
-}
-add(1, 54, 1, 5, 2, 654, 3, 42, 24)
+````js
+console.log('\u0061'); // a
+console.log("\u4f60\u597d\u5417"); // 你好吗
+console.log("\u35\u32\u30"); // 520
+````
 
-// Arguments(9) [1, 54, 1, 5, 2, 654, 3, 42, 24, callee: ƒ, Symbol(Symbol.iterator): ƒ]
-```
+转换网站 http://tool.sufeinet.com/Code/ChineseUnicode.aspx
 
-那么求和运算为：
+
+
+## 本地存储
+
+1. 添加本地存储
+
+> 里面包含两个参数 1是本地存储名称   2是本地存储内容
 
 ```js
-function add () {
-  let res = 0
-  for (let i = 0; i < arguments.length; i++) {
-    res += arguments[i]
-  }
-  return res
-}
-console.log(add(1, 54, 1, 5, 2, 654, 3, 42, 24))
-
-// 786
+ window.localStorage.setItem('名称', data)
 ```
 
-> 需要注意的是：arguments 并不是一个数组，如需要使用数组方法进行操作时，需要使用 ES6 展开运算符进行操作：
+本地存储名称是`user`存储的内容是`data`
+
+2. 获取本地存储数据
 
 ```js
-function add () {
-  console.log([...arguments])
-}
-add(1, 54, 1, 5, 2, 654, 3, 42, 24)
-
-// (9) [1, 54, 1, 5, 2, 654, 3, 42, 24]
+window.localStorage.getItem('名称')
 ```
 
+> 这里只包含一个参数 就是本地存储的名称
 
-
-### 数据收集
-
-同样是在函数传递的参数不确定的情况下，上面介绍过了 函数的 `arguments ` 方法，下面再介绍一种收集数据的方法，使用的是 ES6 的扩展运算符写法：
+3. 删除本地存储
 
 ```js
-function fun (...item) {
-  console.log(item)
-}
-fun(1, 2, 3, 4, 5, 6, 7)
-
-// (7) [1, 2, 3, 4, 5, 6, 7]
+window.localStorage.removeItem('名称')
 ```
 
-> 参数使用 `...item` 来接收，会收集到所有的参数，表现形式为数组
+**注：本地存储只能存储字符串**
 
- 
 
-### 函数参数
 
-下面实例中，使用数组的过滤方法，想要放回数组中小于等于3的元素返回：
+## 关于JSON
+
+很多时候我们在设置本地存储的时候都需要将一个对象存入本地存储中，但是本地存储只能存储字符串，那么可以使用
 
 ```js
-const arr = [1, 2, 3, 4, 5, 6, 7].filter(function (item) {
-  return item <= 3
-})
-console.log(arr)
-
-// (3) [1, 2, 3]
+JSON.stringify()
 ```
 
-那么这样的情况下呢，可以不使用匿名函数，可以直接将函数单独抽离出来，直接将函数作为参数传递过来，在 filter 方法中直接调用函数：
+来将对象转换为JSON格式字符串进行存储
+
+那么想要获取对象还需要再转换回 JSON字符串，方法为：
 
 ```js
-function fun (item) {
-  return item <= 3
-}
-const arr = [1, 2, 3, 4, 5, 6, 7].filter(fun)
-console.log(arr)
-
-// (3) [1, 2, 3]
-```
-
-除此之外，还有定时器方法，都是可以将函数作为参数直接传递进去的：
-
-```js
-function fun () {
-  console.log(1)
-}
-setInterval(fun, 1000)
-
-// 每一秒输出一次 1
+JSON.parse()
 ```
 
 
 
-### this 指向
+## 变量冻结
 
-全局输出和在函数中输出 this
-
-```js
-// 1、直接输出 this 指向的是全局对象
-console.log(this) // window
-
-// 2、在函数中输入 this
-// 因为全局函数其实是 window (全局对象)的方法
-function fun () {
-  console.log(this) // window
-}
-// fun() 调用就等于 window.fun()
-fun()
-
-// 3、在方法中 this 指向的是这个方法的对象
-const obj = {
-  name: '小明',
-  sayName () {
-    console.log(this.name)
-  }
-}
-obj.sayName() // 小明
-```
-
-
-
-事件输出 this
-
-```html
-<button>按钮</button>
-<script>
-  const btn = document.querySelector('button')
-  btn.onclick = function () {
-    console.log(this) // <button>按钮</button>
-  }
-
-  btn.onclick = () => {
-    console.log(this) // window
-  }
-
-  btn.addEventListener('click', function () {
-    console.log(this) // <button>按钮</button>
-  })
-</script>
-```
-
-
-
-构造函数中的 this
-
-```js
-// new 关键字做了什么？
-// new 会创建出对象，将构造函数中的 this 指向创建出来的对象
-function Fun () {
-  this.name = '小明'
-}
-
-const res = new Fun()
-console.log(res) // Fun {name: "小明"}
-```
-
-
-
-箭头函数和计时器中的 this
+这里比如我们使用`const`声明一个常量的对象
 
 ```js
 const obj = {
-  name: '小明',
-  sayName () {
-    console.log(this)
-  }
+    name: '小明',
+    age: 12
 }
-obj.sayName() // {name: "小明", sayName: ƒ}
-// 上面通过在对象中调用一个方法，输入 this 那么这个 this 打印的就是该对象
-
-const obj2 = {
-  name: '小明',
-  sayName () {
-    setTimeout(function () {
-      console.log(this)
-    })
-  }
-}
-obj2.sayName() // window
-// 如果是通过计时器输出的就是 window，计时器指向 window
-// 因为计时器是一个全局的函数 然后里面的函数就是 window 调用的，所以输出 window
-
-// 那么使用箭头函数就可以直接打印出这个对象本身了
-const obj3 = {
-  name: '小明',
-  sayName () {
-    setTimeout(() => {
-      console.log(this)
-    })
-  }
-}
-obj3.sayName() // {name: "小明", sayName: ƒ}
+obj.name = '小张'
+console.log(obj.name)
+// 输出结果是被更改后的 小张
 ```
 
+虽然是使用`const`声明，但是对象的属性值依然是可以改变的，那么如果想要声明之后以后不能被改变里面的值，可以使用，进行变量冻结，这就可以直接把变量的车门焊死，一旦声明，不能改变
 
+```js
+Object.freeze(+对象名)
+```
 
-1、普通函数，谁调用就指向谁，箭头函数在哪里定义就指向谁。
-
-2、箭头函数外指向谁就指向谁。
-
-3、箭头函数没有 this
-
-
-
-this 指向分为很多种不同的情况，下面分别来说一下：
-
-> 对象中的函数
-
-在对象中的函数，this 指向的是当前的这个对象
+效果如下
 
 ```js
 const obj = {
-  name: '小明',
-  change: function () {
-    console.log(obj.name) // 小明
-  }
+    name: '小明',
+    age: 12
 }
-obj.change()
+Object.freeze(obj)
+obj.name = '小张'
+console.log(obj.name)
+// 输出结果是依然是 小明
 ```
 
-上面例子，在对象中打印出 name 的值，可以通过 `obj.name` 来打印，但是有时候对象的名称可能是会变的，那么就可以通过 `this.name` 来获得 name 值，也可以实现同样的效果
+那么现在还有问题就是：既然变量已经冻结不能修改了，那么又加入：
 
 ```js
+obj.name = '小张'
+```
+
+显然这段代码是一个错误的、没有意义的代码，所以我们要让大家知道，这段代码是错误的
+
+所以可以通过加入严格模式，一旦已经冻结的变量，再修改里面的值，那么直接报错！
+
+完整代码如下：
+
+```js
+'use strict'
 const obj = {
-  name: '小明',
-  change: function () {
-    console.log(this.name) // 小明
-  }
+    name: '小明',
+    age: 12
 }
-obj.change()
+Object.freeze(obj)
+obj.name = '小张'
+console.log(obj.name)
 ```
 
-其实我们可以直接在对象中打印出 this ，就可以很直观的看到了，this 就是这个对象：
-
-```js
-const obj = {
-  name: '小明',
-  change: function () {
-    console.log(this)
-    // {name: "小明", change: ƒ}
-  }
-}
-obj.change()
-```
-
-**还有一点要注意：**
-
-因为当前的函数是对象中的一个属性，要是如果在对象的方法中（这里称之为对象中的函数为方法）再定义一个函数的话，我们会看到一个奇怪的现象：
-
-```js
-const obj = {
-  name: '小明',
-  change: function () {
-    function fun1 () {
-      console.log(this) // window
-    }
-    fun1()
-  }
-}
-obj.change()
-```
-
-如果在对象的方法中，再定义一个普通的函数，那么这个函数中的 this 指向的是 window
-
-那么怎么可以在对象方法中的函数也指向的当前对象呢？
-
-```js
-const obj = {
-  name: '小明',
-  change: function () {
-    // 在当前方法中 this 指向的是当前对象
-    // 所以这里可以将 this 赋值为一个常量 给下面函数提供使用
-    const this_ = this
-    function fun1 () {
-      // 这里打印上方存储的 this 即可打印出当前对象
-      console.log(this_)
-    }
-    fun1()
-  }
-}
-obj.change()
-```
-
-那么有关上述方法，请见实例，想要在对象的数组中，给数组的每一项前面添加上 `title` 属性：
-
-```js
-const obj = {
-  title: '学习',
-  lists: ['js', 'css', 'vue'],
-  change: function () {
-    const this_ = this
-    return this.lists.map(function (item) {
-      return `${this_.title}-${item}`
-    })
-  }
-}
-console.log(obj.change())
-
-// (3) ["学习-js", "学习-css", "学习-vue"]
-```
-
-除了上面方法，也可以将 this 作为参数传入函数中，同样可以正常运行：
-
-```js
-const obj = {
-  title: '学习',
-  lists: ['js', 'css', 'vue'],
-  change: function () {
-    return this.lists.map(function (item) {
-      return `${this.title}-${item}`
-    }, this)
-  }
-}
-console.log(obj.change())
-```
-
-**注：将 this 作为参数传入方法，有些函数支持，有些不支持！**
-
-
-
-> window 对象
-
-当我们在直接打印 this 的时候，打印出来的其实是一个 js 中最大的对象 `window对象`
-
-```js
-console.log(this) // Window {window: Window, self: Window, document: document, name: "", location: Location, …}
-
-// 其实直接打印 this 和直接打印 window 是一样的，可以通过比较来得出结论：
-console.log(this === window) // true
-```
-
-所以得出结论，在定义的对象中，this 指向的是当前对象，要是在全局打印 this 就指向 window 对象。
-
-我们定义的所有的全局变量，都会存储在 window 对象中，比如我们用 var 来定义一个变量：
-
-```js
-var aName = '张三'
-console.log(window.aName)
-// 张三
-```
-
-可以正常输出
-
-其实我们可以打印出 window 来看一下，里面就有刚刚定义的 `aName`:
+加入严格模式之后，浏览器将会直接报错：
 
 ```shell
-Window {window: Window, self: Window, document: document, name: "张三", location: Location, …}
-aName: "张三"
+Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
 ```
 
+所以将重新赋值删掉即可解决问题。
 
 
-> 箭头函数中的 this
 
-那么还是上面的实例，那么如果使用箭头函数的话，this 指向的就是父级作用域下的 this，就和父级中的 this 是统一回事儿了：
+## 一元运算符
 
-所以上面的例子中，想要在对象的数组中，给数组的每一项前面添加上 `title` 属性，使用箭头函数的写法就变成了：
+关于 a++  和  ++a  的问题
+
+正常在不参与运算的情况下是没什么区别的
 
 ```js
-const obj = {
-  title: '学习',
-  lists: ['js', 'css', 'vue'],
-  change: function () {
-    return this.lists.map(item => {
-      console.log(this)
-      // {title: "学习", lists: Array(3), change: ƒ}
-      return `${this.title}-${item}`
-    })
-  }
-}
-console.log(obj.change())
+let a = 2
 
-// (3) ["学习-js", "学习-css", "学习-vue"]
+console.log(a++)
+console.log(++a)
+// 结果都是3
 ```
 
-**总结就是：在箭头函数中的 this 指向的就是上下文，可以理解为就是父级作用域下的 this ，而普通函数指向的就是 window**
+那么再参与运算时
 
-那么箭头函数在有些地方，也会发生一些细微的变化，比如在事件中：
-
-```html
-<button id="btn">按钮</button>
-
-<script>
-  const obj = {
-    title: '这是标题',
-    change: function () {
-      const btn = document.getElementById('btn')
-      btn.addEventListener('click', function () {
-        console.log(this)
-        // 这里的 this 指的是 <button id="btn">按钮</button> 这个标签
-      })
-    }
-  }
-  obj.change()
-</script>
-```
-
-上面通过点击事件输出的 this 指向的是获取到的 buttom 标签，那么使用箭头函数：
-
-```html
-<button id="btn">按钮</button>
-
-<script>
-  const obj = {
-    title: '这是标题',
-    change: function () {
-      const btn = document.getElementById('btn')
-      btn.addEventListener('click', () => {
-        console.log(this)
-        // {title: "这是标题", change: ƒ}
-      })
-    }
-  }
-  obj.change()
-</script>
-```
-
-使用箭头函数打印的就是当前的对象
-
-+ 那么现在有这样的一个问题
-
-上述的方法，我想通过点击事件，既想要获得对象的 `title` 值，又想要获得按钮的文本值。那么这样有很矛盾了，因为使用普通函数的 this 指向的是按钮，使用箭头函数指向的是当前对象，一个 this 不能分为两个角色，那么这个问题怎么解决呢？请参考下面代码：
-
-```html
-<!-- 
-  先说一下思路：
-  使用普通函数中可以传递一个叫 event 的参
-  那么 event.target 可以获取到按钮标签
-  箭头函数的 this 指向的是当前的对象
-  那么就可以使用这两个机制来完成我们的效果
- -->
-<button id="btn">按钮</button>
-
-<script>
-  const obj = {
-    title: '这是标题',
-    change: function () {
-      const btn = document.getElementById('btn')
-      btn.addEventListener('click', (event) => {
-        console.log(this) // {title: "这是标题", change: ƒ}
-        console.log(event.target) // <button id="btn">按钮</button>
-        console.log(this.title + event.target.innerHTML)
-      })
-    }
-  }
-  obj.change()
-</script>
-```
-
-也可以使用先获取到 this 的方法：
-
-```html
-<button id="btn">按钮</button>
-
-<script>
-  const obj = {
-    title: '这是标题',
-    change: function () {
-      const btn = document.getElementById('btn')
-      const this_ = this
-      btn.addEventListener('click', function () {
-        console.log(this_.title + this.innerHTML)
-      })
-    }
-  }
-  obj.change()
-</script>
-```
-
-总结一句话就是：**箭头函数中的 this 是指向的父级的 this 如果父级的 this 指向的是某个对象，那么箭头函数中的 this 就指向该对象，如果父级的 this 指向的 window 那么箭头函数指定的是也是 window**
-
-
-
-### 构造函数
-
-简单的说构造函数也是函数, 可是却只有与 new 关键字配合才能形成构造函数。
-
-构造函数是用来创建对象使用的：
-
-构造函数的函数名建议首字母大写
+- 先++
 
 ```js
-function Dog () {
-
-}
-
-const dog = new Dog()
-console.log(dog)
-
-// Dog {}
+let a = 2
+let b = 4
+console.log(a + ++b)
+// 结果为7 ++放到前面 b先自增 b+1 + a
 ```
-
-这就是一个构造函数的基础写法。
-
-
-
-### 面向对象
-
-面向对象呢，是和构造函数相关的，所以在了解构造函数之后呢，接下来来说一下面向对象
-
-如果一个构造函数的结果只仅仅会输出一个对象，那么这样创建出来的对象是没有意义的，里面也没有内容，所以就可以通过 `this` 来拿到指向的这个对象，来添加一些属性：
-
+- 后++
 ```js
-// 通过接收两个参数 来给对象添加一个 name 和一个 age 的属性
-function Dog (n, a) {
-  // 构造函数这里的 this 指向的就是这个对象
-  this.name = n
-  this.age = a
-}
-
-const dog = new Dog('旺财', 2)
-console.log(dog)
-// Dog {name: "旺财", age: 2}
-```
-
-那么这种方式呢，也是一个面向对象的写法了，那么 Dog 就代表了一类的狗，`new` 的时候就是创建出了一个对象，那么就是狗类的实例
-
-
-###对象
-通过原型对象，为构造函数生成新的对象（prototype）：
-
-`prototype` 是构造函数的一个属性，我们可以在这个属性上添加一些函数或者方法，那么这些方法就可以在所有类的实例上进行调用，或者说可以被构造函数所有的实例来使用，例如：
-
-```js
-function Dog (n, a) {
-  this.name = n
-  this.age = a
-}
-
-Dog.prototype.sayName = function () {
-  console.log(`我的名字是${this.name}`)
-}
-
-const dog = new Dog('旺财', 2)
-dog.sayName()
-// 我的名字是旺财
-```
-
-这样就可以通过 `dog.sayName()` 来调用这个方法。
-
-其实不仅仅是函数，其实我们可以给任何的类或者对象，去扩展它的方法。比如：
-
-```js
-const arr = new Array(1, 2, 34, 5, 6, 7, 2)
-
-Array.prototype.changeLength = function () {
-  console.log(`数组的长度是${this.length}`)
-}
-
-arr.changeLength()
-// 数组的长度是7
-```
-
-这样就可以给所有的数组都添加了一个 `changeLength` 的方法。
-
-
-
-### 原型链继承
-
-通过原型链，我们可以实现一个继承，继承就是有父类，有子类，那么子类可以访问父类的属性和方法，例如：
-
-```js
-function Dog (name) {
-  this.name = name
-}
-
-Dog.prototype.changeName = function () {
-  console.log(`我的名字是${this.name}`)
-}
-
-// Cat 可以调用父级 Dog 的方法
-function Cat (name) {
-  this.name = name
-}
-
-// 直接将 Cat 这个原型对象赋值为 Dog 这个实例
-Cat.prototype = new Dog()
-
-const cat = new Cat('小明')
-
-cat.changeName()
-// 我的名字是小明
-```
-
-上面是使用原型链实现的基础，这是 ES5 的一个写法，暂时了解即可，因为 ES6 有了更好的解决方案
-
-
-
-### ES6 类
-
-从 es6 开始，就支持了`类`的概念了，可以通过 **class** 来定义一个类：
-
-```js
-class Dog {
-
-}
-
-const dog = new Dog()
-console.log(dog)
-// Dog {}
-```
-
-那么在 ES6 中实现和上面相同的效果，写法略有不同：
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-}
-
-const dog = new Dog('旺财', 2)
-console.log(dog)
-// Dog {name: "旺财", age: 2}
-```
-
-那么如果想添加方法就可以直接写在类里面：
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName () {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-const dog = new Dog('旺财', 2)
-dog.sayName()
-// 我的名字是旺财
+let a = 2
+let b = 4
+console.log(a + b++)
+// 结果为6 ++放到后面 b后自增 b + a
+// b++ 是在 算完 b + a 只后再自增的 所以再打印 b 就是5了
+console.log(b)
 ```
 
 
 
-### ES6 继承
-
-可以通过创建的类，利用 `extends` 关键字实现继承
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName () {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-class Cat extends Dog { }
-
-const cat = new Cat('喵喵', 2)
-cat.sayName()
-```
-
-那么继承父类之后，要是还需要传递其他参数，可以先使用 `super` 先获取父类的参数
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName () {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-class Cat extends Dog {
-  constructor(name, age) {
-    super(name)
-    this.age = age
-  }
-}
-
-const cat = new Cat('喵喵', 2)
-
-console.log(cat.age)
-```
-
-
-
-### call、apply、bind
-
-三个方法我都没用过，所以就学一个就行了，我就先学一个 call 剩下两个基本上差不多。
-
-
-
-**call**
-
-call 是一个函数的方法
-
-1、call 可以调用函数
-
-```js
-function fun () {
-  console.log('123')
-}
-fun.call() // 123
-```
-
-
-
-2、call 可以改变函数中 this 的指向
-
-```js
-// 这个是一个独立的函数 输出 this，很明显这个 this 指向的是 window
-function fun () {
-  console.log(this.name)
-}
-
-// 这里是一个独立的对象
-const obj = {
-  name: '小明'
-}
-
-// 那么就可以通过调用函数 再使用 call 把 obj 这个对象传递过去
-// 就可以改变函数中 this 的指向
-// 那么就打印出了小明
-fun.call(obj) // 小明
-```
-
-```js
-// 这里通过调用 dog 的方法，来输出 cat 的名字 
-const dog = {
-  name: '旺财',
-  sayName () {
-    console.log(this.name)
-  }
-}
-
-const cat = {
-  name: '喵喵'
-}
-
-dog.sayName.call(cat)
-```
-
-
-
-3、call 的传参方法
-
-```js
-const dog = {
-  name: '旺财',
-  eat (food1, food2) {
-    console.log(`我喜欢吃${food1}和${food2}`)
-  }
-}
-
-const cat = {
-  name: '喵喵'
-}
-
-// call 的第一个参数是传递指向的对象 后面的参数传递的是函数接收的参数
-dog.eat.call(cat, '鱼', '骨头') // 我是喵喵喜欢吃鱼和骨头
-```
-
-
-
-**apply**
-
-直接哪来上面的例子
-
-call 传递的参数的依次往后传递的
-
-而 apple 参数的需要传递一个数组
-
-```js
-const dog = {
-  name: '旺财',
-  sayName () {
-    console.log(this.name)
-  },
-  eat (food1, food2) {
-    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  }
-}
-
-const cat = {
-  name: '喵喵'
-}
-
-dog.eat.apply(cat, ['鱼', '骨头']) // 我是喵喵喜欢吃鱼和骨头
-```
-
-
-
-**bind**
-
-call 和 apply 会直接调用函数
-
-bind 的传值方式和 call 是一样的，但是 bind 会将一个函数作为返回值返回出来
-
-bind 的特点呢也就是可以多次调用了，剩下的和 call 用法完全一样
-
-```js
-const dog = {
-  name: '旺财',
-  sayName () {
-    console.log(this.name)
-  },
-  eat (food1, food2) {
-    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  }
-}
-
-const cat = {
-  name: '喵喵'
-}
-
-const res = dog.eat.bind(cat, '鱼', '骨头')
-res()
-```
-
-
-
-### call、apply、bind 的实际应用
-
-继承：子类可以使用父类的方法
-
-```js
-function Animal () {
-  // this 指向的是 小cat 那么也就成为了 cat 的方法了
-  this.eat = function () {
-    console.log('吃东西')
-  }
-}
-
-function Cat () {
-  // this 指向的是 小cat
-  Animal.call(this)
-}
-
-const cat = new Cat()
-cat.eat()
-```
-
-
-
-
-
-### 关于异步函数
-
-通常情况下，代码的执行顺序都是从上到下执行的，比如
-
-```js
-console.log(1)
-console.log(2)
-console.log(3)
-```
-
-> 输出顺序为  1  2  3
-
-
-
-那么最常见的异步函数就是定时器，比如上面这段代码加了定时器之后：
-
-```js
-console.log(1)
-
-setTimeout(() => {
-    console.log(2)
-}, 1000)
-
-console.log(3)
-```
-
-> 输出顺序则变成   1  3   2
-
-
-
-这也就是所谓的异步函数，就是不等一段代码执行完，也继续往下执行，等这段代码结果产生之后再执行
-
-无论原生的 XMLHttpRequest 、还是 jQuery 的 ajax 还是 axios 都是一个道理，都是异步的
-
-```js
-$.ajax({
-  method: '',
-  url: '',
-  success: function (data) {
-    // data 是响应结果
-  }
-})
-
-// 我们不能项写同步代码一样来写异步代码
-const data = 请求('请求路径')
-
-// 异步函数往往都伴随着一个回调函数来接收结果
-axios({
-  method: '',
-  url: ''
-}).then(res => {
-  console.log(res)
-})
-```
-
-> 回调函数的意思就是：回头再调用函数，并不是立即调用的
->
-> 请求时就是等这段代码结果产生之后再执行
->
-> 定时器就是等时间到了再执行
-
-
-
-### Async函数
-
-> 推荐使用
-
-async函数可以极大的简化我们的异步代码，前提是你的异步操作支持 Promise
-
-我们项目中大多数的异步操作都是使用 axios 发送请求，而 axios 支持 Promise。所以我们可以使用 async 函数来优化它。
-
-> 注意：不仅仅是 axios，任何异步操作如果提供了 Promise 的支持，都可以结合 async 函数来使用。非常方便
+## 关于switch语句
 
 例如：
 
 ```js
-axios({
-  method: 'XXX',
-  url: 'XXX'
-}).then(res => {
-  console.log(res)
-})
+let name = '小明'
 
-// async 只能用于函数
-// 那么使用了 async 函数 就可以使用下面想写法 等同于上面的
-async function main () {
-  const res = await axios({
-    method: 'XXX',
-    url: 'XXX'
-  })
-
-  console.log(res)
+switch (name) {
+    case '小明':
+        console.log('这是小明')
+        break
+    case '小张':
+        console.log('这是小张')
+        break
+    default:
+        console.log('我谁也不是')
 }
 ```
 
-> async 的意思是：异步
->
-> await 的意思是：等待
+例子中 我们要判断`name`来输出不同的内容，它会用`name`来和`case`的每一个字段进行相比，如果成立，就执行下面的内容，如果碰到`break`就退出`switch`。
 
-这样 通过`async`+`await` 我们就可以像写同步代码一样来写异步代码了，就不需要再套回调函数了
-
-比如我们模拟一下获取数据
-
-```html
-<button onclick="getData()">获取数据</button>
-<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script>
-  async function getData() {
-    const res = await axios({
-      method: 'GET',
-      url: 'https://ku.qingnian8.com/school/list.php'
-    })
-    console.log(res)
-  }
-</script>
-```
+如果一直都没有找到成立项，那么就执行`default`的内容
 
 
 
-- 只要是函数 就可以被标记为 async，不论函数是什么形式的。下面列举一些标注形式
+那么如果想要有两个字段有统一的处理方式的话，也可以这么写：
 
 ```js
-async function hello () { }
+ let item = 'hello'
 
-const hello = async function () { }
-
-const hello = async () => { }
-
-const user = {
-  async hello () { },
-  hello: async function () { },
-  hello: async () => { }
-}
+ switch (item) {
+     case 'hello':
+     case 'Hi':
+         console.log('你好啊')
+         break
+     case 'yes':
+         console.log('是的')
+         break
+ }
 ```
 
-> 只要标记了 async 就可以在里面使用 await 了
->
-> 使用 **await** 的关键字必须把所属的函数标记为 **async**
+这里要判断的值是`item`上面代码意思是：`item`的值是`hello`或者`Hi`的其中一个，都是可以执行`break`前的内容的，两个内容使用统一的处理方式
 
 
 
-- async 函数的返回值
+## 循环进阶
 
-先看普通函数
+for in 循环
+
+**for in**遍历数组
 
 ```js
-function fun1 () {
-  return 123
+const arr = ['111', '222', '333']
+for (let key in arr) {
+    console.log(key)
 }
-console.log(fun1())
 
-// 直接输出返回值 123
+// 0
+// 1
+// 2
 ```
 
+>  遍历数组`key`实际上输出的就是数组中每一项的索引值
 
 
-那么换成 async 函数之后：
+
+**for  in** 遍历对象
 
 ```js
-async function fun1 () {
-  return 123
+const arr2 = {
+    name: 'xiaoming',
+    age: '12',
+    from: 'chinese'
 }
 
-console.log(fun1())
+// 打印 key 是对象中的每一项的键名
+for (let key in arr2) {
+    console.log(key)
+}
+// name
+// age
+// from
+
+// 打印 arr2[key] 是对象中的每一项的值
+for (let key in arr2) {
+    console.log(arr2[key])
+}
+// xiaoming
+// 12
+// chinese
 ```
 
-输出结果则是一个 Promise 对象
+>  遍历对象`key`实际上输出的就是对象中每一项的键名
 
-```shell
-Promise {<fulfilled>: 123}
-	__proto__: Promise
-	[[PromiseState]]: "fulfilled"
-	[[PromiseResult]]: 123
-```
-
-也就是说：
-
-async 函数最终的返回值都会返回一个 Promise 对象
-
-如果返回值不是一个 Promise 对象，则将返回值包装到 Promise 中
-
-如果返回值就是一个 Promise 对象，则不作任何处理
+> `key`的值的可以自定义的，可以自己定义名字，叫a、b、c 也可以，但是要有语义
 
 
 
-加了 async 的函数，实际变成了这样：
+for of 循环
+
+**for  of**遍历数组
 
 ```js
-// async 函数会把不是 Promise 对象的返回值包装到 Promise 对象中返回
-function fun1 () {
-  return new Promise(resolve => {
-    resolve(123)
-  })
+const arr = ['111', '222', '333']
+for (let val of arr) {
+    console.log(val)
 }
-
-console.log(fun1())
+// 111
+// 222
+// 333
 ```
 
-如果加了 async 的函数，还想输出返回的结果，那么就要使用`.then()`方法
+>  遍历数组`val`实际上输出的就是数组中每一项的值
+
+
+
+下面会直接拿到数组中每项的`title`内容
 
 ```js
-function fun1 () {
-  return new Promise(resolve => {
-    resolve(123)
-  })
+const arr3 = [
+    { title: "踩踩踩", age: '12' },
+    { title: "大大大", age: '35' },
+    { title: "啊啊啊", age: '22' }
+]
+
+for (const val of arr3) {
+    console.log(val.title)
 }
 
-fun1().then(res => {
-  console.log(res)
-})
+// 踩踩踩
+// 大大大
+// 啊啊啊
 ```
 
 
 
-- async 函数处理异常状态
-
-执行异步代码中有异常代码，则可以通过`.catch(err => {})`来处理异常状态
+也可以直接将字符串打印出来
 
 ```js
-// 例1：
-async function fun1 () {
-  JSON.parse('dsdadsdas')
-  return 123
+for (let item of '1234') {
+    console.log(item)
 }
-
-fun1()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.log('发生错误了', err)
-  })
-
-// 例2：
-async function fun1 () {
-  JSON.parse('dsdadsdas')
-  return 123
-}
-
-async function fun2 () {
-  // 这里的代码已经异常了
-  const data = await fun1().catch(err => {
-    console.log('异常了', err)
-  })
-  // 但是这里的代码依然还是会执行
-  console.log(data)
-}
-
-fun2()
-```
-
-但是使用`.catch(err => {})` 来处理异常，异常之后的代码依然会执行，所以解决这个问题，可以使用 try + catch
-
-
-
-但是更推荐的是使用`try` `catch`来捕获异常，就可以很好的处理上面发生的问题
-
-```js
-async function fun1 () {
-  JSON.parse('dsdadsdas')
-  return 123
-}
-
-async function fun2 () {
-  try {
-    const data = await fun1()
-    console.log(data)
-  } catch (err) {
-    console.log('异常了', err)
-  }
-}
-
-fun2()
-```
-
-这样，一旦在`try`中尝试执行代码中出错，或者出现异常状态，立刻就会停止`try`中的执行，进入`catch`中处理异常状态
-
-
-
-### 闭包函数
-
-> 闭包定义
-
-闭包就是能够读取其他函数内部变量的函数
-
-例如：
-
-```js
-function fun1 () {
-  const num = 1
-  function fun2 () {
-    return 10 + num
-  }
-  return fun2()
-}
-console.log(fun1())
-```
-
-闭包是指有权访问另⼀个函数作⽤域中变量的函数，创建闭包的最常⻅的⽅式就是在⼀个函数内创建另⼀个函数，通过另⼀个函数访问这个函数的局部变量,利⽤闭包可以突破作用域
-
-> 闭包的特性
-
-- 函数内再嵌套函数
-- 内部函数可以引⽤外层的参数和变量
-- 参数和变量不会被垃圾回收机制回收
-
-> 垃圾回收机制是什么？
-
-由于字符串、对象等没有固定的大小，js程序在每次创建字符串、对象的时候，程序都会**分配内存来存储那个实体**
-
-- 使用分配到的内存做点什么
-- 不需要时将其释放回归
-
-在不需要字符串、对象的时候，需要释放其所占用的内存，否则将会消耗完系统中所有可用的内存，造成系统崩溃，这就是**垃圾回收机制所存在的意义**
-
-在C和C++之类的语言中，需要手动来管理内存的，这也是造成许多不必要问题的根源。幸运的是，在编写js的过程中，内存的分配以及内存的回收完全实现了自动管理，我们不用操心这种事情
-
-> 说说你对闭包的理解
-
-- 使⽤闭包主要是为了设计私有的⽅法和变量。闭包的优点是可以避免全局变量的污染，缺点是闭包会常驻内存，会增⼤内存使⽤量，使⽤不当很容易造成内存泄露。在js中，函数即闭包，只有函数才会产⽣作⽤域的概念
-
-- 闭包 的最⼤⽤处有两个，⼀个是可以读取函数内部的变量，另⼀个就是让这些变量始终保持在内存中
-
-- 闭包的另⼀个⽤处，是封装对象的私有属性和私有⽅法
-- **好处：**能够实现封装和缓存等
-- **坏处：**就是消耗内存、不正当使⽤会造成内存溢出的问题
-
-> 使用闭包需要的注意点
-
-- 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很⼤，所以不能滥⽤闭包，否则会造成⽹⻚的性能问题，在 IE 中可能导致内存泄露
-
-- 解决⽅法是，在退出函数之前，将不使⽤的局部变量全部删除
-
-
-
-### 回调函数
-
-回调函数是：在一个函数中，又调用了一个函数，叫回调函数
-
-例如：
-
-```html
-<button id="btn">按钮</button>
-<script>
-  const btn = document.getElementById('btn')
-  btn.addEventListener('click', function () {
-    console.log('这是回调函数')
-  })
-</script>
-```
-
-比如这个点击事件，通过函数 `addEventListener` 定义点击事件，参数是传入的另一个函数，那么这样的函数就称之为回调函数。
-
-还有就是数组常用的 `map` 方法等等：
-
-```js
-const res2 = list.map((item) => {
-  item.age += 30
-  return item
-})
-```
-
-
-
-
-
-当出现类似下面这样的业务时候，一个回调函数里面又套了回调函数，请求时就是等这段代码结果产生之后再执行，那么这样回调套回调就会很麻烦了，不利于阅读，开发维护都麻烦
-
-回调地狱就是下面的情况
-
-```js
-axios({
-  method: '',
-  url: ''
-}).then(res => {
-  axios({
-    method: '',
-    url: ''
-  }).then(res => {
-    axios({
-      method: '',
-      url: ''
-    }).then(res => {
-
-    })
-  })
-})
-```
-
-
-
-### 递归函数
-
-直接或间接调用自己函数本身
-
-> 注：一定要有一个终止这个函数的处理，否则将出现死循环
-
-```js
-function fun1 (n) {
-  console.log(n)
-  n--
-  if (!n) {
-    return
-  }
-  fun1(n)
-}
-```
-
-
-
-### 立即执行函数
-
-声明函数时，直接调用
-
-```js
-(function () {
-  console.log('我是立即执行函数！')
-})()
-```
-
-那么立即执行函数用在哪里呢？
-
-下面是有5个 li 标签，我们要实现的效果是：点击哪个就弹出哪个 li 的索引值
-
-这是曾经使用立即执行函数的写法：
-
-```html
-<ul>
-  <li>11111</li>
-  <li>22222</li>
-  <li>33333</li>
-  <li>44444</li>
-  <li>55555</li>
-</ul>
-
-<script>
-  var li = document.querySelectorAll("li")
-
-  for (var i = 0; i < li.length; i++) {
-    li[i].onclick = (function (x) {
-      return function () {
-        alert(x)
-      }
-    })(i)
-  }
-</script>
-```
-
-因为但是还没有作用域的问题，当有了`es6`之后，一切就变得简单多了：
-
-```html
-<ul>
-  <li>11111</li>
-  <li>22222</li>
-  <li>33333</li>
-  <li>44444</li>
-  <li>55555</li>
-</ul>
-
-<script>
-  const btn = document.querySelector("button")
-  for (let i = 0; i < 5; i++) {
-    btn.onclick = function () {
-      console.log(i)
-    }
-  }
-</script>
-```
-
-> 直接换成 let 声明，就可以直接解决问题，也就直接可以省略了立即执行函数了
-
-
-
-看过jQuery源码的人应该知道，jQuery开篇用的就是立即执行函数。立即执行函数常用于第三方库，好处在于隔离作用域，任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数
-
-1. 什么是立即执行函数
-
-在了解立即执行函数之前先明确一下函数声明、函数表达式及匿名函数的形式，如下代码
-
-```js
-// 函数声明
-function fun1 () {
-  console.log('hello')
-}
-
-// 函数表达式
-const fun2 = function () {
-  console.log('hello')
-}
-
-// 匿名函数
-function () {
-  console.log('hello')
-}
-```
-
-
-
-接下来看立即执行函数的两种常见形式：( function(){…} )()和( function (){…} () )，一个是一个匿名函数包裹在一个括号运算符中，后面再跟一个小括号，另一个是一个匿名函数后面跟一个小括号，然后整个包裹在一个括号运算符中，这两种写法是等价的。要想立即执行函数能做到立即执行，要注意两点，一是函数体后面要有小括号()，二是函数体必须是函数表达式而不能是函数声明。如下代码：
-
-```js
-// 输出 123 使用 () 运算符
-(function (text) {
-  console.log(text)
-})(123)
-
-
-// 输出 123 使用 () 运算符
-// (function (text) {
-//   console.log(text)
-// }(123))
-
-
-// 输出 123 使用 ! 运算符
-!function (text) {
-  console.log(text)
-}(123)
-
-// 输出 123 使用 + 运算符
-+ function (text) {
-  console.log(text)
-}(123)
-
-// 输出 123 使用 - 运算符
-- function (text) {
-  console.log(text)
-}(123)
-
-// 输出 123 使用 = 运算符
-const fun = function (text) {
-  console.log(text)
-}(123)
-```
-
-上面可见，除了使用 `()` 运算符之外，`！，+，-，=`等运算符都能起到立即执行的作用。这些运算符的作用就是将匿名函数或函数声明转换为函数表达式
-
-
-
-2. 使用立即执行函数的好处
-
-通过定义一个匿名函数，创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，如jQuery代码结构：
-
-```js
-(function (window, undefined) {
-  // code
-})(window)
-```
-
-其中window即是全局对象。给其传入参数这样的好处是，可以缩短查询时的作用域链。作用域隔离非常重要，是一个JS框架必须支持的功能，jQuery被应用在成千上万的JavaScript程序中，必须确保jQuery创建的变量不能和导入他的程序所使用的变量发生冲突。
-
-
-
-**闭包和立即执行函数**
-
-先看个例子
-
-```js
-const car = {
-  age: 0,
-  change () {
-    this.age = 40
-  },
-  getAge () {
-    return this.age
-  }
-}
-car.change()
-console.log(car.getAge()) // 40
-```
-
-这个对象有其成员变量`age`及成员函数`change`和`getAge`，但是它的成员变量没有私有化，同时它也没有办法被继承。要实现对象的继承，你可以使用构造函数和原型继承。但怎么才能将成员变量私有化来实现对象的封装呢（而且有时候我们也不想那么麻烦使用原型）？这里呢，或许我们就可以使用闭包函数
-
-```js
-function car () {
-  let age = 0
-  return { // 返回的是一个对象
-    change () {
-      age = 40
-    },
-    getAge () {
-      return age
-    }
-  }
-}
-
-const car1 = car()
-car1.change()
-console.log(car1.getAge()) // 40
-```
-
-
-
-
-
-### 柯里化函数
-
-柯里化（currying）
-
-把多个参数的函数转换为接收单一参数的函数，并且返回值接收剩余参数并且返回结果的函数
-
-例如：
-
-```js
-function fun2 (x) {
-  return function (y) {
-    return x + y
-  }
-}
-// 调用的方法和其他函数有所不同
-console.log(fun2(10)(5))
-```
-
-> 柯里化函数好处：减少重复传递不变的部分参数
-
-
-
-### 普通函数和箭头函数
-
-- 外形不同
-
-> 箭头函数使用箭头定义，普通函数中没有
-
-```js
-// 普通函数
-function fun1 () {
-  // code
-}
-// 箭头函数
-let fun2 = () => {
-  // code
-}
-```
-
-- 箭头函数都是匿名函数
-
-> 普通函数可以有匿名函数，也可以有具体名函数，但是箭头函数都是匿名函数
-
-```js
-// 具名函数
-function fun1 () {
-  // code
-}
-
-// 匿名函数
-let fun2 = function () {
-  // code
-}
-
-// 箭头函数全都是匿名函数
-let fun3 = () => {
-  // code
-}
-```
-
-- 箭头函数中的this指向不同
-
-> 箭头函数的 this 永远指向其上下文的 this
->
-> 普通函数的this指向调用它的那个对象
-
-
-## 内置函数
-
-
-### 数学对象
-
-1.  `Math.max()` 获取最大值
-
-```js
-console.log(Math.max(12, 3, 56))
-// 56
-```
-
-2. `Math.min()` 获取最小值
-
-```js
-console.log(Math.min(12, 3, 56))
+// 1
+// 2
 // 3
-```
-
-3. `Math.ceil()`向上取整
-
-```js
-console.log(Math.ceil(3.5655))
 // 4
 ```
 
-4. `Math.floor()`向下取整
+> 注意：for  of  不能遍历对象！！
+
+
+
+forEach 循环
 
 ```js
-console.log(Math.floor(3.5655))
-// 3
+const arr = [
+    { title: "踩踩踩", age: '12' },
+    { title: "大大大", age: '35' },
+    { title: "啊啊啊", age: '22' }
+]
+
+arr.forEach((item, val) => {
+    console.log(item)
+    console.log(val)
+})
+
+// {title: "踩踩踩", age: "12"}
+// 0
+// {title: "大大大", age: "35"}
+// 1
+// {title: "啊啊啊", age: "22"}
+// 2
 ```
 
-5. `Math.random()` 随机数
+> forEach 使用回调函数遍历每个成员，可接收两个参数
+>
+> item 是数组中的每一项
+>
+> val 是数组中每一项的索引值
+
+
+
+## 关于 json-bigint
+
+js 能够精准的表示的整数范围在 -2^53 到 -2^53 之间（不含两个端点），超出这个范围，则无法正常显示这个值，这使得 JavaScript 不适合金融和科学方面的计算
+
+通常我么在使用**axios**发送请求的时候，后台可能会返回比较大的一个数字，因为**axios**会把JSON格式字符串转换为JS对象，那么如果这个数字很大，那么就会出现问题，比如：
 
 ```js
-console.log(Math.random())
+const str = '{ "id": 158464848747369549 }'
+console.log(JSON.parse(str).id)
 ```
 
-> 随机数是 >=0  ~ <1 之间是数
+这样输出的`id`就不是原始的数据了
 
-- 要获取一个  1 ~ x 的一个整数随机数，可以通过下面公式直接获取
+因为这个数字超出了JS的安全整数范围，所以不能正常表示了，那么**json-bigint**就可以很好的帮助解决这个问题
+
+ **json-bigint** Github 仓库地址：https://github.com/sidorares/json-bigint
+
+安装 **json-bigint**
+
+```shell
+npm i json-bigint
+```
+
+
+
+可以通过json-bigint内置的方法来获取这样大的数据
+
+1. 将JSON数据转换为 JavaScript 对象
 
 ```js
-// 这里想获取一个 1 ~ 10 的随机数
-console.log(Math.ceil(Math.random() * 10))
+JSONbig.parse()
 ```
-公式为：`Math.ceil(Math.random() * 最大值)`
 
-
-- 要获取一个区间的随机数，可以通过下面公式直接获取
+等同于
 
 ```js
-// 这里想取到 2 - 5 直接是随机数
-console.log(2 + Math.ceil(Math.random() * (5 - 2)))
+JSON.parse()
 ```
 
-公式为：`最小值 + Math.ceil(Math.random() * (最大值 - 最小值))`
-
-那么通过上面的随机数方法，我们可以做一个简易的点名系统
-
-```html
-<p class="name"></p>
-<script>
-    const arr = ["小张", "小李", "小明", "小红", "小强", "小周"]
-
-    const name = document.querySelector(".name")
-
-    const length = arr.length // 获取数组的长度
-    const num = Math.floor(Math.random() * length)
-    name.innerHTML = arr[num]
-</script>
-```
-
-
-
-### 日期对象
-
-可以通过 `new Date()` 获取当前时间
+通过`JSONbig.parse()`转换为的是一个js对象，其实它只是换了一种形式表示出了这个数字，那么想要再获得这个数据，还需要`toString()`一下就可以获取到了
 
 ```js
-const date = new Date()
-console.log(date)
+// 引入 json-bigint
+import JSONbig from 'json-bigint'
+
+const str = '{ "id": 158464848747369549 }'
+console.log(JSON.parse(str).id)
+console.log(JSONbig.parse(str).id.toString())
 ```
 
 
 
-- `Date.now()` 获取当前时间戳
+2. 将 JavaScript 对象转换为JSON字符串
 
 ```js
-console.log(Date.now())
+JSONbig.stringify()
 ```
 
-通过时间戳，我们可以计算程序执行所用的时间，下面以 for 循环举例
+等同于
+
+```js
+JSON.stringify()
+```
+
+虽然这个两个方法的等同于的，但是通过`JSONbig.parse()`转换为的JavaScript 对象使用`JSON.stringify()`转换为JSON字符串会有一定的问题
+
+> 所以。用什么转来的，就用什么转回去就不会有问题了
+
+
+
+## 关于 console
+
+`console.log()` 在控制台上输出信息
+
+```js
+console.log('这的一段信息')
+
+// 这的一段信息
+```
+
+
+
+`console.table()` 用于打印数组结构
+
+比如，我们在定义一个数组的时候，要是在控制台打印是这样的：
+
+```js
+const arr = [1, 3, 5, 6]
+console.log(arr)
+// (4) [1, 3, 5, 6]
+```
+
+类似数组，可以通过 console.table() 来更直观的打印出：
+
+```js
+const arr = [1, 3, 5, 6]
+console.table(arr)
+```
+
+打印结果为：
+
+| (index) | value |
+| ------- | :---- |
+| 0       | 1     |
+| 1       | 3     |
+| 2       | 5     |
+| 3       | 6     |
+
+```js
+Array(4)
+```
+
+会打印出 索引对应的值
+
+
+
+`console.error()` 用于错误信息提示
+
+```js
+console.error('这是一段错误信息')
+// 这是一段错误信息
+```
+
+
+
+`console.warn()` 用于打印警告信息
+
+```js
+console.warn('这是一段警告信息')
+```
+
+
+
+
+
+
+
+## 普通事件和事件绑定
+
+两种事件分别来说说：
+
+- 普通事件（onclick）
+
+普通事件就是直接触发事件，同一时间只能指向唯一对象，所以会被覆盖掉。代码如下：
+
+```js
+const btn2 = document.querySelector(".btn2")
+
+btn2.onclick = function () {
+    console.log("哈哈哈哈哈哈")
+}
+
+btn2.onclick = function () {
+    console.log("呵呵呵呵呵呵")
+}
+```
+
+这样只会输出`呵呵呵呵呵呵`，以为后面的代码会覆盖掉前面的，个click处理器在同一时间只能指向唯一的对象。所以就算一个对象绑定了多次，其结果只会出现最后的一次绑定的对象
+
+
+
+- 事件绑定（addEventListener）
+
+事件绑定就是对于一个可以绑定的事件对象，进行多次绑定事件都能运行。代码如下：
+
+```js
+const btn1 = document.querySelector(".btn1")
+
+btn1.addEventListener("click", function () {
+    console.log("11111")
+})
+
+btn1.addEventListener("click", function () {
+    console.log("222222")
+})
+```
+
+这样会依次输出 `11111`和`222222`
+
+
+
+
+
+
+
+
+## 计算程序执行的时间
+
+上面，通过随机数的方法可以获取程序所执行的时间，它是原理是
 
 ```js
 const a = Date.now() // 开始执行 for 循环的时间戳
-for (i = 0; i < 22222220; i++) { } // 执行 for 循环
+for (i = 0; i < 22222220; i++) {} // 执行 for 循环
 const b = Date.now() // 结束 for 循环的时间戳
 console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
 ```
 
+其实，如果想要计算程序执行的时间，可以尝试下面的方法
 
+我们只知道 `console.log()` 可以在浏览器控制台内打印出数据
 
-- 获取指定日期的时间戳 `getTime()`
+其实 `console.` 后面还可以有很多别的参数，比如下面方法就可以计算程序执行的时间：
 
 ```js
-const time = new Date("2000-10-1 12:23:11") // 获取目标时间
-console.log(time.getTime()) // 使用 getTime() 方法将时间转换为时间戳
-// 下面三种方法也可以转换
-console.log(time * 1)
-console.log(Number(time))
-console.log(time.valueOf())
+console.time('for')
+for (i = 0; i < 22222220; i++) { }
+for (i = 0; i < 22222220; i++) { }
+for (i = 0; i < 22222220; i++) { }
+console.timeEnd('for')
 ```
 
-> 以上转换的4种方法都可以使用
+> `console.time()` 和 `console.timeEnd()` 是相互对应的两个标签，计算的就是中间包裹住程序所执行的时间，里面名称可以自定义，但是开始和结束的名称必须对应！
+>
+> **参数填写错误浏览器会有警告！（不是报错）**
 
 
 
-- 将时间戳转换为时间对象
+
+
+##  数组方法
+
+###.. 展开运算符
+
+`...` 展开数组（ES6）
+
+比如，在之前，我们想要合并两个数组，可以通过 `for of` 遍历进行操作：
 
 ```js
-const time = new Date("2000-10-1 12:23:11")
-const timeList = time.getTime()
-console.log(new Date(timeList))
+const arr1 = ['js', 'css']
+const arr2 = ['java', 'python', 'c']
+for (const value of arr2) {
+    arr1.push(value)
+}
+console.log(arr1)
+// (5) ["js", "css", "java", "python", "c"]
 ```
 
-将时间戳转换为时间对象的方法也很简单，只有 `new` 一个新的日期对象，再把时间戳扔到括号里面即可
-
-> new Date(时间戳)
-
-
-
-- 获取当前时间的年月日时分秒
+那么通过 **ES6** 的数组展开语法，上述操作就变的非常简单了：
 
 ```js
-const time = new Date() // 获取当前时间
-const year = time.getFullYear() // 获取年份
-const month = time.getMonth() + 1 // 获取月份
-const day = time.getDate() // 获取日
-const hour = time.getHours() // 获取小时
-const minute = time.getMinutes() // 获取分钟
-const res = `${year}-${month}-${day} ${hour}:${minute}`
-console.log(res)
+const arr1 = ['js', 'css']
+const arr2 = ['java', 'python', 'c']
+const newArr = [...arr1, ...arr2]
+console.log(newArr)
+// (5) ["js", "css", "java", "python", "c"]
 ```
 
-这么的写法比较麻烦，我们可以通过封装函数的方法，来实现上面代码段的重复利用
+
+
+展开语法在函数中的使用，比如下方计算加和：
+
+当一个函数需要接收到多个，并且不固定数量的参数时，之前接收的方法可能是这样的：
 
 ```js
-// 获取到当前的时间
-const time = new Date()
+function fun (a, b, c, d) {
+    return a + b + c + d
+}
+console.log(fun(1, 2, 3, 4))
+// 10
+```
 
-// 封装函数
-// date 是当前的时间
-// format 处理转换时间的格式
-function dateFormat (date, format = 'YYYY-MM-DD HH:mm:ss') {
-  // 定义对象处理转换时间的格式
-  const config = {
-    'YYYY': date.getFullYear(),
-    'MM': date.getMonth() + 1,
-    'DD': date.getDate(),
-    'HH': date.getHours(),
-    'mm': date.getMinutes(),
-    'ss': date.getMinutes()
-  }
-  // 用 for in 遍历出对象中的每一项 并使用 replace 替换
-  for (const key in config) {
-    format = format.replace(key, config[key])
-  }
-  return format
+那么有了展开语法，就会显然解决了参数不固定的问题
+
+```js
+function fun (...num) {
+    let a = 0
+    for (let i = 0; i < num.length; i++) {
+        a += num[i]
+    }
+    return a
+}
+console.log(fun(1, 2, 3, 4))
+// 10
+```
+
+展开运算符不仅仅适用于数组，对象有可以使用：
+
+```js
+const obj1 = { left: 100, top: 200 }
+const obj2 = { width: 200, height: 200 }
+
+const obj3 = {
+    ...obj1,
+    ...obj2
+};
+
+console.log(obj3)
+// {left: 100, top: 200, width: 200, height: 200}
+```
+
+
+
+###ush()
+
+`push()` 向数组的末尾添加元素
+
+向数组末尾添加元素是方法有很多，比如使用  arr[] 来添加
+
+```js
+const arr = ['css', 'html', 'js']
+arr[3] = 'vue'
+console.log(arr)
+// (4) ["css", "html", "js", "vue"]
+```
+
+或者比上述方法更好的还有使用 `.length` 方法进行添加：
+
+```js
+const arr = ['css', 'html', 'js']
+arr[arr.length] = 'vue'
+console.log(arr)
+// (4) ["css", "html", "js", "vue"]
+```
+
+但是使用数组的 `push()` 会更简单清晰：
+
+```js
+const arr = ['css', 'html', 'js']
+arr.push('vue')
+console.log(arr)
+// (4) ["css", "html", "js", "vue"]
+```
+
+`push()` 也可以同时添加多个值
+
+```js
+const arr = ['css', 'html', 'js']
+arr.push('vue', 'java')
+console.log(arr)
+// (5) ["css", "html", "js", "vue", "java"]
+```
+
+
+
+###oin()
+
+`join` 把数组转换为字符串数组 || 配置数组中每一项直接的连接符
+
+```js
+// 把数组转换为字符串数组
+let arr = [1, 2, 3, 4, 5]
+console.log(arr.join())
+// 1,2,3,4,5
+
+// 配置数组中每一项直接的连接符
+let arr = [1, 2, 3, 4, 5]
+console.log(arr.join('--'))
+// 1--2--3--4--5
+```
+
+
+
+###rray.from()
+
+`Array.from()` 将字符串转换为数组
+
+```js
+const str = '这是一段文字'
+console.log(Array.from(str))
+// (6) ["这", "是", "一", "段", "文", "字"]
+```
+
+> 注意：使用 `Array.from()` 转换前，必须要确保这个值是有长度的，例如：
+
+```js
+const str = '这是一段文字'
+console.log(str.length) // 6
+```
+
+字符串是可以使用 `.length` 方法得到长度度的，但是如果要是使用 `Array.from()` 转换对象的话是转换不出来的
+
+```js
+// 因为对象不能使用 .leghtn 方法得到长度
+const obj = {
+    name: '小明',
+    age: 12,
+}
+console.log(obj.length) // undefined
+console.log(Array.from(obj)) // []
+```
+
+但是如果给对象加入了 `length` ，名字再变成数值之后就可以实现了：
+
+```js
+const obj = {
+    0: '小明',
+    1: 12,
+    length: 2
+}
+console.log(obj.length) // 2
+console.log(Array.from(obj)) // ["小明", 12]
+```
+
+**注：对象转换的方法实际中很少用，此处仅对有无 .length 转换结果作为参考比较**
+
+
+
+
+###op()
+
+`pop()`  删除数组的末尾元素
+
+```js
+const arr = ['java', 'python', 'c']
+arr.pop()
+console.log(arr)
+// (2) ["java", "python"]
+```
+
+
+
+###nshift()
+
+`unshift()` 在数组开头添加元素
+
+```js
+const arr = ['java', 'python', 'c']
+arr.unshift('c++')
+console.log(arr)
+// (4) ["c++", "java", "python", "c"]
+```
+
+> 注：支持多个添加
+
+
+
+###hift()
+
+`shift()` 删除数组开头的元素
+
+```js
+const arr = ['java', 'python', 'c']
+arr.shift()
+console.log(arr)
+// (2) ["python", "c"]
+```
+
+
+
+###lice()
+
+`slice()` 数组截取
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.slice(2, 4)
+console.log(arr2)
+// (2) ["js", "java"]
+```
+
+`slice()` 可以传入两个参数，根据索引进行截取，分别是：
+
+> 第一个参数是：从第几个开始截取（包括开始元素索引元素）
+>
+> 第二个参数是：截取到第几个元素（不包括结束元素索引元素）
+
+如果传递了一个参数：那就代表从指定位数截取到结尾（不包括开始元素）
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.slice(2)
+console.log(arr2)
+// (3) ["js", "java", "html5"]
+```
+
+如果不传参数，就截取整个数组
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.slice()
+console.log(arr2)
+// (5) ["css", "html", "js", "java", "html5"]
+```
+
+> 注：`slice()` 方法不会改变原数组，而是会创建一个新的数组
+
+
+
+###plice()
+
+`splice()` 数组 截取 || 添加数据 || 移除 || 替换
+
+同样都是数组截取，`slice()`  和  `splice()`  还是有区别的
+
+`splice()` 不仅仅有截取的方法，还可以添加、移除、替换 等操作，下面分别来说说：
+
+- 截取：
+
+`splice()`  也是通过索引进行截取，里面包含两个参数：
+
+> 第一个参数是：从第几个开始截取（包括当前索引元素）
+>
+> 第二个参数是：截取几个元素
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.splice(0, 3)
+console.log(arr2)
+// (3) ["css", "html", "js"]
+
+// 截取完之后会改变原数组，原数组剩下未截取的部分
+console.log(arr)
+// (2) ["java", "html5"]
+```
+
+- 添加：
+
+上述例子中，通过传递两个参数，截取了制定的元素，可以继续通过添加参数的方法来往**原数组中**添加元素
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.splice(0, 3, 'javascript', 'node')
+
+// 截取出来的数组
+console.log(arr2) // (3) ["css", "html", "js"]
+
+// 原数组 - 截取的元素 + 添加的新元素
+console.log(arr) // (4) ["javascript", "node", "java", "html5"]
+```
+
+- 移除
+
+比如这里想把 `js` 移除，那么通过传递两个参数
+
+> 第一个参数：移除元素的索引：2
+>
+> 第二个参数：移除的数量：1
+
+所以就是：
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+arr.splice(2, 1)
+console.log(arr)
+// (4) ["css", "html", "java", "html5"]
+```
+
+- 替换
+
+和移除类似，比如：
+
+把 `js` 移除了之后，想要替换成 `javascript` 那么仅需要在后面加上一个参数即可：
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+arr.splice(2, 1, 'javascript')
+console.log(arr)
+// (5) ["css", "html", "javascript", "java", "html5"]
+```
+
+
+
+###ncludes()
+
+`includes()` 方法，查找数组中是否包含某元素
+
+> 该方法返回布尔类型
+
+```js
+const arr = [1, 3, '7', 5]
+
+console.log(arr.includes(1))
+// 数组中包含 1 所以返回 true
+
+console.log(arr.includes(99))
+// 数组中不包含 99 所以返回 false
+```
+
+那么 `includes()` 方法的实现原理是什么呢？详见下面实例
+
+```js
+const arr = [1, 3, 6, 5]
+
+// array 是要查找的数组
+// value 是要查找的元素
+function includes(array, value) {
+    // 通过 for of 遍历数组中的每一项
+    // 如果有和 value 值一样的，就返回 true 否则返回 false
+    for (const val of array) {
+        if (val === value) {
+            return true
+        }
+    }
+    return false
 }
 
-console.log(dateFormat(time, 'YYYY年-MM月-DD日'))
-// 2021年-4月-3日
-
-console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
-// 2021^4^3 20^41^41
+console.log(includes(arr, 6))
 ```
+
+还有些要注意：
+
+`includes()` 方法只能查找基本类型的元素，对于引用类型是查找不到的，例如：
+
+```js
+const arr = [
+    { a: 'css' },
+    { b: 'js' },
+    { c: 'html' }
+]
+
+console.log(arr.includes({ b: 'js' }))
+// 虽然查找的是 { b: 'js' } 看似的一样，但是内存地址的不一样的，所以返回 fasle
+```
+
+上述方法和下面实例是一样的：
+
+```js
+const a = []
+const b = []
+console.log(a === b)
+
+const c = {}
+const d = {}
+console.log(c === d)
+// 引用类型看似是一样，但是内存地址不一样，所以全部返回 fasle
+
+const e = []
+const f = e
+console.log(f === e)
+// 这样把e 赋值给了 f 那么就全等了，返回 true
+```
+
+
+
+
+
+##  数组进阶
+
+###ilter()
+
+`filter` 方法，用于对数组进行**过滤**，查找满足条件的所有元素 **返回数组**
+
+该方法中可以有三个参数，分别是：**每一项元素、索引、原数组**
+
+```js
+const arr = ['12', '13', '14', '15']
+arr.filter((item, index, arr) => {
+    console.log(item)
+    console.log(index)
+    console.log(arr)
+})
+// 12
+// 0
+// (4)["12", "13", "14", "15"] 
+// 13
+// 1
+// (4)["12", "13", "14", "15"]
+// 14
+// 2
+// (4)["12", "13", "14", "15"]
+// 15
+// 3
+// (4)["12", "13", "14", "15"]
+```
+
+它可以遍历出数组中的每一项，返回**布尔值**
+
+如果返回真，那么数组中是元素就全部返回，否则就返回空数组
+
+```js
+// 为真 全部返回
+const arr1 = ['12', '13', '14', '15', '16', '17', '18']
+const res = arr1.filter(item => {
+    return true
+})
+console.log(res)
+// (7) ["12", "13", "14", "15", "16", "17", "18"]
+
+// 为假 返回空数组
+const arr1 = ['12', '13', '14', '15', '16', '17', '18']
+const res = arr1.filter(item => {
+    return false
+})
+console.log(res)
+// []
+```
+
+- 实例，返回数组中大于15的元素，组成新的数组
+
+```js
+const arr = ['12', '13', '14', '15', '16', '17', '18']
+const res = arr.filter(item => {
+    return item > 15
+})
+console.log(res)
+// (3) ["16", "17", "18"]
+```
+
+> 所以这个函数对于取到一部分的值，进行过滤处理，是非常友好的。
+
+那么过滤函数是怎么实现的呢？下面是自己封装的一个过滤函数，用于深入了解过滤函数实现原理：
+
+```js
+const hd = [1, 2, 3, 4]
+// array 原数组
+// except 过滤掉的元素
+function filter(array, except) {
+    const newArray = []
+    for (const value of array) {
+        // 判断如果传递来的数组中没有循环数组中的元素，那么就将其放在新数组中
+        if (except.includes(value) === false) {
+            newArray.push(value)
+        }
+    }
+    return newArray
+}
+
+// 这里想把 2,3 过滤掉掉
+console.log(filter(hd, [2, 3]))
+// (2) [1, 4]
+```
+
+
+
+###ap()
+
+`map()`方法用于映射数组
+
+可以在不改变原数组的情况下，复制出来一个新的数组
+
+```js
+const arr = ['js', 'jquery', 'css']
+
+const res = arr.map((item) => {
+    return item = item + '123'
+})
+
+console.log(res) // (3) (3) ["js123", "jquery123", "css123"]
+console.log(arr) // (3) ['js', 'jquery', 'css']
+```
+
+> 类似克隆出来一个数组，不会影响原数组
+
+
+
+###reduce()
+
+`reduce` 方法，后续更新。。。。
+
+
+
+
+
+###ind()
+
+`find`方法，可以查找出数组中的每一项
+
+```js
+const arr = [1, 3, 6, 5]
+
+arr.find(function (item) {
+    console.log(item)
+})
+// 1 3 6 5
+```
+
+查找满足条件的第一个单个元素 **返回布尔值**，找到符合条件的元素，然后返回该元素，没有符合条件的，则返回 undefined
+
+```js
+const arr = [12, 13, 14, 15, 16, 17, 128]
+function changeArr () {
+    return arr.find(n => {
+        return n > 14
+    })
+}
+console.log(changeArr())
+// 15
+```
+
+
+
+- filter 和 find 结合实例
+
+有一个数组 arr1 和 arr2 现在想要得到arr1 -  arr2 的数据，并且返回一个新的数组
+
+```js
+const arr1 = [
+    {name: '小明', id: 1},
+    {name: '小张', id: 2},
+    {name: '小例', id: 3},
+    {name: '小李', id: 4},
+    {name: '小赵', id: 5},
+    {name: '小萌', id: 6}
+]
+
+const arr2 = [
+    {name: '小例', id: 3},
+    {name: '小萌', id: 6}
+]
+
+function changeArr () {
+    return arr1.filter(item1 => {
+        return !arr2.find(item2 => {
+            return item1.id === item2.id
+        })
+    })
+}
+console.log(changeArr())
+
+// 结果为：
+// [
+//   {name: "小明", id: 1},
+//   {name: "小张", id: 2},
+//   {name: "小李", id: 4},
+//   {name: "小赵", id: 5}
+// ]
+```
+
+
+
+###very()
+
+`every()` 方法返回布尔值，**遍历出的每一项必须全部为真，才返回真，否则返回假**
+
+```js
+const user = [
+    { name: '小明1', fen: 78 },
+    { name: '小明2', fen: 92 },
+    { name: '小明3', fen: 37 },
+    { name: '小明4', fen: 56 }
+]
+
+const res = user.every(function (item) {
+    return false // 根据条件返回 true 或 false
+})
+console.log(res) // false
+```
+
+可以使用这个方法，来调查分数及格的情况：
+
+```js
+const user = [
+    { name: '小明1', fen: 78 },
+    { name: '小明2', fen: 92 },
+    { name: '小明3', fen: 37 },
+    { name: '小明4', fen: 56 }
+]
+
+const res = user.every(function (item) {
+    item.fen >= 60
+})
+
+console.log(res ? '全部及格' : '有些没有及格')
+```
+
+
+
+###ome()
+
+`some()` 方法返回布尔值，**遍历出的每一项只要有一项为真，就返回真；如果为假，则每一项都遍历一次**
+
+```js
+const user = [
+    { name: '小明1', fen: 78 },
+    { name: '小明2', fen: 92 },
+    { name: '小明3', fen: 37 },
+    { name: '小明4', fen: 56 }
+]
+
+const res = user.some(function (item) {
+    console.log(item)
+    return false
+})
+// {name: "小明1", fen: 78}
+// {name: "小明2", fen: 92}
+// {name: "小明3", fen: 37}
+// {name: "小明4", fen: 56}
+```
+
+如果第一项判断为真了，就不继续向下判断了，直接返回第一项：
+
+```js
+const user = [
+    { name: '小明1', fen: 78 },
+    { name: '小明2', fen: 92 },
+    { name: '小明3', fen: 37 },
+    { name: '小明4', fen: 56 }
+]
+
+const res = user.some(function (item) {
+    console.log(item)
+    return true
+})
+// {name: "小明1", fen: 78}
+```
+
+
+
+##  Sat 和 Map 数据结构
+
+###at()
+
+ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值
+
+创建一个 `Sat` 数据结构也很简单：
+
+```js
+const setArr = new Set()
+console.log(setArr)
+
+// Set(0) {}
+```
+
+下面说一下 Sat 数据结构的一些常用方法
+
+`add()` 添加元素
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add(43)
+setArr.add([1,4,56])
+setArr.add({name: '小明'})
+console.log(setArr)
+
+// Set(4) {"1", 43, Array(3), {…}}
+```
+
+> 可以添加任何数据类型
+
+但是如果添加一样的元素，那么就只会留下一个
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add('1')
+console.log(setArr)
+
+// Set(1) {"1"}
+```
+
+
+
+`delete()` 删除元素
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add(678)
+setArr.delete('1')
+console.log(setArr)
+
+// Set(1) {678}
+```
+
+
+
+`has()` 检测集合中有无指定元素（返回布尔值）
+
+```js
+// 检测集合中有无字符串1
+const setArr = new Set()
+setArr.add('1')
+console.log(setArr.has('1'))
+
+// true
+```
+
+
+
+`size` 检测集合的长度
+
+```js
+const setArr = new Set()
+setArr.add(34)
+setArr.add(45)
+setArr.add(12)
+console.log(setArr.size)
+
+// 3
+```
+
+
+
+将 Set 转换为数组
+
+可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换 
+
+```js
+const setArr = new Set([1, 3, 3, 3, 3, 4, 6])
+const arr = [...setArr]
+console.log(arr)
+
+// (4) [1, 3, 4, 6]
+```
+
+
+
+###ap()
+
+Map 类型实际上是键值对的有序集合，键和值是任意类型
+
+> 键值对：一个键对应一个值
+
+
+
+`set()` 添加元素
+
+ ```js
+const mapList = new Map()
+mapList.set('name', '张三')
+mapList.set('age', 12)
+console.log(mapList)
+
+// Map(2) {"name" => "张三", "age" => 12}
+ ```
+
+> set 方法传入两参数，一个是键名，一个键值
+
+
+
+`get()` 通过指定键名获取键值
+
+```js
+const mapList = new Map()
+mapList.set('name', '张三')
+mapList.set('age', 12)
+
+console.log(mapList.get('name'))
+// 张三
+```
+
+
+
+`has()` 、 `delete()` 方法和 Set 用法一样
+
+
+
+##  indexOf () 方法
+
+返回指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。
+
+**该方法是从数组的左侧向右侧查找**
+
+> 字符串：
+
+```js
+const arr = '12334'
+
+console.log(arr.indexOf(0)) // 没有 0 输出 -1
+console.log(arr.indexOf(2)) // 有 2 输出2的索引 1
+```
+
+> 数组：
+
+```js
+const arr = [1, 3, 4]
+
+console.log(arr.indexOf(0)) // 没有 0 输出 -1
+console.log(arr.indexOf(4)) // 有 4 输出4的索引 2
+```
+
+
+
+> indexOf () 方法 是严格类型查找，比如下面实例中：
+
+比如数组中有一个字符串`'7'` 那么是查找不到的
+
+```js
+const arr = [1, 3, '7', 5]
+console.log(arr.indexOf(7)) // -1
+// 严格类型匹配查询不到字符串7，所以返回 -1
+
+const arr = [1, 3, '7', 5]
+console.log(arr.indexOf('7'))
+// 这样查找字符串7才可以返回索引值：2
+```
+
+
+
+> indexOf () 方法 是可以有两个参数的
+
+第一个参数为要查找的元素
+
+第二个参数为查找开始的位置
+
+```js
+const arr = [1, 3, '7', 5]
+
+console.log(arr.indexOf(1, 2))
+// 虽然数组中存在 1，但是从第二位开始查找，后面找不大，所以返回 -1
+```
+
+
+
+
+
+同样，类似的方法还有：
+
+**lastIndexOf()**
+
+同样是用于查找指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
+
+不过`lastIndexOf()`是从右往左查找的
+
+比如：数组中有两个`7` 这时返回的就是从右侧查找到的第一个 `7`
+
+```js
+const arr = [1, 3, 7, 5, 6, 7, 9]
+
+console.log(arr.lastIndexOf(7)) // 5
+```
+
+
+
+
+
+##  数组去重
+
+方法很多，下面分别来说说：
+
+1. 使用 `new Set()` 方法（最简单）
+
+```js
+const arr = [1, 3, 5, 6, 2, 5, 2, 1, 3, 4]
+console.log([...new Set(arr)])
+// (6) [1, 3, 5, 6, 2, 4]
+```
+
+使用 `new Set()` 把数组传进去之后去重，再从 `[]` 中展开
+
+
+
+2. 使用 `indexOf()` 判断
+
+```js
+const arr = [1, 3, 5, 6, 2, 5, 2, 1, 3, 4]
+const res = []
+
+for (let i = 0; i < arr.length; i++) {
+    if (res.indexOf(arr[i]) === -1) {
+        res.push(arr[i])
+    }
+}
+console.log(res)
+// (6) [1, 3, 5, 6, 2, 4]
+```
+
+这个方法是通过 `indexOf()` 方法，来判断如果新数组中没有重复的项，就返回固定值 `-1` 来进行数组去重
+
+
+
+
+
+##  关于基本类型和引用类型内存覆盖问题
+
+- 基本类型
+
+例：当定义了一个值 `a` 之后，但是又将 `b = a` 再给 `b` 赋新的值
+
+```js
+let a = 1
+let b = a
+b = 99
+console.log(a) // 1
+console.log(b) // 99
+```
+
+这时候的 a 仍然是 1，b 的值的 99
+
+> 目前内存当中是有一个数据 a 那么让 b = a 之后，内存中又产生了一个新的值为 b，所以分别打印出来就是内存中两个不同的值 a 和 b
+
+
+
+同样的处理那么在引用类型中：
+
+- 引用类型
+
+这里使用数组举例
+
+```js
+let arr1 = [1, 3, 5, 6]
+let arr2 = arr1
+arr1[1] = 'hello'
+console.log(arr1) // [1, "hello", 5, 6]
+console.log(arr2) // [1, "hello", 5, 6]
+```
+
+那么这时候 arr1 和 arr2 同事输出 [1, "hello", 5, 6]
+
+> 目前内存当中是有一个数组 arr1 那么让 arr2 = arr1 之后，并不是又复制了一个数组，而是两个变量使用的同一个数组，所以打印出来的就是内存中被改变出来的数组
+
+```
+所以，基本类型重新赋值会在内存中重新生成，引用类型新的变量会公用之前的内容
+```
+
+
+
+
+##  Referer 说明
+
+解决关于图片请求失败 403 报错问题解决
+
+```shell
+GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-197810269.jpg 403 (Forbidden)
+```
+
+
+
+> 为什么项目中有时候图片加载失败后报错会返回 403？
+
+```
+因为有些项目中的数据是通过爬虫抓取第三方的数据来进行展示的，而第三方对图片做了放到链保护处理，也就是说不能让你直接通过图片地址访问图片资源。
+```
+
+
+
+> 第三方平台是怎么处理图片资源保护的呢？
+
+```
+服务器一般使用 Referer 请求头识别图片来源，然后处理资源访问。
+我们在浏览器中发的任何请求，都会携带一个叫 Referer 的字段，会包含请求资源来源页面的地址，也就是你从哪里来的，如果你从网站 A 来的，那么 Referer 就是网站 A 的地址。
+服务器一般使用 Referer 请求头识别来源，可能会进行统计分析、日志记录以及缓存优化等
+那么服务器一看不是自己的网站，那么就会禁止访问，返回 403，不允许请求。
+```
+
+需要注意的是：`referer` 实际是  **referrer** 错误拼写。
+
+打开浏览器的控制台 Network 中，我们发送的任何请求都会携带 Referer
+
+```shell
+Referer: http://localhost:8080/
+```
+
+
+
+> 怎么解决？
+
+```
+那么就不要发送 Referer，这样对方服务器就不知道你是从哪里来的了，姑且认为你是自己人吧。
+```
+
+
+
+> 如何设置？
+
+能发 Referer 的资源有很多，比如;
+
+`<a>`、`<img>`、`<script>`、`<area>` 或者 `<link>` 
+
+可以单独设置禁止发送 Referer
+
+```html
+<img src="http://....." alt="" referrerPolicy="no-referrer">
+```
+
+也可以在 HTML 页面头部通过 meta 标签属性全局配置
+
+```html
+<meta name="referrer" content="no-referrer">
+```
+
+
+
+##  浅克隆
+
+当有一个对象时候，我们并不希望直接修改该对象，那么可以将这个对象克隆出来一个进行修改
+
+`浅克隆`只能克隆出对象中基本数据类型的键，比如这里有一个对象：
+
+```js
+const obj = {
+    name: '小明',
+    age: 12
+}
+```
+
+可以使用 `for in` 来进行克隆，完整写法如下：
+
+```js
+const obj = {
+    name: '小明',
+    age: 12
+}
+
+function clone(obj) {
+    const newObj = {}
+    for (const key in obj) {
+        newObj[key] = obj[key]
+    }
+    return newObj
+}
+console.log(clone(obj))
+// {name: "小明", age: 12}
+```
+
+
+
+##  深克隆
+
+但是当对象中又包含一个对象或者数组，那么引用类型是不能直接被克隆出来的，所以要使用深度克隆了：
+
+最简单的方式是：使用`JSON.stringify()` 和 ` JSON.parse()` 来进行克隆操作，具体如下：
+
+```js
+const obj = {
+    name: '小明',
+    age: 12,
+    arr: [
+        { name: '小张1' },
+        { name: '小张2' },
+        { name: '小张3' }
+    ]
+}
+
+const newObj = JSON.parse(JSON.stringify(obj))
+console.log(newObj)
+```
+
+> 上面方法只能对于纯数据类型可以深度克隆，比如对象数组都可以。但是 函数、undefined 就不能进行拷贝了，那么这时候深克隆就出现了问题，所以请参考下面，使用递归函数深度克隆
+
+```js
+function clone(obj) {
+    const newObj = obj instanceof Array ? [] : {}
+    for (const key in obj) {
+        // 不可以直接赋值的 对象、数组 使用递归函数
+        if (obj[key] instanceof Object) {
+            newObj[key] = clone(obj[key])
+        } else {
+            // String、Number、Boolean、undefined、function 可以直接赋值的
+            newObj[key] = obj[key]
+        }
+    }
+    return newObj
+}
+
+console.log(clone(obj))
+```
+
+
+
+## URL.createObjectURL() 
+
+该方法多数用于图片预览
+
+具体参加文档：https://developer.mozilla.org/zh-CN/search?q=URL.createObjectURL%28%29
+
+实例，通过input 上传图片预览出上传的图片：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <input type="file" accept="image/*">
+        <img src="" alt="">
+
+        <script>
+            const inp = document.querySelector('input')
+            const img = document.querySelector('img')
+            inp.onchange = function () {
+                const blob = URL.createObjectURL(inp.files[0])
+                img.setAttribute('src', blob)
+            }
+        </script>
+    </body>
+
+</html>
+```
+
+
+
+##  Symbol 数据类型
+
+Symbol 数据库类型是特点是：**值是唯一的**
+
+可以通过`Symbol()` 创建一个 Symbol()
+
+```js
+let a = Symbol()
+let b = Symbol()
+
+console.log(typeof a) // Symbol
+console.log(a === b) // false
+```
+
+Symbol 并不是一个对象，可以把它理解为一个字符串，一个永远都不会重复的字符串，所以它是原始类型。
+
+
+
+> 可以给 Symbol 添加一个描述：
+
+```js
+const a = Symbol('这是一段文字')
+const b = Symbol('你好吗')
+```
+
+用 js 内置的方法 `description` 提取出描述信息，并以字符串形式打印
+
+```js
+const a = Symbol('这是一段文字')
+const b = Symbol('你好吗')
+
+console.log(a.description) // 这是一段文字
+console.log(b.description) // 你好吗
+```
+
+
+
+> 除此之外，还可以使用 `Symbol.for()` 来定义
+
+这样定义的也可以在内部添加描述，但是这样的好处是：如果两次定义完全一样，那么两个变量会公用一个内容地址：
+
+```js
+const a = Symbol.for('这是一段文字')
+const b = Symbol.for('这是一段文字')
+console.log(a === b) // true
+```
+
+那么这样再判断的话，两个变量就相等了
+
+这样声明的话，可以使用 `Symbol.keyFor()` 来获得描述的文字
+
+```js
+const a = Symbol.for('这是一段文字')
+console.log(Symbol.keyFor(a)) // 这是一段文字
+```
+
+
+
+##  原生 JS 的一些方法
+
+###hildren 获取子级元素
+
+该方法可以获取到一个标签下的所有子集元素节点
+
+```html
+<ul>
+    <li class="li1">
+        <p>哈哈哈</p>
+        <p>哈哈哈</p>
+        <p>哈哈哈</p>
+    </li>
+    <li class="li2">222</li>
+    <li class="li3">333</li>
+</ul>
+
+<script>
+    const ul = document.querySelector('ul')
+    console.log(ul.children)
+    // 0: li.li1
+    // 1: li.li2
+    // 2: li.li3
+</script>
+```
+
+> 该属性只返回元素节点
+
+
+
+###arentNode 获取父级元素
+
+> 仅会获得一个最近的亲父级标签元素
+
+```html
+<ul>
+    <li>哈哈哈</li>
+</ul>
+
+<script>
+    const li = document.querySelector('li')
+    console.log(li.parentNode)
+    // <ul>...</ul>
+</script>
+```
+
+
+
+###extElementSibling 获取一个元素的下一个元素
+
+```html
+<p class="title">哈哈哈</p>
+<ul>
+    <li>
+        <p>1</p>
+    </li>
+</ul>
+
+<script>
+    const title = document.querySelector('.title')
+    console.log(title.nextElementSibling)
+    // <ul>...</ul>
+</script>
+```
+
+> 或获得下一个元素及其下一个元素内包含的所有元素
+
+
+
+###etAttribute() 获取一个元素的属性值
+
+```js
+<img src="./src/兔玩壁纸 (1).jpg" alt="">
+
+<script>
+    const img = document.querySelector('img')
+    const res = img.getAttribute('src')
+    console.log(res)
+	// ./src/兔玩壁纸 (1).jpg
+</script>
+```
+
+> 该方法仅可有一个参数
+
+
+
+###etAttribute() 更改一个元素的属性值
+
+```js
+<img src="./src/兔玩壁纸 (1).jpg" alt="">
+
+<script>
+    const img = document.querySelector('img')
+    img.setAttribute('src', './src/兔玩壁纸 (2).jpg')
+</script>
+```
+
+> 该方法仅可有两个参数，第一个是要改变的属性，第二个是改变后的值
+
+
+
+###oLocaleDateString() 将 Date对象的时间转换为字符串
+
+```js
+const date = new Date()
+const res = date.toLocaleDateString()
+console.log(res)
+// 2021/4/23
+```
+
+
+
+
+
+##  window 对象属性
+
+```js
+// navigator 导航器对象
+console.log(window.navigator.appCodeName) // 返回浏览器的代码名
+console.log(window.navigator.appName) // 返回浏览器的名称
+console.log(window.navigator.appVersion) // 返回浏览器的平台版本信息
+console.log(window.navigator.cookieEnabled) // 返回浏览器中是否使用 cookie 的布尔值
+console.log(window.navigator.platform) // 返回浏览器的操作系统平台
+console.log(window.navigator.userAgent) // 返回由客户机发送服务器的 user-agent 头部
+
+
+// screen 显示器对象
+console.log(window.screen.availHeight) // 返回显示器可用的高度
+console.log(window.screen.availWidth) // 返回显示器可用的宽度
+console.log(window.screen.height) // 返回屏幕像素高度
+console.log(window.screen.width) // 返回屏幕像素宽度
+console.log(window.screen.colorDepth) // 返回屏幕颜色的位数
+
+
+// history 历史对象
+window.history.back() // 返回上一个 url
+window.history.forward() // 返回下一个 url
+window.history.go() // 返回某个具体页面
+```
+
+
+
+##  Object.defineProperty() 方法
+
+>Object.defineProperty 是什么？
+
+`Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象：
+
+```js
+const XiaoMing = {}
+Object.defineProperty(XiaoMing, 'name', {
+    value: '小明'
+})
+console.log(XiaoMing)
+// {name: "小明"}
+```
+
+这个函数中需要传递三个参数：
+
+1. 需要添加属性的对象名称
+2. 需要给对象添加的属性名称
+3. 第三个参数为一个对象，里面包含 `value` 是要添加的属性值
+
+但是这样添加的属性值默认是不能被**修改、删除、遍历**的，那么在严格模式下，修改属性值就会报错（非严格模式不会报错）：
+
+```js
+'use strict'
+const XiaoMing = {}
+Object.defineProperty(XiaoMing, 'name', {
+    value: '小明'
+})
+XiaoMing.name = 'Ming'
+console.log(XiaoMing)
+```
+
+报错内容为：
+
+```shell
+demo6.html:41 Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+// 无法分配给对象“#<object>”的只读属性“name”
+```
+
+我们可以在第三个参数的对象中配置属性来改变状态，下面仅列举出一些常用属性：
+
+```js
+const XiaoMing = {}
+Object.defineProperty(XiaoMing, 'name', {
+    configurable: true, // 是否可以删除属性
+    writable: true, // 是否可以修改
+    enumerable: true,
+    value: '小明'
+})
+```
+
+更多详细信息参考MDN文档：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+
+
+
+##  JavaScript 原型链
+

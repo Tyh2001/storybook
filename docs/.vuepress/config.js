@@ -14,31 +14,41 @@ module.exports = {
       {
         title: '首页',
         path: '/',
-        collapsable: true,
-        sidebarDepth: 1
+        collapsable: false,
+        sidebarDepth: 2
       },
       {
         title: 'Vue3 相关',
         path: '/vue3/',
-        collapsable: true,
-        sidebarDepth: 1
+        collapsable: false,
+        sidebarDepth: 2
       },
       {
         title: 'Vue2 相关',
         path: '/vue2/',
-        collapsable: true,
-        sidebarDepth: 1
+        collapsable: false,
+        sidebarDepth: 2
       },
       {
         title: 'Js 相关',
-        path: '/js/',
-        collapsable: true,
-        sidebarDepth: 2
+        path: '/js/function',
+        collapsable: false,
+        sidebarDepth: 2,
+        children: [
+          { title: "函数相关", path: "/js/function" },
+          { title: "内置函数", path: "/js/built-in-obj" }
+        ]
       },
       {
         title: 'Js 工具函数',
         path: '/utils-fun/',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 2
+      },
+      {
+        title: '前端面试题',
+        path: '/int-ques/',
+        collapsable: false,
         sidebarDepth: 2
       }
     ]
