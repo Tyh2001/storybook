@@ -19,37 +19,51 @@ module.exports = {
       },
       {
         title: 'Vue3 相关',
-        path: '/vue3/',
+        path: '/vue3/vue3',
         collapsable: false,
         sidebarDepth: 2
       },
       {
-        title: 'Vue2 相关',
-        path: '/vue2/',
+        title: 'Vite 基础',
+        path: '/vite/vite',
         collapsable: false,
         sidebarDepth: 2
       },
       {
         title: 'Js 相关',
-        path: '/js/function',
+        path: '/js/js-function',
         collapsable: false,
         sidebarDepth: 2,
         children: [
-          { title: "函数相关", path: "/js/function" },
-          { title: "内置函数", path: "/js/built-in-obj" }
+          { title: "函数相关", path: "/js/js-function" },
+          { title: "内置函数", path: "/js/js-built-in-obj" },
+          { title: "数组操作", path: "/js/js-array_operation" },
+          { title: "杂项", path: "/js/js-miscellaneous" }
         ]
       },
       {
+        title: 'Vue2 相关',
+        path: '/vue2/vue2',
+        collapsable: false,
+        sidebarDepth: 2
+      },
+      {
         title: 'Js 工具函数',
-        path: '/utils-fun/',
+        path: '/utils-fun/utils-fun',
         collapsable: false,
         sidebarDepth: 2
       },
       {
         title: '前端面试题',
-        path: '/int-ques/',
+        path: '/int-ques/ques-web',
         collapsable: false,
-        sidebarDepth: 2
+        sidebarDepth: 2,
+        children: [
+          { title: "Web 综合问题", path: "/int-ques/ques-web" },
+          { title: "Css 相关问题", path: "/int-ques/ques-css" },
+          { title: "Vue2 相关问题", path: "/int-ques/ques-vue2" },
+          { title: "Vue3 相关问题", path: "/int-ques/ques-vue3" }
+        ]
       }
     ]
   }
