@@ -1,5 +1,6 @@
 module.exports = {
   title: 'Tyh',
+  base: '/blog/',
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
