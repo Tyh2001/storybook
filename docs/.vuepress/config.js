@@ -3,12 +3,37 @@ module.exports = {
   base: '/blog/',
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
+      { text: 'Hello', link: '/' },
       { text: '个人网站', link: 'https://tianyuhao.icu' },
-      { text: 'Tyh-ui2', link: 'https://tianyuhao.icu/tyhui/v3' },
       { text: 'Github', link: 'https://github.com/Tyh2001' },
       { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
       { text: '微博', link: 'https://weibo.com/u/7112859998' },
+      {
+        text: 'tyh-Ui',
+        ariaLabel: 'Language Menu',
+        items: [
+          { text: 'tyh-ui', link: 'https://tianyuhao.icu/tyhui' },
+          { text: 'tyh-ui2', link: 'https://tianyuhao.icu/tyhui/v3' }
+        ]
+      },
+      {
+        text: '模拟微博',
+        ariaLabel: 'Language Menu',
+        items: [
+          { text: 'pc', link: 'https://tianyuhao.icu/release/pc' },
+          { text: 'phone', link: 'https://tianyuhao.icu/release/phone' }
+        ]
+      },
+      {
+        text: '相关链接',
+        ariaLabel: 'Language Menu',
+        items: [
+          { text: 'Vue3', link: 'https://v3.cn.vuejs.org' },
+          { text: 'Vite', link: 'https://cn.vitejs.dev/' },
+          { text: 'Pinia', link: 'https://pinia.esm.dev' },
+          { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh' }
+        ]
+      }
     ],
     sidebarDepth: 2,
     sidebar: [
