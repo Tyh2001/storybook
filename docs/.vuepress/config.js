@@ -80,6 +80,12 @@ module.exports = {
         sidebarDepth: 2
       },
       {
+        title: '其它技术',
+        path: '/other-technology/other-technology',
+        collapsable: false,
+        sidebarDepth: 2
+      },
+      {
         title: '前端面试题',
         path: '/int-ques/ques-web',
         collapsable: false,
