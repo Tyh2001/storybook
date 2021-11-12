@@ -62,6 +62,7 @@ module.exports = {
         children: [
           { title: "Web 综合问题", path: "/int-ques/ques-web" },
           { title: "Css 相关问题", path: "/int-ques/ques-css" },
+          { title: "Html 相关问题", path: "/int-ques/ques-html" },
           { title: "Vue2 相关问题", path: "/int-ques/ques-vue2" },
           { title: "Vue3 相关问题", path: "/int-ques/ques-vue3" }
         ]
