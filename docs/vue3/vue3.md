@@ -160,6 +160,8 @@ export default {
 }
 ```
 
+### 变量
+
 通过在 setup 中写入变量或者函数，在 return 出去提供给模板使用。
 
 但是 setup 是有个语法糖的写法，就是将 setup 当作属性直接作用到 script 标签上，如下：
@@ -176,7 +178,7 @@ const name = '张三'
 
 将 `script` 标签添加 `setup` 属性之后，这样定义的变量 name 变量，**可以在模板中直接使用，并不需要 return 出去。**这样的代码段自然而然又变得简洁了很多。其实 script setup 就相当于在编译运行是把代码放到了 setup 函数中运行，然后把导出的变量定义到上下文中，并包含在返回的对象中。
 
-
+### 导入组件
 
 对于导入组件，导入之后可以直接在模板上使用，并不需要注册，也可以正常工作。
 
@@ -190,7 +192,80 @@ import MyButton from './components/MyButton.vue'
 </script>
 ```
 
+### 获取props
 
+在 `<script setup>` 中必须使用 `defineProps` api 来声明 `props`：
+
+父组件：
+
+```vue
+<template>
+  <my-button title1="这是标题1" title2="这是标题2" />
+</template>
+
+<script setup>
+import MyButton from './components/MyButton.vue'
+</script>
+```
+
+子组件
+
+```vue
+<template>
+  <h1>这是我的组件-{{ title1 }}-{{ title2 }}</h1>
+</template>
+
+<script setup>
+const props = defineProps({
+  title1: String,
+  title2: String
+})
+</script>
+```
+
+### 子组件发送 emits
+
+在 `<script setup>` 中必须使用 `defineEmits ` api 来声明 `emits`：
+
+父组件：
+
+```vue
+<template>
+  <h1>{{ title }}</h1>
+  <my-button @changeTitle="change" />
+</template>
+
+<script setup>
+import MyButton from './components/MyButton.vue'
+import { ref } from 'vue'
+const title = ref('这是父组件的内容')
+
+function change (val) {
+  title.value = val
+}
+</script>
+```
+
+子组件：
+
+```vue
+<template>
+  <h2>这是我的子组件</h2>
+  <button @click="onchangeTitle">点击</button>
+</template>
+
+<script setup>
+// 使用 defineEmits 来声明 emit，里面是一个数组
+// 数组的值是发送自定义事件的事件名
+const emit = defineEmits(['changeTitle'])
+function onchangeTitle () {
+  emit('changeTitle', '嘿嘿嘿')
+}
+</script>
+```
+
+
+### 缺失地方
 
 当然，这种语法糖的写法，也是会有缺失的地方，有时候我们需要更改组件选项，比如添加 name 属性，这时候就需要再引入一个 script，在上方写入对应的`export`即可
 
@@ -670,7 +745,6 @@ export default {
 当在这些组件之间切换的时候，你有时会想保持这些组件的状态，比如下面引入的子组件中有一个文本框的组件 `MyInput`，但是当我点击按钮写换渲染的组件之后再切换回来的时候，发现之前在文本框中输入的内容没有了，但是我想在输入之后切换组件回来的时候文本框中的内容依然存在，那么就需要 `keep-alive` 元素将其动态组件包裹起来，那么这样的话失活的组件将会被缓存，当我切换回 `MyInput` 组件的时候，里面内容依然存在
 
 ```vue
-// 保留状态
 <keep-alive>
   <component :is="componentsName"></component>
 </keep-alive>
