@@ -1,33 +1,26 @@
 # Vue3 相关
 
-
 ## 组件结构
 
 vue3 的组件结构和 vue2 的结果在 js 部分的差别的最大的，文件结构为：
 
 ```vue
-<template>
-
-</template>
+<template></template>
 
 <script>
 export default {
-  setup () {
-
+  setup() {
     return {}
-  }
+  },
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
 ```
 
 `template` 中不再可以有一个根节点了，现在是可以有很多个。
 
 `script` 中不再有 `data、mounted、created、watch、mounted` 等钩子函数，现在需要将所有的都集合到了 `setup` 函数中
-
-
 
 ## setup
 
@@ -37,8 +30,6 @@ export default {
 - 能够使用纯 Typescript 声明 props 和抛出事件。
 - 更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)。
 - 更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)。
-
-
 
 ### 定义变量
 
@@ -53,23 +44,21 @@ export default {
 
 <script>
 export default {
-  setup () {
+  setup() {
     const text = 'hello vue3'
 
-    function onclick () {
+    function onclick() {
       console.log('被点击了')
     }
 
     return {
       text,
-      onclick
+      onclick,
     }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ### 响应式变量 ref
 
@@ -84,18 +73,18 @@ export default {
 
 <script>
 export default {
-  setup () {
+  setup() {
     let text = 'hello vue3'
 
-    function change () {
+    function change() {
       text = '你好啊'
     }
 
     return {
       text,
-      change
+      change,
     }
-  }
+  },
 }
 </script>
 ```
@@ -113,25 +102,23 @@ export default {
 // 通过在 vue 中解构出 ref 函数
 import { ref } from 'vue'
 export default {
-  setup () {
+  setup() {
     // 使变量变成响应式变量
     let text = ref('hello vue3')
 
-    function change () {
+    function change() {
       // 通过变量名.value 来改变变量
       text.value = '你好啊'
     }
 
     return {
       text,
-      change
+      change,
     }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ### 响应式对象
 
@@ -141,23 +128,83 @@ export default {
 <script>
 import { reactive } from 'vue'
 export default {
-  setup () {
+  setup() {
     const student = reactive({
       name: '小明',
-      ahe: 12
+      ahe: 12,
     })
 
     return {
-      student
+      student,
     }
-  }
+  },
 }
 </script>
 ```
 
 **注：只有将对象或者变量变成响应式的才可以随意修改其值**
 
+## setup 函数和 script 上作用 setup
 
+在上面，我介绍了 vue3 的全新目录结构，整理使用组合 api，直接暴露出来一个 setup 函数，代码是这样的：
+
+```js
+export default {
+  setup() {
+    const name = '张三'
+
+    return {
+      name,
+    }
+  },
+}
+```
+
+通过在 setup 中写入变量或者函数，在 return 出去提供给模板使用。
+
+但是 setup 是有个语法糖的写法，就是将 setup 当作属性直接作用到 script 标签上，如下：
+
+```vue
+<template>
+  {{ name }}
+</template>
+
+<script setup>
+const name = '张三'
+</script>
+```
+
+将 `script` 标签添加 `setup` 属性之后，这样定义的变量 name 变量，**可以在模板中直接使用，并不需要 return 出去。**这样的代码段自然而然又变得简洁了很多。其实 script setup 就相当于在编译运行是把代码放到了 setup 函数中运行，然后把导出的变量定义到上下文中，并包含在返回的对象中。
+
+
+
+对于导入组件，导入之后可以直接在模板上使用，并不需要注册，也可以正常工作。
+
+```vue
+<template>
+  <my-button />
+</template>
+
+<script setup>
+import MyButton from './components/MyButton.vue'
+</script>
+```
+
+
+
+当然，这种语法糖的写法，也是会有缺失的地方，有时候我们需要更改组件选项，比如添加 name 属性，这时候就需要再引入一个 script，在上方写入对应的`export`即可
+
+```vue
+<script>
+export default {
+  name: 'app',
+}
+</script>
+
+<script setup>
+const name = '小明'
+</script>
+```
 
 ## 生命周期
 
@@ -180,13 +227,13 @@ errorCaptured -> onErrorCaptured
 ```js
 import { onMounted } from 'vue'
 export default {
-  setup () {
+  setup() {
     onMounted(() => {
       console.log('onMounted')
     })
 
     console.log('setup')
-  }
+  },
 }
 
 // 输出结果：
@@ -200,25 +247,22 @@ export default {
 import { onMounted } from 'vue'
 import axios from 'axios'
 export default {
-  setup () {
+  setup() {
     onMounted(() => {
       loadData()
     })
 
-    function loadData () {
+    function loadData() {
       axios({
         method: 'GET',
-        url: 'http://api.wod.xyz/Ip/outGetIpInfo?ip=57.23.66.35'
-      }).then(res => {
+        url: 'http://api.wod.xyz/Ip/outGetIpInfo?ip=57.23.66.35',
+      }).then((res) => {
         console.log(res)
       })
     }
-  }
+  },
 }
-
 ```
-
-
 
 ## 计算属性
 
@@ -233,7 +277,7 @@ export default {
 // 引入 computed
 import { computed } from 'vue'
 export default {
-  setup () {
+  setup() {
     // computed 内部传入一个回调函数再赋值给变量 num
     const num = computed(() => {
       // 计算属性必须有返回值
@@ -242,44 +286,36 @@ export default {
 
     // 返回计算属性的结果给模板使用
     return {
-      num
+      num,
     }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ## 组合 api 的优势
 
 在之前选项 api 中，有很多钩子函数，可能在 data 中定义的很多的数据，然后 methods 中，一堆的方法，create 一堆的方法，还有各种函数中都存在很多的方法，这样就会显得非常的凌乱，不清楚那些数据和那些函数是有关系的。
 
-
-
 但是组合 api 可以将所有的变量数据函数全部都放在 setup 一个函数中，这样其实我们可以将固定的模块抽离出一个单独的文件进行处理，然后再引入传参解构进行调用，如果逻辑很多的情况下，使用这种组合拆分的方式，你的组件里的代码就会越来越少了，每个模块单独管理方便维护。
-
-
 
 ## 组件中使用路由方法
 
-**方式一 ：通过 getCurrentInstance 方法获取当前组件实例，从而获取 route 和 router** 
+**方式一 ：通过 getCurrentInstance 方法获取当前组件实例，从而获取 route 和 router**
 
 ```js
 import { getCurrentInstance } from 'vue'
 
-export default ({
-  setup () {
+export default {
+  setup() {
     const { proxy } = getCurrentInstance()
     console.log(proxy.$root.$route)
     console.log(proxy.$root.$router)
-  }
-})
+  },
+}
 ```
 
-
-
-**方式二：通过从路由中导入 useRoute  useRouter 使用 route 和 router**
+**方式二：通过从路由中导入 useRoute useRouter 使用 route 和 router**
 
 安装路由：
 
@@ -288,22 +324,20 @@ npm install vue-router@4
 ```
 
 ```js
-import { useRoute, useRouter } from "vue-router"
+import { useRoute, useRouter } from 'vue-router'
 export default {
-  setup () {
+  setup() {
     const $route = useRoute()
     const $router = useRouter()
     console.log($route)
     console.log($router)
-  }
+  },
 }
 ```
 
-
-
 ## 组件绑定事件
 
- 在 Vue2 中，想要给组件绑定事件需要在子组件向父组件发送自定义事件才可以，但是在 Vue3 中，可以对组件直接进行绑定事件
+在 Vue2 中，想要给组件绑定事件需要在子组件向父组件发送自定义事件才可以，但是在 Vue3 中，可以对组件直接进行绑定事件
 
 **子组件**
 
@@ -324,21 +358,19 @@ export default {
 import Btn from './components/demo/Btn.vue'
 export default {
   components: {
-    Btn
+    Btn,
   },
-  setup () {
-    function add () {
+  setup() {
+    function add() {
       alert('点击了')
     }
     return {
-      add
+      add,
     }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ## 插槽
 
@@ -359,6 +391,7 @@ Vue3 相比 Vue2 插槽也有了一定的变化，尤其是具名插槽
   </p>
 </template>
 ```
+
 **父组件**
 
 ```vue
@@ -373,8 +406,8 @@ Vue3 相比 Vue2 插槽也有了一定的变化，尤其是具名插槽
 import MyCom from './components/demo/My-com.vue'
 export default {
   components: {
-    MyCom
-  }
+    MyCom,
+  },
 }
 </script>
 ```
@@ -382,8 +415,6 @@ export default {
 在父组件中，插槽必须统一使用 template 容器来进行存放，内部可以有其他标签，但是容器标签不能改变，在容易上使用 v-slot:插槽名 方式来绑定对应的插槽名称插入对应的内容。
 
 注：v-slot 指令只能在 template 标签上使用！！！
-
-
 
 ## 获取 DOM
 
@@ -398,7 +429,7 @@ export default {
 import { ref, onMounted } from 'vue'
 
 export default {
-  setup () {
+  setup() {
     const myRef = ref(null)
 
     onMounted(() => {
@@ -406,12 +437,10 @@ export default {
     })
 
     return { myRef }
-  }
+  },
 }
 </script>
 ```
-
-
 
 **获取多个 DOM**
 
@@ -427,18 +456,16 @@ export default {
 
 <script>
 export default {
-  setup () {
+  setup() {
     const setRef = (el) => {
       console.log(el)
     }
 
     return { setRef }
-  }
+  },
 }
 </script>
 ```
-
-
 
 **nextTick 函数**
 
@@ -451,16 +478,14 @@ export default {
 import { nextTick } from 'vue'
 
 export default {
-  setup () {
+  setup() {
     nextTick(() => {
       console.log(document.querySelector('.text'))
     })
-  }
+  },
 }
 </script>
 ```
-
-
 
 ## 组件上绑定 v-model
 
@@ -478,13 +503,13 @@ import { ref } from 'vue'
 export default {
   name: 'app',
   components: {
-    MyInput
+    MyInput,
   },
-  setup () {
+  setup() {
     const text = ref('')
 
     return { text }
-  }
+  },
 }
 </script>
 ```
@@ -509,16 +534,16 @@ export default {
     // 并且 prop 还会抛出 update:modelValue 事件，事件名称也是不能改变的
     modelValue: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     // 通过调用函数 向父组件发送文本框的内容
-    function myInput (evt) {
+    function myInput(evt) {
       emit('update:modelValue', evt.target.value)
     }
     return { myInput }
-  }
+  },
 }
 </script>
 
@@ -537,8 +562,6 @@ input {
 }
 </style>
 ```
-
-
 
 ## provide / inject
 
@@ -560,13 +583,13 @@ import MyComponent from './components/MyComponent.vue'
 import { provide } from 'vue'
 export default {
   components: {
-    MyComponent
+    MyComponent,
   },
-  setup () {
+  setup() {
     const say = '这是父组件提供的数据' // 需要提供的数据
     // 使用 provide 函数，第一个参数为提供数据的名称，可以自定义，第二个是需要提供的数据
     provide('AppSay', say)
-  }
+  },
 }
 </script>
 ```
@@ -581,16 +604,14 @@ export default {
 <script>
 import { inject } from 'vue'
 export default {
-  setup () {
+  setup() {
     // 通过 inject 函数接收父组件提供的数据，可以通过名称 AppSay 获取
     const res = inject('AppSay')
     return { res }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ## component / is
 
@@ -616,14 +637,14 @@ export default {
   components: {
     // 注册两个组件
     MyInput,
-    MyButton
+    MyButton,
   },
-  setup () {
+  setup() {
     // 通过变量控制渲染的组件
     const text = ref(true)
 
     // 点击按钮调用函数，改变变量控制渲染的组件
-    function change () {
+    function change() {
       text.value = !text.value
     }
 
@@ -635,14 +656,12 @@ export default {
     return {
       componentsName,
       change,
-      text
+      text,
     }
-  }
+  },
 }
 </script>
 ```
-
-
 
 ## 在组件上使用 keep-alive
 
