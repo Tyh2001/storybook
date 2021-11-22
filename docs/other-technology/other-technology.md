@@ -1,6 +1,6 @@
 # 其它技术
 
-## 怎么把项目部署到GitHubPages上
+## 怎么把项目部署到 GitHubPages 上
 
 ### 前言
 
@@ -74,39 +74,39 @@ name: build and deploy
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-    # 下载仓库代码
-    - uses: actions/checkout@v2
+      # 下载仓库代码
+      - uses: actions/checkout@v2
 
-    # 缓存依赖
-    - name: Get yarn cache
-      id: yarn-cache
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - uses: actions/cache@v1
-      with:
-        path: ${{ steps.yarn-cache.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+      # 缓存依赖
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-    # 安装依赖
-    - run: yarn
+      # 安装依赖
+      - run: yarn
 
-    # 打包构建
-    - run: yarn build
+      # 打包构建
+      - run: yarn build
 
-    # 发布到 GitHub Pages
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 访问秘钥
-        PUBLISH_BRANCH: gh-pages # 推送分支
-        PUBLISH_DIR: ./dist # 部署目录
+      # 发布到 GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 访问秘钥
+          PUBLISH_BRANCH: gh-pages # 推送分支
+          PUBLISH_DIR: ./dist # 部署目录
 ```
 
 > 配置好后即可将项目推送至远程仓库
@@ -128,3 +128,17 @@ jobs:
 ### 怎么更新？
 
 很简单，修改源代码，把更新提交到远程仓库即可。说白了你可以忽略网站部署这件事儿了。然后你可以通过仓库中的 Action 查看构建部署状态（非必须）。不想看的话就等一会儿就可以了。
+
+## Git 常用命令
+
+| 命令                      | 简要说明                       |
+| ------------------------- | ------------------------------ |
+| git clone xxxxx           | 克隆版本库                     |
+| git add .                 | 添加至暂存区                   |
+| git commit -m '说明'      | 提交并添加说明                 |
+| git push -u origin master | 推送至远程仓库 master 分支     |
+| git branch -a             | 列出所有分支                   |
+| git branch test           | 创建 test 分支                 |
+| git checkout test         | 切换到 test 分支               |
+| git merge test            | 把 test 分支合并到 master 分支 |
+| git branch -d test        | 删除 test 分支                 |
