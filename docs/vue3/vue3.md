@@ -192,7 +192,7 @@ import MyButton from './components/MyButton.vue'
 </script>
 ```
 
-### 获取props
+### 获取 props
 
 在 `<script setup>` 中必须使用 `defineProps` api 来声明 `props`：
 
@@ -218,7 +218,7 @@ import MyButton from './components/MyButton.vue'
 <script setup>
 const props = defineProps({
   title1: String,
-  title2: String
+  title2: String,
 })
 </script>
 ```
@@ -240,7 +240,7 @@ import MyButton from './components/MyButton.vue'
 import { ref } from 'vue'
 const title = ref('这是父组件的内容')
 
-function change (val) {
+function change(val) {
   title.value = val
 }
 </script>
@@ -258,12 +258,11 @@ function change (val) {
 // 使用 defineEmits 来声明 emit，里面是一个数组
 // 数组的值是发送自定义事件的事件名
 const emit = defineEmits(['changeTitle'])
-function onchangeTitle () {
+function onchangeTitle() {
   emit('changeTitle', '嘿嘿嘿')
 }
 </script>
 ```
-
 
 ### 缺失地方
 
@@ -748,4 +747,228 @@ export default {
 <keep-alive>
   <component :is="componentsName"></component>
 </keep-alive>
+```
+
+## 修饰符
+
+### 事件修饰符
+
+#### .stop
+
+下方代码中，当点击红色盒子的时候，因为父级也有一个事件，所以会导致事件冒泡，会同时触发 change1 和 change2 两个函数，那么可以通过事件对象 ` event.stopPropagation()` 来阻止向上的冒泡：
+
+```vue
+<template>
+  <div @click="change1" style="background: green">
+    <div @click="change2" style="background: red; width: 200px">123</div>
+  </div>
+</template>
+
+<script setup>
+function change1() {
+  console.log('change1')
+}
+function change2(event) {
+  event.stopPropagation()
+  console.log('change2')
+}
+</script>
+```
+
+但是在 vue 中又加入了 dom 操作，显然是不太友好的，那么就可以通过事件修饰符 **.stop** 来阻止向上的事件冒泡：
+
+```vue
+<template>
+  <div @click="change1" style="background: green">
+    <div @click.stop="change2" style="background: red; width: 200px">123</div>
+  </div>
+</template>
+
+<script setup>
+function change1() {
+  console.log('change1')
+}
+function change2() {
+  console.log('change2')
+}
+</script>
+```
+
+#### .capture
+
+还有一种情况是，想要在捕获阶段就执行函数，因为 change1 在外面，我希望先执行 change1，然后再执行 change2，通过事件修饰符 **.capture** 可以实现效果：
+
+```vue
+<template>
+  <div @click.capture="change1" style="background: green">
+    <div @click.capture="change2" style="background: red; width: 200px">
+      123
+    </div>
+  </div>
+</template>
+```
+
+#### .self
+
+还是上面例子，当我们点击内部红色盒子的时候，其实并不是真正点击的外面绿色盒子，change1 执行是由于冒泡导致的，我希望是真正点击的时候它才会执行，通过事件修饰符 **.self** 可以实现效果：
+
+```vue
+<template>
+  <div @click.self="change1" style="background: green">
+    <div @click="change2" style="background: red; width: 200px">123</div>
+  </div>
+</template>
+```
+
+#### .once
+
+有时候，我希望有些事件只执行一次，之后就再也不执行，可以通过修饰符 **.once** 来完成效果，但这是一个小众的修饰符：
+
+```vue
+<template>
+  <div @click="change1" style="background: green">
+    <div @click.once="change2" style="background: red; width: 200px">123</div>
+  </div>
+</template
+```
+
+#### .prevent
+
+用 .prevent 可以阻止一些元素的默认行为：
+
+```vue
+<template>
+  <a href="https://baidu.com" @click.prevent="link">百度</a>
+</template>
+```
+
+#### .passive
+
+因为有些元素会自带默认行为，那么有默认行为的事件，js 都会首先检测一下是否有阻止 默认行为，比如 `<a href="''></a>` ，其实像这种的还好，因为我们不会经常的去使用，那么如果有类似滚动的元素，那么每滚动一下，js 都要进行判断是否有阻止默认行为，这样就会有一定的性能损伤，所以页面可能会有一定的性能降低，尤其在移动端，可能不会显得那么的顺滑，如果所有的默认行为都不阻止，js 也有不用判断了，那么就可以用到了 **.passive** 修饰符
+
+passive 修饰符的含义就是：默认行为在 js 内部不需要判断了，我不阻止你。所以可以省去这一段的判断环节，例如下方滚动案例，每当滚动的时候，js 都需要检测一下是否阻止了默认行为，所以需要加入事件修饰符：
+
+```vue
+<template>
+  <div id="box" @scroll.passive="onScroll">
+    <h1 v-for="(s, i) in 30" :key="i">{{ s }}</h1>
+  </div>
+</template>
+
+<script setup>
+function onScroll() {
+  console.log('11')
+}
+</script>
+
+<style scoped>
+#box {
+  height: 300px;
+  overflow-y: auto;
+  border: 5px solid black;
+}
+</style>
+```
+
+### 表单修饰符
+
+#### .lazy
+
+在以下场景中，数据进行双向绑定，在文本框中输入内容之后，会同步到 `p` 标签中，但是有些时候逻辑过于多的时候，或者请求后端，这样同步更新数据会有一定的性能损耗，所以给双向绑定的 `v-model` 属性添加 `.lazy` 修饰符可以在输入途中不会同步，当文本框失去焦点之后再进行同步数据：
+
+```vue
+<template>
+  <input type="text" v-model.lazy="text" />
+  <p>{{ text }}</p>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const text = ref('')
+</script>
+```
+
+#### .number
+
+下方例子中，双向绑定的值希望 +100 作为结果显示，但是正常状态下，会将文本框内输入的变成字符串来解析，那么就变成了字符串拼接：
+
+```vue
+<input type="text" v-model="text" />
+<p>{{ text + 100 }}</p>
+```
+
+但是如果希望变成的是加和的状态，就需要修饰符 `.number` 来解决，这样就可以将文本框内输入的以数字形式解析出来并加和
+
+```vue
+<input type="text" v-model.number="text" />
+<p>{{ text + 100 }}</p>
+```
+
+> 如果你在文本框内输入了汉字或者英文字母之后，就算你加入了 .number 修饰符，系统也不会正常工作，要确保你输入的是纯数字，才可以正常工作！
+
+#### .trim
+
+在输入标题的时候，可能会将标题等发送至后端存入数据库中，但是并不希望开头和结尾插入空格，因为当用户每输入一个空格，虽然是看不到的，但是仍然会占用数据库的存储空间，这时就可以使用 `.trim` 来清除文本开头和结尾的空格，无论输入多少空格，都默认会被清除
+
+```vue
+<input type="text" v-model.trim="title" />
+<p>{{ title }}</p>
+```
+
+> 注意：仅仅可以清楚段落开头和结尾的空格，作用在中间部分的空格会被保留！
+
+## 键盘鼠标事件
+
+当我们按下键盘的时候就会触发事件：
+
+```vue
+<template>
+  <input type="text" @keyup="key" />
+</template>
+
+<script setup>
+function key(event) {
+  console.log(event)
+}
+</script>
+```
+
+那么在接受到的事件对象中我们可以看到里面有一个`key`的属性，就是我们当前按下的键位
+
+也可以通过事件修饰符来指定按下哪个键位触发函数，比如下方按下 `b` 触发函数：
+
+```vue
+<template>
+  <input type="text" @keyup.b="key" />
+</template>
+
+<script setup>
+function key(event) {
+  console.log(event.key)
+}
+</script>
+```
+
+也可以结合使用快捷键，例如下方 `ctrl + b ` 触发事件：
+
+```vue
+<template>
+  <input type="text" @keyup.ctrl.b="key" />
+</template>
+```
+
+鼠标左中右事件定义方式：
+
+```vue
+<template>
+  <button @click.left="change1">按钮1</button>
+  <button @click.middle="change2">按钮2</button>
+  <button @click.right="change3">按钮3</button>
+</template>
+
+<script setup>
+const change1 = () => console.log('change1')
+const change2 = () => console.log('change2')
+const change3 = () => console.log('change3')
+</script>
 ```
