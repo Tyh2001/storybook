@@ -911,6 +911,63 @@ const a = Symbol.for('这是一段文字')
 console.log(Symbol.keyFor(a)) // 这是一段文字
 ```
 
+实际应用，当有两个人的名字的一样的时候，可以使用 `Symbol` 来定义每个键值作为区分：
+
+```js
+
+const user1 = {
+  name: '李四',
+  key: Symbol()
+}
+
+const user2 = {
+  name: '李四',
+  key: Symbol()
+}
+
+const obj = {
+  [user1.key]: {
+    js: 100,
+    css: 20
+  },
+  [user2.key]: {
+    js: 30,
+    css: 21
+  }
+}
+
+console.log(obj) // {Symbol(): {…}, Symbol(): {…}}
+console.log(obj[user1.key]) // {js: 100, css: 20}
+console.log(obj[user2.key]) // {js: 30, css: 21}
+```
+
+在对象中，如果存在 Symbol 类型时，通过普通的`for in` 或者 `for of` 循环是遍历不到的：
+
+```js
+const age = Symbol('age')
+const obj = {
+  name: '张三',
+  [age]: 12
+}
+// 普通的方式遍历只能得到普通的值
+for (const key of Object.keys(obj)) {
+  console.log(key) // name
+}
+
+// 使用 Object.getOwnPropertySymbols() 方法之可以遍历出 Symbol 类型
+for (const key of Object.getOwnPropertySymbols(obj)) {
+  console.log(key) // Symbol(age)
+}
+
+// 如果想要遍历出所有的类型，需要使用 Reflect.ownKeys() 静态方法才可以实现
+for (const key of Reflect.ownKeys(obj)) {
+  console.log(key)
+  // name
+  // Symbol(age)
+}
+```
+
+
 
 ##  原生 JS 的一些方法
 
