@@ -1161,3 +1161,28 @@ Object.defineProperty(XiaoMing, 'name', {
 
 更多详细信息参考MDN文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
+## typeof和instanceof
+
+`typeof`可以判断一个变量是原始类型中的那种类型，但是在下面情况中，就会显得不那么的友好：
+
+```js
+const arr = [1, 2, 3, 4]
+const obj = {}
+const n = null
+console.log(typeof arr) // object
+console.log(typeof obj) // object
+console.log(typeof n) // object
+```
+
+可见，使用 `typeof` 方法之后，在判断数组，对象和 null 的时候，返回的结果都是 `object`，但是我们要判断引用类型具体是什么类型，就需要使用 `instanceof`了：
+
+```js
+const arr = [1, 2, 3, 4]
+const obj = {}
+console.log(arr instanceof Array)
+console.log(obj instanceof Object)
+```
+
+这样就可以很好的分清楚是对象还是数组了
+
+> 注意：instanceof 只能进行检查引用类型，检查原始类型全部返回 false！ 
