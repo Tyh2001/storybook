@@ -972,3 +972,30 @@ const change2 = () => console.log('change2')
 const change3 = () => console.log('change3')
 </script>
 ```
+
+## 在style中使用v-bind
+
+vue3 中可以在 `style` 中使用 `v-bind` 来绑定 js 中的变量，比如下面例子中，一个累加器来渲染不同的颜色
+
+```vue
+<template>
+  <h1 @click="add">切换颜色</h1>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const text = ref('1')
+const color = ref('red')
+const add = () => {
+  text.value++
+  text.value % 2 === 0 ? color.value = 'red' : color.value = 'blue'
+}
+</script>
+
+<style scoped>
+h1 {
+  color: v-bind(color);
+}
+</style>
+```
+
