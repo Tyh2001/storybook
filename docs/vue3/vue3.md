@@ -973,7 +973,7 @@ const change3 = () => console.log('change3')
 </script>
 ```
 
-## 在style中使用v-bind
+## 在 style 中使用 v-bind
 
 vue3 中可以在 `style` 中使用 `v-bind` 来绑定 js 中的变量，比如下面例子中，一个累加器来渲染不同的颜色
 
@@ -988,7 +988,7 @@ const text = ref('1')
 const color = ref('red')
 const add = () => {
   text.value++
-  text.value % 2 === 0 ? color.value = 'red' : color.value = 'blue'
+  text.value % 2 === 0 ? (color.value = 'red') : (color.value = 'blue')
 }
 </script>
 
@@ -999,3 +999,27 @@ h1 {
 </style>
 ```
 
+## API 介绍
+
+### watch
+
+累加器每次数值进行改变的时候执行 `watch` 函数，下面是 vue3 中 watch 的写法：
+
+```vue
+<template>
+  <button @click="add">{{ text }}</button>
+</template>
+
+<script setup>
+import { ref, watch } from 'vue'
+const text = ref(1)
+const add = () => text.value++
+watch(
+  () => text.value,
+  (newText, oldText) => {
+    // newText 是新值，oldText 是老值
+    console.log(newText, oldText)
+  }
+)
+</script>
+```
