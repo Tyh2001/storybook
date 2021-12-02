@@ -1,6 +1,6 @@
 # 数组操作
 
-##  数组方法
+## 数组方法
 
 ### ... 展开运算符
 
@@ -12,7 +12,7 @@
 const arr1 = ['js', 'css']
 const arr2 = ['java', 'python', 'c']
 for (const value of arr2) {
-    arr1.push(value)
+  arr1.push(value)
 }
 console.log(arr1)
 // (5) ["js", "css", "java", "python", "c"]
@@ -28,15 +28,13 @@ console.log(newArr)
 // (5) ["js", "css", "java", "python", "c"]
 ```
 
-
-
 展开语法在函数中的使用，比如下方计算加和：
 
 当一个函数需要接收到多个，并且不固定数量的参数时，之前接收的方法可能是这样的：
 
 ```js
-function fun (a, b, c, d) {
-    return a + b + c + d
+function fun(a, b, c, d) {
+  return a + b + c + d
 }
 console.log(fun(1, 2, 3, 4))
 // 10
@@ -45,12 +43,12 @@ console.log(fun(1, 2, 3, 4))
 那么有了展开语法，就会显然解决了参数不固定的问题
 
 ```js
-function fun (...num) {
-    let a = 0
-    for (let i = 0; i < num.length; i++) {
-        a += num[i]
-    }
-    return a
+function fun(...num) {
+  let a = 0
+  for (let i = 0; i < num.length; i++) {
+    a += num[i]
+  }
+  return a
 }
 console.log(fun(1, 2, 3, 4))
 // 10
@@ -63,21 +61,19 @@ const obj1 = { left: 100, top: 200 }
 const obj2 = { width: 200, height: 200 }
 
 const obj3 = {
-    ...obj1,
-    ...obj2
-};
+  ...obj1,
+  ...obj2,
+}
 
 console.log(obj3)
 // {left: 100, top: 200, width: 200, height: 200}
 ```
 
-
-
 ### push()
 
 `push()` 向数组的末尾添加元素
 
-向数组末尾添加元素是方法有很多，比如使用  arr[] 来添加
+向数组末尾添加元素是方法有很多，比如使用 arr[] 来添加
 
 ```js
 const arr = ['css', 'html', 'js']
@@ -113,8 +109,6 @@ console.log(arr)
 // (5) ["css", "html", "js", "vue", "java"]
 ```
 
-
-
 ### join()
 
 `join` 把数组转换为字符串数组 || 配置数组中每一项直接的连接符
@@ -130,8 +124,6 @@ let arr = [1, 2, 3, 4, 5]
 console.log(arr.join('--'))
 // 1--2--3--4--5
 ```
-
-
 
 ### Array.from()
 
@@ -155,8 +147,8 @@ console.log(str.length) // 6
 ```js
 // 因为对象不能使用 .leghtn 方法得到长度
 const obj = {
-    name: '小明',
-    age: 12,
+  name: '小明',
+  age: 12,
 }
 console.log(obj.length) // undefined
 console.log(Array.from(obj)) // []
@@ -166,18 +158,15 @@ console.log(Array.from(obj)) // []
 
 ```js
 const obj = {
-    0: '小明',
-    1: 12,
-    length: 2
+  0: '小明',
+  1: 12,
+  length: 2,
 }
 console.log(obj.length) // 2
 console.log(Array.from(obj)) // ["小明", 12]
 ```
 
 **注：对象转换的方法实际中很少用，此处仅对有无 .length 转换结果作为参考比较**
-
-
-
 
 ### pop()
 
@@ -189,8 +178,6 @@ arr.pop()
 console.log(arr)
 // (2) ["java", "python"]
 ```
-
-
 
 ### unshift()
 
@@ -205,8 +192,6 @@ console.log(arr)
 
 > 注：支持多个添加
 
-
-
 ### shift()
 
 `shift()` 删除数组开头的元素
@@ -217,8 +202,6 @@ arr.shift()
 console.log(arr)
 // (2) ["python", "c"]
 ```
-
-
 
 ### slice()
 
@@ -257,19 +240,17 @@ console.log(arr2)
 
 > 注：`slice()` 方法不会改变原数组，而是会创建一个新的数组
 
-
-
 ### splice()
 
 `splice()` 数组 截取 || 添加数据 || 移除 || 替换
 
-同样都是数组截取，`slice()`  和  `splice()`  还是有区别的
+同样都是数组截取，`slice()` 和 `splice()` 还是有区别的
 
 `splice()` 不仅仅有截取的方法，还可以添加、移除、替换 等操作，下面分别来说说：
 
 - 截取：
 
-`splice()`  也是通过索引进行截取，里面包含两个参数：
+`splice()` 也是通过索引进行截取，里面包含两个参数：
 
 > 第一个参数是：从第几个开始截取（包括当前索引元素）
 >
@@ -331,8 +312,6 @@ console.log(arr)
 // (5) ["css", "html", "javascript", "java", "html5"]
 ```
 
-
-
 ### includes()
 
 `includes()` 方法，查找数组中是否包含某元素
@@ -357,14 +336,14 @@ const arr = [1, 3, 6, 5]
 // array 是要查找的数组
 // value 是要查找的元素
 function includes(array, value) {
-    // 通过 for of 遍历数组中的每一项
-    // 如果有和 value 值一样的，就返回 true 否则返回 false
-    for (const val of array) {
-        if (val === value) {
-            return true
-        }
+  // 通过 for of 遍历数组中的每一项
+  // 如果有和 value 值一样的，就返回 true 否则返回 false
+  for (const val of array) {
+    if (val === value) {
+      return true
     }
-    return false
+  }
+  return false
 }
 
 console.log(includes(arr, 6))
@@ -375,11 +354,7 @@ console.log(includes(arr, 6))
 `includes()` 方法只能查找基本类型的元素，对于引用类型是查找不到的，例如：
 
 ```js
-const arr = [
-    { a: 'css' },
-    { b: 'js' },
-    { c: 'html' }
-]
+const arr = [{ a: 'css' }, { b: 'js' }, { c: 'html' }]
 
 console.log(arr.includes({ b: 'js' }))
 // 虽然查找的是 { b: 'js' } 看似的一样，但是内存地址的不一样的，所以返回 fasle
@@ -403,11 +378,7 @@ console.log(f === e)
 // 这样把e 赋值给了 f 那么就全等了，返回 true
 ```
 
-
-
-
-
-##  数组进阶
+## 数组进阶
 
 ### filter()
 
@@ -418,13 +389,13 @@ console.log(f === e)
 ```js
 const arr = ['12', '13', '14', '15']
 arr.filter((item, index, arr) => {
-    console.log(item)
-    console.log(index)
-    console.log(arr)
+  console.log(item)
+  console.log(index)
+  console.log(arr)
 })
 // 12
 // 0
-// (4)["12", "13", "14", "15"] 
+// (4)["12", "13", "14", "15"]
 // 13
 // 1
 // (4)["12", "13", "14", "15"]
@@ -443,27 +414,27 @@ arr.filter((item, index, arr) => {
 ```js
 // 为真 全部返回
 const arr1 = ['12', '13', '14', '15', '16', '17', '18']
-const res = arr1.filter(item => {
-    return true
+const res = arr1.filter((item) => {
+  return true
 })
 console.log(res)
 // (7) ["12", "13", "14", "15", "16", "17", "18"]
 
 // 为假 返回空数组
 const arr1 = ['12', '13', '14', '15', '16', '17', '18']
-const res = arr1.filter(item => {
-    return false
+const res = arr1.filter((item) => {
+  return false
 })
 console.log(res)
 // []
 ```
 
-- 实例，返回数组中大于15的元素，组成新的数组
+- 实例，返回数组中大于 15 的元素，组成新的数组
 
 ```js
 const arr = ['12', '13', '14', '15', '16', '17', '18']
-const res = arr.filter(item => {
-    return item > 15
+const res = arr.filter((item) => {
+  return item > 15
 })
 console.log(res)
 // (3) ["16", "17", "18"]
@@ -478,22 +449,20 @@ const hd = [1, 2, 3, 4]
 // array 原数组
 // except 过滤掉的元素
 function filter(array, except) {
-    const newArray = []
-    for (const value of array) {
-        // 判断如果传递来的数组中没有循环数组中的元素，那么就将其放在新数组中
-        if (except.includes(value) === false) {
-            newArray.push(value)
-        }
+  const newArray = []
+  for (const value of array) {
+    // 判断如果传递来的数组中没有循环数组中的元素，那么就将其放在新数组中
+    if (except.includes(value) === false) {
+      newArray.push(value)
     }
-    return newArray
+  }
+  return newArray
 }
 
 // 这里想把 2,3 过滤掉掉
 console.log(filter(hd, [2, 3]))
 // (2) [1, 4]
 ```
-
-
 
 ### map()
 
@@ -505,7 +474,7 @@ console.log(filter(hd, [2, 3]))
 const arr = ['js', 'jquery', 'css']
 
 const res = arr.map((item) => {
-    return item = item + '123'
+  return (item = item + '123')
 })
 
 console.log(res) // (3) (3) ["js123", "jquery123", "css123"]
@@ -513,9 +482,6 @@ console.log(arr) // (3) ['js', 'jquery', 'css']
 ```
 
 > 类似克隆出来一个数组，不会影响原数组
-
-
-
 
 ### find()
 
@@ -525,7 +491,7 @@ console.log(arr) // (3) ['js', 'jquery', 'css']
 const arr = [1, 3, 6, 5]
 
 arr.find(function (item) {
-    console.log(item)
+  console.log(item)
 })
 // 1 3 6 5
 ```
@@ -534,42 +500,40 @@ arr.find(function (item) {
 
 ```js
 const arr = [12, 13, 14, 15, 16, 17, 128]
-function changeArr () {
-    return arr.find(n => {
-        return n > 14
-    })
+function changeArr() {
+  return arr.find((n) => {
+    return n > 14
+  })
 }
 console.log(changeArr())
 // 15
 ```
 
-
-
 - filter 和 find 结合实例
 
-有一个数组 arr1 和 arr2 现在想要得到arr1 -  arr2 的数据，并且返回一个新的数组
+有一个数组 arr1 和 arr2 现在想要得到 arr1 - arr2 的数据，并且返回一个新的数组
 
 ```js
 const arr1 = [
-    {name: '小明', id: 1},
-    {name: '小张', id: 2},
-    {name: '小例', id: 3},
-    {name: '小李', id: 4},
-    {name: '小赵', id: 5},
-    {name: '小萌', id: 6}
+  { name: '小明', id: 1 },
+  { name: '小张', id: 2 },
+  { name: '小例', id: 3 },
+  { name: '小李', id: 4 },
+  { name: '小赵', id: 5 },
+  { name: '小萌', id: 6 },
 ]
 
 const arr2 = [
-    {name: '小例', id: 3},
-    {name: '小萌', id: 6}
+  { name: '小例', id: 3 },
+  { name: '小萌', id: 6 },
 ]
 
-function changeArr () {
-    return arr1.filter(item1 => {
-        return !arr2.find(item2 => {
-            return item1.id === item2.id
-        })
+function changeArr() {
+  return arr1.filter((item1) => {
+    return !arr2.find((item2) => {
+      return item1.id === item2.id
     })
+  })
 }
 console.log(changeArr())
 
@@ -582,22 +546,20 @@ console.log(changeArr())
 // ]
 ```
 
-
-
 ### every()
 
 `every()` 方法返回布尔值，**遍历出的每一项必须全部为真，才返回真，否则返回假**
 
 ```js
 const user = [
-    { name: '小明1', fen: 78 },
-    { name: '小明2', fen: 92 },
-    { name: '小明3', fen: 37 },
-    { name: '小明4', fen: 56 }
+  { name: '小明1', fen: 78 },
+  { name: '小明2', fen: 92 },
+  { name: '小明3', fen: 37 },
+  { name: '小明4', fen: 56 },
 ]
 
 const res = user.every(function (item) {
-    return false // 根据条件返回 true 或 false
+  return false // 根据条件返回 true 或 false
 })
 console.log(res) // false
 ```
@@ -606,20 +568,18 @@ console.log(res) // false
 
 ```js
 const user = [
-    { name: '小明1', fen: 78 },
-    { name: '小明2', fen: 92 },
-    { name: '小明3', fen: 37 },
-    { name: '小明4', fen: 56 }
+  { name: '小明1', fen: 78 },
+  { name: '小明2', fen: 92 },
+  { name: '小明3', fen: 37 },
+  { name: '小明4', fen: 56 },
 ]
 
 const res = user.every(function (item) {
-    item.fen >= 60
+  item.fen >= 60
 })
 
 console.log(res ? '全部及格' : '有些没有及格')
 ```
-
-
 
 ### some()
 
@@ -627,15 +587,15 @@ console.log(res ? '全部及格' : '有些没有及格')
 
 ```js
 const user = [
-    { name: '小明1', fen: 78 },
-    { name: '小明2', fen: 92 },
-    { name: '小明3', fen: 37 },
-    { name: '小明4', fen: 56 }
+  { name: '小明1', fen: 78 },
+  { name: '小明2', fen: 92 },
+  { name: '小明3', fen: 37 },
+  { name: '小明4', fen: 56 },
 ]
 
 const res = user.some(function (item) {
-    console.log(item)
-    return false
+  console.log(item)
+  return false
 })
 // {name: "小明1", fen: 78}
 // {name: "小明2", fen: 92}
@@ -647,22 +607,20 @@ const res = user.some(function (item) {
 
 ```js
 const user = [
-    { name: '小明1', fen: 78 },
-    { name: '小明2', fen: 92 },
-    { name: '小明3', fen: 37 },
-    { name: '小明4', fen: 56 }
+  { name: '小明1', fen: 78 },
+  { name: '小明2', fen: 92 },
+  { name: '小明3', fen: 37 },
+  { name: '小明4', fen: 56 },
 ]
 
 const res = user.some(function (item) {
-    console.log(item)
-    return true
+  console.log(item)
+  return true
 })
 // {name: "小明1", fen: 78}
 ```
 
-
-
-##  数组去重
+## 数组去重
 
 方法很多，下面分别来说说：
 
@@ -676,8 +634,6 @@ console.log([...new Set(arr)])
 
 使用 `new Set()` 把数组传进去之后去重，再从 `[]` 中展开
 
-
-
 2. 使用 `indexOf()` 判断
 
 ```js
@@ -685,9 +641,9 @@ const arr = [1, 3, 5, 6, 2, 5, 2, 1, 3, 4]
 const res = []
 
 for (let i = 0; i < arr.length; i++) {
-    if (res.indexOf(arr[i]) === -1) {
-        res.push(arr[i])
-    }
+  if (res.indexOf(arr[i]) === -1) {
+    res.push(arr[i])
+  }
 }
 console.log(res)
 // (6) [1, 3, 5, 6, 2, 4]

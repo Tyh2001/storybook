@@ -1,28 +1,24 @@
 # Vue2 相关
 
-## 创建Vue项目
+## 创建 Vue 项目
 
-1. 下载vue-cli（下载之后才可以使用Vue命令）
+1. 下载 vue-cli（下载之后才可以使用 Vue 命令）
 
-全局安装vue/cli   安装完成之后才可以使用vue的命令   下载一次就可以了
+全局安装 vue/cli 安装完成之后才可以使用 vue 的命令 下载一次就可以了
 
 ```sh
 npm install -g @vue/cli
 ```
 
-> 如果报错不能使用Vue命令 那么要把vue-cli添加到环境变量中
+> 如果报错不能使用 Vue 命令 那么要把 vue-cli 添加到环境变量中
 
-
-
-2. 创建Vue项目
+2. 创建 Vue 项目
 
 在命令行中输入以下命令创建 Vue 项目：
 
 ```shell
 vue create +项目名称
 ```
-
- 
 
 > 选择版本
 
@@ -31,16 +27,14 @@ Vue CLI v4.5.11
 ? Please pick a preset: (Use arrow keys)
   Default ([Vue 2] babel, eslint)
   Default (Vue 3 Preview) ([Vue 3] babel, eslint)
-> Manually select features    
+> Manually select features
 ```
 
 Default ([Vue 2] babel, eslint)：默认勾选 babel、eslint，回车之后直接进入装包
 
-Default (Vue 3 Preview)：Vue3.0版本还没有正式发布，不建议使用
+Default (Vue 3 Preview)：Vue3.0 版本还没有正式发布，不建议使用
 
 Manually select features ：手动选择特性，支持更多自定义选项，推荐使用
-
-
 
 > 选择需要用到的一些配置
 
@@ -58,7 +52,7 @@ nvert selection)
  (*) CSS Pre-processors
  (*) Linter / Formatter
  ( ) Unit Testing
- ( ) E2E Testing   
+ ( ) E2E Testing
 ```
 
 Babel：es6 转 es5
@@ -73,9 +67,7 @@ CSS Pre-processors：Css 预处理器
 
 我这里选择了：Router、Vuex、CSS Pre-processors
 
-
-
-> 选择的版本虚拟用户.js你想开始这个项目
+> 选择的版本虚拟用户.js 你想开始这个项目
 
 ```shell
 Vue CLI v4.5.11
@@ -89,9 +81,7 @@ essors, Linter
 
 这里知己默认选择第一个即可
 
-
-
->是否使用 history 路由模式
+> 是否使用 history 路由模式
 
 ```shell
 Vue CLI v4.5.11
@@ -100,12 +90,10 @@ Vue CLI v4.5.11
 essors, Linter
 ? Choose a version of Vue.js that you want to start the project with 2.x
 ? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n
-) 
+)
 ```
 
 这里输入 `n` 不使用
-
-
 
 > 选择 CSS 预处理器，这里选择我们熟悉的 Less
 
@@ -115,22 +103,18 @@ rrow keys)
 > Sass/SCSS (with dart-sass)
   Sass/SCSS (with node-sass)
   Less
-  Stylus  
+  Stylus
 ```
 
-
-
->选择校验工具，这里选择 ESLint + [Standard config](https://standardjs.com/)
+> 选择校验工具，这里选择 ESLint + [Standard config](https://standardjs.com/)
 
 ```shell
 ? Pick a linter / formatter config:
   ESLint with error prevention only
   ESLint + Airbnb config
 > ESLint + Standard config
-  ESLint + Prettier                                                                                                     
+  ESLint + Prettier
 ```
-
-
 
 > 选择在什么时机下触发代码格式校验：
 
@@ -146,14 +130,12 @@ Lint and fix on commit：每当执行 `git commit` 提交的时候
 
 这里建议两个都选上，更严谨。
 
-
-
->Babel、ESLint 等工具会有一些额外的配置文件，这里的意思是问你将这些工具相关的配置文件写到哪里：
+> Babel、ESLint 等工具会有一些额外的配置文件，这里的意思是问你将这些工具相关的配置文件写到哪里：
 
 ```shell
 ? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
 > In dedicated config files
-  In package.json  
+  In package.json
 ```
 
 In dedicated config files：分别保存到单独的配置文件
@@ -162,26 +144,19 @@ In package.json：保存到 package.json 文件中
 
 这里建议选择第 1 个，保存到单独的配置文件，这样方便我们做自定义配置。
 
-
-
 > 这里里是问你是否需要将刚才选择的一系列配置保存起来，然后它可以帮你记住上面的一系列选择，以便下次直接重用。
 
 ```shell
-? Save this as a preset for future projects? (y/N)  
+? Save this as a preset for future projects? (y/N)
 ```
 
 这里根据自己需要输入 y 或者 n，我这里输入 n 不需要。
-
-
 
 > 向导配置结束，开始装包。
 >
 > 安装包的时间可能较长，请耐心等待...
 
-
-
-
-## 关于axios配置
+## 关于 axios 配置
 
 为了方便，我们在这里把 axios 单独封装一个模块用于项目中的请求操作。
 
@@ -198,7 +173,7 @@ import axios from 'axios'
 // 创建一个 axios 实例，说白了就是复制了一个 axios
 // 我们通过这个实例去发请求，把需要的配置配置给这个实例来处理
 const request = axios.create({
-  baseURL: ' ' // 请求的基础路径
+  baseURL: ' ', // 请求的基础路径
 })
 
 // 请求拦截器
@@ -209,13 +184,11 @@ const request = axios.create({
 export default request
 ```
 
-
-
 ## 关于样式冲突问题
 
 > 多个组件污染（多个组件公用一套样式时影响其他组件）
 
-在开发过程中为了避免不必要的资源浪费，多个组件在会共用一套CSS代码时，如果采用下面方法引入，可能会导致组件样式污染（加载组件的时候加载的不是当前组件的样式，必须要刷新一次才能当前组件的样式）
+在开发过程中为了避免不必要的资源浪费，多个组件在会共用一套 CSS 代码时，如果采用下面方法引入，可能会导致组件样式污染（加载组件的时候加载的不是当前组件的样式，必须要刷新一次才能当前组件的样式）
 
 ```css
 <style scoped>
@@ -229,47 +202,48 @@ export default request
 <style lang="" src="../assets/css/Login.css" scoped></style>
 ```
 
-
-
 ## 拦截器
 
 1. 添加一个请求拦截器
 
 ```js
-axios.interceptors.request.use(function (config) {
-  // 任何请求都是经过这里
-  // config 是当前请求相关的配置信息对象
-  return config
+axios.interceptors.request.use(
+  function (config) {
+    // 任何请求都是经过这里
+    // config 是当前请求相关的配置信息对象
+    return config
 
-  // 请求失败都经过这里
-}, function (error) {
-  // 这里如果不 return 请求就直接发布出去
-  return Promise.reject(error)
-})
+    // 请求失败都经过这里
+  },
+  function (error) {
+    // 这里如果不 return 请求就直接发布出去
+    return Promise.reject(error)
+  }
+)
 ```
 
 2. 添加一个响应拦截器
 
 ```js
-axios.interceptors.response.use(function (response) {
-  // 所有响应为 2XX的响应都会进入这里 请求成功
-  // response 是响应处理
-  // 注意 一定要把响应结果 return 否则真正发请求的位置拿不到数据
-  return response
-
-}, function (error) {
-  // 处理响应错误
-  return Promise.reject(error)
-})
+axios.interceptors.response.use(
+  function (response) {
+    // 所有响应为 2XX的响应都会进入这里 请求成功
+    // response 是响应处理
+    // 注意 一定要把响应结果 return 否则真正发请求的位置拿不到数据
+    return response
+  },
+  function (error) {
+    // 处理响应错误
+    return Promise.reject(error)
+  }
+)
 ```
 
 3. 可以在处理请求或响应之前拦截它们可以使用`thrn`或`catch`
 
 官方文档：https://github.com/axios/axios
 
-
-
-## 关于vue.config.js
+## 关于 vue.config.js
 
 ```js
 module.exports = {
@@ -278,21 +252,19 @@ module.exports = {
     open: true, // 启动项目后自动在浏览器打开项目
     proxy: {
       // 把所有以 /api 开头的请求代理转发
-      "/api": {
-        target: "", // 目标基础地址 url
+      '/api': {
+        target: '', // 目标基础地址 url
         changeOrigin: true, // 允许跨域
         ws: true, // 开启 webSocket 代理
         pathRewrite: {
           // 重写路径
-          "^/api": ""
-        }
-      }
-    }
-  }
+          '^/api': '',
+        },
+      },
+    },
+  },
 }
 ```
-
-
 
 ## 关于冗余导航报错问题
 
@@ -318,18 +290,17 @@ module.exports = {
 
 ```js
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 // 解决 冗余导航报错问题
 const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push (location) {
-  return originalPush.call(this, location).catch(err => err)
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err)
 }
 
 export default router
 ```
-
 
 ## 非父子组件通信
 
@@ -341,7 +312,7 @@ import Vue from 'vue'
 export default new Vue()
 ```
 
-假设 a 组件要给 b 组件发送请求，那么a 组件发布通信事件
+假设 a 组件要给 b 组件发送请求，那么 a 组件发布通信事件
 
 ```js
 import bus from '@/utils/bus.js'
@@ -365,15 +336,11 @@ bus.$on('自定义事件名称', (data) => {
 >
 > `$on()` 用来接收 `$emit()` 用来发布
 
-
-
 ## Vue 给 for 循环的标签添加背景图
 
 ```html
 <div :style="{ 'background-image': 'url(' + item.PlaceImgUrl + ')' }"></div>
 ```
-
-
 
 ## watch 监听器
 
@@ -388,16 +355,16 @@ bus.$on('自定义事件名称', (data) => {
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      text: ""
+      text: '',
     }
   },
   watch: {
-    text () {
-      console.log("text 值发生改变了！！")
-    }
-  }
+    text() {
+      console.log('text 值发生改变了！！')
+    },
+  },
 }
 </script>
 ```
@@ -415,29 +382,20 @@ export default {
 export default {
   data() {
     return {
-      text: ""
+      text: '',
     }
   },
   watch: {
     // 使用对象写法，监视数据 text
     text: {
       // 使用 handler 方法，处理变化后的逻辑代码
-      handler () {
-        console.log("text 值发生改变了！！")
+      handler() {
+        console.log('text 值发生改变了！！')
       },
       // immediate 这个属性值为 true 的时候，默认页面初始化完成之后执行一次上面的代码
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 }
 </script>
 ```
-
-
-
-
-
-
-
-
-

@@ -11,30 +11,26 @@
 - 原始数据类型：Undefined，Null，Boolean，Number、String
 - 引用数据类型：对象、数组、函数
 
-
-
-## Unicode码
+## Unicode 码
 
 可以在网页上打印 Unicode 编码的汉字数字或者字母
 
-````js
+```js
 console.log('\u0061'); // a
 console.log("\u4f60\u597d\u5417"); // 你好吗
 console.log("\u35\u32\u30"); // 520
-````
+```
 
 转换网站 http://tool.sufeinet.com/Code/ChineseUnicode.aspx
-
-
 
 ## 本地存储
 
 1. 添加本地存储
 
-> 里面包含两个参数 1是本地存储名称   2是本地存储内容
+> 里面包含两个参数 1 是本地存储名称 2 是本地存储内容
 
 ```js
- window.localStorage.setItem('名称', data)
+window.localStorage.setItem('名称', data)
 ```
 
 本地存储名称是`user`存储的内容是`data`
@@ -55,9 +51,7 @@ window.localStorage.removeItem('名称')
 
 **注：本地存储只能存储字符串**
 
-
-
-## 关于JSON
+## 关于 JSON
 
 很多时候我们在设置本地存储的时候都需要将一个对象存入本地存储中，但是本地存储只能存储字符串，那么可以使用
 
@@ -65,14 +59,13 @@ window.localStorage.removeItem('名称')
 JSON.stringify()
 ```
 
-来将对象转换为JSON格式字符串进行存储
+来将对象转换为 JSON 格式字符串进行存储
 
-那么想要获取对象还需要再转换回 JSON字符串，方法为：
+那么想要获取对象还需要再转换回 JSON 字符串，方法为：
 
 ```js
 JSON.parse()
 ```
-
 
 ## 变量冻结
 
@@ -81,7 +74,7 @@ JSON.parse()
 ```js
 const obj = {
   name: '小明',
-  age: 12
+  age: 12,
 }
 obj.name = '小张'
 console.log(obj.name)
@@ -100,7 +93,7 @@ Object.freeze(+对象名)
 ```js
 const obj = {
   name: '小明',
-  age: 12
+  age: 12,
 }
 Object.freeze(obj)
 obj.name = '小张'
@@ -125,7 +118,7 @@ obj.name = '小张'
 'use strict'
 const obj = {
   name: '小明',
-  age: 12
+  age: 12,
 }
 Object.freeze(obj)
 obj.name = '小张'
@@ -140,11 +133,9 @@ Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Obje
 
 所以将重新赋值删掉即可解决问题。
 
-
-
 ## 一元运算符
 
-关于 a++  和  ++a  的问题
+关于 a++ 和 ++a 的问题
 
 正常在不参与运算的情况下是没什么区别的
 
@@ -178,9 +169,7 @@ console.log(a + b++)
 console.log(b)
 ```
 
-
-
-## 关于switch语句
+## 关于 switch 语句
 
 例如：
 
@@ -203,8 +192,6 @@ switch (name) {
 
 如果一直都没有找到成立项，那么就执行`default`的内容
 
-
-
 那么如果想要有两个字段有统一的处理方式的话，也可以这么写：
 
 ```js
@@ -223,12 +210,11 @@ switch (item) {
 
 这里要判断的值是`item`上面代码意思是：`item`的值是`hello`或者`Hi`的其中一个，都是可以执行`break`前的内容的，两个内容使用统一的处理方式
 
-
 ## 关于 json-bigint
 
 js 能够精准的表示的整数范围在 -2^53 到 -2^53 之间（不含两个端点），超出这个范围，则无法正常显示这个值，这使得 JavaScript 不适合金融和科学方面的计算
 
-通常我么在使用**axios**发送请求的时候，后台可能会返回比较大的一个数字，因为**axios**会把JSON格式字符串转换为JS对象，那么如果这个数字很大，那么就会出现问题，比如：
+通常我么在使用**axios**发送请求的时候，后台可能会返回比较大的一个数字，因为**axios**会把 JSON 格式字符串转换为 JS 对象，那么如果这个数字很大，那么就会出现问题，比如：
 
 ```js
 const str = '{ "id": 158464848747369549 }'
@@ -237,9 +223,9 @@ console.log(JSON.parse(str).id)
 
 这样输出的`id`就不是原始的数据了
 
-因为这个数字超出了JS的安全整数范围，所以不能正常表示了，那么**json-bigint**就可以很好的帮助解决这个问题
+因为这个数字超出了 JS 的安全整数范围，所以不能正常表示了，那么**json-bigint**就可以很好的帮助解决这个问题
 
- **json-bigint** Github 仓库地址：[json-bigint](https://github.com/sidorares/json-bigint)
+**json-bigint** Github 仓库地址：[json-bigint](https://github.com/sidorares/json-bigint)
 
 安装 **json-bigint**
 
@@ -247,11 +233,9 @@ console.log(JSON.parse(str).id)
 npm i json-bigint
 ```
 
+可以通过 json-bigint 内置的方法来获取这样大的数据
 
-
-可以通过json-bigint内置的方法来获取这样大的数据
-
-1. 将JSON数据转换为 JavaScript 对象
+1. 将 JSON 数据转换为 JavaScript 对象
 
 ```js
 JSONbig.parse()
@@ -263,7 +247,7 @@ JSONbig.parse()
 JSON.parse()
 ```
 
-通过`JSONbig.parse()`转换为的是一个js对象，其实它只是换了一种形式表示出了这个数字，那么想要再获得这个数据，还需要`toString()`一下就可以获取到了
+通过`JSONbig.parse()`转换为的是一个 js 对象，其实它只是换了一种形式表示出了这个数字，那么想要再获得这个数据，还需要`toString()`一下就可以获取到了
 
 ```js
 // 引入 json-bigint
@@ -274,9 +258,7 @@ console.log(JSON.parse(str).id)
 console.log(JSONbig.parse(str).id.toString())
 ```
 
-
-
-2. 将 JavaScript 对象转换为JSON字符串
+2. 将 JavaScript 对象转换为 JSON 字符串
 
 ```js
 JSONbig.stringify()
@@ -288,11 +270,9 @@ JSONbig.stringify()
 JSON.stringify()
 ```
 
-虽然这个两个方法的等同于的，但是通过`JSONbig.parse()`转换为的JavaScript 对象使用`JSON.stringify()`转换为JSON字符串会有一定的问题
+虽然这个两个方法的等同于的，但是通过`JSONbig.parse()`转换为的 JavaScript 对象使用`JSON.stringify()`转换为 JSON 字符串会有一定的问题
 
 > 所以。用什么转来的，就用什么转回去就不会有问题了
-
-
 
 ## 关于 console
 
@@ -303,7 +283,6 @@ console.log('这的一段信息')
 
 // 这的一段信息
 ```
-
 
 `console.table()` 用于打印数组结构
 
@@ -337,7 +316,6 @@ Array(4)
 
 会打印出 索引对应的值
 
-
 `console.error()` 用于错误信息提示
 
 ```js
@@ -345,13 +323,11 @@ console.error('这是一段错误信息')
 // 这是一段错误信息
 ```
 
-
 `console.warn()` 用于打印警告信息
 
 ```js
 console.warn('这是一段警告信息')
 ```
-
 
 ## 普通事件和事件绑定
 
@@ -362,39 +338,36 @@ console.warn('这是一段警告信息')
 普通事件就是直接触发事件，同一时间只能指向唯一对象，所以会被覆盖掉。代码如下：
 
 ```js
-const btn2 = document.querySelector(".btn2")
+const btn2 = document.querySelector('.btn2')
 
 btn2.onclick = function () {
-  console.log("哈哈哈哈哈哈")
+  console.log('哈哈哈哈哈哈')
 }
 
 btn2.onclick = function () {
-  console.log("呵呵呵呵呵呵")
+  console.log('呵呵呵呵呵呵')
 }
 ```
 
-这样只会输出`呵呵呵呵呵呵`，以为后面的代码会覆盖掉前面的，个click处理器在同一时间只能指向唯一的对象。所以就算一个对象绑定了多次，其结果只会出现最后的一次绑定的对象
-
-
+这样只会输出`呵呵呵呵呵呵`，以为后面的代码会覆盖掉前面的，个 click 处理器在同一时间只能指向唯一的对象。所以就算一个对象绑定了多次，其结果只会出现最后的一次绑定的对象
 
 - 事件绑定（addEventListener）
 
 事件绑定就是对于一个可以绑定的事件对象，进行多次绑定事件都能运行。代码如下：
 
 ```js
-const btn1 = document.querySelector(".btn1")
+const btn1 = document.querySelector('.btn1')
 
-btn1.addEventListener("click", function () {
-  console.log("11111")
+btn1.addEventListener('click', function () {
+  console.log('11111')
 })
 
-btn1.addEventListener("click", function () {
-  console.log("222222")
+btn1.addEventListener('click', function () {
+  console.log('222222')
 })
 ```
 
 这样会依次输出 `11111`和`222222`
-
 
 ## 计算程序执行的时间
 
@@ -402,7 +375,7 @@ btn1.addEventListener("click", function () {
 
 ```js
 const a = Date.now() // 开始执行 for 循环的时间戳
-for (i = 0; i < 22222220; i++) { } // 执行 for 循环
+for (i = 0; i < 22222220; i++) {} // 执行 for 循环
 const b = Date.now() // 结束 for 循环的时间戳
 console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
 ```
@@ -415,9 +388,9 @@ console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
 
 ```js
 console.time('for')
-for (i = 0; i < 22222220; i++) { }
-for (i = 0; i < 22222220; i++) { }
-for (i = 0; i < 22222220; i++) { }
+for (i = 0; i < 22222220; i++) {}
+for (i = 0; i < 22222220; i++) {}
+for (i = 0; i < 22222220; i++) {}
 console.timeEnd('for')
 ```
 
@@ -425,9 +398,7 @@ console.timeEnd('for')
 >
 > **参数填写错误浏览器会有警告！（不是报错）**
 
-
-
-##  Set 和 Map 数据结构
+## Set 和 Map 数据结构
 
 ### Set()
 
@@ -450,8 +421,8 @@ console.log(setArr)
 const setArr = new Set()
 setArr.add('1')
 setArr.add(43)
-setArr.add([1,4,56])
-setArr.add({name: '小明'})
+setArr.add([1, 4, 56])
+setArr.add({ name: '小明' })
 console.log(setArr)
 
 // Set(4) {"1", 43, Array(3), {…}}
@@ -470,7 +441,6 @@ console.log(setArr)
 // Set(1) {"1"}
 ```
 
-
 `delete()` 删除元素
 
 ```js
@@ -483,8 +453,6 @@ console.log(setArr)
 // Set(1) {678}
 ```
 
-
-
 `has()` 检测集合中有无指定元素（返回布尔值）
 
 ```js
@@ -495,7 +463,6 @@ console.log(setArr.has('1'))
 
 // true
 ```
-
 
 `size` 检测集合的长度
 
@@ -509,10 +476,9 @@ console.log(setArr.size)
 // 3
 ```
 
-
 将 Set 转换为数组
 
-可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换 
+可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换
 
 ```js
 const setArr = new Set([1, 3, 3, 3, 3, 4, 6])
@@ -522,29 +488,24 @@ console.log(arr)
 // (4) [1, 3, 4, 6]
 ```
 
-
-
 ### Map()
 
 Map 类型实际上是键值对的有序集合，键和值是任意类型
 
 > 键值对：一个键对应一个值
 
-
 `set()` 添加元素
 
- ```js
+```js
 const mapList = new Map()
 mapList.set('name', '张三')
 mapList.set('age', 12)
 console.log(mapList)
 
 // Map(2) {"name" => "张三", "age" => 12}
- ```
+```
 
 > set 方法传入两参数，一个是键名，一个键值
-
-
 
 `get()` 通过指定键名获取键值
 
@@ -557,11 +518,7 @@ console.log(mapList.get('name'))
 // 张三
 ```
 
-
-
 `has()` 、 `delete()` 方法和 Set 用法一样
-
-
 
 ## indexOf () 方法
 
@@ -587,7 +544,6 @@ console.log(arr.indexOf(0)) // 没有 0 输出 -1
 console.log(arr.indexOf(4)) // 有 4 输出4的索引 2
 ```
 
-
 > indexOf () 方法 是严格类型查找，比如下面实例中：
 
 比如数组中有一个字符串`'7'` 那么是查找不到的
@@ -602,7 +558,6 @@ console.log(arr.indexOf('7'))
 // 这样查找字符串7才可以返回索引值：2
 ```
 
-
 > indexOf () 方法 是可以有两个参数的
 
 第一个参数为要查找的元素
@@ -615,7 +570,6 @@ const arr = [1, 3, '7', 5]
 console.log(arr.indexOf(1, 2))
 // 虽然数组中存在 1，但是从第二位开始查找，后面找不大，所以返回 -1
 ```
-
 
 同样，类似的方法还有：
 
@@ -633,8 +587,7 @@ const arr = [1, 3, 7, 5, 6, 7, 9]
 console.log(arr.lastIndexOf(7)) // 5
 ```
 
-
-##  关于基本类型和引用类型内存覆盖问题
+## 关于基本类型和引用类型内存覆盖问题
 
 - 基本类型
 
@@ -651,8 +604,6 @@ console.log(b) // 99
 这时候的 a 仍然是 1，b 的值的 99
 
 > 目前内存当中是有一个数据 a 那么让 b = a 之后，内存中又产生了一个新的值为 b，所以分别打印出来就是内存中两个不同的值 a 和 b
-
-
 
 同样的处理那么在引用类型中：
 
@@ -676,8 +627,7 @@ console.log(arr2) // [1, "hello", 5, 6]
 所以，基本类型重新赋值会在内存中重新生成，引用类型新的变量会公用之前的内容
 ```
 
-
-##  Referer 说明
+## Referer 说明
 
 解决关于图片请求失败 403 报错问题解决
 
@@ -685,15 +635,11 @@ console.log(arr2) // [1, "hello", 5, 6]
 GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-197810269.jpg 403 (Forbidden)
 ```
 
-
-
 > 为什么项目中有时候图片加载失败后报错会返回 403？
 
 ```
 因为有些项目中的数据是通过爬虫抓取第三方的数据来进行展示的，而第三方对图片做了放到链保护处理，也就是说不能让你直接通过图片地址访问图片资源。
 ```
-
-
 
 > 第三方平台是怎么处理图片资源保护的呢？
 
@@ -704,7 +650,7 @@ GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-19
 那么服务器一看不是自己的网站，那么就会禁止访问，返回 403，不允许请求。
 ```
 
-需要注意的是：`referer` 实际是  **referrer** 错误拼写。
+需要注意的是：`referer` 实际是 **referrer** 错误拼写。
 
 打开浏览器的控制台 Network 中，我们发送的任何请求都会携带 Referer
 
@@ -712,37 +658,31 @@ GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-19
 Referer: http://localhost:8080/
 ```
 
-
-
 > 怎么解决？
 
 ```
 那么就不要发送 Referer，这样对方服务器就不知道你是从哪里来的了，姑且认为你是自己人吧。
 ```
 
-
-
 > 如何设置？
 
 能发 Referer 的资源有很多，比如;
 
-`<a>`、`<img>`、`<script>`、`<area>` 或者 `<link>` 
+`<a>`、`<img>`、`<script>`、`<area>` 或者 `<link>`
 
 可以单独设置禁止发送 Referer
 
 ```html
-<img src="http://....." alt="" referrerPolicy="no-referrer">
+<img src="http://....." alt="" referrerpolicy="no-referrer" />
 ```
 
 也可以在 HTML 页面头部通过 meta 标签属性全局配置
 
 ```html
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="no-referrer" />
 ```
 
-
-
-##  浅克隆
+## 浅克隆
 
 当有一个对象时候，我们并不希望直接修改该对象，那么可以将这个对象克隆出来一个进行修改
 
@@ -751,7 +691,7 @@ Referer: http://localhost:8080/
 ```js
 const obj = {
   name: '小明',
-  age: 12
+  age: 12,
 }
 ```
 
@@ -760,10 +700,10 @@ const obj = {
 ```js
 const obj = {
   name: '小明',
-  age: 12
+  age: 12,
 }
 
-function clone (obj) {
+function clone(obj) {
   const newObj = {}
   for (const key in obj) {
     newObj[key] = obj[key]
@@ -774,9 +714,7 @@ console.log(clone(obj))
 // {name: "小明", age: 12}
 ```
 
-
-
-##  深克隆
+## 深克隆
 
 但是当对象中又包含一个对象或者数组，那么引用类型是不能直接被克隆出来的，所以要使用深度克隆了：
 
@@ -786,11 +724,7 @@ console.log(clone(obj))
 const obj = {
   name: '小明',
   age: 12,
-  arr: [
-    { name: '小张1' },
-    { name: '小张2' },
-    { name: '小张3' }
-  ]
+  arr: [{ name: '小张1' }, { name: '小张2' }, { name: '小张3' }],
 }
 
 const newObj = JSON.parse(JSON.stringify(obj))
@@ -800,7 +734,7 @@ console.log(newObj)
 > 上面方法只能对于纯数据类型可以深度克隆，比如对象数组都可以。但是 函数、undefined 就不能进行拷贝了，那么这时候深克隆就出现了问题，所以请参考下面，使用递归函数深度克隆
 
 ```js
-function clone (obj) {
+function clone(obj) {
   const newObj = obj instanceof Array ? [] : {}
   for (const key in obj) {
     // 不可以直接赋值的 对象、数组 使用递归函数
@@ -817,44 +751,38 @@ function clone (obj) {
 console.log(clone(obj))
 ```
 
-
-
-## URL.createObjectURL() 
+## URL.createObjectURL()
 
 该方法多数用于图片预览
 
 具体参加文档：[URL.createObjectURL() ](https://developer.mozilla.org/zh-CN/search?q=URL.createObjectURL%28%29)
 
-实例，通过input 上传图片预览出上传的图片：
+实例，通过 input 上传图片预览出上传的图片：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Document</title>
-</head>
+  <body>
+    <input type="file" accept="image/*" />
+    <img src="" alt="" />
 
-<body>
-  <input type="file" accept="image/*">
-  <img src="" alt="">
-
-  <script>
-    const inp = document.querySelector('input')
-    const img = document.querySelector('img')
-    inp.onchange = function () {
-      const blob = URL.createObjectURL(inp.files[0])
-      img.setAttribute('src', blob)
-    }
-  </script>
-</body>
-
+    <script>
+      const inp = document.querySelector('input')
+      const img = document.querySelector('img')
+      inp.onchange = function () {
+        const blob = URL.createObjectURL(inp.files[0])
+        img.setAttribute('src', blob)
+      }
+    </script>
+  </body>
 </html>
 ```
-
-
 
 ## Symbol 数据类型
 
@@ -872,8 +800,6 @@ console.log(a === b) // false
 
 Symbol 并不是一个对象，可以把它理解为一个字符串，一个永远都不会重复的字符串，所以它是原始类型。
 
-
-
 > 可以给 Symbol 添加一个描述：
 
 ```js
@@ -890,7 +816,6 @@ const b = Symbol('你好吗')
 console.log(a.description) // 这是一段文字
 console.log(b.description) // 你好吗
 ```
-
 
 > 除此之外，还可以使用 `Symbol.for()` 来定义
 
@@ -914,26 +839,25 @@ console.log(Symbol.keyFor(a)) // 这是一段文字
 实际应用，当有两个人的名字的一样的时候，可以使用 `Symbol` 来定义每个键值作为区分：
 
 ```js
-
 const user1 = {
   name: '李四',
-  key: Symbol()
+  key: Symbol(),
 }
 
 const user2 = {
   name: '李四',
-  key: Symbol()
+  key: Symbol(),
 }
 
 const obj = {
   [user1.key]: {
     js: 100,
-    css: 20
+    css: 20,
   },
   [user2.key]: {
     js: 30,
-    css: 21
-  }
+    css: 21,
+  },
 }
 
 console.log(obj) // {Symbol(): {…}, Symbol(): {…}}
@@ -947,7 +871,7 @@ console.log(obj[user2.key]) // {js: 30, css: 21}
 const age = Symbol('age')
 const obj = {
   name: '张三',
-  [age]: 12
+  [age]: 12,
 }
 // 普通的方式遍历只能得到普通的值
 for (const key of Object.keys(obj)) {
@@ -967,9 +891,7 @@ for (const key of Reflect.ownKeys(obj)) {
 }
 ```
 
-
-
-##  原生 JS 的一些方法
+## 原生 JS 的一些方法
 
 ### children 获取子级元素
 
@@ -997,8 +919,6 @@ for (const key of Reflect.ownKeys(obj)) {
 
 > 该属性只返回元素节点
 
-
-
 ### parentNode 获取父级元素
 
 > 仅会获得一个最近的亲父级标签元素
@@ -1015,7 +935,6 @@ for (const key of Reflect.ownKeys(obj)) {
 </script>
 ```
 
-
 ### nextElementSibling 获取一个元素的下一个元素
 
 ```html
@@ -1029,35 +948,31 @@ for (const key of Reflect.ownKeys(obj)) {
 <script>
   const title = document.querySelector('.title')
   console.log(title.nextElementSibling)
-    // <ul>...</ul>
+  // <ul>...</ul>
 </script>
 ```
 
 > 或获得下一个元素及其下一个元素内包含的所有元素
 
-
-
 ### getAttribute() 获取一个元素的属性值
 
 ```html
-<img src="./src/壁纸.jpg" alt="">
+<img src="./src/壁纸.jpg" alt="" />
 
 <script>
   const img = document.querySelector('img')
   const res = img.getAttribute('src')
   console.log(res)
-	// ./src/壁纸.jpg
+  // ./src/壁纸.jpg
 </script>
 ```
 
 > 该方法仅可有一个参数
 
-
-
 ### setAttribute() 更改一个元素的属性值
 
 ```html
-<img src="./src/壁纸1.jpg" alt="">
+<img src="./src/壁纸1.jpg" alt="" />
 
 <script>
   const img = document.querySelector('img')
@@ -1067,9 +982,7 @@ for (const key of Reflect.ownKeys(obj)) {
 
 > 该方法仅可有两个参数，第一个是要改变的属性，第二个是改变后的值
 
-
-
-### toLocaleDateString() 将 Date对象的时间转换为字符串
+### toLocaleDateString() 将 Date 对象的时间转换为字符串
 
 ```js
 const date = new Date()
@@ -1078,9 +991,7 @@ console.log(res)
 // 2021/4/23
 ```
 
-
-
-##  window 对象属性
+## window 对象属性
 
 ```js
 // navigator 导航器对象
@@ -1104,18 +1015,16 @@ window.history.forward() // 返回下一个 url
 window.history.go() // 返回某个具体页面
 ```
 
+## Object.defineProperty() 方法
 
-
-##  Object.defineProperty() 方法
-
->Object.defineProperty 是什么？
+> Object.defineProperty 是什么？
 
 `Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象：
 
 ```js
 const XiaoMing = {}
 Object.defineProperty(XiaoMing, 'name', {
-  value: '小明'
+  value: '小明',
 })
 console.log(XiaoMing)
 
@@ -1134,7 +1043,7 @@ console.log(XiaoMing)
 'use strict'
 const XiaoMing = {}
 Object.defineProperty(XiaoMing, 'name', {
-  value: '小明'
+  value: '小明',
 })
 XiaoMing.name = 'Ming'
 console.log(XiaoMing)
@@ -1155,13 +1064,13 @@ Object.defineProperty(XiaoMing, 'name', {
   configurable: true, // 是否可以删除属性
   writable: true, // 是否可以修改
   enumerable: true,
-  value: '小明'
+  value: '小明',
 })
 ```
 
-更多详细信息参考MDN文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+更多详细信息参考 MDN 文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
-## typeof和instanceof
+## typeof 和 instanceof
 
 `typeof`可以判断一个变量是原始类型中的那种类型，但是在下面情况中，就会显得不那么的友好：
 
@@ -1185,4 +1094,4 @@ console.log(obj instanceof Object)
 
 这样就可以很好的分清楚是对象还是数组了
 
-> 注意：instanceof 只能进行检查引用类型，检查原始类型全部返回 false！ 
+> 注意：instanceof 只能进行检查引用类型，检查原始类型全部返回 false！

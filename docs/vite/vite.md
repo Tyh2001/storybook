@@ -37,7 +37,6 @@ npm init vite vue-demo
 
 接下来进入项目目录，安装依赖后，使用 `npm run dev` 来启动项目
 
-
 ## vite.config.js 基础配置
 
 ```js
@@ -50,14 +49,13 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src') // 使用 @ 访问 src 目录
+      '@': resolve(__dirname, './src'), // 使用 @ 访问 src 目录
     },
   },
   server: {
     host: '127.0.0.1',
     port: '2001', // 端口号
-    open: true // 自动打开
-  }
+    open: true, // 自动打开
+  },
 })
-
 ```

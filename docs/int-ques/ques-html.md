@@ -1,9 +1,8 @@
 # Html 相关问题
 
+## HTML5 有哪些新特性
 
-## HTML5有哪些新特性
-
-> 详细参考：[html5新特性](https://www.runoob.com/w3cnote/html5-canvas-intro.html)
+> 详细参考：[html5 新特性](https://www.runoob.com/w3cnote/html5-canvas-intro.html)
 
 1. 绘画：canvas 标签
 
@@ -20,12 +19,12 @@
 ```html
 <!-- 视频 -->
 <video width="320" height="240" controls loop>
-  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.mp4" type="video/mp4" />
 </video>
 
 <!-- 音频 -->
 <audio controls loop>
-  <source src="horse.ogg"  type="audio/ogg">
+  <source src="horse.ogg" type="audio/ogg" />
 </audio>
 ```
 
@@ -33,7 +32,7 @@
 
 - 添加本地存储
 
-> 里面包含两个参数 1是本地存储名称   2是本地存储内容
+> 里面包含两个参数 1 是本地存储名称 2 是本地存储内容
 
 ```html
 window.localStorage.setItem('user', data)
@@ -71,16 +70,14 @@ window.localStorage.removeItem('user')
 >
 > [Geolocation](https://www.runoob.com/html/html5-geolocation.html)
 
+## xhtml 和 html 有什么区别
 
-## xhtml和html有什么区别
-
-- ⼀个是功能上的差别 
+- ⼀个是功能上的差别
   - 主要是 XHTML 可兼容各⼤浏览器、⼿机以及 PDA ，并且浏览器也能快速正确地编译网页
 - 另外是书写习惯的差别
-  - XHTML 元素必须被正确地嵌套，闭合，区分⼤小写，⽂档必须拥有根元素 
+  - XHTML 元素必须被正确地嵌套，闭合，区分⼤小写，⽂档必须拥有根元素
 
-
-## HTML全局属性(global attribute)有哪些
+## HTML 全局属性(global attribute)有哪些
 
 > global attribute：全局属性
 
@@ -105,12 +102,10 @@ window.localStorage.removeItem('user')
 
 - `data-*`：为元素添加自定义属性
 
-
-## Canvas和SVG有什么区别
+## Canvas 和 SVG 有什么区别
 
 - SVG 是矢量图形，矢量图形不管怎么放大缩小都不会失真或模糊，通过 AI 绘制出
 - canvas 输出标量画布，就像⼀张图⽚⼀样，放⼤会失真或者锯齿
-
 
 ## HTML5 为什么只需要写 !DOCTYPE HTML
 
@@ -120,12 +115,11 @@ window.localStorage.removeItem('user')
 
 > SGML：标准通用置标语言 [SGML](https://zhidao.baidu.com/question/572835808.html)
 
-> DTD：是一套关于标记符的语法规则  [DTD](https://zhidao.baidu.com/question/49423873.html)
+> DTD：是一套关于标记符的语法规则 [DTD](https://zhidao.baidu.com/question/49423873.html)
 
+## div+css 的布局较 table 布局有什么优点
 
-## div+css的布局较table布局有什么优点
-
-> table布局是什么？
+> table 布局是什么？
 >
 > 即为表格布局
 
@@ -133,7 +127,9 @@ window.localStorage.removeItem('user')
 
 ```html
 <table border="1" cellspacing="0" cellpadding="0">
-  <caption>这是表格的标题</caption>
+  <caption>
+    这是表格的标题
+  </caption>
   <tr>
     <th>111</th>
     <th>222</th>
@@ -152,18 +148,17 @@ window.localStorage.removeItem('user')
 </table>
 ```
 
-> div+css的布局较table布局有什么优点？
+> div+css 的布局较 table 布局有什么优点？
 
 - 改版的时候更⽅便 只要改 css ⽂件
 - 页面加载速度更快、结构化清晰、⻚⾯显示简洁
 - 表现与结构相分离
--  易于优化（ seo ）搜索引擎更友好，排名更容易靠前
-
+- 易于优化（ seo ）搜索引擎更友好，排名更容易靠前
 
 ## strong 与 em 的异同
 
 - strong：粗体强调标签，强调，表示内容的重要性
-- em：斜体强调标签，更强烈强调，表示内容的强调点 
+- em：斜体强调标签，更强烈强调，表示内容的强调点
 
 ```html
 <strong>这是一段文字</strong>

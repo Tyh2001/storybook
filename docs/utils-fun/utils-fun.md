@@ -16,8 +16,6 @@ export const setStorage = (name, data) => {
 }
 ```
 
-
-
 ## 获取本地存储
 
 ```js
@@ -25,7 +23,7 @@ export const setStorage = (name, data) => {
  * 获取本地存储
  * @param { string } name 本地存储名称
  */
-export const getStorage = name => {
+export const getStorage = (name) => {
   const data = window.localStorage.getItem(name)
   try {
     return JSON.parse(data)
@@ -35,8 +33,6 @@ export const getStorage = name => {
 }
 ```
 
-
-
 ## 删除本地存储
 
 ```js
@@ -44,12 +40,10 @@ export const getStorage = name => {
  * 删除本地存储数据
  * @param { string } name 本地存储名称
  */
-export const removeStorage = name => {
+export const removeStorage = (name) => {
   return window.localStorage.removeItem(name)
 }
 ```
-
-
 
 ## 数组去重
 
@@ -60,8 +54,8 @@ export const removeStorage = name => {
  * @returns 去重后的数组 如果传入的不是数组则返回空数组
  */
 
-export const uniqueArray = arr => {
-   if (!Array.isArray(arr)) {
+export const uniqueArray = (arr) => {
+  if (!Array.isArray(arr)) {
     throw new Error('第一个参数必须是数组')
   }
   if (arr.length == 1) {
@@ -70,8 +64,6 @@ export const uniqueArray = arr => {
   return [...new Set(arr)]
 }
 ```
-
-
 
 ## 合并数组去重
 
@@ -93,8 +85,6 @@ export const DelAllArrayRepeat = () => {
 }
 ```
 
-
-
 ## 计算从一个时间到现在过去多久
 
 ```js
@@ -104,7 +94,7 @@ export const DelAllArrayRepeat = () => {
  * @returns xx天xx小时xx分钟xx秒
  */
 
-export const onTime = time => {
+export const onTime = (time) => {
   const nowStamp = new Date().getTime()
   const targetStamp = new Date(time.replace(/-/g, '/')).getTime()
   const difference = nowStamp - targetStamp
@@ -119,8 +109,6 @@ export const onTime = time => {
 }
 ```
 
-
-
 ## 将时间戳转换为真正的时间格式
 
 ```js
@@ -130,19 +118,19 @@ export const onTime = time => {
  * @returns xxxx年 xx月 xx日 xx时 xx分 xx秒
  */
 
-export const toDates = times => {
+export const toDates = (times) => {
   const date = new Date(parseInt(times))
   const Y = date.getFullYear()
-  const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-  const D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+  const M =
+    date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+  const D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   const H = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-  const Mi = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-  const S = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+  const Mi =
+    date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+  const S = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   return `${Y}年 ${M}月 ${D}日 ${H}时 ${Mi}分 ${S}秒`
 }
 ```
-
-
 
 ## 获取 0-9 随机数
 
@@ -156,8 +144,6 @@ export const WitTenNum = () => {
   return Math.floor(Math.random() * 9)
 }
 ```
-
-
 
 ## 获取指定范围随机数
 
@@ -173,10 +159,7 @@ export const WitTenNum = () => {
 export const randomNum = (max, min) => {
   return Math.floor(Math.random() * (max - min)) + min
 }
-
 ```
-
-
 
 ## 浅克隆
 
@@ -187,7 +170,7 @@ export const randomNum = (max, min) => {
  * @returns 克隆好的新对象
  */
 
-export const shallowClone = obj => {
+export const shallowClone = (obj) => {
   const newObj = {}
   for (const key in obj) {
     newObj[key] = obj[key]
@@ -195,8 +178,6 @@ export const shallowClone = obj => {
   return newObj
 }
 ```
-
-
 
 ## 深克隆
 
@@ -207,7 +188,7 @@ export const shallowClone = obj => {
  * @returns 拷贝完成的对象
  */
 
-export const deepCopy = obj => {
+export const deepCopy = (obj) => {
   if (typeof obj != 'object') {
     return obj
   }
@@ -217,8 +198,6 @@ export const deepCopy = obj => {
   return JSON.parse(JSON.stringify(obj))
 }
 ```
-
-
 
 ## 数组相减
 
@@ -230,7 +209,7 @@ export const deepCopy = obj => {
  * 那么这时候需要第一个数组减去第二个数组中的项，返回剩下的项
  * 使用 subArr(arr1, arr2) 就可以解决这个问题
  * 返回 [4, 5, 6]
- * 
+ *
  * @param { Array } arr1 要处理的数组1
  * @param { Array } arr2 要处理的数组2
  * @returns 相减后的数组
@@ -238,22 +217,20 @@ export const deepCopy = obj => {
 
 export const subArr = (arr1, arr2) => {
   if (arr1.length > arr2.length) {
-    return arr1.filter(item1 => {
-      return !arr2.find(item2 => {
+    return arr1.filter((item1) => {
+      return !arr2.find((item2) => {
         return item1 === item2
       })
     })
   } else {
-    return arr2.filter(item1 => {
-      return !arr1.find(item2 => {
+    return arr2.filter((item1) => {
+      return !arr1.find((item2) => {
         return item1 === item2
       })
     })
   }
 }
 ```
-
-
 
 ## 生成随机字符串
 
@@ -265,7 +242,8 @@ export const subArr = (arr1, arr2) => {
  * @returns 随机字符串
  */
 export const uuid = (length, chars) => {
-  chars = chars || '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  chars =
+    chars || '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
   length = length || 8
   var result = ''
   for (var i = length; i > 0; --i)
@@ -274,9 +252,7 @@ export const uuid = (length, chars) => {
 }
 ```
 
-
-
-## 将对象转换为 formData 对象 
+## 将对象转换为 formData 对象
 
 ```js
 /**
@@ -284,14 +260,12 @@ export const uuid = (length, chars) => {
  * @param { object } object 需要转换的对象
  * @returns formData 对象
  */
-export const getFormData = object => {
+export const getFormData = (object) => {
   const formData = new FormData()
-  Object.keys(object).forEach(key => {
+  Object.keys(object).forEach((key) => {
     const value = object[key]
     if (Array.isArray(value)) {
-      value.forEach((subValue, i) =>
-        formData.append(key + `[${i}]`, subValue)
-      )
+      value.forEach((subValue, i) => formData.append(key + `[${i}]`, subValue))
     } else {
       formData.append(key, object[key])
     }
@@ -299,8 +273,6 @@ export const getFormData = object => {
   return formData
 }
 ```
-
-
 
 ## 保留小数点后 n 位
 
@@ -318,4 +290,3 @@ export const = cutNumber (number, no = 2) => {
   return Number(number.toFixed(no))
 }
 ```
-

@@ -36,16 +36,16 @@ console.log(Math.floor(3.5655))
 console.log(Math.random())
 ```
 
-> 随机数是 >=0  ~ <1 之间是数
+> 随机数是 >=0 ~ <1 之间是数
 
-- 要获取一个  1 ~ x 的一个整数随机数，可以通过下面公式直接获取
+- 要获取一个 1 ~ x 的一个整数随机数，可以通过下面公式直接获取
 
 ```js
 // 这里想获取一个 1 ~ 10 的随机数
 console.log(Math.ceil(Math.random() * 10))
 ```
-公式为：`Math.ceil(Math.random() * 最大值)`
 
+公式为：`Math.ceil(Math.random() * 最大值)`
 
 - 要获取一个区间的随机数，可以通过下面公式直接获取
 
@@ -61,17 +61,15 @@ console.log(2 + Math.ceil(Math.random() * (5 - 2)))
 ```html
 <p class="name"></p>
 <script>
-    const arr = ["小张", "小李", "小明", "小红", "小强", "小周"]
+  const arr = ['小张', '小李', '小明', '小红', '小强', '小周']
 
-    const name = document.querySelector(".name")
+  const name = document.querySelector('.name')
 
-    const length = arr.length // 获取数组的长度
-    const num = Math.floor(Math.random() * length)
-    name.innerHTML = arr[num]
+  const length = arr.length // 获取数组的长度
+  const num = Math.floor(Math.random() * length)
+  name.innerHTML = arr[num]
 </script>
 ```
-
-
 
 ## 日期对象
 
@@ -81,8 +79,6 @@ console.log(2 + Math.ceil(Math.random() * (5 - 2)))
 const date = new Date()
 console.log(date)
 ```
-
-
 
 - `Date.now()` 获取当前时间戳
 
@@ -94,17 +90,15 @@ console.log(Date.now())
 
 ```js
 const a = Date.now() // 开始执行 for 循环的时间戳
-for (i = 0; i < 22222220; i++) { } // 执行 for 循环
+for (i = 0; i < 22222220; i++) {} // 执行 for 循环
 const b = Date.now() // 结束 for 循环的时间戳
 console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
 ```
 
-
-
 - 获取指定日期的时间戳 `getTime()`
 
 ```js
-const time = new Date("2000-10-1 12:23:11") // 获取目标时间
+const time = new Date('2000-10-1 12:23:11') // 获取目标时间
 console.log(time.getTime()) // 使用 getTime() 方法将时间转换为时间戳
 // 下面三种方法也可以转换
 console.log(time * 1)
@@ -112,14 +106,12 @@ console.log(Number(time))
 console.log(time.valueOf())
 ```
 
-> 以上转换的4种方法都可以使用
-
-
+> 以上转换的 4 种方法都可以使用
 
 - 将时间戳转换为时间对象
 
 ```js
-const time = new Date("2000-10-1 12:23:11")
+const time = new Date('2000-10-1 12:23:11')
 const timeList = time.getTime()
 console.log(new Date(timeList))
 ```
@@ -127,8 +119,6 @@ console.log(new Date(timeList))
 将时间戳转换为时间对象的方法也很简单，只有 `new` 一个新的日期对象，再把时间戳扔到括号里面即可
 
 > new Date(时间戳)
-
-
 
 - 获取当前时间的年月日时分秒
 
@@ -152,15 +142,15 @@ const time = new Date()
 // 封装函数
 // date 是当前的时间
 // format 处理转换时间的格式
-function dateFormat (date, format = 'YYYY-MM-DD HH:mm:ss') {
+function dateFormat(date, format = 'YYYY-MM-DD HH:mm:ss') {
   // 定义对象处理转换时间的格式
   const config = {
-    'YYYY': date.getFullYear(),
-    'MM': date.getMonth() + 1,
-    'DD': date.getDate(),
-    'HH': date.getHours(),
-    'mm': date.getMinutes(),
-    'ss': date.getMinutes()
+    YYYY: date.getFullYear(),
+    MM: date.getMonth() + 1,
+    DD: date.getDate(),
+    HH: date.getHours(),
+    mm: date.getMinutes(),
+    ss: date.getMinutes(),
   }
   // 用 for in 遍历出对象中的每一项 并使用 replace 替换
   for (const key in config) {

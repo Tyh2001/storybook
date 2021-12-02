@@ -6,14 +6,14 @@
 
 ```js
 fun()
-function fun () {
+function fun() {
   console.log('123')
 }
 
 // 123
 ```
 
-但是将匿名函数赋值给一个变量时，是没有声明提升的特点的
+但是将匿名函数赋值给一个变量时，是没有声明提升的特点的，这种函数称为函数表达式
 
 ```js
 fun()
@@ -25,14 +25,12 @@ const fun = function () {
 // 这时就会报错：未捕获的引用错误：初始化前无法访问“fun”
 ```
 
-
-
 ## arguments 参数
 
 比如在做求和运算时，往往参数的数量是不确定的。那么 arguments 就可以解决这个问题
 
 ```js
-function add () {
+function add() {
   console.log(arguments)
 }
 add(1, 54, 1, 5, 2, 654, 3, 42, 24)
@@ -43,7 +41,7 @@ add(1, 54, 1, 5, 2, 654, 3, 42, 24)
 那么求和运算为：
 
 ```js
-function add () {
+function add() {
   let res = 0
   for (let i = 0; i < arguments.length; i++) {
     res += arguments[i]
@@ -58,7 +56,7 @@ console.log(add(1, 54, 1, 5, 2, 654, 3, 42, 24))
 > 需要注意的是：arguments 并不是一个数组，如需要使用数组方法进行操作时，需要使用 ES6 展开运算符进行操作：
 
 ```js
-function add () {
+function add() {
   console.log([...arguments])
 }
 add(1, 54, 1, 5, 2, 654, 3, 42, 24)
@@ -66,14 +64,12 @@ add(1, 54, 1, 5, 2, 654, 3, 42, 24)
 // (9) [1, 54, 1, 5, 2, 654, 3, 42, 24]
 ```
 
-
-
 ## 数据收集
 
 同样是在函数传递的参数不确定的情况下，上面介绍过了 函数的 `arguments ` 方法，下面再介绍一种收集数据的方法，使用的是 ES6 的扩展运算符写法：
 
 ```js
-function fun (...item) {
+function fun(...item) {
   console.log(item)
 }
 fun(1, 2, 3, 4, 5, 6, 7)
@@ -83,11 +79,9 @@ fun(1, 2, 3, 4, 5, 6, 7)
 
 > 参数使用 `...item` 来接收，会收集到所有的参数，表现形式为数组
 
- 
-
 ## 函数参数
 
-下面实例中，使用数组的过滤方法，想要放回数组中小于等于3的元素返回：
+下面实例中，使用数组的过滤方法，想要放回数组中小于等于 3 的元素返回：
 
 ```js
 const arr = [1, 2, 3, 4, 5, 6, 7].filter(function (item) {
@@ -101,7 +95,7 @@ console.log(arr)
 那么这样的情况下呢，可以不使用匿名函数，可以直接将函数单独抽离出来，直接将函数作为参数传递过来，在 filter 方法中直接调用函数：
 
 ```js
-function fun (item) {
+function fun(item) {
   return item <= 3
 }
 const arr = [1, 2, 3, 4, 5, 6, 7].filter(fun)
@@ -113,15 +107,13 @@ console.log(arr)
 除此之外，还有定时器方法，都是可以将函数作为参数直接传递进去的：
 
 ```js
-function fun () {
+function fun() {
   console.log(1)
 }
 setInterval(fun, 1000)
 
 // 每一秒输出一次 1
 ```
-
-
 
 ## this 指向
 
@@ -133,7 +125,7 @@ console.log(this) // window
 
 // 2、在函数中输入 this
 // 因为全局函数其实是 window (全局对象)的方法
-function fun () {
+function fun() {
   console.log(this) // window
 }
 // fun() 调用就等于 window.fun()
@@ -142,14 +134,12 @@ fun()
 // 3、在方法中 this 指向的是这个方法的对象
 const obj = {
   name: '小明',
-  sayName () {
+  sayName() {
     console.log(this.name)
-  }
+  },
 }
 obj.sayName() // 小明
 ```
-
-
 
 事件输出 this
 
@@ -171,14 +161,12 @@ obj.sayName() // 小明
 </script>
 ```
 
-
-
 构造函数中的 this
 
 ```js
 // new 关键字做了什么？
 // new 会创建出对象，将构造函数中的 this 指向创建出来的对象
-function Fun () {
+function Fun() {
   this.name = '小明'
 }
 
@@ -186,27 +174,25 @@ const res = new Fun()
 console.log(res) // Fun {name: "小明"}
 ```
 
-
-
 箭头函数和计时器中的 this
 
 ```js
 const obj = {
   name: '小明',
-  sayName () {
+  sayName() {
     console.log(this)
-  }
+  },
 }
 obj.sayName() // {name: "小明", sayName: ƒ}
 // 上面通过在对象中调用一个方法，输入 this 那么这个 this 打印的就是该对象
 
 const obj2 = {
   name: '小明',
-  sayName () {
+  sayName() {
     setTimeout(function () {
       console.log(this)
     })
-  }
+  },
 }
 obj2.sayName() // window
 // 如果是通过计时器输出的就是 window，计时器指向 window
@@ -215,24 +201,20 @@ obj2.sayName() // window
 // 那么使用箭头函数就可以直接打印出这个对象本身了
 const obj3 = {
   name: '小明',
-  sayName () {
+  sayName() {
     setTimeout(() => {
       console.log(this)
     })
-  }
+  },
 }
 obj3.sayName() // {name: "小明", sayName: ƒ}
 ```
-
-
 
 1、普通函数，谁调用就指向谁，箭头函数在哪里定义就指向谁。
 
 2、箭头函数外指向谁就指向谁。
 
 3、箭头函数没有 this
-
-
 
 this 指向分为很多种不同的情况，下面分别来说一下：
 
@@ -245,7 +227,7 @@ const obj = {
   name: '小明',
   change: function () {
     console.log(obj.name) // 小明
-  }
+  },
 }
 obj.change()
 ```
@@ -257,7 +239,7 @@ const obj = {
   name: '小明',
   change: function () {
     console.log(this.name) // 小明
-  }
+  },
 }
 obj.change()
 ```
@@ -270,7 +252,7 @@ const obj = {
   change: function () {
     console.log(this)
     // {name: "小明", change: ƒ}
-  }
+  },
 }
 obj.change()
 ```
@@ -283,11 +265,11 @@ obj.change()
 const obj = {
   name: '小明',
   change: function () {
-    function fun1 () {
+    function fun1() {
       console.log(this) // window
     }
     fun1()
-  }
+  },
 }
 obj.change()
 ```
@@ -303,12 +285,12 @@ const obj = {
     // 在当前方法中 this 指向的是当前对象
     // 所以这里可以将 this 赋值为一个常量 给下面函数提供使用
     const this_ = this
-    function fun1 () {
+    function fun1() {
       // 这里打印上方存储的 this 即可打印出当前对象
       console.log(this_)
     }
     fun1()
-  }
+  },
 }
 obj.change()
 ```
@@ -324,7 +306,7 @@ const obj = {
     return this.lists.map(function (item) {
       return `${this_.title}-${item}`
     })
-  }
+  },
 }
 console.log(obj.change())
 
@@ -341,14 +323,12 @@ const obj = {
     return this.lists.map(function (item) {
       return `${this.title}-${item}`
     }, this)
-  }
+  },
 }
 console.log(obj.change())
 ```
 
 **注：将 this 作为参数传入方法，有些函数支持，有些不支持！**
-
-
 
 > window 对象
 
@@ -380,8 +360,6 @@ Window {window: Window, self: Window, document: document, name: "张三", locati
 aName: "张三"
 ```
 
-
-
 > 箭头函数中的 this
 
 那么还是上面的实例，那么如果使用箭头函数的话，this 指向的就是父级作用域下的 this，就和父级中的 this 是统一回事儿了：
@@ -393,12 +371,12 @@ const obj = {
   title: '学习',
   lists: ['js', 'css', 'vue'],
   change: function () {
-    return this.lists.map(item => {
+    return this.lists.map((item) => {
       console.log(this)
       // {title: "学习", lists: Array(3), change: ƒ}
       return `${this.title}-${item}`
     })
-  }
+  },
 }
 console.log(obj.change())
 
@@ -421,7 +399,7 @@ console.log(obj.change())
         console.log(this)
         // 这里的 this 指的是 <button id="btn">按钮</button> 这个标签
       })
-    }
+    },
   }
   obj.change()
 </script>
@@ -441,7 +419,7 @@ console.log(obj.change())
         console.log(this)
         // {title: "这是标题", change: ƒ}
       })
-    }
+    },
   }
   obj.change()
 </script>
@@ -449,7 +427,7 @@ console.log(obj.change())
 
 使用箭头函数打印的就是当前的对象
 
-+ 那么现在有这样的一个问题
+- 那么现在有这样的一个问题
 
 上述的方法，我想通过点击事件，既想要获得对象的 `title` 值，又想要获得按钮的文本值。那么这样有很矛盾了，因为使用普通函数的 this 指向的是按钮，使用箭头函数指向的是当前对象，一个 this 不能分为两个角色，那么这个问题怎么解决呢？请参考下面代码：
 
@@ -473,7 +451,7 @@ console.log(obj.change())
         console.log(event.target) // <button id="btn">按钮</button>
         console.log(this.title + event.target.innerHTML)
       })
-    }
+    },
   }
   obj.change()
 </script>
@@ -493,15 +471,13 @@ console.log(obj.change())
       btn.addEventListener('click', function () {
         console.log(this_.title + this.innerHTML)
       })
-    }
+    },
   }
   obj.change()
 </script>
 ```
 
 总结一句话就是：**箭头函数中的 this 是指向的父级的 this 如果父级的 this 指向的是某个对象，那么箭头函数中的 this 就指向该对象，如果父级的 this 指向的 window 那么箭头函数指定的是也是 window**
-
-
 
 ## 构造函数
 
@@ -512,9 +488,7 @@ console.log(obj.change())
 构造函数的函数名建议首字母大写
 
 ```js
-function Dog () {
-
-}
+function Dog() {}
 
 const dog = new Dog()
 console.log(dog)
@@ -524,8 +498,6 @@ console.log(dog)
 
 这就是一个构造函数的基础写法。
 
-
-
 ## 面向对象
 
 面向对象呢，是和构造函数相关的，所以在了解构造函数之后呢，接下来来说一下面向对象
@@ -534,7 +506,7 @@ console.log(dog)
 
 ```js
 // 通过接收两个参数 来给对象添加一个 name 和一个 age 的属性
-function Dog (n, a) {
+function Dog(n, a) {
   // 构造函数这里的 this 指向的就是这个对象
   this.name = n
   this.age = a
@@ -547,14 +519,13 @@ console.log(dog)
 
 那么这种方式呢，也是一个面向对象的写法了，那么 Dog 就代表了一类的狗，`new` 的时候就是创建出了一个对象，那么就是狗类的实例
 
-
 ##对象
 通过原型对象，为构造函数生成新的对象（prototype）：
 
 `prototype` 是构造函数的一个属性，我们可以在这个属性上添加一些函数或者方法，那么这些方法就可以在所有类的实例上进行调用，或者说可以被构造函数所有的实例来使用，例如：
 
 ```js
-function Dog (n, a) {
+function Dog(n, a) {
   this.name = n
   this.age = a
 }
@@ -585,14 +556,12 @@ arr.changeLength()
 
 这样就可以给所有的数组都添加了一个 `changeLength` 的方法。
 
-
-
 ## 原型链继承
 
 通过原型链，我们可以实现一个继承，继承就是有父类，有子类，那么子类可以访问父类的属性和方法，例如：
 
 ```js
-function Dog (name) {
+function Dog(name) {
   this.name = name
 }
 
@@ -601,7 +570,7 @@ Dog.prototype.changeName = function () {
 }
 
 // Cat 可以调用父级 Dog 的方法
-function Cat (name) {
+function Cat(name) {
   this.name = name
 }
 
@@ -616,16 +585,12 @@ cat.changeName()
 
 上面是使用原型链实现的基础，这是 ES5 的一个写法，暂时了解即可，因为 ES6 有了更好的解决方案
 
-
-
 ## ES6 类
 
 从 es6 开始，就支持了`类`的概念了，可以通过 **class** 来定义一个类：
 
 ```js
-class Dog {
-
-}
+class Dog {}
 
 const dog = new Dog()
 console.log(dog)
@@ -656,7 +621,7 @@ class Dog {
     this.age = age
   }
 
-  sayName () {
+  sayName() {
     console.log(`我的名字是${this.name}`)
   }
 }
@@ -665,8 +630,6 @@ const dog = new Dog('旺财', 2)
 dog.sayName()
 // 我的名字是旺财
 ```
-
-
 
 ## ES6 继承
 
@@ -679,12 +642,12 @@ class Dog {
     this.age = age
   }
 
-  sayName () {
+  sayName() {
     console.log(`我的名字是${this.name}`)
   }
 }
 
-class Cat extends Dog { }
+class Cat extends Dog {}
 
 const cat = new Cat('喵喵', 2)
 cat.sayName()
@@ -699,7 +662,7 @@ class Dog {
     this.age = age
   }
 
-  sayName () {
+  sayName() {
     console.log(`我的名字是${this.name}`)
   }
 }
@@ -716,13 +679,9 @@ const cat = new Cat('喵喵', 2)
 console.log(cat.age)
 ```
 
-
-
 ## call、apply、bind
 
 三个方法我都没用过，所以就学一个就行了，我就先学一个 call 剩下两个基本上差不多。
-
-
 
 **call**
 
@@ -731,25 +690,23 @@ call 是一个函数的方法
 1、call 可以调用函数
 
 ```js
-function fun () {
+function fun() {
   console.log('123')
 }
 fun.call() // 123
 ```
 
-
-
 2、call 可以改变函数中 this 的指向
 
 ```js
 // 这个是一个独立的函数 输出 this，很明显这个 this 指向的是 window
-function fun () {
+function fun() {
   console.log(this.name)
 }
 
 // 这里是一个独立的对象
 const obj = {
-  name: '小明'
+  name: '小明',
 }
 
 // 那么就可以通过调用函数 再使用 call 把 obj 这个对象传递过去
@@ -759,42 +716,38 @@ fun.call(obj) // 小明
 ```
 
 ```js
-// 这里通过调用 dog 的方法，来输出 cat 的名字 
+// 这里通过调用 dog 的方法，来输出 cat 的名字
 const dog = {
   name: '旺财',
-  sayName () {
+  sayName() {
     console.log(this.name)
-  }
+  },
 }
 
 const cat = {
-  name: '喵喵'
+  name: '喵喵',
 }
 
 dog.sayName.call(cat)
 ```
-
-
 
 3、call 的传参方法
 
 ```js
 const dog = {
   name: '旺财',
-  eat (food1, food2) {
+  eat(food1, food2) {
     console.log(`我喜欢吃${food1}和${food2}`)
-  }
+  },
 }
 
 const cat = {
-  name: '喵喵'
+  name: '喵喵',
 }
 
 // call 的第一个参数是传递指向的对象 后面的参数传递的是函数接收的参数
 dog.eat.call(cat, '鱼', '骨头') // 我是喵喵喜欢吃鱼和骨头
 ```
-
-
 
 **apply**
 
@@ -807,22 +760,20 @@ call 传递的参数的依次往后传递的
 ```js
 const dog = {
   name: '旺财',
-  sayName () {
+  sayName() {
     console.log(this.name)
   },
-  eat (food1, food2) {
+  eat(food1, food2) {
     console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  }
+  },
 }
 
 const cat = {
-  name: '喵喵'
+  name: '喵喵',
 }
 
 dog.eat.apply(cat, ['鱼', '骨头']) // 我是喵喵喜欢吃鱼和骨头
 ```
-
-
 
 **bind**
 
@@ -835,37 +786,35 @@ bind 的特点呢也就是可以多次调用了，剩下的和 call 用法完全
 ```js
 const dog = {
   name: '旺财',
-  sayName () {
+  sayName() {
     console.log(this.name)
   },
-  eat (food1, food2) {
+  eat(food1, food2) {
     console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  }
+  },
 }
 
 const cat = {
-  name: '喵喵'
+  name: '喵喵',
 }
 
 const res = dog.eat.bind(cat, '鱼', '骨头')
 res()
 ```
 
-
-
 ## call、apply、bind 的实际应用
 
 继承：子类可以使用父类的方法
 
 ```js
-function Animal () {
+function Animal() {
   // this 指向的是 小cat 那么也就成为了 cat 的方法了
   this.eat = function () {
     console.log('吃东西')
   }
 }
 
-function Cat () {
+function Cat() {
   // this 指向的是 小cat
   Animal.call(this)
 }
@@ -873,10 +822,6 @@ function Cat () {
 const cat = new Cat()
 cat.eat()
 ```
-
-
-
-
 
 ## 关于异步函数
 
@@ -888,9 +833,7 @@ console.log(2)
 console.log(3)
 ```
 
-> 输出顺序为  1  2  3
-
-
+> 输出顺序为 1 2 3
 
 那么最常见的异步函数就是定时器，比如上面这段代码加了定时器之后：
 
@@ -898,15 +841,13 @@ console.log(3)
 console.log(1)
 
 setTimeout(() => {
-    console.log(2)
+  console.log(2)
 }, 1000)
 
 console.log(3)
 ```
 
-> 输出顺序则变成   1  3   2
-
-
+> 输出顺序则变成 1 3 2
 
 这也就是所谓的异步函数，就是不等一段代码执行完，也继续往下执行，等这段代码结果产生之后再执行
 
@@ -918,7 +859,7 @@ $.ajax({
   url: '',
   success: function (data) {
     // data 是响应结果
-  }
+  },
 })
 
 // 我们不能项写同步代码一样来写异步代码
@@ -927,8 +868,8 @@ const data = 请求('请求路径')
 // 异步函数往往都伴随着一个回调函数来接收结果
 axios({
   method: '',
-  url: ''
-}).then(res => {
+  url: '',
+}).then((res) => {
   console.log(res)
 })
 ```
@@ -939,13 +880,11 @@ axios({
 >
 > 定时器就是等时间到了再执行
 
-
-
-## Async函数
+## Async 函数
 
 > 推荐使用
 
-async函数可以极大的简化我们的异步代码，前提是你的异步操作支持 Promise
+async 函数可以极大的简化我们的异步代码，前提是你的异步操作支持 Promise
 
 我们项目中大多数的异步操作都是使用 axios 发送请求，而 axios 支持 Promise。所以我们可以使用 async 函数来优化它。
 
@@ -956,17 +895,17 @@ async函数可以极大的简化我们的异步代码，前提是你的异步操
 ```js
 axios({
   method: 'XXX',
-  url: 'XXX'
-}).then(res => {
+  url: 'XXX',
+}).then((res) => {
   console.log(res)
 })
 
 // async 只能用于函数
 // 那么使用了 async 函数 就可以使用下面想写法 等同于上面的
-async function main () {
+async function main() {
   const res = await axios({
     method: 'XXX',
-    url: 'XXX'
+    url: 'XXX',
   })
 
   console.log(res)
@@ -988,28 +927,26 @@ async function main () {
   async function getData() {
     const res = await axios({
       method: 'GET',
-      url: 'https://ku.qingnian8.com/school/list.php'
+      url: 'https://ku.qingnian8.com/school/list.php',
     })
     console.log(res)
   }
 </script>
 ```
 
-
-
 - 只要是函数 就可以被标记为 async，不论函数是什么形式的。下面列举一些标注形式
 
 ```js
-async function hello () { }
+async function hello() {}
 
-const hello = async function () { }
+const hello = async function () {}
 
-const hello = async () => { }
+const hello = async () => {}
 
 const user = {
-  async hello () { },
-  hello: async function () { },
-  hello: async () => { }
+  async hello() {},
+  hello: async function () {},
+  hello: async () => {},
 }
 ```
 
@@ -1017,14 +954,12 @@ const user = {
 >
 > 使用 **await** 的关键字必须把所属的函数标记为 **async**
 
-
-
 - async 函数的返回值
 
 先看普通函数
 
 ```js
-function fun1 () {
+function fun1() {
   return 123
 }
 console.log(fun1())
@@ -1032,12 +967,10 @@ console.log(fun1())
 // 直接输出返回值 123
 ```
 
-
-
 那么换成 async 函数之后：
 
 ```js
-async function fun1 () {
+async function fun1() {
   return 123
 }
 
@@ -1061,14 +994,12 @@ async 函数最终的返回值都会返回一个 Promise 对象
 
 如果返回值就是一个 Promise 对象，则不作任何处理
 
-
-
 加了 async 的函数，实际变成了这样：
 
 ```js
 // async 函数会把不是 Promise 对象的返回值包装到 Promise 对象中返回
-function fun1 () {
-  return new Promise(resolve => {
+function fun1() {
+  return new Promise((resolve) => {
     resolve(123)
   })
 }
@@ -1079,18 +1010,16 @@ console.log(fun1())
 如果加了 async 的函数，还想输出返回的结果，那么就要使用`.then()`方法
 
 ```js
-function fun1 () {
-  return new Promise(resolve => {
+function fun1() {
+  return new Promise((resolve) => {
     resolve(123)
   })
 }
 
-fun1().then(res => {
+fun1().then((res) => {
   console.log(res)
 })
 ```
-
-
 
 - async 函数处理异常状态
 
@@ -1098,28 +1027,28 @@ fun1().then(res => {
 
 ```js
 // 例1：
-async function fun1 () {
+async function fun1() {
   JSON.parse('dsdadsdas')
   return 123
 }
 
 fun1()
-  .then(res => {
+  .then((res) => {
     console.log(res)
   })
-  .catch(err => {
+  .catch((err) => {
     console.log('发生错误了', err)
   })
 
 // 例2：
-async function fun1 () {
+async function fun1() {
   JSON.parse('dsdadsdas')
   return 123
 }
 
-async function fun2 () {
+async function fun2() {
   // 这里的代码已经异常了
-  const data = await fun1().catch(err => {
+  const data = await fun1().catch((err) => {
     console.log('异常了', err)
   })
   // 但是这里的代码依然还是会执行
@@ -1131,17 +1060,15 @@ fun2()
 
 但是使用`.catch(err => {})` 来处理异常，异常之后的代码依然会执行，所以解决这个问题，可以使用 try + catch
 
-
-
 但是更推荐的是使用`try` `catch`来捕获异常，就可以很好的处理上面发生的问题
 
 ```js
-async function fun1 () {
+async function fun1() {
   JSON.parse('dsdadsdas')
   return 123
 }
 
-async function fun2 () {
+async function fun2() {
   try {
     const data = await fun1()
     console.log(data)
@@ -1155,8 +1082,6 @@ fun2()
 
 这样，一旦在`try`中尝试执行代码中出错，或者出现异常状态，立刻就会停止`try`中的执行，进入`catch`中处理异常状态
 
-
-
 ## 闭包函数
 
 > 闭包定义
@@ -1166,9 +1091,9 @@ fun2()
 例如：
 
 ```js
-function fun1 () {
+function fun1() {
   const num = 1
-  function fun2 () {
+  function fun2() {
     return 10 + num
   }
   return fun2()
@@ -1186,18 +1111,18 @@ console.log(fun1())
 
 > 垃圾回收机制是什么？
 
-由于字符串、对象等没有固定的大小，js程序在每次创建字符串、对象的时候，程序都会**分配内存来存储那个实体**
+由于字符串、对象等没有固定的大小，js 程序在每次创建字符串、对象的时候，程序都会**分配内存来存储那个实体**
 
 - 使用分配到的内存做点什么
 - 不需要时将其释放回归
 
 在不需要字符串、对象的时候，需要释放其所占用的内存，否则将会消耗完系统中所有可用的内存，造成系统崩溃，这就是**垃圾回收机制所存在的意义**
 
-在C和C++之类的语言中，需要手动来管理内存的，这也是造成许多不必要问题的根源。幸运的是，在编写js的过程中，内存的分配以及内存的回收完全实现了自动管理，我们不用操心这种事情
+在 C 和 C++之类的语言中，需要手动来管理内存的，这也是造成许多不必要问题的根源。幸运的是，在编写 js 的过程中，内存的分配以及内存的回收完全实现了自动管理，我们不用操心这种事情
 
 > 说说你对闭包的理解
 
-- 使⽤闭包主要是为了设计私有的⽅法和变量。闭包的优点是可以避免全局变量的污染，缺点是闭包会常驻内存，会增⼤内存使⽤量，使⽤不当很容易造成内存泄露。在js中，函数即闭包，只有函数才会产⽣作⽤域的概念
+- 使⽤闭包主要是为了设计私有的⽅法和变量。闭包的优点是可以避免全局变量的污染，缺点是闭包会常驻内存，会增⼤内存使⽤量，使⽤不当很容易造成内存泄露。在 js 中，函数即闭包，只有函数才会产⽣作⽤域的概念
 
 - 闭包 的最⼤⽤处有两个，⼀个是可以读取函数内部的变量，另⼀个就是让这些变量始终保持在内存中
 
@@ -1210,8 +1135,6 @@ console.log(fun1())
 - 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很⼤，所以不能滥⽤闭包，否则会造成⽹⻚的性能问题，在 IE 中可能导致内存泄露
 
 - 解决⽅法是，在退出函数之前，将不使⽤的局部变量全部删除
-
-
 
 ## 回调函数
 
@@ -1240,10 +1163,6 @@ const res2 = list.map((item) => {
 })
 ```
 
-
-
-
-
 当出现类似下面这样的业务时候，一个回调函数里面又套了回调函数，请求时就是等这段代码结果产生之后再执行，那么这样回调套回调就会很麻烦了，不利于阅读，开发维护都麻烦
 
 回调地狱就是下面的情况
@@ -1251,23 +1170,19 @@ const res2 = list.map((item) => {
 ```js
 axios({
   method: '',
-  url: ''
-}).then(res => {
+  url: '',
+}).then((res) => {
   axios({
     method: '',
-    url: ''
-  }).then(res => {
+    url: '',
+  }).then((res) => {
     axios({
       method: '',
-      url: ''
-    }).then(res => {
-
-    })
+      url: '',
+    }).then((res) => {})
   })
 })
 ```
-
-
 
 ## 递归函数
 
@@ -1276,7 +1191,7 @@ axios({
 > 注：一定要有一个终止这个函数的处理，否则将出现死循环
 
 ```js
-function fun1 (n) {
+function fun1(n) {
   console.log(n)
   n--
   if (!n) {
@@ -1286,21 +1201,19 @@ function fun1 (n) {
 }
 ```
 
-
-
 ## 立即执行函数
 
 声明函数时，直接调用
 
 ```js
-(function () {
+;(function () {
   console.log('我是立即执行函数！')
 })()
 ```
 
 那么立即执行函数用在哪里呢？
 
-下面是有5个 li 标签，我们要实现的效果是：点击哪个就弹出哪个 li 的索引值
+下面是有 5 个 li 标签，我们要实现的效果是：点击哪个就弹出哪个 li 的索引值
 
 这是曾经使用立即执行函数的写法：
 
@@ -1314,7 +1227,7 @@ function fun1 (n) {
 </ul>
 
 <script>
-  var li = document.querySelectorAll("li")
+  var li = document.querySelectorAll('li')
 
   for (var i = 0; i < li.length; i++) {
     li[i].onclick = (function (x) {
@@ -1338,7 +1251,7 @@ function fun1 (n) {
 </ul>
 
 <script>
-  const btn = document.querySelector("button")
+  const btn = document.querySelector('button')
   for (let i = 0; i < 5; i++) {
     btn.onclick = function () {
       console.log(i)
@@ -1349,9 +1262,7 @@ function fun1 (n) {
 
 > 直接换成 let 声明，就可以直接解决问题，也就直接可以省略了立即执行函数了
 
-
-
-看过jQuery源码的人应该知道，jQuery开篇用的就是立即执行函数。立即执行函数常用于第三方库，好处在于隔离作用域，任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数
+看过 jQuery 源码的人应该知道，jQuery 开篇用的就是立即执行函数。立即执行函数常用于第三方库，好处在于隔离作用域，任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数
 
 1. 什么是立即执行函数
 
@@ -1374,61 +1285,51 @@ function () {
 }
 ```
 
-
-
 接下来看立即执行函数的两种常见形式：( function(){…} )()和( function (){…} () )，一个是一个匿名函数包裹在一个括号运算符中，后面再跟一个小括号，另一个是一个匿名函数后面跟一个小括号，然后整个包裹在一个括号运算符中，这两种写法是等价的。要想立即执行函数能做到立即执行，要注意两点，一是函数体后面要有小括号()，二是函数体必须是函数表达式而不能是函数声明。如下代码：
 
 ```js
 // 输出 123 使用 () 运算符
-(function (text) {
+;(function (text) {
   console.log(text)
 })(123)
-
 
 // 输出 123 使用 () 运算符
 // (function (text) {
 //   console.log(text)
 // }(123))
 
-
 // 输出 123 使用 ! 运算符
-!function (text) {
+!(function (text) {
   console.log(text)
-}(123)
-
-// 输出 123 使用 + 运算符
-+ function (text) {
-  console.log(text)
-}(123)
-
-// 输出 123 使用 - 运算符
-- function (text) {
-  console.log(text)
-}(123)
+})(123) +
+  // 输出 123 使用 + 运算符
+  (function (text) {
+    console.log(text)
+  })(123) -
+  // 输出 123 使用 - 运算符
+  (function (text) {
+    console.log(text)
+  })(123)
 
 // 输出 123 使用 = 运算符
-const fun = function (text) {
+const fun = (function (text) {
   console.log(text)
-}(123)
+})(123)
 ```
 
 上面可见，除了使用 `()` 运算符之外，`！，+，-，=`等运算符都能起到立即执行的作用。这些运算符的作用就是将匿名函数或函数声明转换为函数表达式
 
-
-
 2. 使用立即执行函数的好处
 
-通过定义一个匿名函数，创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，如jQuery代码结构：
+通过定义一个匿名函数，创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，如 jQuery 代码结构：
 
 ```js
-(function (window, undefined) {
+;(function (window, undefined) {
   // code
 })(window)
 ```
 
-其中window即是全局对象。给其传入参数这样的好处是，可以缩短查询时的作用域链。作用域隔离非常重要，是一个JS框架必须支持的功能，jQuery被应用在成千上万的JavaScript程序中，必须确保jQuery创建的变量不能和导入他的程序所使用的变量发生冲突。
-
-
+其中 window 即是全局对象。给其传入参数这样的好处是，可以缩短查询时的作用域链。作用域隔离非常重要，是一个 JS 框架必须支持的功能，jQuery 被应用在成千上万的 JavaScript 程序中，必须确保 jQuery 创建的变量不能和导入他的程序所使用的变量发生冲突。
 
 **闭包和立即执行函数**
 
@@ -1437,12 +1338,12 @@ const fun = function (text) {
 ```js
 const car = {
   age: 0,
-  change () {
+  change() {
     this.age = 40
   },
-  getAge () {
+  getAge() {
     return this.age
-  }
+  },
 }
 car.change()
 console.log(car.getAge()) // 40
@@ -1451,15 +1352,16 @@ console.log(car.getAge()) // 40
 这个对象有其成员变量`age`及成员函数`change`和`getAge`，但是它的成员变量没有私有化，同时它也没有办法被继承。要实现对象的继承，你可以使用构造函数和原型继承。但怎么才能将成员变量私有化来实现对象的封装呢（而且有时候我们也不想那么麻烦使用原型）？这里呢，或许我们就可以使用闭包函数
 
 ```js
-function car () {
+function car() {
   let age = 0
-  return { // 返回的是一个对象
-    change () {
+  return {
+    // 返回的是一个对象
+    change() {
       age = 40
     },
-    getAge () {
+    getAge() {
       return age
-    }
+    },
   }
 }
 
@@ -1467,10 +1369,6 @@ const car1 = car()
 car1.change()
 console.log(car1.getAge()) // 40
 ```
-
-
-
-
 
 ## 柯里化函数
 
@@ -1481,7 +1379,7 @@ console.log(car1.getAge()) // 40
 例如：
 
 ```js
-function fun2 (x) {
+function fun2(x) {
   return function (y) {
     return x + y
   }
@@ -1492,8 +1390,6 @@ console.log(fun2(10)(5))
 
 > 柯里化函数好处：减少重复传递不变的部分参数
 
-
-
 ## 普通函数和箭头函数
 
 - 外形不同
@@ -1502,7 +1398,7 @@ console.log(fun2(10)(5))
 
 ```js
 // 普通函数
-function fun1 () {
+function fun1() {
   // code
 }
 // 箭头函数
@@ -1517,7 +1413,7 @@ let fun2 = () => {
 
 ```js
 // 具名函数
-function fun1 () {
+function fun1() {
   // code
 }
 
@@ -1532,8 +1428,8 @@ let fun3 = () => {
 }
 ```
 
-- 箭头函数中的this指向不同
+- 箭头函数中的 this 指向不同
 
 > 箭头函数的 this 永远指向其上下文的 this
 >
-> 普通函数的this指向调用它的那个对象
+> 普通函数的 this 指向调用它的那个对象
