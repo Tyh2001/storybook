@@ -71,6 +71,7 @@ module.exports = {
           { title: "数组操作", path: "/javascript/js-array" },
           { title: "Js 工具函数", path: "/javascript/js-utils" },
           { title: "杂项", path: "/javascript/js-other" },
+          { title: "算法", path: "/javascript/js-algorithm" },
         ]
       },
       {
