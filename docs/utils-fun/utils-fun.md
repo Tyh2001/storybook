@@ -5,6 +5,7 @@
 ```js
 /**
  * 添加本地存储
+ * @date 2021-12-03
  * @param { string } name 本地存储名称
  * @param { string } data 本地存储的数据
  */
@@ -21,9 +22,10 @@ export const setStorage = (name, data) => {
 ```js
 /**
  * 获取本地存储
+ * @date 2021-12-03
  * @param { string } name 本地存储名称
  */
-export const getStorage = (name) => {
+export const getStorage = name => {
   const data = window.localStorage.getItem(name)
   try {
     return JSON.parse(data)
@@ -38,9 +40,10 @@ export const getStorage = (name) => {
 ```js
 /**
  * 删除本地存储数据
+ * @date 2021-12-03
  * @param { string } name 本地存储名称
  */
-export const removeStorage = (name) => {
+export const removeStorage = name => {
   return window.localStorage.removeItem(name)
 }
 ```
@@ -50,11 +53,12 @@ export const removeStorage = (name) => {
 ```js
 /**
  * 数组去重
+ * @date 2021-12-03
  * @param { array } arr 需要去重的数组
  * @returns 去重后的数组 如果传入的不是数组则返回空数组
  */
 
-export const uniqueArray = (arr) => {
+export const uniqueArray = arr => {
   if (!Array.isArray(arr)) {
     throw new Error('第一个参数必须是数组')
   }
@@ -69,6 +73,7 @@ export const uniqueArray = (arr) => {
 
 ```js
 /**
+ * @date 2021-12-03
  * 将多个数组合并成一个新的数组，并去重
  * 该方法可以传入一个或多个数组
  * @returns 将多个数组合并后并去重
@@ -76,11 +81,9 @@ export const uniqueArray = (arr) => {
 
 export const DelAllArrayRepeat = () => {
   const newArr = []
-
   for (let i = 0; i < arguments.length; i++) {
     newArr.push(...arguments[i])
   }
-
   return [...new Set([...newArr])]
 }
 ```
@@ -90,6 +93,7 @@ export const DelAllArrayRepeat = () => {
 ```js
 /**
  * 计算从一个时间到现在过去多久
+ * @date 2021-12-03
  * @param { string } time 开始时间 格式为：'2021-01-28 00:00'
  * @returns xx天xx小时xx分钟xx秒
  */
@@ -114,6 +118,7 @@ export const onTime = (time) => {
 ```js
 /**
  * 将时间戳转换为真正的时间格式
+ * @date 2021-12-03
  * @param { string } times 时间戳
  * @returns xxxx年 xx月 xx日 xx时 xx分 xx秒
  */
@@ -121,12 +126,10 @@ export const onTime = (time) => {
 export const toDates = (times) => {
   const date = new Date(parseInt(times))
   const Y = date.getFullYear()
-  const M =
-    date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+  const M = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
   const D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   const H = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-  const Mi =
-    date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+  const Mi = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
   const S = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   return `${Y}年 ${M}月 ${D}日 ${H}时 ${Mi}分 ${S}秒`
 }
@@ -137,6 +140,7 @@ export const toDates = (times) => {
 ```js
 /**
  * 获取 0-9 的随机数
+ * @date 2021-12-03
  * @returns 0-9 的随机数
  */
 
@@ -150,6 +154,7 @@ export const WitTenNum = () => {
 ```js
 /**
  * 获取指定参数范围的随机数
+ * @date 2021-12-03
  * 该方法的取值范围为：包含最小值，但不包含最大值
  * @param { number } min 随机数范围的最小值
  * @param { number } max 随机数范围的最大值
@@ -166,16 +171,20 @@ export const randomNum = (max, min) => {
 ```js
 /**
  * 浅克隆
+ * @date 2021-12-03
  * @param { object } obj 需要克隆的对象
  * @returns 克隆好的新对象
  */
 
 export const shallowClone = (obj) => {
-  const newObj = {}
-  for (const key in obj) {
-    newObj[key] = obj[key]
+  if (!(obj instanceof Object)) {
+    throw new Error('请传入对象')
   }
-  return newObj
+  const res = {}
+  for (const key in obj) {
+    res[key] = obj[key]
+  }
+  return res
 }
 ```
 
@@ -184,18 +193,28 @@ export const shallowClone = (obj) => {
 ```js
 /**
  * 深克隆
- * @param { object } obj 需要拷贝的对象
- * @returns 拷贝完成的对象
+ * @date 2021-12-03
+ * 进入函数之后首选判断传入的参数是否为数组或对象
+ * 如果不是数组或对象则直接报错
+ * 返回的结果通过 instanceof 来判断是一个数组还是对象
+ * 进入循环之后，使用 Object.entries() 方法将不管是数组还是对象都转换成统一的格式
+ * Object.entries() 方法的返回值是一个数组里包含键和值的数组
+ * 所以使用 [key, val] 数组解构语法来分别获取键和值
+ * 再继续判断：typeof val === 'object' 如果对象内部是对象或数组则执行递归操作
+ * 使用递归函数继续克隆深处内容
+ * @param { object array } params 需要克隆的参数
+ * @returns 克隆好的结果
  */
 
-export const deepCopy = (obj) => {
-  if (typeof obj != 'object') {
-    return obj
+export const deepClone = (params) => {
+  if (typeof params !== 'object') {
+    throw new Error('请传入对象或数组')
   }
-  if (obj == null) {
-    return obj
+  const res = params instanceof Array ? [] : {}
+  for (const [key, val] of Object.entries(params)) {
+    res[key] = typeof val === 'object' ? deepClone(val) : val
   }
-  return JSON.parse(JSON.stringify(obj))
+  return res
 }
 ```
 
@@ -204,14 +223,14 @@ export const deepCopy = (obj) => {
 ```js
 /**
  * 数组相减
+ * @date 2021-12-03
  * 例如有两个数组：
  * const arr1 = [1, 2, 3, 4, 5, 6] 和 const arr2 = [1, 2, 3]
  * 那么这时候需要第一个数组减去第二个数组中的项，返回剩下的项
  * 使用 subArr(arr1, arr2) 就可以解决这个问题
  * 返回 [4, 5, 6]
- *
- * @param { Array } arr1 要处理的数组1
- * @param { Array } arr2 要处理的数组2
+ * @param { array } arr1 要处理的数组1
+ * @param { array } arr2 要处理的数组2
  * @returns 相减后的数组
  */
 
@@ -237,6 +256,7 @@ export const subArr = (arr1, arr2) => {
 ```js
 /**
  * 生成随机字符串
+ * @date 2021-12-03
  * @param { number } length 指定位数
  * @param { string } chars 字符串指定字符
  * @returns 随机字符串
@@ -257,6 +277,7 @@ export const uuid = (length, chars) => {
 ```js
 /**
  * 将对象转换为 formData 对象
+ * @date 2021-12-03
  * @param { object } object 需要转换的对象
  * @returns formData 对象
  */
@@ -279,6 +300,7 @@ export const getFormData = (object) => {
 ```js
 /**
  * 保留小数点后 n 位
+ * @date 2021-12-03
  * @param { number } number 小数
  * @param { number } no 保留位数
  * @returns 转换结果
