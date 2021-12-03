@@ -25,7 +25,7 @@ export const setStorage = (name, data) => {
  * @date 2021-12-03
  * @param { string } name 本地存储名称
  */
-export const getStorage = name => {
+export const getStorage = (name) => {
   const data = window.localStorage.getItem(name)
   try {
     return JSON.parse(data)
@@ -43,7 +43,7 @@ export const getStorage = name => {
  * @date 2021-12-03
  * @param { string } name 本地存储名称
  */
-export const removeStorage = name => {
+export const removeStorage = (name) => {
   return window.localStorage.removeItem(name)
 }
 ```
@@ -58,7 +58,7 @@ export const removeStorage = name => {
  * @returns 去重后的数组 如果传入的不是数组则返回空数组
  */
 
-export const uniqueArray = arr => {
+export const uniqueArray = (arr) => {
   if (!Array.isArray(arr)) {
     throw new Error('第一个参数必须是数组')
   }
@@ -126,10 +126,12 @@ export const onTime = (time) => {
 export const toDates = (times) => {
   const date = new Date(parseInt(times))
   const Y = date.getFullYear()
-  const M = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+  const M =
+    date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
   const D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   const H = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-  const Mi = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+  const Mi =
+    date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
   const S = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   return `${Y}年 ${M}月 ${D}日 ${H}时 ${Mi}分 ${S}秒`
 }
@@ -310,5 +312,118 @@ export const = cutNumber (number, no = 2) => {
     number = Number(number)
   }
   return Number(number.toFixed(no))
+}
+```
+
+## 防抖
+
+下面来假设一个场景，在监视滚动条事件的时候，我们需要执行一些操作，如果不加以限制，那么滚动条每次滚动都会执行很多次的逻辑，这对我们的性能是有很大的损耗的，那么防抖就用在对于**短时间内连续触发**的事件，以下完整实例：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 2000px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      let prev = new Date()
+      document.addEventListener('scroll', () => {
+        const now = new Date()
+        if (now - prev > 1000) {
+          console.log('执行逻辑')
+          prev = now
+        }
+      })
+    </script>
+  </body>
+</html>
+```
+
+理解之后，开始封装函数：
+
+**方式一**
+
+```js
+/**
+ * 防抖
+ * @date 2021-12-03
+ * 首先获取当前时间 prev
+ * 当执行函数的时候，再次获取一次当前时间 now
+ * 如果：函数内的时间 now - 外部的时间 prev > 1000 则可以执行逻辑代码
+ * 执行一次逻辑代码完成之后，再将外部的时间 prev 赋值为最新的时间 now
+ * 防抖是在用户触发事件过于频繁的时候，只要最后一次的事件
+ * @param { function } fn 逻辑函数
+ * @param { number } time 执行逻辑的间隔(毫秒)
+ * @returns
+ */
+export const debounce = (fn, time = 1000) => {
+  let prev = new Date()
+  return function () {
+    const now = new Date()
+    if (now - prev > time) {
+      fn()
+      prev = now
+    }
+  }
+}
+```
+
+**方式二**
+
+```js
+/**
+ * 防抖
+ * @date 2021-12-03
+ * @param { function } fn 逻辑函数
+ * @param { number } time 执行逻辑的间隔(毫秒)
+ * @returns
+ */
+export const debounce = (fn, time) => {
+  let timer = null
+  return function () {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn()
+    }, time)
+  }
+}
+```
+
+## 节流
+
+**方式一**
+
+```js
+/**
+ * 节流
+ * @date 2021-12-03
+ * flag 开始为 true 则进入函数之后会执行计时器，在一秒之后会执行
+ * 继续向下之后flag被变为false，那么在此进入函数之后将不再执行计时器
+ * 在计时器执行完成之后，将 flag变为true 之后才可以继续执行
+ * 节流起到了可控制高频事件逻辑执行的次数
+ * @param { function } fn 逻辑函数
+ * @param { number } time 执行逻辑的间隔(毫秒)
+ * @returns
+ */
+export const throttle = (fn, time = 1000) => {
+  let flag = true
+  return function () {
+    if (flag) {
+      setTimeout(() => {
+        fn()
+        flag = true
+      }, time)
+    }
+    flag = false
+  }
 }
 ```
