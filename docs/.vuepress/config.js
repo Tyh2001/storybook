@@ -9,6 +9,7 @@ module.exports = {
     lastUpdated: '最后更新', // 最后更新时间
     // 导航栏
     nav: [
+      { text: '首页', link: '/' },
       { text: 'Github', link: 'https://github.com/Tyh2001' },
       {
         text: 'tyh-Ui',
@@ -48,8 +49,8 @@ module.exports = {
         sidebarDepth: 2
       },
       {
-        title: 'diary',
-        path: '/diary/diary',
+        title: '里程碑',
+        path: '/milepost/milepost',
         collapsable: false,
         sidebarDepth: 2
       },
