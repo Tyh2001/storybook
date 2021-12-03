@@ -54,14 +54,15 @@ module.exports = {
       },
       {
         title: 'Js 相关',
-        path: '/js/js-function',
+        path: '/javascript/js-function',
         collapsable: false,
         sidebarDepth: 2,
         children: [
-          { title: "函数相关", path: "/js/js-function" },
-          { title: "内置函数", path: "/js/js-built-in-obj" },
-          { title: "数组操作", path: "/js/js-array_operation" },
-          { title: "杂项", path: "/js/js-miscellaneous" }
+          { title: "函数相关", path: "/javascript/js-function" },
+          { title: "Js 内置", path: "/javascript/js-inside" },
+          { title: "数组操作", path: "/javascript/js-array" },
+          { title: "Js 工具函数", path: "/javascript/js-utils" },
+          { title: "杂项", path: "/javascript/js-other" },
         ]
       },
       {
@@ -71,14 +72,8 @@ module.exports = {
         sidebarDepth: 2
       },
       {
-        title: 'Js 工具函数',
-        path: '/utils-fun/utils-fun',
-        collapsable: false,
-        sidebarDepth: 2
-      },
-      {
         title: '其它技术',
-        path: '/other-technology/other-technology',
+        path: '/other/other',
         collapsable: false,
         sidebarDepth: 2
       },
