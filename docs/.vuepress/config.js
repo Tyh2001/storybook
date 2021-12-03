@@ -6,6 +6,7 @@ module.exports = {
   description: '前端开发,javascript,php,node,jquery,git,python,java,sql,mysql,linux,go语言,golang,前端,教程,软件,编程,互联网,tyh-ui,TYH-UI,tyh,TYH,ui,UI,element,框架,组件库,组件,vue,vue3,码云,NPM,npm,components,js,github,gitee,npm,vant,element3,vite,viewUI,tyh-ui,tyh ui,ui tyh,tyh-ui2,tyh-ui,tyh2001的个人网站',
   base: '/blog/',
   themeConfig: {
+    lastUpdated: '最后更新', // 最后更新时间
     // 导航栏
     nav: [
       { text: 'Github', link: 'https://github.com/Tyh2001' },
@@ -43,6 +44,12 @@ module.exports = {
       {
         title: 'Hello',
         path: '/hello/hello',
+        collapsable: false,
+        sidebarDepth: 2
+      },
+      {
+        title: 'diary',
+        path: '/diary/diary',
         collapsable: false,
         sidebarDepth: 2
       },
