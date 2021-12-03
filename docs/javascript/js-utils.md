@@ -400,8 +400,6 @@ export const debounce = (fn, time) => {
 
 ## 节流
 
-**方式一**
-
 ```js
 /**
  * 节流
