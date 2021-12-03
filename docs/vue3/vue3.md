@@ -1,5 +1,63 @@
 # Vue3 相关
 
+## Vite 创建项目
+
+使用 Vite 创建项目需要 node 的版本 >= 12.0.0
+
+npm 创建命令：
+
+```shell
+npm init vite vue-demo
+```
+
+接下来会让你选择一个需要创建的框架，这里我们选择 vue
+
+```shell
+? Select a framework: » - Use arrow-keys. Return to submit.
+    vanilla
+>   vue
+    react
+    preact
+    lit
+    svelte
+```
+
+接下来是需要选择是否使用 ts，这里我不是使用就选择 vue，使用 ts 就选择 vue-ts
+
+```shell
+√ Select a framework: » vue
+? Select a variant: » - Use arrow-keys. Return to submit.
+>   vue
+    vue-ts
+```
+
+回车选择完成之后就是要 Vite 创建了一个 Vue3 的项目
+
+接下来进入项目目录，安装依赖后，使用 `npm run dev` 来启动项目
+
+## vite.config.js 基础配置
+
+```js
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+const { resolve } = require('path')
+
+export default defineConfig({
+  base: './', // 公共路径
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'), // 使用 @ 访问 src 目录
+    },
+  },
+  server: {
+    host: '127.0.0.1',
+    port: '2001', // 端口号
+    open: true, // 自动打开
+  },
+})
+```
+
 ## 组件结构
 
 vue3 的组件结构和 vue2 的结果在 js 部分的差别的最大的，文件结构为：
@@ -144,7 +202,7 @@ export default {
 
 **注：只有将对象或者变量变成响应式的才可以随意修改其值**
 
-## setup 函数和 script 上作用 setup
+## script setup
 
 在上面，我介绍了 vue3 的全新目录结构，整理使用组合 api，直接暴露出来一个 setup 函数，代码是这样的：
 
@@ -196,7 +254,7 @@ import MyButton from './components/MyButton.vue'
 
 在 `<script setup>` 中必须使用 `defineProps` api 来声明 `props`：
 
-父组件：
+**父组件**
 
 ```vue
 <template>
@@ -208,7 +266,7 @@ import MyButton from './components/MyButton.vue'
 </script>
 ```
 
-子组件
+**子组件**
 
 ```vue
 <template>
@@ -227,7 +285,7 @@ const props = defineProps({
 
 在 `<script setup>` 中必须使用 `defineEmits ` api 来声明 `emits`：
 
-父组件：
+**父组件**
 
 ```vue
 <template>
@@ -246,7 +304,7 @@ function change(val) {
 </script>
 ```
 
-子组件：
+**子组件**
 
 ```vue
 <template>
@@ -347,23 +405,14 @@ export default {
   <h1>{{ num }}</h1>
 </template>
 
-<script>
+<script setup>
 // 引入 computed
 import { computed } from 'vue'
-export default {
-  setup() {
-    // computed 内部传入一个回调函数再赋值给变量 num
-    const num = computed(() => {
-      // 计算属性必须有返回值
-      return 10 + 20
-    })
-
-    // 返回计算属性的结果给模板使用
-    return {
-      num,
-    }
-  },
-}
+// computed 内部传入一个回调函数再赋值给变量 num
+const num = computed(() => {
+  // 计算属性必须有返回值
+  return 10 + 20
+})
 </script>
 ```
 
@@ -428,20 +477,10 @@ export default {
   <Btn @click="add" />
 </template>
 
-<script>
+<script setup>
 import Btn from './components/demo/Btn.vue'
-export default {
-  components: {
-    Btn,
-  },
-  setup() {
-    function add() {
-      alert('点击了')
-    }
-    return {
-      add,
-    }
-  },
+function add() {
+  alert('点击了')
 }
 </script>
 ```
@@ -476,13 +515,8 @@ Vue3 相比 Vue2 插槽也有了一定的变化，尤其是具名插槽
   </MyCom>
 </template>
 
-<script>
+<script setup>
 import MyCom from './components/demo/My-com.vue'
-export default {
-  components: {
-    MyCom,
-  },
-}
 </script>
 ```
 
@@ -499,20 +533,13 @@ export default {
   <div ref="myRef">获取单个DOM元素</div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue'
+const myRef = ref(null)
 
-export default {
-  setup() {
-    const myRef = ref(null)
-
-    onMounted(() => {
-      console.log(myRef)
-    })
-
-    return { myRef }
-  },
-}
+onMounted(() => {
+  console.log(myRef)
+})
 </script>
 ```
 
@@ -528,15 +555,9 @@ export default {
   </div>
 </template>
 
-<script>
-export default {
-  setup() {
-    const setRef = (el) => {
-      console.log(el)
-    }
-
-    return { setRef }
-  },
+<script setup>
+const setRef = (el) => {
+  console.log(el)
 }
 </script>
 ```
@@ -548,16 +569,11 @@ export default {
   <div class="text">获取单个DOM元素</div>
 </template>
 
-<script>
+<script setup>
 import { nextTick } from 'vue'
-
-export default {
-  setup() {
-    nextTick(() => {
-      console.log(document.querySelector('.text'))
-    })
-  },
-}
+nextTick(() => {
+  console.log(document.querySelector('.text'))
+})
 </script>
 ```
 
@@ -571,20 +587,10 @@ export default {
   <MyInput v-model="text" />
 </template>
 
-<script>
+<script setup>
 import MyInput from './components/MyInput.vue'
 import { ref } from 'vue'
-export default {
-  name: 'app',
-  components: {
-    MyInput,
-  },
-  setup() {
-    const text = ref('')
-
-    return { text }
-  },
-}
+const text = ref('')
 </script>
 ```
 
@@ -599,25 +605,20 @@ export default {
   <input :type="modelValue" @input="myInput" />
 </template>
 
-<script>
-export default {
-  name: '',
-  props: {
-    // 在父组件上绑定了 v-model 后，相当于传递了一个 modelValue 的参数
-    // modelValue 的名字的固定的，不能改变
-    // 并且 prop 还会抛出 update:modelValue 事件，事件名称也是不能改变的
-    modelValue: {
-      type: String,
-      default: '',
-    },
+<script setup>
+// 在父组件上绑定了 v-model 后，相当于传递了一个 modelValue 的参数
+// modelValue 的名字的固定的，不能改变
+// 并且 prop 还会抛出 update:modelValue 事件，事件名称也是不能改变的
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
-  setup(props, { emit }) {
-    // 通过调用函数 向父组件发送文本框的内容
-    function myInput(evt) {
-      emit('update:modelValue', evt.target.value)
-    }
-    return { myInput }
-  },
+})
+const emit = defineEmits(['update:modelValue'])
+// 通过调用函数 向父组件发送文本框的内容
+function myInput(evt) {
+  emit('update:modelValue', evt.target.value)
 }
 </script>
 
@@ -645,45 +646,35 @@ input {
 
 无论组件层次结构有多深，父组件都可以作为其所有子组件的依赖提供者，`provide ` 只能通过父组件来提供给子组件，不能子组件给父组件提供，子组件通过`inject` 注入。
 
+**父组件**
+
 ```vue
-// 父组件
 <template>
   <h1>这是父组件</h1>
   <my-component></my-component>
 </template>
 
-<script>
+<script setup>
 import MyComponent from './components/MyComponent.vue'
 import { provide } from 'vue'
-export default {
-  components: {
-    MyComponent,
-  },
-  setup() {
-    const say = '这是父组件提供的数据' // 需要提供的数据
-    // 使用 provide 函数，第一个参数为提供数据的名称，可以自定义，第二个是需要提供的数据
-    provide('AppSay', say)
-  },
-}
+const say = '这是父组件提供的数据' // 需要提供的数据
+// 使用 provide 函数，第一个参数为提供数据的名称，可以自定义，第二个是需要提供的数据
+provide('AppSay', say)
 </script>
 ```
 
+**子组件**
+
 ```vue
-// 子组件
 <template>
   <h1>这是子组件</h1>
   <h2>父组件提供的数据是：{{ res }}</h2>
 </template>
 
-<script>
+<script setup>
 import { inject } from 'vue'
-export default {
-  setup() {
-    // 通过 inject 函数接收父组件提供的数据，可以通过名称 AppSay 获取
-    const res = inject('AppSay')
-    return { res }
-  },
-}
+// 通过 inject 函数接收父组件提供的数据，可以通过名称 AppSay 获取
+const res = inject('AppSay')
 </script>
 ```
 
@@ -702,38 +693,23 @@ export default {
   <button @click="change">改变组件</button>
 </template>
 
-<script>
+<script setup>
 // 引入两个组件
 import MyInput from './components/MyInput.vue'
 import MyButton from './components/MyButton.vue'
 import { computed, ref } from 'vue'
-export default {
-  components: {
-    // 注册两个组件
-    MyInput,
-    MyButton,
-  },
-  setup() {
-    // 通过变量控制渲染的组件
-    const text = ref(true)
+// 通过变量控制渲染的组件
+const text = ref(true)
 
-    // 点击按钮调用函数，改变变量控制渲染的组件
-    function change() {
-      text.value = !text.value
-    }
-
-    // 计算属性根据 text 的变量来返回不同的组件名称进行渲染
-    const componentsName = computed(() => {
-      return text.value ? 'MyInput' : 'MyButton'
-    })
-
-    return {
-      componentsName,
-      change,
-      text,
-    }
-  },
+// 点击按钮调用函数，改变变量控制渲染的组件
+function change() {
+  text.value = !text.value
 }
+
+// 计算属性根据 text 的变量来返回不同的组件名称进行渲染
+const componentsName = computed(() => {
+  return text.value ? 'MyInput' : 'MyButton'
+})
 </script>
 ```
 

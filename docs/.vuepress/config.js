@@ -1,13 +1,14 @@
 module.exports = {
-  title: 'Tyh',
+  title: 'Tyh2001',
+  head: [
+    ['link', { rel: 'icon', href: '/my.jpg' }]
+  ],
+  description: '前端开发,javascript,php,node,jquery,git,python,java,sql,mysql,linux,go语言,golang,前端,教程,软件,编程,互联网,tyh-ui,TYH-UI,tyh,TYH,ui,UI,element,框架,组件库,组件,vue,vue3,码云,NPM,npm,components,js,github,gitee,npm,vant,element3,vite,viewUI,tyh-ui,tyh ui,ui tyh,tyh-ui2,tyh-ui,tyh2001的个人网站',
   base: '/blog/',
   themeConfig: {
+    // 导航栏
     nav: [
-      { text: 'Hello', link: '/' },
-      { text: '个人网站', link: 'https://tianyuhao.icu' },
       { text: 'Github', link: 'https://github.com/Tyh2001' },
-      { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
-      { text: '微博', link: 'https://weibo.com/u/7112859998' },
       {
         text: 'tyh-Ui',
         ariaLabel: 'Language Menu',
@@ -17,11 +18,12 @@ module.exports = {
         ]
       },
       {
-        text: '模拟微博',
+        text: '关于我',
         ariaLabel: 'Language Menu',
         items: [
-          { text: 'pc', link: 'https://tianyuhao.icu/release/pc' },
-          { text: 'phone', link: 'https://tianyuhao.icu/release/phone' }
+          { text: '个人网站', link: 'https://tianyuhao.icu' },
+          { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
+          { text: '微博', link: 'https://weibo.com/u/7112859998' }
         ]
       },
       {
@@ -36,22 +38,17 @@ module.exports = {
       }
     ],
     sidebarDepth: 2,
+    // 侧边栏
     sidebar: [
       {
-        title: '首页',
-        path: '/',
+        title: 'Hello',
+        path: '/hello/hello',
         collapsable: false,
         sidebarDepth: 2
       },
       {
         title: 'Vue3 相关',
         path: '/vue3/vue3',
-        collapsable: false,
-        sidebarDepth: 2
-      },
-      {
-        title: 'Vite 基础',
-        path: '/vite/vite',
         collapsable: false,
         sidebarDepth: 2
       },
