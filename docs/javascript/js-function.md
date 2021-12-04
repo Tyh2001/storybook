@@ -66,7 +66,7 @@ add(1, 54, 1, 5, 2, 654, 3, 42, 24)
 
 > 在箭头函数中，不能使用 arguments 关键字访问参数，只能通过命名的参数访问
 
-### callee属性
+### callee 属性
 
 arguments 内部还有一个 callee 属性，是一个指向 arguments 对象所在函数的指针，可以用在递归函数中：
 
@@ -497,6 +497,57 @@ console.log(obj.change())
 ```
 
 总结一句话就是：**箭头函数中的 this 是指向的父级的 this 如果父级的 this 指向的是某个对象，那么箭头函数中的 this 就指向该对象，如果父级的 this 指向的 window 那么箭头函数指定的是也是 window**
+
+## caller
+
+函数中有一个 `caller` 属性，**这个属性引用的是调用当前函数的函数，如果函数是在全局作用域下调用的，则返回 null**
+
+```js
+function fun1() {
+  fun2()
+}
+function fun2() {
+  console.log(fun2.caller)
+}
+fun1() // ƒ fun1() { fun2() }
+
+function fun3() {
+  console.log(fun3.caller)
+}
+
+fun3() // null
+```
+
+也可以通过 `arguments.callee.caller` 获取相同的结果
+
+```js
+function fun1() {
+  fun2()
+}
+function fun2() {
+  console.log(arguments.callee.caller)
+}
+fun1() // ƒ fun1() { fun2() }
+```
+
+注：该方法在严格模式下不会工作！
+
+## new.target
+
+ES6 新增了检测函数是否使用 new 调用的 `new.target` 属性，如果函数是正常调用的，new.target 返回 undefined，如果使用 new 来调用的，则 new.target 将引用被调用的构造函数
+
+```js
+function fun1() {
+  if (!new.target) {
+    console.log('没有使用 new 调用')
+    return
+  }
+  console.log('使用 new 调用')
+}
+
+fun1() // 没有使用 new 调用
+new fun1() // 使用 new 调用
+```
 
 ## 构造函数
 
