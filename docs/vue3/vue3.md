@@ -58,6 +58,19 @@ export default defineConfig({
 })
 ```
 
+## 目录结构
+
+```
+├── src
+│   ├── api            数据请求
+│   ├── assets         静态资源
+│   ├── components     组件
+│   ├── pages          页面
+│   ├── router         路由配置
+│   ├── store          vuex数据
+│   └── utils          工具函数
+```
+
 ## 组件结构
 
 vue3 的组件结构和 vue2 的结果在 js 部分的差别的最大的，文件结构为：
@@ -343,15 +356,19 @@ const name = '小明'
 下面是 vue2 -> vue3 的生命周期钩子函数
 
 ```
-beforeCreate -> setup()
-created -> setup()
-beforeMount -> onBeforeMount
-mounted -> onMounted
-beforeUpdate -> onBeforeUpdate
-updated -> onUpdated
-beforeDestroy -> onBeforeUnmount
-destroyed -> onUnmounted
+beforeCreate -> setup() // 创建之前
+created -> setup() // 创建完成
+beforeMount -> onBeforeMount // 挂载前
+mounted -> onMounted // 挂载完成
+beforeUpdate -> onBeforeUpdate // 更新前
+updated -> onUpdated // 更新完成
+beforeDestroy -> onBeforeUnmount // 销毁前
+destroyed -> onUnmounted // 销毁完成
 errorCaptured -> onErrorCaptured
+renderTracked -> onRenderTracked
+renderTriggered -> onRenderTriggered
+activated -> onActivated
+deactivated -> onDeactivated
 ```
 
 在 vue3 中，移除了 `beforeCreate` 和 `created`，现在使用 `setup` 就可以直接优先加载了，其余钩子函数都需要通过解构引入才能进行使用。
@@ -1021,3 +1038,292 @@ script setup 可以更快的帮我们编写 Composition
 5. Vite
 
 速度非常快，的工程化工具
+
+## Src 引入
+
+如果你倾向于将 `*.vue` 组件拆分为多个文件，可以使用 `src` attribute 来引入外部的文件作为语言块
+
+下面列举出三个文件，分别是 `index.html index.js index.css`：
+
+**html**
+
+```html
+<h1>{{ text }}</h1>
+<button @click="change">点击</button>
+
+<ul>
+  <li v-for="(item, index) in arr" :key="index">{{ item }}</li>
+</ul>
+```
+
+**js**
+
+```js
+import { ref } from 'vue'
+export default {
+  setup() {
+    const text = ref('这是首页app组件')
+    const arr = [1, 2, 3, 4, 5]
+    function change() {
+      alert('点击了')
+    }
+    return {
+      change,
+      text,
+      arr,
+    }
+  },
+}
+```
+
+**css**
+
+```css
+h1 {
+  color: red;
+}
+```
+
+这样分别写好之后，然后引入到组件中，那么这时候我们的组件的样子就是：
+
+```vue
+<template src="./app/index.html"></template>
+
+<script src="./app/index.js"></script>
+
+<style scoped src="./app/index.css"></style>
+```
+
+可以试一下效果依然可以实现
+
+## Vuex
+
+在 vue3 的项目中使用 vuex 首先需要下载：
+
+```shell
+npm install vuex@next --save
+```
+
+Vuex 就相当于我们项目中的大管家，集中式存储管理应用的所有组件的状态。
+
+在 `src/store` 中先新建 `index.js`，在下面的代码中，我们使用 `createStore` 来创建一个数据存储，我们称之为 `store`
+
+```js
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state: {
+    text: '这是 vuex 中的数据',
+  },
+  mutations: {
+    /**
+     * 改变 state.text 的值
+     * @param { object } state state 对象
+     * @param { text } data 修改的值
+     */
+    changeText(state, data) {
+      state.text = data
+    },
+  },
+})
+
+export default store
+```
+
+接下来在 `main.js` 中引入
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import store from './store'
+
+createApp(App).use(store).mount('#app')
+```
+
+在组件中，可以引入`import { useStore } from 'vuex'` 来获取数据源，并可以提供给模板使用
+
+```vue
+<template>
+  <h1>{{ store.state.text }}</h1>
+</template>
+
+<script setup>
+import { useStore } from 'vuex'
+const store = useStore()
+console.log(store.state.text)
+</script>
+```
+
+如果想要改变 `text` 的值，那么就需要使用 `store.commit()` 方法进行修改
+
+```vue
+<template>
+  <h1>{{ store.state.text }}</h1>
+  <button @click="change">改变值</button>
+</template>
+
+<script setup>
+import { useStore } from 'vuex'
+const store = useStore()
+function change() {
+  store.commit('changeText', '改变了！！')
+}
+</script>
+```
+
+下面分别来说明一下 vuex 中的核心方法
+
+### state
+
+数据都定义在这里
+
+### mutations
+
+修改 state 中的数据必须要使用 mutations 进行修改，mutation 的设计就是用来实现同步地修改数据，不能修改异步的数据
+
+```js
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state: {
+    text: 1,
+  },
+  mutations: {
+    changeText(state, data) {
+      state.text++
+    },
+  },
+})
+
+export default store
+```
+
+### getters
+
+相当于计算属性，操作 state 中的计算逻辑可以直接写在 getters 中，函数可以直接返回给全局使用
+
+**vuex**
+
+```js
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state: {
+    text: 1,
+  },
+  mutations: {
+    changeText(state, data) {
+      state.text++
+    },
+  },
+  getters: {
+    double(state) {
+      return state.text * 2
+    },
+  },
+})
+
+export default store
+```
+
+**app.vue**
+
+```vue
+<template>
+  <h1>{{ double }}</h1>
+  <button @click="change">改变值</button>
+</template>
+
+<script setup>
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+const store = useStore()
+function change() {
+  store.commit('changeText')
+}
+const double = computed(() => {
+  return store.getters.double
+})
+</script>
+```
+
+### action
+
+用于修改异步的数据，**action 并不是直接修改数据，而是通过 mutations 去修改，在 actions 中要解构出 commit 函数 用于提交 mutations**，之后再通过 mutations 修改 state 中的值
+
+**vuex**
+
+```js
+import { createStore } from 'vuex'
+import axios from 'axios'
+
+const store = createStore({
+  state: {
+    list: [],
+  },
+  mutations: {
+    changeList(state, data) {
+      state.list = data
+    },
+  },
+  actions: {
+    // 解构出 commit 函数 用于提交 mutations
+    loadList({ commit }) {
+      axios({
+        method: 'GET',
+        url: 'https://infinitymcn.com/citi/citi-form-backend/public/index.php/index/Vote/getVoteRes',
+      }).then((res) => {
+        commit('changeList', res.data)
+      })
+    },
+  },
+})
+
+export default store
+```
+
+**app.vue**
+
+有一点需要注意的是，在组件中调用 `actions` 中的函数，需要使用 **store.dispatch** 方法
+
+```vue
+<template>
+  <button @click="load">获取数据</button>
+</template>
+
+<script setup>
+import { useStore } from 'vuex'
+const store = useStore()
+function load() {
+  store.dispatch('loadList')
+}
+</script>
+```
+
+## Vue Router
+
+安装路由
+
+```shell
+npm install vue-router@4
+```
+
+基础配置
+
+```js
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+const routes = [
+  {
+    path: '/',
+    component: () => import('@/views/layout.vue'),
+  },
+]
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+})
+
+export default router
+```

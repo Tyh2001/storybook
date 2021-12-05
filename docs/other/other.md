@@ -1,6 +1,6 @@
 # 其它技术
 
-## 怎么把项目部署到 GitHubPages 上
+## GitHubPages 部署
 
 ### 前言
 
@@ -142,3 +142,15 @@ jobs:
 | git checkout test         | 切换到 test 分支               |
 | git merge test            | 把 test 分支合并到 master 分支 |
 | git branch -d test        | 删除 test 分支                 |
+
+## Npm 一些命令
+
+`--save` 是什么意思？
+
+`npm i xxx --save` 是把依赖写入进 dependencies 对象里面，
+
+dependencies 是生产环境下的依赖，项目刚需的依赖在这里，比如 UI 框架，字体文件等线上必需的东西
+
+`-d` 什么意思？
+
+`npm i xxx -g` 就是安装到全局下，在命令行的任何地方都可以操作，不会提示“命令不存在等错误”
