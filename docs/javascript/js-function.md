@@ -1503,3 +1503,16 @@ let fun3 = () => {
 > 箭头函数的 this 永远指向其上下文的 this
 >
 > 普通函数的 this 指向调用它的那个对象
+
+## prototype
+
+prototype 保存引用类型所有的实例和方法
+
+```js
+function fun1 () {
+    return 1
+}
+
+console.log(fun1.prototype) // {constructor: ƒ}
+```
+
