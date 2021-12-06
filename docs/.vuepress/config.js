@@ -75,6 +75,12 @@ module.exports = {
         ]
       },
       {
+        title: 'TypeScript 基础',
+        path: '/typescript/ts',
+        collapsable: false,
+        sidebarDepth: 2
+      },
+      {
         title: 'Vue2 相关',
         path: '/vue2/vue2',
         collapsable: false,
