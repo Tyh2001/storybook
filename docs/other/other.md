@@ -154,3 +154,34 @@ dependencies 是生产环境下的依赖，项目刚需的依赖在这里，比�
 `-d` 什么意思？
 
 `npm i xxx -g` 就是安装到全局下，在命令行的任何地方都可以操作，不会提示“命令不存在等错误”
+
+
+
+## 第三方库推荐
+
+### Rollup Plugin Visualizer
+
+**介绍**
+
+[rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer) 是一个汇总插件可视化工具，项目执行 `npm run build` 之后，项目根目录下会生成一个 `stats.html` 可以展示安装的第三方包文件大小
+
+**安装**
+
+```shell
+npm install --save-dev rollup-plugin-visualizer
+```
+
+**配置**
+
+`vite.config.js` 中：
+
+```js
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import { visualizer } from 'rollup-plugin-visualizer'
+
+export default defineConfig({
+  plugins: [vue(), visualizer()],
+})
+```
+
