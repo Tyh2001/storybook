@@ -1189,3 +1189,20 @@ document.body.className = 'body2'
 ```
 
 调用`disconnect ` 函数之后，不仅会停止事件后的回调，也会抛弃之前的回调
+
+## Object.entries()
+
+`Object.entries` 方法可以将对象中的每个键和值转换为数组形式，**返回一个给定对象自身可枚举属性的键值对数组**
+
+```js
+const obj = {
+  name: '张同学',
+  age: 39,
+}
+
+for (const item of Object.entries(obj)) {
+  console.log(item)
+}
+// ['name', '张同学']
+// ['age', 39]
+```
