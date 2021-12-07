@@ -10,7 +10,7 @@ module.exports = {
     // 导航栏
     nav: [
       { text: '首页', link: '/' },
-      { text: 'Github', link: 'https://github.com/Tyh2001' },
+      { text: 'Github', link: 'https://github.com/Tyh2001/my-note-web' },
       {
         text: 'tyh-Ui',
         ariaLabel: 'Language Menu',
