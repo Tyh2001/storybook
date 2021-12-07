@@ -21,3 +21,32 @@ function BubblingSort(arr) {
 
 console.log(BubblingSort(arr))
 ```
+
+## 求 n 个自然数的和
+
+```js
+function add(n) {
+  if (n == 1) {
+    return 1
+  } else {
+    return add(n - 1) + n
+  }
+}
+
+console.log(add(5))
+```
+
+## 斐波那契数列
+
+```js
+// 斐波那契数列
+// 1、1、2、3、5、8、13、21、34
+// 计算公式：
+// F(0)=0, F(1)=1, F(n)=F(n - 1)+F(n - 2)
+function fibonacci(n) {
+  if (n <= 2 && n !== 0) return 1
+  return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+console.log(fibonacci(6))
+```
