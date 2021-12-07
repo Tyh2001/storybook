@@ -568,6 +568,62 @@ console.log(dog)
 
 这就是一个构造函数的基础写法。
 
+```js
+function User(name) {
+  this.name = name
+  this.sayName = function () {
+    console.log(this.name)
+  }
+}
+
+const Z = new User('张同学')
+
+console.log(Z) // User {name: '张同学', sayName: ƒ}
+Z.sayName() // 张同学
+```
+
+构造函数中的 `this` 指的是当前调用方法的对象
+
+数据类型也都是可以通过构造函数创建的：
+
+```js
+const num = new Number(123)
+const str = new String('哈哈哈')
+const obj = new Object()
+```
+
+那么为什么有很多字符串或者其他的方法呢？原因就是因为在构造函数中那个定义了很多的方法才可以提供使用
+
+使用构造函数创建出来的其实是一个对象，但是想获取值的话，可以使用 `valueOf` 方法进行获取
+
+```js
+const num = new Number(123)
+const str = new String('哈哈哈')
+console.log(num.valueOf())
+console.log(str.valueOf())
+```
+
+### 构造函数闭包
+
+上面例子中，新建了一个构造函数 `User` 之后，可以通过构造函数内部的方法来输出 `name` ,但是这个 name 在构造函数外部是可以进行修改的，这样得到的值就不准确了，所以这样要使用闭包的特性进行处理：
+
+```js
+function User(name) {
+  const data = { name } // 在内部定义数据
+  let sayName = function () {
+    console.log(data.name)
+  }
+  // 在对象上的方法调用内部的函数
+  this.sayName = function () {
+    sayName()
+  }
+}
+
+const Z = new User('张同学')
+Z.name = '小明' // 虽然修改 name 但是不生效
+Z.sayName()
+```
+
 ## 面向对象
 
 面向对象呢，是和构造函数相关的，所以在了解构造函数之后呢，接下来来说一下面向对象
@@ -1509,10 +1565,9 @@ let fun3 = () => {
 prototype 保存引用类型所有的实例和方法
 
 ```js
-function fun1 () {
-    return 1
+function fun1() {
+  return 1
 }
 
 console.log(fun1.prototype) // {constructor: ƒ}
 ```
-

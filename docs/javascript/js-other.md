@@ -67,72 +67,6 @@ JSON.stringify()
 JSON.parse()
 ```
 
-## 变量冻结
-
-这里比如我们使用`const`声明一个常量的对象
-
-```js
-const obj = {
-  name: '小明',
-  age: 12,
-}
-obj.name = '小张'
-console.log(obj.name)
-
-// 输出结果是被更改后的 小张
-```
-
-虽然是使用`const`声明，但是对象的属性值依然是可以改变的，那么如果想要声明之后以后不能被改变里面的值，可以使用，进行变量冻结，这就可以直接把变量的车门焊死，一旦声明，不能改变
-
-```js
-Object.freeze(+对象名)
-```
-
-效果如下
-
-```js
-const obj = {
-  name: '小明',
-  age: 12,
-}
-Object.freeze(obj)
-obj.name = '小张'
-console.log(obj.name)
-
-// 输出结果是依然是 小明
-```
-
-那么现在还有问题就是：既然变量已经冻结不能修改了，那么又加入：
-
-```js
-obj.name = '小张'
-```
-
-显然这段代码是一个错误的、没有意义的代码，所以我们要让大家知道，这段代码是错误的
-
-所以可以通过加入严格模式，一旦已经冻结的变量，再修改里面的值，那么直接报错！
-
-完整代码如下：
-
-```js
-'use strict'
-const obj = {
-  name: '小明',
-  age: 12,
-}
-Object.freeze(obj)
-obj.name = '小张'
-console.log(obj.name)
-```
-
-加入严格模式之后，浏览器将会直接报错：
-
-```shell
-Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
-```
-
-所以将重新赋值删掉即可解决问题。
-
 ## 一元运算符
 
 关于 a++ 和 ++a 的问题
@@ -1205,4 +1139,89 @@ for (const item of Object.entries(obj)) {
 }
 // ['name', '张同学']
 // ['age', 39]
+```
+
+## Object.getOwnPropertyDescriptor()
+
+`Object.getOwnPropertyDescriptor()` 方法可以得到对象属性特征的描述，接收两个参数，第一个是对象名，第二个是对象的属性名
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+console.log(Object.getOwnPropertyDescriptor(obj, 'name'))
+// {value: '张三', writable: true, enumerable: true, configurable: true}
+
+// value - 属性值
+// writable - 是否可以修改
+// enumerable - 是否可以遍历
+// configurable - 是否可以被删除或重新配置
+```
+
+## Object.getOwnPropertyDescriptors()
+
+上面 `Object.getOwnPropertyDescriptor()` 方法可以获取对象中单个键的属性特征描述，那么想要获取对象中所有属性的描述，需要使用 `Object.getOwnPropertyDescriptors()` 方法，该方法接收一个参数为对象名
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+console.log(Object.getOwnPropertyDescriptors(obj))
+
+// {name: {…}, age: {…}, arr: {…}}
+```
+
+## Object.preventExtensions()
+
+`Object.preventExtensions()` 方法可以禁止向对象内添加内容
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.preventExtensions(obj)
+obj.a = '1'
+console.log(obj) // {name: '张三', age: 21}
+```
+
+## Object.seal()
+
+封闭对象，**configurable = false**不可以被删除或重新配置
+
+可以使用 `Object.isSealed()` 方法判断当前对象是否处于封闭状态，返回布尔值
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.seal(obj)
+// 封闭对象，configurable = false
+
+console.log(Object.isSealed(obj)) // true
+```
+
+## Object.freeze()
+
+冻结对象，不能删除或重新配置，也不可以修改
+
+可以使用 `Object.isFrozen()` 方法判断当前对象是否处于冻结状态，返回布尔值
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.freeze(obj)
+// 冻结对象，configurable = false，writable = false
+
+console.log(Object.isFrozen(obj)) // true
 ```
