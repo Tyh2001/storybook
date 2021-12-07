@@ -1116,3 +1116,76 @@ console.log(obj instanceof Object)
 ```
 
 > 或获得下一个元素及其下一个元素内包含的所有元素
+
+## MutationObserver 接口
+
+`MutationObserver`用于观察 dom 发生改变，基本语法
+
+```js
+const obs = new MutationObserver(() => console.log('dom 发生了改变'))
+```
+
+### observe 方法
+
+```js
+const obs = new MutationObserver(() => console.log('dom 发生了改变'))
+obs.observe(document.body, { attributes: true })
+document.body.setAttribute('class', 'body')
+
+// dom 发生了改变
+```
+
+### 接收参数
+
+回调可以接收一个参数，参数内部包含发生了什么变化
+
+```js
+const obs = new MutationObserver((e) => console.log(e))
+obs.observe(document.body, { attributes: true })
+document.body.setAttribute('class', 'body')
+```
+
+**输出结果**
+
+```
+[MutationRecord]
+0: MutationRecord
+addedNodes: NodeList []
+attributeName: "class"
+attributeNamespace: null
+nextSibling: null
+oldValue: null
+previousSibling: null
+removedNodes: NodeList []
+target: body.body
+type: "attributes"
+[[Prototype]]: MutationRecord
+length: 1
+[[Prototype]]: Array(0)
+```
+
+第二个参数是观察变化的实例
+
+```js
+const obs = new MutationObserver((e, v) => console.log(e, v))
+obs.observe(document.body, { attributes: true })
+document.body.setAttribute('class', 'body')
+
+// [MutationRecord] MutationObserver {}
+```
+
+### disconnect 方法
+
+默认情况下，只要被观察的元素不被垃圾回收，MutationObserver 的回调就会响应 dom 变化事件，而被执行，要想提前终止执行回调，可以使用 `disconnect` 方法
+
+```js
+const obs = new MutationObserver(() => console.log('body 发生改变'))
+obs.observe(document.body, { attributes: true })
+document.body.className = 'body'
+obs.disconnect()
+document.body.className = 'body2'
+
+// 没有日志输出
+```
+
+调用`disconnect ` 函数之后，不仅会停止事件后的回调，也会抛弃之前的回调
