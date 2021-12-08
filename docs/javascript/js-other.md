@@ -1225,3 +1225,68 @@ Object.freeze(obj)
 
 console.log(Object.isFrozen(obj)) // true
 ```
+
+## 访问器保护数据
+
+在正常对象中，对象中的属性我们是可以随意设置和更改的，但是有些时候并不希望某些值被设置了不可控的值，比如：
+
+```js
+const user = {
+  name: '张同学',
+  age: 12,
+}
+
+user.age = 19999
+console.log(user) // {name: '张同学', age: 19999}
+```
+
+所以就需要加以限制，需要在对象中新建两个获取函数，分别使用 `set` 和 `get` 声明，那么每次获取和修改都会经过这里，来进行判断
+
+```js
+const user = {
+  data: {
+    name: '张同学',
+    age: 12,
+  },
+  set age(val) {
+    if (typeof val !== 'number' || val < 1 || val > 100) {
+      throw new Error('年龄格式错误')
+    }
+    this.data.age = val
+  },
+  get age() {
+    return this.data.age
+  },
+}
+```
+
+**批量设置属性**
+
+```js
+const user = {
+  name: '张同学',
+  age: 12,
+  set info(val) {
+    ;[this.name, this.age] = val.split(',')
+  },
+}
+
+user.info = '小明,14'
+console.log(user)
+```
+
+**利用访问器设置 token**
+
+```js
+const request = {
+  set setToken(val) {
+    localStorage.setItem('token', val)
+  },
+  get getToken() {
+    return localStorage.getItem('token')
+  },
+}
+
+request.setToken = '12121dadasdada'
+console.log(request.getToken)
+```
