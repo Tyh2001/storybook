@@ -53,18 +53,69 @@ window.localStorage.removeItem('名称')
 
 ## 关于 JSON
 
-很多时候我们在设置本地存储的时候都需要将一个对象存入本地存储中，但是本地存储只能存储字符串，那么可以使用
+### JSON.stringify()
+
+使用 `JSON.stringify()` 方法可以将对象转换为 JSON 对象
 
 ```js
-JSON.stringify()
+const obj = {
+  name: '张同学',
+  age: 39,
+  arr: [1, 2, 3, 4],
+}
+
+console.log(JSON.stringify(obj))
+
+// {"name":"张同学","age":39,"arr":[1,2,3,4]}
 ```
 
-来将对象转换为 JSON 格式字符串进行存储
-
-那么想要获取对象还需要再转换回 JSON 字符串，方法为：
+也可以接收第二个参数，用于过滤，可以接收一个数组或函数
 
 ```js
-JSON.parse()
+const obj = {
+  name: '张同学',
+  age: 39,
+  arr: [1, 2, 3, 4],
+}
+
+console.log(JSON.stringify(obj, ['age']))
+
+// {"age":39}
+```
+
+通过第二个参数过滤出 `age`
+
+第三个参数是代表每行的缩进数量，最大为 10
+
+```js
+const obj = {
+  name: '张同学',
+  age: 39,
+  arr: [1, 2, 3, 4],
+}
+
+console.log(JSON.stringify(obj, null, 2))
+```
+
+结果如下：
+
+```json
+{
+  "name": "张同学",
+  "age": 39,
+  "arr": [1, 2, 3, 4]
+}
+```
+
+### JSON.parse()
+
+使用 `JSON.parse()` 方法可以将 JSON 对象转换为对象
+
+```js
+const json = `{"name":"张同学","age":39,"arr":[1,2,3,4]}`
+console.log(JSON.parse(json))
+
+// {name: '张同学', age: 39, arr: Array(4)}
 ```
 
 ## 一元运算符
