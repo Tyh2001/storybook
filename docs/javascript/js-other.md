@@ -1341,3 +1341,56 @@ const request = {
 request.setToken = '12121dadasdada'
 console.log(request.getToken)
 ```
+
+## XMLHttpRequest
+
+创建方式
+
+```js
+ const xhr = new XMLHttpRequest()
+```
+
+### open()
+
+XHR 对象首先调用 `open` 方法，接受三个参数，请求类型，请求URL，是否为异步
+
+```js
+const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+xhr.open('get', url, false)
+```
+
+### send()
+
+要发送定义好的请求需要使用 `send` 方法
+
+```js
+const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+xhr.open('get', url, false)
+xhr.send(null)
+```
+
+`send` 可以作为请求体发送数据，**如果不需要传入请求体，则必须传入 null**
+
+### status
+
+响应的HTTP 状态
+
+```js
+const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+xhr.open('get', url, false)
+xhr.send(null)
+console.log(xhr.status)
+```
+
+### statusText
+
+响应的HTTP 状态描述
+
+```js
+const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+xhr.open('get', url, false)
+xhr.send(null)
+console.log(xhr.status)
+console.log(xhr.statusText)
+```
+
