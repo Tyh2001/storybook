@@ -1347,15 +1347,16 @@ console.log(request.getToken)
 创建方式
 
 ```js
- const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest()
 ```
 
 ### open()
 
-XHR 对象首先调用 `open` 方法，接受三个参数，请求类型，请求URL，是否为异步
+XHR 对象首先调用 `open` 方法，接受三个参数，请求类型，请求 URL，是否为异步
 
 ```js
-const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+const url =
+  'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
 xhr.open('get', url, false)
 ```
 
@@ -1364,7 +1365,8 @@ xhr.open('get', url, false)
 要发送定义好的请求需要使用 `send` 方法
 
 ```js
-const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+const url =
+  'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
 xhr.open('get', url, false)
 xhr.send(null)
 ```
@@ -1373,10 +1375,11 @@ xhr.send(null)
 
 ### status
 
-响应的HTTP 状态
+响应的 HTTP 状态
 
 ```js
-const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+const url =
+  'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
 xhr.open('get', url, false)
 xhr.send(null)
 console.log(xhr.status)
@@ -1384,13 +1387,26 @@ console.log(xhr.status)
 
 ### statusText
 
-响应的HTTP 状态描述
+响应的 HTTP 状态描述
 
 ```js
-const url = 'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
+const url =
+  'https://infinitymcn.com/web/0705_renova_list/back_end/Renova_List/public/index.php/backstage/color/color'
 xhr.open('get', url, false)
 xhr.send(null)
 console.log(xhr.status)
 console.log(xhr.statusText)
 ```
 
+## FormDate 类型
+
+创建一个 formdata
+
+```js
+const fd = new FormData()
+fd.append('name', 'data')
+```
+
+` append` 方法接收两个参数 键和值
+
+使用 FormDate 就不需要给 xhr 对象设置响应头了，因为 xhr 对象可以识别作为 FormDate 实例传入的数据类型并自动配置响应头
