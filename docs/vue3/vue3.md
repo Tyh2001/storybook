@@ -449,8 +449,8 @@ import { getCurrentInstance } from 'vue'
 export default {
   setup() {
     const { proxy } = getCurrentInstance()
-    console.log(proxy.$root.$route)
-    console.log(proxy.$root.$router)
+    console.log(proxy.$route)
+    console.log(proxy.$router)
   },
 }
 ```
