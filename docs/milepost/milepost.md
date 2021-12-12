@@ -81,3 +81,10 @@ change()
 今天学到了 XMLHttpRequest ，大概了解了 axios 内部的原理
 
 ## 2021-12-11
+
+今日更新了 Table 表格组件，还算很完美，自己还是很满意的，[请点击这里查看](https://tianyuhao.icu/tyhui/v3/#/component/table)
+
+## 2021-12-12
+
+- 今天双 12 买了一本`http权威指南的书`
+- 总感觉现在看 `javascript权威指南`有点进入瓶颈期了，目前学起来有点小难度。。
