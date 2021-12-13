@@ -185,3 +185,16 @@ export default defineConfig({
   plugins: [vue(), visualizer()],
 })
 ```
+
+## Github 提交代码不增加小绿格怎么办
+
+事情是这样的，我在公司和在家里都会往 GIthub 上提交代码，但是大多数时间都是在公司提交，但是在公司提交就不会增加首页下方小绿格的贡献度数量，后来发现公司电脑的邮箱不是 Github 绑定的邮箱才导致的，所以解决方案是
+
+修改全局默认的用户名和邮箱
+
+```shell
+git config --global user.name 'xxxxx'
+git config --global user.email 'xxxxx@qq.com'
+```
+
+这样修改之后再提交就会增加贡献度和下方小绿格了。
