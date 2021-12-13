@@ -43,8 +43,6 @@ JavaScript 中一切区分大小写，无论变量函数，比如 `text` 和 `Te
 
 #### 3.1.4 严格模式
 
-
-
 ## 第四章：变量 作用域与内存
 
 ## 第五章：基本引用类型
@@ -87,6 +85,30 @@ JavaScript 中一切区分大小写，无论变量函数，比如 `text` 和 `Te
 
 ## 第二十四章：网络请求与远程资源
 
+### 21.1 XMLHttpRequest 对象
+
+可以通过 `XMLHttpRequest` 构造函数创建 `XHR` 对象
+
+```js
+const xhr = new XMLHttpRequest()
+```
+
+### 21.1.1 使用 XHR
+
+使用 XHR 对象要调用 `open` 方法，接收三个参数，请求类型，请求 URL，是否异步的布尔值
+
+```js
+const xhr = new XMLHttpRequest()
+xhr.open('get', './text.php', false)
+```
+调用 `open` 不会实际发送请求，而是为发生请求做准备，想要发送请求需要调用 `send` 方法，它接收一个参数，是作为请求体发送的数据，如果没有则传入 `null`。
+
+```js
+const xhr = new XMLHttpRequest()
+xhr.open('get', './text.php', false)
+xhr.send(null)
+```
+
 ## 第二十五章：客户端存储
 
 ## 第二十六章：模块
@@ -94,7 +116,4 @@ JavaScript 中一切区分大小写，无论变量函数，比如 `text` 和 `Te
 ## 第二十七章：工作者线程
 
 ## 第二十八章：最佳实践
-
-```
-
-```
+````
