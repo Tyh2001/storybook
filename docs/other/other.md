@@ -134,6 +134,7 @@ jobs:
 | 命令                      | 简要说明                       |
 | ------------------------- | ------------------------------ |
 | git clone 仓库地址        | 克隆版本库                     |
+| git status                | 查看状态                       |
 | git add .                 | 添加至暂存区                   |
 | git commit -m '说明'      | 提交并添加说明                 |
 | git push -u origin master | 推送至远程仓库 master 分支     |
