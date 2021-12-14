@@ -219,7 +219,7 @@ Promise 对象用于表示一个异步函数操作的最终完成（或失败）
 
 Promise 是异步编程的一种解决方案：从语法上讲，promise 是一个对象，从它可以获取异步操作的消息。
 
-Promise 有三种状态：**pending（等待态），fulfiled（成功态），rejected（失败态）**
+Promise 有三种状态：**pending（等待态），fulfilled（成功态），rejected（失败态）**
 
 使用 `Promise.then()` 可以通过一个回调函数来获取异步请求成功的数据
 
@@ -237,7 +237,7 @@ console.log(pro)
 
 ## async 是什么
 
-通过`async`+`await` 我们就可以像写同步代码一样来写异步代码了，就不需要再套回调函数了
+通过 `async` + `await` 我们就可以像写同步代码一样来写异步代码了，就不需要再套回调函数了
 
 只要是函数 就可以被标记为 async，async 函数最终的返回值都会返回一个 Promise 对象，如果返回值不是一个 Promise 对象，则将返回值包装到 Promise 中，如果返回值就是一个 Promise 对象，则不作任何处理。
 

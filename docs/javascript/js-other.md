@@ -1407,7 +1407,7 @@ const fd = new FormData()
 fd.append('name', 'data')
 ```
 
-` append` 方法接收两个参数 键和值
+`append` 方法接收两个参数 键和值
 
 使用 FormDate 就不需要给 xhr 对象设置响应头了，因为 xhr 对象可以识别作为 FormDate 实例传入的数据类型并自动配置响应头
 
@@ -1441,3 +1441,34 @@ console.log(arr_.next()) // {value: 5, done: false}
 console.log(arr_.next()) // {value: 5, done: false}
 console.log(arr_.next()) // {value: undefined, done: true}
 ```
+
+## Promise
+
+`Promise` 是一个构造函数，可以通过 `new` 关键字来创建
+
+```js
+const p = new Promise()
+```
+
+`Promise` 有三种状态，分别是：**pending（等待态），fulfilled（成功态），rejected（失败态）**
+那么怎么在三种状态中切换呢，如下
+
+```js
+const p1 = new Promise((resolve, reject) => {})
+console.log(p1) // pending
+
+const p2 = new Promise((resolve, reject) => {
+  resolve()
+})
+console.log(p2) // pending -> fulfilled
+
+const p3 = new Promise((resolve, reject) => {
+  reject()
+})
+console.log(p3) // pending -> rejected
+```
+
+通过调用不同的函数可以改变 `Promise` 的状态
+
+> pending 状态的 Promise 不会触发 then 和 catch 方法
+> 成功状态会执行 then 里的草错，失败会执行 catch 里的操作
