@@ -939,61 +939,6 @@ window.history.forward() // 返回下一个 url
 window.history.go() // 返回某个具体页面
 ```
 
-## Object.defineProperty() 方法
-
-> Object.defineProperty 是什么？
-
-`Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象：
-
-```js
-const XiaoMing = {}
-Object.defineProperty(XiaoMing, 'name', {
-  value: '小明',
-})
-console.log(XiaoMing)
-
-// {name: "小明"}
-```
-
-这个函数中需要传递三个参数：
-
-1. 需要添加属性的对象名称
-2. 需要给对象添加的属性名称
-3. 第三个参数为一个对象，里面包含 `value` 是要添加的属性值
-
-但是这样添加的属性值默认是不能被**修改、删除、遍历**的，那么在严格模式下，修改属性值就会报错（非严格模式不会报错）：
-
-```js
-'use strict'
-const XiaoMing = {}
-Object.defineProperty(XiaoMing, 'name', {
-  value: '小明',
-})
-XiaoMing.name = 'Ming'
-console.log(XiaoMing)
-```
-
-报错内容为：
-
-```shell
-demo6.html:41 Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
-// 无法分配给对象“#<object>”的只读属性“name”
-```
-
-我们可以在第三个参数的对象中配置属性来改变状态，下面仅列举出一些常用属性：
-
-```js
-const XiaoMing = {}
-Object.defineProperty(XiaoMing, 'name', {
-  configurable: true, // 是否可以删除属性
-  writable: true, // 是否可以修改
-  enumerable: true,
-  value: '小明',
-})
-```
-
-更多详细信息参考 MDN 文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
-
 ## typeof 和 instanceof
 
 `typeof`可以判断一个变量是原始类型中的那种类型，但是在下面情况中，就会显得不那么的友好：
@@ -1472,3 +1417,30 @@ console.log(p3) // pending -> rejected
 
 > pending 状态的 Promise 不会触发 then 和 catch 方法
 > 成功状态会执行 then 里的草错，失败会执行 catch 里的操作
+
+## Object.defineProperty()
+
+`Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象
+它接收了三个参数：
+
+- 要给其添加属性的对象
+- 属性的名称
+- 描述对象
+
+```js
+const user = {
+  name: '张同学',
+  age: 38,
+}
+
+Object.defineProperty(user, 'friend', {
+  configurable: true, // 是否可以通过 delete 删除
+  enumerable: true, // 是否可以循环
+  writable: true, // 是否可以修改
+  value: [1, 2, 3, 4], // 添加的值
+})
+
+console.log(user) // {name: '张同学', age: 38, friend: Array(4)}
+```
+
+更多详细信息参考 MDN 文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
