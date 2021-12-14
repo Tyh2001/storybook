@@ -2,6 +2,8 @@
 
 ## 冒泡排序
 
+基础算法
+
 ```js
 const arr = [30, 42, 12, 4, 13, 54, 13, 11]
 
@@ -20,6 +22,14 @@ function BubblingSort(arr) {
 }
 
 console.log(BubblingSort(arr))
+```
+
+ES6 新增 `sort()` 方法
+
+```js
+const arr = [30, 42, 12, 4, 13, 54, 13, 11]
+const res = arr.sort((a, b) => a - b)
+console.log(res)
 ```
 
 ## 求 n 个自然数的和
