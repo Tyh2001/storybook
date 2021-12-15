@@ -1443,4 +1443,70 @@ Object.defineProperty(user, 'friend', {
 console.log(user) // {name: '张同学', age: 38, friend: Array(4)}
 ```
 
-更多详细信息参考 MDN 文档：[Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+## Object.defineProperties()
+
+`Object.defineProperties()` 方法和 `Object.defineProperty()` 方法有点类似，`Object.defineProperty()` 只是可以在对象上定义一个属性，而 `Object.defineProperties()` 则可以定义多个
+
+```js
+const obj = {}
+
+Object.defineProperties(obj, {
+  name: {
+    value: '张同学',
+    configurable: true,
+  },
+  age: {
+    value: 12,
+  },
+})
+
+console.log(obj) // {name: '张同学', age: 12}
+```
+
+## Object.assign()
+
+`Object.assign()` 可以将对象进行合并，它接收一个目标对象和一个或多个源对象作为参数进行合并
+
+```js
+const obj1 = { a: 1 }
+const obj2 = { b: 2 }
+
+Object.assign(obj1, obj2, { c: 12121 })
+
+console.log(obj1) // {a: 1, b: 2, c: 12121}
+```
+
+如果源对象上有很多相同的属性，那么后面的属性会覆盖前面的属性
+
+```js
+const obj1 = { a: 1 }
+Object.assign(obj1, { a: 12, b: 99 }, { b: 21 })
+
+console.log(obj1) // {a: 12, b: 21}
+```
+
+## Object.is()
+
+`Object.is()` 和 `===` 有点相似
+
+```js
+console.log(true === 1) // false
+console.log({} === {}) // false
+```
+
+但是有些情况下就会出乎我们的意料
+
+```js
+console.log(+0 === -0) // true
+console.log(+0 === 0) // true
+console.log(-0 === 0) // true
+```
+
+为了改善这种情况，ES6 新增了 `Object.is()`，可以接收两个参数
+
+```js
+console.log(Object.is({}, {})) // false
+console.log(Object.is(+0, -0)) // false
+console.log(Object.is([], [])) // false
+console.log(Object.is('1', 1)) // false
+```
