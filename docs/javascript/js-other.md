@@ -1582,3 +1582,17 @@ console.log(Object.is(+0, -0)) // false
 console.log(Object.is([], [])) // false
 console.log(Object.is('1', 1)) // false
 ```
+
+## Object.getPrototypeOf()
+
+用于获取对象的原型，这是标准的方法，`__proto__` 本来就是浏览器实现的，所以不是规范的写法，虽然 `__proto__` 和 `Object.getPrototypeOf()` 方法都可以正常工作，不过建议使用 `Object.getPrototypeOf()`
+
+```js
+const obj = {}
+
+console.log(obj.__proto__) // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+
+console.log(Object.getPrototypeOf(obj)) // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+```
+
+> 不过现在主流的浏览器都已经更新了，对象中不再存在 `__proto__` 属性，而是改为了 `[[Prototype]]`

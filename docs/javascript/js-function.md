@@ -599,8 +599,26 @@ const obj = new Object()
 ```js
 const num = new Number(123)
 const str = new String('哈哈哈')
-console.log(num.valueOf())
-console.log(str.valueOf())
+console.log(num.valueOf()) // 123
+console.log(str.valueOf()) // 哈哈哈
+```
+
+### 原型模式
+
+每个函数都会创建一个 `prototype` 属性，这是一个对象，这个对象就是通过构造函数创建出来的对象的原型，使用原型定义的好处是，在它上面定义的属性和方法可以被对象实例共享：
+
+```js
+function User(name, age) {}
+
+User.prototype.name = '张同学'
+User.prototype.age = 38
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+const user = new User()
+
+console.log(user.name) // 张同学
 ```
 
 ### 构造函数闭包
