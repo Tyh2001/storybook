@@ -118,7 +118,9 @@ console.log(JSON.parse(json))
 // {name: '张同学', age: 39, arr: Array(4)}
 ```
 
-## 一元运算符
+## 运算符
+
+### 一元运算符
 
 关于 a++ 和 ++a 的问题
 
@@ -153,6 +155,76 @@ console.log(a + b++)
 // b++ 是在 算完 b + a 只后再自增的 所以再打印 b 就是5了
 console.log(b)
 ```
+
+### 逻辑运算符
+
+#### 逻辑与 &&
+
+用于检查所有值（通常值为条件）是否为真。
+
+它将返回第一个值 false，否则返回最终值。
+
+```js
+const isTrue = true
+const isFalse = false
+
+console.log(isFalse && isTrue) // false
+console.log(isTrue && isFalse) // false
+
+const toto = 5 && 3 && 1
+console.log(toto) // 1
+
+const tutu = 5 && 0 && 2
+console.log(tutu) // 0
+```
+
+#### 逻辑或 ||
+
+用于检查一组值中的一个值（通常值是条件）是否为真。
+
+它将返回第一个值 true，否则返回最终值。
+
+```js
+const isTrue = true
+const isFalse = false
+
+console.log(isFalse || isTrue) // true
+console.log(isTrue || isFalse) // true
+
+const toto = 5 || 3 || 1
+console.log(toto) // 5
+
+const tutu = 0 || 5 || 2
+console.log(tutu) // 5
+```
+
+#### 逻辑空 ??
+
+当其左侧操作数为 null 或 undefined （空值）时，返回其右侧操作数。
+
+```js
+console.log(null ?? 12) // 12
+console.log(undefined ?? 12) // 12
+console.log(55 ?? 12) // 55
+console.log(55 ?? null) // 55
+console.log(55 ?? undefined) // 55
+```
+
+> 注意：??运算符与||不同，因此当你需要根据其他值来赋值时，应该选择正确的运算符！
+
+```js
+const toto = 0 || 55 // 0 为false 所以是55
+const titi = 0 ?? 55 // 0不是null或者undefined，所以是0
+
+const tutu = undefined || 55 // undefined 为false，所以是55
+const tata = undefined ?? 55 // 第一个是undefined，所以是55
+```
+
+### 位运算符
+
+#### 按位与 &
+
+#### 按位或 |
 
 ## 关于 switch 语句
 
