@@ -1192,108 +1192,6 @@ document.body.className = 'body2'
 
 调用`disconnect ` 函数之后，不仅会停止事件后的回调，也会抛弃之前的回调
 
-## Object.entries()
-
-`Object.entries` 方法可以将对象中的每个键和值转换为数组形式，**返回一个给定对象自身可枚举属性的键值对数组**
-
-```js
-const obj = {
-  name: '张同学',
-  age: 39,
-}
-
-for (const item of Object.entries(obj)) {
-  console.log(item)
-}
-// ['name', '张同学']
-// ['age', 39]
-```
-
-## Object.getOwnPropertyDescriptor()
-
-`Object.getOwnPropertyDescriptor()` 方法可以得到对象属性特征的描述，接收两个参数，第一个是对象名，第二个是对象的属性名
-
-```js
-const obj = {
-  name: '张三',
-  age: 21,
-}
-
-console.log(Object.getOwnPropertyDescriptor(obj, 'name'))
-// {value: '张三', writable: true, enumerable: true, configurable: true}
-
-// value - 属性值
-// writable - 是否可以修改
-// enumerable - 是否可以遍历
-// configurable - 是否可以被删除或重新配置
-```
-
-## Object.getOwnPropertyDescriptors()
-
-上面 `Object.getOwnPropertyDescriptor()` 方法可以获取对象中单个键的属性特征描述，那么想要获取对象中所有属性的描述，需要使用 `Object.getOwnPropertyDescriptors()` 方法，该方法接收一个参数为对象名
-
-```js
-const obj = {
-  name: '张三',
-  age: 21,
-}
-
-console.log(Object.getOwnPropertyDescriptors(obj))
-
-// {name: {…}, age: {…}, arr: {…}}
-```
-
-## Object.preventExtensions()
-
-`Object.preventExtensions()` 方法可以禁止向对象内添加内容
-
-```js
-const obj = {
-  name: '张三',
-  age: 21,
-}
-
-Object.preventExtensions(obj)
-obj.a = '1'
-console.log(obj) // {name: '张三', age: 21}
-```
-
-## Object.seal()
-
-封闭对象，**configurable = false**不可以被删除或重新配置
-
-可以使用 `Object.isSealed()` 方法判断当前对象是否处于封闭状态，返回布尔值
-
-```js
-const obj = {
-  name: '张三',
-  age: 21,
-}
-
-Object.seal(obj)
-// 封闭对象，configurable = false
-
-console.log(Object.isSealed(obj)) // true
-```
-
-## Object.freeze()
-
-冻结对象，不能删除或重新配置，也不可以修改
-
-可以使用 `Object.isFrozen()` 方法判断当前对象是否处于冻结状态，返回布尔值
-
-```js
-const obj = {
-  name: '张三',
-  age: 21,
-}
-
-Object.freeze(obj)
-// 冻结对象，configurable = false，writable = false
-
-console.log(Object.isFrozen(obj)) // true
-```
-
 ## 访问器保护数据
 
 在正常对象中，对象中的属性我们是可以随意设置和更改的，但是有些时候并不希望某些值被设置了不可控的值，比如：
@@ -1596,3 +1494,105 @@ console.log(Object.getPrototypeOf(obj)) // {constructor: ƒ, __defineGetter__: �
 ```
 
 > 不过现在主流的浏览器都已经更新了，对象中不再存在 `__proto__` 属性，而是改为了 `[[Prototype]]`
+
+## Object.entries()
+
+`Object.entries` 方法可以将对象中的每个键和值转换为数组形式，**返回一个给定对象自身可枚举属性的键值对数组**
+
+```js
+const obj = {
+  name: '张同学',
+  age: 39,
+}
+
+for (const item of Object.entries(obj)) {
+  console.log(item)
+}
+// ['name', '张同学']
+// ['age', 39]
+```
+
+## Object.getOwnPropertyDescriptor()
+
+`Object.getOwnPropertyDescriptor()` 方法可以得到对象属性特征的描述，接收两个参数，第一个是对象名，第二个是对象的属性名
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+console.log(Object.getOwnPropertyDescriptor(obj, 'name'))
+// {value: '张三', writable: true, enumerable: true, configurable: true}
+
+// value - 属性值
+// writable - 是否可以修改
+// enumerable - 是否可以遍历
+// configurable - 是否可以被删除或重新配置
+```
+
+## Object.getOwnPropertyDescriptors()
+
+上面 `Object.getOwnPropertyDescriptor()` 方法可以获取对象中单个键的属性特征描述，那么想要获取对象中所有属性的描述，需要使用 `Object.getOwnPropertyDescriptors()` 方法，该方法接收一个参数为对象名
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+console.log(Object.getOwnPropertyDescriptors(obj))
+
+// {name: {…}, age: {…}, arr: {…}}
+```
+
+## Object.preventExtensions()
+
+`Object.preventExtensions()` 方法可以禁止向对象内添加内容
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.preventExtensions(obj)
+obj.a = '1'
+console.log(obj) // {name: '张三', age: 21}
+```
+
+## Object.seal()
+
+封闭对象，**configurable = false**不可以被删除或重新配置
+
+可以使用 `Object.isSealed()` 方法判断当前对象是否处于封闭状态，返回布尔值
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.seal(obj)
+// 封闭对象，configurable = false
+
+console.log(Object.isSealed(obj)) // true
+```
+
+## Object.freeze()
+
+冻结对象，不能删除或重新配置，也不可以修改
+
+可以使用 `Object.isFrozen()` 方法判断当前对象是否处于冻结状态，返回布尔值
+
+```js
+const obj = {
+  name: '张三',
+  age: 21,
+}
+
+Object.freeze(obj)
+// 冻结对象，configurable = false，writable = false
+
+console.log(Object.isFrozen(obj)) // true
+```
