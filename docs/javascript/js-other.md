@@ -1818,3 +1818,58 @@ console.log(Object.getPrototypeOf(User.prototype) === Object.prototype) // true
 详情见下图
 
 <img src="./images/prototype_2.jpg" alt="image"  />
+
+所以：
+
+```js
+const arr = []
+console.log(Object.getPrototypeOf(arr) === Array.prototype) // true
+
+const str = ''
+console.log(Object.getPrototypeOf(str) === String.prototype) // true
+
+const bool = true
+console.log(Object.getPrototypeOf(bool) === Boolean.prototype) // true
+
+const num = 123
+console.log(Object.getPrototypeOf(num) === Number.prototype) // true
+
+const reg = /123/
+console.log(Object.getPrototypeOf(reg) === RegExp.prototype) // true
+```
+
+### 设置原型
+
+比如下面有两个对象：我想把 `obj1` 原型的父级改为 `obj2`，那么就可以使用 `Object.setPrototypeOf()` 方法进行改变，接收两个参数，一个是需要改变的对象，和指定父级的对象
+
+```js
+const obj1 = { name: 'obj1' }
+const obj2 = { name: 'obj2' }
+Object.setPrototypeOf(obj1, obj2)
+```
+
+打印结果：
+
+```shell
+Object
+  name: "obj1"
+  [[Prototype]]: Object
+    name: "obj2"
+    [[Prototype]]: Object
+    constructor: ƒ Object()
+    hasOwnProperty: ƒ hasOwnProperty()
+    isPrototypeOf: ƒ isPrototypeOf()
+    propertyIsEnumerable: ƒ propertyIsEnumerable()
+    toLocaleString: ƒ toLocaleString()
+    toString: ƒ toString()
+    valueOf: ƒ valueOf()
+    __defineGetter__: ƒ __defineGetter__()
+    __defineSetter__: ƒ __defineSetter__()
+    __lookupGetter__: ƒ __lookupGetter__()
+    __lookupSetter__: ƒ __lookupSetter__()
+    __proto__: Object
+    get __proto__: ƒ __proto__()
+    set __proto__: ƒ __proto__()
+```
+
+那么这时候 `obj1` 的父级就是 `obj2` 了
