@@ -1596,3 +1596,110 @@ Object.freeze(obj)
 
 console.log(Object.isFrozen(obj)) // true
 ```
+
+## 原型和原型链
+
+对象和函数都是有原型的
+
+**对象**
+
+```js
+const user = {}
+console.dir(user)
+```
+
+打印结果，其中 `[[Prototype]]` 就是对象的原型
+
+```shell
+Object
+  [[Prototype]]: Object
+```
+
+想要获取到对象的原型可以使用 `__porto__` 来获取到
+
+```js
+const user = {}
+console.dir(user.__proto__)
+```
+
+打印结果：
+
+```shell
+Object
+  constructor: ƒ Object()
+  hasOwnProperty: ƒ hasOwnProperty()
+  isPrototypeOf: ƒ isPrototypeOf()
+  propertyIsEnumerable: ƒ propertyIsEnumerable()
+  toLocaleString: ƒ toLocaleString()
+  toString: ƒ toString()
+  valueOf: ƒ valueOf()
+  __defineGetter__: ƒ __defineGetter__()
+  __defineSetter__: ƒ __defineSetter__()
+  __lookupGetter__: ƒ __lookupGetter__()
+  __lookupSetter__: ƒ __lookupSetter__()
+  __proto__: null
+  get __proto__: ƒ __proto__()
+  set __proto__: ƒ __proto__()
+```
+
+**函数**
+
+```js
+function User() {} // 创建构造函数
+console.dir(User)
+```
+
+打印结果，
+
+```shell
+ƒ User()
+  arguments: null
+  caller: null
+  length: 0
+  name: "User"
+  prototype: {constructor: ƒ}
+  [[FunctionLocation]]: 1.html:14
+  [[Prototype]]: ƒ ()
+  [[Scopes]]: Scopes[2]
+```
+
+函数是有两个原型的，一个 `prototype` 一个 `[[Prototype]]`，函数自带的方法，如 apply、bind 等方法都存在于 `[[Prototype]]` 上面
+
+想要获取到函数的原型可以使用 `__porto__` 和 `prototype` 来获取到
+
+```js
+function User() {}
+console.dir(User.__proto__)
+console.dir(User.prototype)
+```
+
+`__proto__` 打印结果 ：
+
+```shell
+ƒ anonymous()
+  apply: ƒ apply()
+  arguments: (...)
+  bind: ƒ bind()
+  call: ƒ call()
+  caller: (...)
+  constructor: ƒ Function()
+  length: 0
+  name: ""
+  toString: ƒ toString()
+  Symbol(Symbol.hasInstance): ƒ [Symbol.hasInstance]()
+  get arguments: ƒ ()
+  set arguments: ƒ ()
+  get caller: ƒ ()
+  set caller: ƒ ()
+  [[FunctionLocation]]: ​
+  [[Prototype]]: Object
+  [[Scopes]]: Scopes[0]
+```
+
+`prototype` 打印结果：
+
+```shell
+Object
+  constructor: ƒ User()
+  [[Prototype]]: Object
+```
