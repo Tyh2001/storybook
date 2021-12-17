@@ -1815,4 +1815,6 @@ console.log(Object.getPrototypeOf(User.prototype) === Object.prototype) // true
 
 所以 `Object` 就是原型链的顶级原型了
 
+详情见下图
+
 <img src="./images/prototype_2.jpg" alt="image"  />

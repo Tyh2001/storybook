@@ -104,3 +104,18 @@ change()
 ## 2021-12-16
 
 最近在学习 js 的构造函数和原型，感觉不错，继续加油～～
+
+## 2021-12-17
+
+最近今天将 js 的原型好好了解了一下，我记得在半年前，看了相同的视频学习结果什么都不懂，那么最近参考红宝书和当年没有看懂的视频，这样结合研究了好久，自己也手绘了原型链的关系图，放在这里记录一下吧
+
+手绘版本：
+
+<img src="./images/prototype.jpg">
+
+后来又使用思维导图画了一版：
+
+<img src="../javascript/images/prototype_1.jpg">
+<img src="../javascript/images/prototype_2.jpg">
+
+记录的笔记在这里[原型链](http://tianyuhao.icu/blog/javascript/js-other.html#原型和原型链)
