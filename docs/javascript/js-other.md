@@ -1759,8 +1759,60 @@ console.log(User.prototype === Object.getPrototypeOf(obj)) // true
 
 使用两种方式来判断，结果都为 `true`
 
-由此得出结论：**函数上的 prototype 原型和对象的原型是共享的一个原型**
+由此得出结论：**函数上的 prototype 原型和构造函数对象的原型是共享的一个原型**
 
 详情见下图
 
 <img src="./images/prototype_1.jpg" alt="image"  />
+
+### 顶级原型
+
+上面知道了：**函数上的 prototype 原型和构造函数对象的原型是共享的一个原型**，那么构造函数上面的原型是什么呢？
+
+下面例子中，先早 `Object` 上定义了一个 `say` 方法，之后又创建了一个构造函数 `User`，接下来打印 `User`
+
+接下来依次打开 `User/prototype/[[Prototype]]`
+
+```shell
+ƒ User()
+  arguments: null
+  caller: null
+  length: 0
+  name: "User"
+  prototype: {constructor: ƒ}
+    constructor: ƒ User()
+    [[Prototype]]: Object
+      say: ƒ ()
+      constructor: ƒ Object()
+      hasOwnProperty: ƒ hasOwnProperty()
+      isPrototypeOf: ƒ isPrototypeOf()
+      propertyIsEnumerable: ƒ propertyIsEnumerable()
+      toLocaleString: ƒ toLocaleString()
+      toString: ƒ toString()
+      valueOf: ƒ valueOf()
+      __defineGetter__: ƒ __defineGetter__()
+      __defineSetter__: ƒ __defineSetter__()
+      __lookupGetter__: ƒ __lookupGetter__()
+      __lookupSetter__: ƒ __lookupSetter__()
+      __proto__: (...)
+      get __proto__: ƒ __proto__()
+      set __proto__: ƒ __proto__()
+  [[FunctionLocation]]: 1.html:21
+  [[Prototype]]: ƒ ()
+  [[Scopes]]: Scopes[1]
+```
+
+打开后发现，构造函数 `prototype` 的原型中的原型 `[[prototype]]` 中存在由 `Object` 上定义的 `say` 方法
+
+那么就进行检测一下：
+
+```js
+console.log(User.prototype.__proto__ === Object.prototype) // true
+console.log(Object.getPrototypeOf(User.prototype) === Object.prototype) // true
+```
+
+结果是：**构造函数上的 prototype 中 `[[prototype]]` 的原型和对象的 prototype 原型是共享的一个原型**
+
+所以 `Object` 就是原型链的顶级原型了
+
+<img src="./images/prototype_2.jpg" alt="image"  />

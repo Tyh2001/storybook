@@ -25,7 +25,7 @@ TTL：默认即可
 注意：
 记录值必须是**你的 Github 用户名 + github.io**，否则域名会设置不生效
 详细设置参数请参考阿里云官方说明
-<img src="https://www.hualigs.cn/image/60f68ac87cea3.jpg" alt="image" style="zoom:50%;" />
+<img src="./images/github_1.png" alt="image" style="zoom:50%;" />
 
 ### 添加 CNAME 文件
 
@@ -37,27 +37,27 @@ TTL：默认即可
 ### 生成 GitHub 访问令牌
 
 1. 点击用户设置
-   <img src="https://www.hualigs.cn/image/60f68ac8ae7d8.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_2.png" alt="image" style="zoom:50%;" />
 2. 选择 Developer settings
-   <img src="https://www.hualigs.cn/image/60f68ac8ac890.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_3.png" alt="image" style="zoom:50%;" />
 3. 选择 `Personal access tokens` → `Generate new token`
-   <img src="https://www.hualigs.cn/image/60f68ac89e626.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_4.png" alt="image" style="zoom:50%;" />
 4. 给 `Token`设置一个名字，不能是中文
    再选中 `repo`和 `workflow`之后拉到最下面进生成 Token
-   <img src="https://www.hualigs.cn/image/60f68ac8a7de9.jpg" alt="image" style="zoom:50%;" />
-   <img src="https://www.hualigs.cn/image/60f68ac89a2b1.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_5.png" alt="image" style="zoom:50%;" />
+   <img src="./images/github_6.png" alt="image" style="zoom:50%;" />
 5. 生成时候会显示出 Token 但是 Token 只显示一次！需要复制保存处理！
    如果 Token 没有保存后丢失，请重新上述步骤进行重新生成！
-   <img src="https://www.hualigs.cn/image/60f68ac8a8b85.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_7.png" alt="image" style="zoom:50%;" />
 6. 创建远程仓库
    此处省略创建仓库步骤，创建完成之后暂时不要提交代码！
 7. 在远程仓库中设置，将 GitHub 访问令牌添加到远程仓库的 secrets 中
-   <img src="https://www.hualigs.cn/image/60f68ac8acc30.jpg" alt="image" style="zoom:50%;" />
-   <img src="https://www.hualigs.cn/image/60f68ac887d34.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_8.png" alt="image" style="zoom:50%;" />
+   <img src="./images/github_9.png" alt="image" style="zoom:50%;" />
    Name：`ACCESS_TOKEN`（必须是这个名字）
    Value: `之前生成的 GitHub 访问令牌`
    设置完成之后进行添加，添加完成效果如下：
-   <img src="https://www.hualigs.cn/image/60f68ac8a2ef7.jpg" alt="image" style="zoom:50%;" />
+   <img src="./images/github_10.png" alt="image" style="zoom:50%;" />
    这样就添加成功了！！！
 
 ### 添加配置文件
@@ -116,13 +116,13 @@ jobs:
 上传远程仓库后 Github 会帮助我们自动部署
 部署会有一个打包的过程，时间不会太长，等待一下即可
 下面是查看部署的状态
-<img src="https://www.hualigs.cn/image/60f68ac8b4794.jpg" alt="image" style="zoom:50%;" />
-<img src="https://www.hualigs.cn/image/60f68ac8a3db0.jpg" alt="image" style="zoom:50%;" />
-<img src="https://www.hualigs.cn/image/60f68ac8b0eb3.jpg" alt="image" style="zoom:50%;" />
+<img src="./images/github_11.png" alt="image" style="zoom:50%;" />
+<img src="./images/github_12.png" alt="image" style="zoom:50%;" />
+<img src="./images/github_13.png" alt="image" style="zoom:50%;" />
 当所有选项都打上勾之后就代表部署完成了
 我们可以通过仓库设置下面来查看部署状态：
-<img src="https://www.hualigs.cn/image/60f68ac8b354c.jpg" alt="image" style="zoom:50%;" />
-<img src="https://www.hualigs.cn/image/60f68ac8b0faa.jpg" alt="image" style="zoom:50%;" />
+<img src="./images/github_14.png" alt="image" style="zoom:50%;" />
+<img src="./images/github_15.png" alt="image" style="zoom:50%;" />
 找到 GitHub Pages 选项 出现上面对号表示项目已经部署成功，部署的网址就是后面的网址，打开即可部署完成！！！
 
 ### 怎么更新？
