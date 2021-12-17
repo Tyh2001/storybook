@@ -1703,3 +1703,64 @@ Object
   constructor: ƒ User()
   [[Prototype]]: Object
 ```
+
+> 注意：由于浏览器更新原因，在浏览器中打印的是 `Prototype` 和 `[[Prototype]]`。想要获取 `Prototype` 可以直接使用 `xxx.prototype` 获取，但是获取 `[[Prototype]]` 并不能使用 `xxx.[[Prototype]]` 获取，而是使用 `xxx.__proto__` 获取，在新版的 Chrome、Firefox、Edge 等浏览器中均可适用。
+> 虽然 `__proto__` 可以正常获取到原型，但是规范建议使用 `Object.getPrototypeOf()` 方法获取为优
+
+### 原型共享
+
+比如下面例子中，首先创建一个构造函数 `User`，让在 `User` 的原型(prototype)上添加一个 `say` 方法，那么在构造函数创建的对象上同样可以使用
+
+```js
+function User() {}
+
+User.prototype.say = function () {
+  console.log('这是 say 方法')
+}
+
+const obj = new User()
+
+obj.say() // 这是 say 方法
+```
+
+那么这是为什么呢？
+
+下面分别来打印出 `User` 的 `prototype` 和 `obj` 的 `[[prototype]]`
+
+```js
+console.dir(User.prototype)
+console.dir(obj.__proto__)
+```
+
+**User**
+
+```shell
+Object
+  say: ƒ ()
+  constructor: ƒ User()
+  [[Prototype]]: Object
+```
+
+**obj**
+
+```shell
+Object
+  say: ƒ ()
+  constructor: ƒ User()
+  [[Prototype]]: Object
+```
+
+看上去是一样的，可以测试一下是否真的一样：
+
+```js
+console.log(User.prototype === obj.__proto__) // true
+console.log(User.prototype === Object.getPrototypeOf(obj)) // true
+```
+
+使用两种方式来判断，结果都为 `true`
+
+由此得出结论：**函数上的 prototype 原型和对象的原型是共享的一个原型**
+
+详情见下图
+
+<img src="./images/prototype_1.jpg" alt="image"  />
