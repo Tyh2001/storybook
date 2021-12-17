@@ -1873,3 +1873,116 @@ Object
 ```
 
 那么这时候 `obj1` 的父级就是 `obj2` 了
+
+### constructor 属性
+
+```shell
+ƒ User()
+  arguments: null
+  caller: null
+  length: 0
+  name: "User"
+  prototype:
+    constructor: ƒ User()
+    [[Prototype]]: Object
+  [[FunctionLocation]]: 1.html:14
+  [[Prototype]]: ƒ ()
+  [[Scopes]]: Scopes[1]
+```
+
+我们可以发现，构造函数的 `prototype` 原型中，不但有一个 `[[Prototype]]`，而且还有一个 `constructor` 属性，那么 `constructor` 其实指向的就是当前的构造函数，**因为原型就是一个对象，只要是对象就会有原型**，也就是说：不仅可以通过的 `prototype` 找到构造函数的原型，我也可以通过这个原型找到构造函数
+
+那么也就是说：**构造函数原型的 constructor 属性指向的是当前构造函数**
+
+```js
+function User() {}
+
+console.log(User.prototype.constructor === User) // true
+```
+
+那么就同样可以使用 `constructor` 再来创建一个构造函数
+
+```js
+function User(name) {
+  this.name = name
+}
+
+const z = new User('张三')
+const l = new User.prototype.constructor('李四')
+
+console.log(z) // User {name: '张三'}
+console.log(l) // User {name: '李四'}
+```
+
+### 原型添加多个方法
+
+如果想在原型上添加多个属性和方法，可以使用下面方式：
+
+```js
+function User() {}
+
+User.prototype.name = '张同学'
+User.prototype.age = 38
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+```
+
+但是这样的代码不免有些冗余，所以可以使用对象的方式进行添加
+
+```js
+function User() {}
+
+User.prototype = {
+  name: '张同学',
+  age: 38,
+  sayName() {
+    console.log(this.name)
+  },
+}
+
+console.dir(User)
+```
+
+> 但是这样加完之后打开原型会发现一个问题，就是 `constructor` 不见了，所以如果在使用 `new User.prototype.constructor()` 就会报错了
+
+```shell
+ƒ User()
+  arguments: null
+  caller: null
+  length: 0
+  name: "User"
+  prototype:
+    age: 38
+    name: "张同学"
+    sayName: ƒ sayName()
+    [[Prototype]]: Object
+  [[FunctionLocation]]: 1.html:25
+  [[Prototype]]: ƒ ()
+  [[Scopes]]: Scopes[1]
+```
+
+所以我们希望的是，就是改变的原型，也可以通过原型上的 `constructor` 找到当前的构造函数，所以在使用对象往原型上添加属性的时候，一定要记得将 `constructor: User` 添加上去，接下来的 `new User.prototype.constructor()` 才可以正常工作
+
+```js
+function User(name) {
+  this.name = name
+}
+
+User.prototype = {
+  constructor: User,
+  name: '张同学',
+  age: 38,
+  sayName() {
+    console.log(this.name)
+  },
+}
+
+const l = new User.prototype.constructor('李四')
+l.sayName() // 李四
+Object.getPrototypeOf(l).sayName() // 张同学
+```
+
+所以新的原型链结构图如下：
+
+<img src="./images/prototype_3.jpg" alt="image"  />

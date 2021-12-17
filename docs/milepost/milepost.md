@@ -114,8 +114,11 @@ change()
 <img src="./images/prototype.jpg">
 
 后来又使用思维导图画了一版：
-
+第一版：
 <img src="../javascript/images/prototype_1.jpg">
+第二版：
 <img src="../javascript/images/prototype_2.jpg">
+第三版：
+<img src="../javascript/images/prototype_3.jpg">
 
 记录的笔记在这里[原型链](http://tianyuhao.icu/blog/javascript/js-other.html#原型和原型链)
