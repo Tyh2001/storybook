@@ -25,7 +25,7 @@ module.exports = {
         items: [
           { text: '个人网站', link: 'https://tianyuhao.icu' },
           { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
-          { text: '微博', link: 'https://weibo.com/u/7112859998' }
+          { text: '微博', link: 'https://weibo.com/tyh2001' }
         ]
       },
       {
