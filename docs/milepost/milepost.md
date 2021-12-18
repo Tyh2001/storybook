@@ -122,3 +122,9 @@ change()
 <img src="../javascript/images/prototype_3.jpg">
 
 记录的笔记在这里[原型链](http://tianyuhao.icu/blog/javascript/js-other.html#原型和原型链)
+
+## 2021-12-18
+
+今天又是周末，上午收拾了一下家里，下载开始学习～现在时间：下午 14：48
+
+最近一直在学习原型链，感觉是真的学的还不错
