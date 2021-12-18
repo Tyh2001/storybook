@@ -93,12 +93,6 @@ module.exports = {
         sidebarDepth: 2
       },
       {
-        title: '红宝书训练营',
-        path: '/red-treasure-book/red-treasure-book',
-        collapsable: false,
-        sidebarDepth: 2
-      },
-      {
         title: '前端面试题',
         path: '/int-ques/ques-web',
         collapsable: false,
