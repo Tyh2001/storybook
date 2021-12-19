@@ -739,75 +739,6 @@ Referer: http://localhost:8080/
 <meta name="referrer" content="no-referrer" />
 ```
 
-## 浅克隆
-
-当有一个对象时候，我们并不希望直接修改该对象，那么可以将这个对象克隆出来一个进行修改
-
-`浅克隆`只能克隆出对象中基本数据类型的键，比如这里有一个对象：
-
-```js
-const obj = {
-  name: '小明',
-  age: 12,
-}
-```
-
-可以使用 `for in` 来进行克隆，完整写法如下：
-
-```js
-const obj = {
-  name: '小明',
-  age: 12,
-}
-
-function clone(obj) {
-  const newObj = {}
-  for (const key in obj) {
-    newObj[key] = obj[key]
-  }
-  return newObj
-}
-console.log(clone(obj))
-// {name: "小明", age: 12}
-```
-
-## 深克隆
-
-但是当对象中又包含一个对象或者数组，那么引用类型是不能直接被克隆出来的，所以要使用深度克隆了：
-
-最简单的方式是：使用`JSON.stringify()` 和 ` JSON.parse()` 来进行克隆操作，具体如下：
-
-```js
-const obj = {
-  name: '小明',
-  age: 12,
-  arr: [{ name: '小张1' }, { name: '小张2' }, { name: '小张3' }],
-}
-
-const newObj = JSON.parse(JSON.stringify(obj))
-console.log(newObj)
-```
-
-> 上面方法只能对于纯数据类型可以深度克隆，比如对象数组都可以。但是 函数、undefined 就不能进行拷贝了，那么这时候深克隆就出现了问题，所以请参考下面，使用递归函数深度克隆
-
-```js
-function clone(obj) {
-  const newObj = obj instanceof Array ? [] : {}
-  for (const key in obj) {
-    // 不可以直接赋值的 对象、数组 使用递归函数
-    if (obj[key] instanceof Object) {
-      newObj[key] = clone(obj[key])
-    } else {
-      // String、Number、Boolean、undefined、function 可以直接赋值的
-      newObj[key] = obj[key]
-    }
-  }
-  return newObj
-}
-
-console.log(clone(obj))
-```
-
 ## URL.createObjectURL()
 
 该方法多数用于图片预览
@@ -950,31 +881,7 @@ for (const key of Reflect.ownKeys(obj)) {
 
 ## 原生 JS 的一些方法
 
-### getAttribute() 获取一个元素的属性值
 
-```html
-<img src="./src/壁纸.jpg" alt="" />
-
-<script>
-  const img = document.querySelector('img')
-  const res = img.getAttribute('src')
-  console.log(res)
-  // ./src/壁纸.jpg
-</script>
-```
-
-> 该方法仅可有一个参数
-
-### setAttribute() 更改一个元素的属性值
-
-```html
-<img src="./src/壁纸1.jpg" alt="" />
-
-<script>
-  const img = document.querySelector('img')
-  img.setAttribute('src', './src/壁纸2.jpg')
-</script>
-```
 
 > 该方法仅可有两个参数，第一个是要改变的属性，第二个是改变后的值
 
@@ -1039,85 +946,6 @@ console.log(obj instanceof Object)
 
 ## DOM
 
-### childNodes 获取元素中内部的元素
-
-```heml
-<body>
-
-  <button>123</button>
-
-  <ul>
-    <li>哈哈哈</li>
-  </ul>
-  <script>
-    console.log(document.body.childNodes)
-    // NodeList(6) [text, button, text, ul, text, script]
-  </script>
-</body>
-```
-
-> childNodes 得到的结果并不是一个数组，但是它也有 `length` 属性，也可以使用数组的中括号方式通过索引获取里面的元素，使用 `Array.from()` 方法可以转换为真正的数组
-
-### parentNode 获取父级元素
-
-> 仅会获得一个最近的亲父级标签元素
-
-```html
-<ul>
-  <li>哈哈哈</li>
-</ul>
-
-<script>
-  const li = document.querySelector('li')
-  console.log(li.parentNode)
-  // <ul>...</ul>
-</script>
-```
-
-### children 获取子级元素
-
-该方法可以获取到一个标签下的所有子集元素节点
-
-```html
-<ul>
-  <li class="li1">
-    <p>哈哈哈</p>
-    <p>哈哈哈</p>
-    <p>哈哈哈</p>
-  </li>
-  <li class="li2">222</li>
-  <li class="li3">333</li>
-</ul>
-
-<script>
-  const ul = document.querySelector('ul')
-  console.log(ul.children)
-  // 0: li.li1
-  // 1: li.li2
-  // 2: li.li3
-</script>
-```
-
-> 该属性只返回元素节点
-
-### nextElementSibling 获取一个元素的下一个元素
-
-```html
-<p class="title">哈哈哈</p>
-<ul>
-  <li>
-    <p>1</p>
-  </li>
-</ul>
-
-<script>
-  const title = document.querySelector('.title')
-  console.log(title.nextElementSibling)
-  // <ul>...</ul>
-</script>
-```
-
-> 或获得下一个元素及其下一个元素内包含的所有元素
 
 ## MutationObserver 接口
 

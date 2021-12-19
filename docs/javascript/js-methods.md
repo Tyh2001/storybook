@@ -1012,3 +1012,110 @@ console.log(dateFormat(time, 'YYYY年-MM月-DD日'))
 console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 // 2021^4^3 20^41^41
 ```
+
+## DOM 相关
+
+### getAttribute() 获取一个元素的属性值
+
+```html
+<img src="./src/壁纸.jpg" alt="" />
+
+<script>
+  const img = document.querySelector('img')
+  const res = img.getAttribute('src')
+  console.log(res)
+  // ./src/壁纸.jpg
+</script>
+```
+
+> 该方法仅可有一个参数
+
+### setAttribute() 更改一个元素的属性值
+
+```html
+<img src="./src/壁纸1.jpg" alt="" />
+
+<script>
+  const img = document.querySelector('img')
+  img.setAttribute('src', './src/壁纸2.jpg')
+</script>
+```
+
+### childNodes 获取元素中内部的元素
+
+```html
+<body>
+  <button>123</button>
+
+  <ul>
+    <li>哈哈哈</li>
+  </ul>
+  <script>
+    console.log(document.body.childNodes)
+    // NodeList(6) [text, button, text, ul, text, script]
+  </script>
+</body>
+```
+
+> childNodes 得到的结果并不是一个数组，但是它也有 `length` 属性，也可以使用数组的中括号方式通过索引获取里面的元素，使用 `Array.from()` 方法可以转换为真正的数组
+
+### parentNode 获取父级元素
+
+> 仅会获得一个最近的亲父级标签元素
+
+```html
+<ul>
+  <li>哈哈哈</li>
+</ul>
+
+<script>
+  const li = document.querySelector('li')
+  console.log(li.parentNode)
+  // <ul>...</ul>
+</script>
+```
+
+### children 获取子级元素
+
+该方法可以获取到一个标签下的所有子集元素节点
+
+```html
+<ul>
+  <li class="li1">
+    <p>哈哈哈</p>
+    <p>哈哈哈</p>
+    <p>哈哈哈</p>
+  </li>
+  <li class="li2">222</li>
+  <li class="li3">333</li>
+</ul>
+
+<script>
+  const ul = document.querySelector('ul')
+  console.log(ul.children)
+  // 0: li.li1
+  // 1: li.li2
+  // 2: li.li3
+</script>
+```
+
+> 该属性只返回元素节点
+
+### nextElementSibling 获取一个元素的下一个元素
+
+```html
+<p class="title">哈哈哈</p>
+<ul>
+  <li>
+    <p>1</p>
+  </li>
+</ul>
+
+<script>
+  const title = document.querySelector('.title')
+  console.log(title.nextElementSibling)
+  // <ul>...</ul>
+</script>
+```
+
+> 或获得下一个元素及其下一个元素内包含的所有元素
