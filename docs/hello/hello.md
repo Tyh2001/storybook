@@ -16,9 +16,24 @@
   <img height="260px" src="http://tianyuhao.icu/tyhui/v3/assets/logo.1320fb15.png">
 </p>
 
-<p align="center">中文 | <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">English</a></p>
+<p align="center">
+  中文 | <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">English</a>
+</p>
 
-<p align="center"><a href="http://tianyuhao.icu/tyhui/v3">tyhUI2 官方文档</a></p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/tyh-ui2">
+    <img src="https://badgen.net/npm/v/tyh-ui2" alt="npm package">
+  </a>
+  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md">
+    <img src="https://img.shields.io/badge/tyh--ui2-CHANGELOG-orange" alt="CHANGELOG">
+  </a>
+  <a style="margin-left:15px;" href="http://tianyuhao.icu/tyhui/v3">
+    <img src="https://img.shields.io/badge/tyh--ui2-docs-red" alt="docs">
+  </a>
+  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/README_zh.md">
+    <img src="https://img.shields.io/badge/tyh--ui2-README__zh-yellowgreen" alt="README_zh">
+  </a>
+</p>
 
 ### 介绍
 
@@ -49,7 +64,7 @@ import 'tyh-ui2/style/index.css'
 createApp(App).use(tyhUi2).mount('#app')
 ```
 
-### 更新日志
+### 更新日志:page_facing_up:
 
 [更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
 

@@ -9,32 +9,47 @@ http://tianyuhao.icu/blog
 # 强烈推荐
 
 <p align="center">
-  <img height="260px" src="https://tianyuhao.icu/tyhui/v3/assets/logo.1320fb15.png">
+  <img height="260px" src="http://tianyuhao.icu/tyhui/v3/assets/logo.1320fb15.png">
 </p>
 
-<p align="center">中文 | <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">English</a></p>
+<p align="center">
+  <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README_zh.md">Chinese</a> | English
+</p>
 
-<p align="center"><a href="http://tianyuhao.icu/tyhui/v3">tyhUI2 官方文档</a></p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/tyh-ui2">
+    <img src="https://badgen.net/npm/v/tyh-ui2" alt="npm package">
+  </a>
+  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md">
+    <img src="https://img.shields.io/badge/tyh--ui2-CHANGELOG-orange" alt="CHANGELOG">
+  </a>
+  <a style="margin-left:15px;" href="http://tianyuhao.icu/tyhui/v3">
+    <img src="https://img.shields.io/badge/tyh--ui2-docs-red" alt="docs">
+  </a>
+  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/README_zh.md">
+    <img src="https://img.shields.io/badge/tyh--ui2-README__zh-yellowgreen" alt="README_zh">
+  </a>
+</p>
 
-## 介绍:bulb:
+## Introduction:bulb:
 
-tyh-ui 的下一代 ui 组件库，基于 vue3.0 版本，全面拥抱 vue3.0
+The next generation UI component library of tyh UI is based on vue3 Version, fully embrace vue3
 
-> 简洁至上
+> Simplicity first
 
-tyh-ui 整体非常简洁明了，虽没有很多高级的组件，但它是使用最简单的方式达到实用的效果。
+Tyh UI is very concise and clear as a whole, although it does not have many advanced components,But the results were achieved in a simple way.
 
-> 轻量容易
+> Light weight and easy
 
-使用方便，配置简单，目录清晰，结构简单，组件轻量级，上手简单，像复制粘贴一样容易。
+Easy to use, simple configuration, clear directory, simple structure, lightweight components, easy to use, as easy as copy and paste.
 
-## 安装:wrench:
+## Install:wrench:
 
 ```shell
 npm install tyh-ui2
 ```
 
-## 快速上手:key:
+## Quick Start:key:
 
 ```js
 import { createApp } from 'vue'
@@ -45,11 +60,11 @@ import 'tyh-ui2/style/index.css'
 createApp(App).use(tyhUi2).mount('#app')
 ```
 
-## 更新日志:page_facing_up:
+## Changelog:page_facing_up:
 
-[更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
+Detailed changes for each release are documented in the [CHANGELOG](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md).
 
-## 贡献者:wave:
+## Contribution:wave:
 
 <div style="display: flex; align-items: center;">
   <img style=" float: left;" height="60px" src="https://www.hualigs.cn/image/608132a6c15b2.jpg">
