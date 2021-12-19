@@ -279,3 +279,11 @@ git config --global user.email 'xxxxx@qq.com'
 ```
 5 * 16⁰ + 1 * 16¹ = 16 + 5 = 21
 ```
+
+## 怎么将 html 文件以端口形式打开
+
+VScode 安装 Live Server
+
+html 文件中右键点击 `Open with Live Server` 就可以启动一个端口了
+
+当编辑器中代码保存后浏览器不需要刷新就可以进行同步
