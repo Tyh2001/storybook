@@ -1013,9 +1013,22 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 // 2021^4^3 20^41^41
 ```
 
+### toLocaleDateString()
+
+`toLocaleDateString()` 方法可将 Date 对象的时间转换为字符串
+
+```js
+const date = new Date()
+const res = date.toLocaleDateString()
+console.log(res)
+// 2021/4/23
+```
+
 ## DOM 相关
 
-### getAttribute() 获取一个元素的属性值
+### getAttribute()
+
+`getAttribute()`方法可获取一个元素的属性值
 
 ```html
 <img src="./src/壁纸.jpg" alt="" />
@@ -1030,7 +1043,9 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 
 > 该方法仅可有一个参数
 
-### setAttribute() 更改一个元素的属性值
+### setAttribute()
+
+`setAttribute()`方法可更改一个元素的属性值
 
 ```html
 <img src="./src/壁纸1.jpg" alt="" />
@@ -1041,7 +1056,9 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 </script>
 ```
 
-### childNodes 获取元素中内部的元素
+### childNodes
+
+`childNodes `方法可获取元素中内部的元素
 
 ```html
 <body>
@@ -1059,7 +1076,9 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 
 > childNodes 得到的结果并不是一个数组，但是它也有 `length` 属性，也可以使用数组的中括号方式通过索引获取里面的元素，使用 `Array.from()` 方法可以转换为真正的数组
 
-### parentNode 获取父级元素
+### parentNode
+
+`parentNode `方法可获取父级元素
 
 > 仅会获得一个最近的亲父级标签元素
 
@@ -1075,7 +1094,9 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 </script>
 ```
 
-### children 获取子级元素
+### children
+
+`children `方法可获取子级元素
 
 该方法可以获取到一个标签下的所有子集元素节点
 
@@ -1101,7 +1122,9 @@ console.log(dateFormat(time, 'YYYY^MM^DD HH^mm^ss'))
 
 > 该属性只返回元素节点
 
-### nextElementSibling 获取一个元素的下一个元素
+### nextElementSibling
+
+`nextElementSibling`方法可获取一个元素的下一个元素
 
 ```html
 <p class="title">哈哈哈</p>

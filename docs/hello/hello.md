@@ -13,7 +13,7 @@
 ## 强烈推荐
 
 <p align="center">
-  <img height="260px" src="http://tianyuhao.icu/tyhui/v3/assets/logo.1320fb15.png">
+  <img height="260px" src="/tyh_ui.png">
 </p>
 
 <p align="center">
@@ -64,7 +64,7 @@ import 'tyh-ui2/style/index.css'
 createApp(App).use(tyhUi2).mount('#app')
 ```
 
-### 更新日志:page_facing_up:
+### 更新日志
 
 [更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
 

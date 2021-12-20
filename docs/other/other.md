@@ -25,7 +25,7 @@ TTL：默认即可
 注意：
 记录值必须是**你的 Github 用户名 + github.io**，否则域名会设置不生效
 详细设置参数请参考阿里云官方说明
-<img src="./images/github_1.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_1.png" alt="image" style="zoom:50%;" />
 
 ### 添加 CNAME 文件
 
@@ -37,27 +37,27 @@ TTL：默认即可
 ### 生成 GitHub 访问令牌
 
 1. 点击用户设置
-   <img src="./images/github_2.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_2.png" alt="image" style="zoom:50%;" />
 2. 选择 Developer settings
-   <img src="./images/github_3.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_3.png" alt="image" style="zoom:50%;" />
 3. 选择 `Personal access tokens` → `Generate new token`
-   <img src="./images/github_4.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_4.png" alt="image" style="zoom:50%;" />
 4. 给 `Token`设置一个名字，不能是中文
    再选中 `repo`和 `workflow`之后拉到最下面进生成 Token
-   <img src="./images/github_5.png" alt="image" style="zoom:50%;" />
-   <img src="./images/github_6.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_5.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_6.png" alt="image" style="zoom:50%;" />
 5. 生成时候会显示出 Token 但是 Token 只显示一次！需要复制保存处理！
    如果 Token 没有保存后丢失，请重新上述步骤进行重新生成！
-   <img src="./images/github_7.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_7.png" alt="image" style="zoom:50%;" />
 6. 创建远程仓库
    此处省略创建仓库步骤，创建完成之后暂时不要提交代码！
 7. 在远程仓库中设置，将 GitHub 访问令牌添加到远程仓库的 secrets 中
-   <img src="./images/github_8.png" alt="image" style="zoom:50%;" />
-   <img src="./images/github_9.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_8.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_9.png" alt="image" style="zoom:50%;" />
    Name：`ACCESS_TOKEN`（必须是这个名字）
    Value: `之前生成的 GitHub 访问令牌`
    设置完成之后进行添加，添加完成效果如下：
-   <img src="./images/github_10.png" alt="image" style="zoom:50%;" />
+   <img src="/other/github_10.png" alt="image" style="zoom:50%;" />
    这样就添加成功了！！！
 
 ### 添加配置文件
@@ -116,13 +116,13 @@ jobs:
 上传远程仓库后 Github 会帮助我们自动部署
 部署会有一个打包的过程，时间不会太长，等待一下即可
 下面是查看部署的状态
-<img src="./images/github_11.png" alt="image" style="zoom:50%;" />
-<img src="./images/github_12.png" alt="image" style="zoom:50%;" />
-<img src="./images/github_13.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_11.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_12.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_13.png" alt="image" style="zoom:50%;" />
 当所有选项都打上勾之后就代表部署完成了
 我们可以通过仓库设置下面来查看部署状态：
-<img src="./images/github_14.png" alt="image" style="zoom:50%;" />
-<img src="./images/github_15.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_14.png" alt="image" style="zoom:50%;" />
+<img src="/other/github_15.png" alt="image" style="zoom:50%;" />
 找到 GitHub Pages 选项 出现上面对号表示项目已经部署成功，部署的网址就是后面的网址，打开即可部署完成！！！
 
 ### 怎么更新？
@@ -187,7 +187,71 @@ export default defineConfig({
 })
 ```
 
-## Github 提交代码不增加小绿格怎么办
+### json-bigint
+
+js 能够精准的表示的整数范围在 -2^53 到 -2^53 之间（不含两个端点），超出这个范围，则无法正常显示这个值，这使得 JavaScript 不适合金融和科学方面的计算
+
+通常我么在使用**axios**发送请求的时候，后台可能会返回比较大的一个数字，因为**axios**会把 JSON 格式字符串转换为 JS 对象，那么如果这个数字很大，那么就会出现问题，比如：
+
+```js
+const str = '{ "id": 158464848747369549 }'
+console.log(JSON.parse(str).id)
+```
+
+这样输出的`id`就不是原始的数据了
+
+因为这个数字超出了 JS 的安全整数范围，所以不能正常表示了，那么**json-bigint**就可以很好的帮助解决这个问题
+
+**json-bigint** Github 仓库地址：[json-bigint](https://github.com/sidorares/json-bigint)
+
+安装 **json-bigint**
+
+```shell
+npm i json-bigint
+```
+
+可以通过 json-bigint 内置的方法来获取这样大的数据
+
+1. 将 JSON 数据转换为 JavaScript 对象
+
+```js
+JSONbig.parse()
+```
+
+等同于
+
+```js
+JSON.parse()
+```
+
+通过`JSONbig.parse()`转换为的是一个 js 对象，其实它只是换了一种形式表示出了这个数字，那么想要再获得这个数据，还需要`toString()`一下就可以获取到了
+
+```js
+// 引入 json-bigint
+import JSONbig from 'json-bigint'
+
+const str = '{ "id": 158464848747369549 }'
+console.log(JSON.parse(str).id)
+console.log(JSONbig.parse(str).id.toString())
+```
+
+2. 将 JavaScript 对象转换为 JSON 字符串
+
+```js
+JSONbig.stringify()
+```
+
+等同于
+
+```js
+JSON.stringify()
+```
+
+虽然这个两个方法的等同于的，但是通过`JSONbig.parse()`转换为的 JavaScript 对象使用`JSON.stringify()`转换为 JSON 字符串会有一定的问题
+
+> 所以。用什么转来的，就用什么转回去就不会有问题了
+
+## Github 提交代码不增加小绿格?
 
 事情是这样的，我在公司和在家里都会往 GIthub 上提交代码，但是大多数时间都是在公司提交，但是在公司提交就不会增加首页下方小绿格的贡献度数量，后来发现公司电脑的邮箱不是 Github 绑定的邮箱才导致的，所以解决方案是
 
@@ -218,7 +282,7 @@ git config --global user.email 'xxxxx@qq.com'
 
 ### 进制转换
 
-#### 将十进制转换为二 八 十六进制
+**将十进制转换为二 八 十六进制**
 
 公式: `除N 求余 倒序` 一直将除到商为 0 时，在将余数倒序
 
@@ -254,7 +318,7 @@ git config --global user.email 'xxxxx@qq.com'
 
 所以 21 的十六进制结果为 `15`
 
-#### 将二 八 十六进制转换为十进制
+**将二 八 十六进制转换为十进制**
 
 上面介绍了将将十进制转换为二 八 十六进制，下面介绍将二 八 十六进制转换为十进制
 

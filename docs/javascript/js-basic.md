@@ -1,4 +1,4 @@
-# 杂项
+# 基础
 
 ## JS 数据类型
 
@@ -156,9 +156,7 @@ console.log(a + b++)
 console.log(b)
 ```
 
-### 逻辑运算符
-
-#### 逻辑与 &&
+### 逻辑与 &&
 
 用于检查所有值（通常值为条件）是否为真。
 
@@ -178,7 +176,7 @@ const tutu = 5 && 0 && 2
 console.log(tutu) // 0
 ```
 
-#### 逻辑或 ||
+### 逻辑或 ||
 
 用于检查一组值中的一个值（通常值是条件）是否为真。
 
@@ -198,7 +196,7 @@ const tutu = 0 || 5 || 2
 console.log(tutu) // 5
 ```
 
-#### 逻辑空 ??
+### 逻辑空 ??
 
 当其左侧操作数为 null 或 undefined （空值）时，返回其右侧操作数。
 
@@ -219,12 +217,6 @@ const titi = 0 ?? 55 // 0不是null或者undefined，所以是0
 const tutu = undefined || 55 // undefined 为false，所以是55
 const tata = undefined ?? 55 // 第一个是undefined，所以是55
 ```
-
-### 位运算符
-
-#### 按位与 &
-
-#### 按位或 |
 
 ## 关于 switch 语句
 
@@ -266,70 +258,6 @@ switch (item) {
 ```
 
 这里要判断的值是`item`上面代码意思是：`item`的值是`hello`或者`Hi`的其中一个，都是可以执行`break`前的内容的，两个内容使用统一的处理方式
-
-## 关于 json-bigint
-
-js 能够精准的表示的整数范围在 -2^53 到 -2^53 之间（不含两个端点），超出这个范围，则无法正常显示这个值，这使得 JavaScript 不适合金融和科学方面的计算
-
-通常我么在使用**axios**发送请求的时候，后台可能会返回比较大的一个数字，因为**axios**会把 JSON 格式字符串转换为 JS 对象，那么如果这个数字很大，那么就会出现问题，比如：
-
-```js
-const str = '{ "id": 158464848747369549 }'
-console.log(JSON.parse(str).id)
-```
-
-这样输出的`id`就不是原始的数据了
-
-因为这个数字超出了 JS 的安全整数范围，所以不能正常表示了，那么**json-bigint**就可以很好的帮助解决这个问题
-
-**json-bigint** Github 仓库地址：[json-bigint](https://github.com/sidorares/json-bigint)
-
-安装 **json-bigint**
-
-```shell
-npm i json-bigint
-```
-
-可以通过 json-bigint 内置的方法来获取这样大的数据
-
-1. 将 JSON 数据转换为 JavaScript 对象
-
-```js
-JSONbig.parse()
-```
-
-等同于
-
-```js
-JSON.parse()
-```
-
-通过`JSONbig.parse()`转换为的是一个 js 对象，其实它只是换了一种形式表示出了这个数字，那么想要再获得这个数据，还需要`toString()`一下就可以获取到了
-
-```js
-// 引入 json-bigint
-import JSONbig from 'json-bigint'
-
-const str = '{ "id": 158464848747369549 }'
-console.log(JSON.parse(str).id)
-console.log(JSONbig.parse(str).id.toString())
-```
-
-2. 将 JavaScript 对象转换为 JSON 字符串
-
-```js
-JSONbig.stringify()
-```
-
-等同于
-
-```js
-JSON.stringify()
-```
-
-虽然这个两个方法的等同于的，但是通过`JSONbig.parse()`转换为的 JavaScript 对象使用`JSON.stringify()`转换为 JSON 字符串会有一定的问题
-
-> 所以。用什么转来的，就用什么转回去就不会有问题了
 
 ## 关于 console
 
@@ -879,21 +807,6 @@ for (const key of Reflect.ownKeys(obj)) {
 }
 ```
 
-## 原生 JS 的一些方法
-
-
-
-> 该方法仅可有两个参数，第一个是要改变的属性，第二个是改变后的值
-
-### toLocaleDateString() 将 Date 对象的时间转换为字符串
-
-```js
-const date = new Date()
-const res = date.toLocaleDateString()
-console.log(res)
-// 2021/4/23
-```
-
 ## window 对象属性
 
 ```js
@@ -943,9 +856,6 @@ console.log(obj instanceof Object)
 这样就可以很好的分清楚是对象还是数组了
 
 > 注意：instanceof 只能进行检查引用类型，检查原始类型全部返回 false！
-
-## DOM
-
 
 ## MutationObserver 接口
 
@@ -1382,7 +1292,7 @@ console.log(User.prototype === Object.getPrototypeOf(obj)) // true
 
 详情见下图
 
-<img src="./images/prototype_1.jpg" alt="image"  />
+<img src="/javascript/prototype_1.jpg" alt="image"  />
 
 ### 顶级原型
 
@@ -1436,7 +1346,7 @@ console.log(Object.getPrototypeOf(User.prototype) === Object.prototype) // true
 
 详情见下图
 
-<img src="./images/prototype_2.jpg" alt="image"  />
+<img src="/javascript/prototype_2.jpg" alt="image"  />
 
 所以：
 
@@ -1604,4 +1514,4 @@ Object.getPrototypeOf(l).sayName() // 张同学
 
 所以新的原型链结构图如下：
 
-<img src="./images/prototype_3.jpg" alt="image"  />
+<img src="/javascript/prototype_3.jpg" alt="image"  />

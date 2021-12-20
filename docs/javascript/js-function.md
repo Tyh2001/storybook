@@ -1,30 +1,5 @@
 # 函数相关
 
-## 函数声明提升
-
-具名函数有声明提升的特点（可以先调用再声明）
-
-```js
-fun()
-function fun() {
-  console.log('123')
-}
-
-// 123
-```
-
-但是将匿名函数赋值给一个变量时，是没有声明提升的特点的，这种函数称为函数表达式
-
-```js
-fun()
-const fun = function () {
-  console.log('123')
-}
-
-// Uncaught ReferenceError: Cannot access 'fun' before initialization
-// 这时就会报错：未捕获的引用错误：初始化前无法访问“fun”
-```
-
 ## arguments 参数
 
 比如在做求和运算时，往往参数的数量是不确定的。那么 arguments 就可以解决这个问题
@@ -1577,15 +1552,3 @@ let fun3 = () => {
 > 箭头函数的 this 永远指向其上下文的 this
 >
 > 普通函数的 this 指向调用它的那个对象
-
-## prototype
-
-prototype 保存引用类型所有的实例和方法
-
-```js
-function fun1() {
-  return 1
-}
-
-console.log(fun1.prototype) // {constructor: ƒ}
-```
