@@ -6,7 +6,7 @@
 
 我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh UI](http://tianyuhao.icu/tyhui/v3):star:.
 
-你可以通过[微博](https://weibo.com/u/7112859998)了解我。
+你可以通过[微博](https://weibo.com/tyh2001)了解我。
 
 2021-9-18:hourglass:
 

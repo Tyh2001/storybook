@@ -1,13 +1,14 @@
 module.exports = {
   title: 'Tyh2001',
-  // head: [
-  //   ['link', { rel: 'icon', href: '/my.jpg' }]
-  // ],
+  head: [
+    ['link', { rel: 'icon', href: '/my.png' }]
+  ],
   description: '前端开发,javascript,php,node,jquery,git,python,java,sql,mysql,linux,go语言,golang,前端,教程,软件,编程,互联网,tyh-ui,TYH-UI,tyh,TYH,ui,UI,element,框架,组件库,组件,vue,vue3,码云,NPM,npm,components,js,github,gitee,npm,vant,element3,vite,viewUI,tyh-ui,tyh ui,ui tyh,tyh-ui2,tyh-ui,tyh2001的个人网站',
-  base: '/blog/',
+  // base: '/blog/',
   themeConfig: {
     logo: '/my.png',
-    lastUpdated: '最后更新', // 最后更新时间
+    contributors: false,
+    lastUpdatedText: '最后更新', // 最后更新时间
     // 导航栏
     navbar: [
       { text: '首页', link: '/' },
@@ -40,54 +41,33 @@ module.exports = {
         ]
       }
     ],
-    sidebarDepth: 3,
     // 侧边栏
     sidebar: [
-      {
-        text: 'Hello',
-        link: '/hello/hello',
-      },
-      {
-        text: '里程碑',
-        link: '/milepost/milepost',
-      },
-      {
-        text: 'Vue3 相关',
-        link: '/vue3/vue3',
-      },
+      '/hello/hello',
+      '/milepost/milepost',
+      '/vue3/vue3',
+      '/vue2/vue2',
+      '/typescript/typescript',
       {
         text: 'Js 相关',
-        link: '/javascript/js-function',
         children: [
-          { text: "基础", link: "/javascript/js-basic" },
-          { text: "函数相关", link: "/javascript/js-function" },
-          { text: "方法", link: "/javascript/js-methods" },
-          { text: "工具函数", link: "/javascript/js-utils" },
-          { text: "算法", link: "/javascript/js-computed" },
+          '/javascript/js-basic',
+          '/javascript/js-function',
+          '/javascript/js-methods',
+          '/javascript/js-utils',
+          '/javascript/js-computed'
         ]
       },
-      {
-        text: 'TypeScript 基础',
-        link: '/typescript/ts',
-      },
-      {
-        text: 'Vue2 相关',
-        link: '/vue2/vue2',
-      },
-      {
-        text: '其它技术',
-        link: '/other/other',
-      },
+      '/other/other',
       {
         text: '前端面试题',
-        link: '/int-ques/ques-web',
         children: [
-          { text: "Web 综合问题", link: "/int-ques/ques-web" },
-          { text: "Css 相关问题", link: "/int-ques/ques-css" },
-          { text: "Html 相关问题", link: "/int-ques/ques-html" },
-          { text: "Js 相关问题", link: "/int-ques/ques-js" },
-          { text: "Vue2 相关问题", link: "/int-ques/ques-vue2" },
-          { text: "Vue3 相关问题", link: "/int-ques/ques-vue3" }
+          '/int-ques/ques-web',
+          '/int-ques/ques-css',
+          '/int-ques/ques-html',
+          '/int-ques/ques-js',
+          '/int-ques/ques-vue2',
+          '/int-ques/ques-vue3'
         ]
       }
     ]

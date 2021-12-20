@@ -133,9 +133,9 @@ const a = 1
 
 W3C 中定义事件的发生经历三个阶段：
 
-- 捕获阶段（ capturing ）
-- ⽬标阶段（ targetin ）
-- 冒泡阶段（ bubbling ）
+- 捕获阶段(capturing)
+- ⽬标阶段(targetin)
+- 冒泡阶段(bubbling)
 
 > W3C 标准：标签闭合、标签⼩写、不乱嵌套、使⽤外链 css 和 js 、结构行为表现的分离
 
@@ -147,9 +147,7 @@ W3C 中定义事件的发生经历三个阶段：
 
 - 阻⽌冒泡：在 W3c 中，使⽤ stopPropagation() ⽅法；在 IE 下设置 cancelBubble = true
 
-- 阻⽌捕获：阻⽌事件的默认⾏为，例如 click - <a> 后的跳转。在 W3c 中，使⽤
-
-preventDefault() ⽅法，在 IE 下设置 window.event.returnValue = false
+- 阻⽌捕获：阻⽌事件的默认⾏为，例如 click - `<a>` 后的跳转。在 W3c 中，使⽤ `preventDefault()` ⽅法，在 IE 下设置 window.event.returnValue = false
 
 ## 如何解决跨域问题
 

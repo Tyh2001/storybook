@@ -287,9 +287,7 @@ minimum-scale 允许⽤户最⼩缩放⽐例，为⼀个数字，可以带⼩数
 
   费 CPU
 
-- ⻚⾯头部的 <style></style> <script></script> 会阻塞⻚⾯；（因为 Renderer
-
-  进程中 JS 线程和渲染线程是互斥的）
+- ⻚⾯头部的 `<style></style> 和 <script></script>` 会阻塞⻚⾯；(因为 Renderer 进程中 JS 线程和渲染线程是互斥的)
 
 - ⻚⾯中空的 href 和 src 会阻塞⻚⾯其他资源的加载 (阻塞下载进程)
 
