@@ -1,10 +1,10 @@
 module.exports = {
   title: 'Tyh2001',
   head: [
-    ['link', { rel: 'icon', href: '/my.png' }]
+    ['link', { rel: 'icon', href: './my.png' }]
   ],
   description: '前端开发,javascript,php,node,jquery,git,python,java,sql,mysql,linux,go语言,golang,前端,教程,软件,编程,互联网,tyh-ui,TYH-UI,tyh,TYH,ui,UI,element,框架,组件库,组件,vue,vue3,码云,NPM,npm,components,js,github,gitee,npm,vant,element3,vite,viewUI,tyh-ui,tyh ui,ui tyh,tyh-ui2,tyh-ui,tyh2001的个人网站',
-  // base: '/blog/',
+  base: '/blog/',
   themeConfig: {
     logo: '/my.png',
     contributors: false,
@@ -37,7 +37,7 @@ module.exports = {
           { text: 'Vue3', link: 'https://v3.cn.vuejs.org' },
           { text: 'Vite', link: 'https://cn.vitejs.dev/' },
           { text: 'Pinia', link: 'https://pinia.esm.dev' },
-          { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh' }
+          { text: 'VuePress', link: 'https://v2.vuepress.vuejs.org/zh/' }
         ]
       }
     ],
