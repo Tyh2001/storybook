@@ -704,244 +704,6 @@ cat.changeName()
 
 上面是使用原型链实现的基础，这是 ES5 的一个写法，暂时了解即可，因为 ES6 有了更好的解决方案
 
-## ES6 类
-
-从 es6 开始，就支持了`类`的概念了，可以通过 **class** 来定义一个类：
-
-```js
-class Dog {}
-
-const dog = new Dog()
-console.log(dog)
-// Dog {}
-```
-
-那么在 ES6 中实现和上面相同的效果，写法略有不同：
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-}
-
-const dog = new Dog('旺财', 2)
-console.log(dog)
-// Dog {name: "旺财", age: 2}
-```
-
-那么如果想添加方法就可以直接写在类里面：
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName() {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-const dog = new Dog('旺财', 2)
-dog.sayName()
-// 我的名字是旺财
-```
-
-## ES6 继承
-
-可以通过创建的类，利用 `extends` 关键字实现继承
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName() {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-class Cat extends Dog {}
-
-const cat = new Cat('喵喵', 2)
-cat.sayName()
-```
-
-那么继承父类之后，要是还需要传递其他参数，可以先使用 `super` 先获取父类的参数
-
-```js
-class Dog {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  sayName() {
-    console.log(`我的名字是${this.name}`)
-  }
-}
-
-class Cat extends Dog {
-  constructor(name, age) {
-    super(name)
-    this.age = age
-  }
-}
-
-const cat = new Cat('喵喵', 2)
-
-console.log(cat.age)
-```
-
-## call、apply、bind
-
-三个方法我都没用过，所以就学一个就行了，我就先学一个 call 剩下两个基本上差不多。
-
-**call**
-
-call 是一个函数的方法
-
-1、call 可以调用函数
-
-```js
-function fun() {
-  console.log('123')
-}
-fun.call() // 123
-```
-
-2、call 可以改变函数中 this 的指向
-
-```js
-// 这个是一个独立的函数 输出 this，很明显这个 this 指向的是 window
-function fun() {
-  console.log(this.name)
-}
-
-// 这里是一个独立的对象
-const obj = {
-  name: '小明',
-}
-
-// 那么就可以通过调用函数 再使用 call 把 obj 这个对象传递过去
-// 就可以改变函数中 this 的指向
-// 那么就打印出了小明
-fun.call(obj) // 小明
-```
-
-```js
-// 这里通过调用 dog 的方法，来输出 cat 的名字
-const dog = {
-  name: '旺财',
-  sayName() {
-    console.log(this.name)
-  },
-}
-
-const cat = {
-  name: '喵喵',
-}
-
-dog.sayName.call(cat)
-```
-
-3、call 的传参方法
-
-```js
-const dog = {
-  name: '旺财',
-  eat(food1, food2) {
-    console.log(`我喜欢吃${food1}和${food2}`)
-  },
-}
-
-const cat = {
-  name: '喵喵',
-}
-
-// call 的第一个参数是传递指向的对象 后面的参数传递的是函数接收的参数
-dog.eat.call(cat, '鱼', '骨头') // 我是喵喵喜欢吃鱼和骨头
-```
-
-**apply**
-
-直接哪来上面的例子
-
-call 传递的参数的依次往后传递的
-
-而 apple 参数的需要传递一个数组
-
-```js
-const dog = {
-  name: '旺财',
-  sayName() {
-    console.log(this.name)
-  },
-  eat(food1, food2) {
-    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  },
-}
-
-const cat = {
-  name: '喵喵',
-}
-
-dog.eat.apply(cat, ['鱼', '骨头']) // 我是喵喵喜欢吃鱼和骨头
-```
-
-**bind**
-
-call 和 apply 会直接调用函数
-
-bind 的传值方式和 call 是一样的，但是 bind 会将一个函数作为返回值返回出来
-
-bind 的特点呢也就是可以多次调用了，剩下的和 call 用法完全一样
-
-```js
-const dog = {
-  name: '旺财',
-  sayName() {
-    console.log(this.name)
-  },
-  eat(food1, food2) {
-    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  },
-}
-
-const cat = {
-  name: '喵喵',
-}
-
-const res = dog.eat.bind(cat, '鱼', '骨头')
-res()
-```
-
-## call、apply、bind 的实际应用
-
-继承：子类可以使用父类的方法
-
-```js
-function Animal() {
-  // this 指向的是 小cat 那么也就成为了 cat 的方法了
-  this.eat = function () {
-    console.log('吃东西')
-  }
-}
-
-function Cat() {
-  // this 指向的是 小cat
-  Animal.call(this)
-}
-
-const cat = new Cat()
-cat.eat()
-```
-
 ## 关于异步函数
 
 通常情况下，代码的执行顺序都是从上到下执行的，比如
@@ -1552,3 +1314,239 @@ let fun3 = () => {
 > 箭头函数的 this 永远指向其上下文的 this
 >
 > 普通函数的 this 指向调用它的那个对象
+
+## 类
+
+从 es6 开始，就支持了`类`的概念了，可以通过 **class** 来定义一个类：
+
+```js
+class Dog {} // 声明式
+
+const Dog = calss {} // 类表达式
+```
+
+那么在 ES6 中实现和上面相同的效果，写法略有不同：
+
+```js
+class Dog {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+
+const dog = new Dog('旺财', 2)
+console.log(dog)
+// Dog {name: "旺财", age: 2}
+```
+
+那么如果想添加方法就可以直接写在类里面：
+
+```js
+class Dog {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  sayName() {
+    console.log(`我的名字是${this.name}`)
+  }
+}
+
+const dog = new Dog('旺财', 2)
+dog.sayName()
+// 我的名字是旺财
+```
+
+## ES6 继承
+
+可以通过创建的类，利用 `extends` 关键字实现继承
+
+```js
+class Dog {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  sayName() {
+    console.log(`我的名字是${this.name}`)
+  }
+}
+
+class Cat extends Dog {}
+
+const cat = new Cat('喵喵', 2)
+cat.sayName()
+```
+
+那么继承父类之后，要是还需要传递其他参数，可以先使用 `super` 先获取父类的参数
+
+```js
+class Dog {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+
+  sayName() {
+    console.log(`我的名字是${this.name}`)
+  }
+}
+
+class Cat extends Dog {
+  constructor(name, age) {
+    super(name)
+    this.age = age
+  }
+}
+
+const cat = new Cat('喵喵', 2)
+
+console.log(cat.age)
+```
+
+## call、apply、bind
+
+三个方法我都没用过，所以就学一个就行了，我就先学一个 call 剩下两个基本上差不多。
+
+**call**
+
+call 是一个函数的方法
+
+1、call 可以调用函数
+
+```js
+function fun() {
+  console.log('123')
+}
+fun.call() // 123
+```
+
+2、call 可以改变函数中 this 的指向
+
+```js
+// 这个是一个独立的函数 输出 this，很明显这个 this 指向的是 window
+function fun() {
+  console.log(this.name)
+}
+
+// 这里是一个独立的对象
+const obj = {
+  name: '小明',
+}
+
+// 那么就可以通过调用函数 再使用 call 把 obj 这个对象传递过去
+// 就可以改变函数中 this 的指向
+// 那么就打印出了小明
+fun.call(obj) // 小明
+```
+
+```js
+// 这里通过调用 dog 的方法，来输出 cat 的名字
+const dog = {
+  name: '旺财',
+  sayName() {
+    console.log(this.name)
+  },
+}
+
+const cat = {
+  name: '喵喵',
+}
+
+dog.sayName.call(cat)
+```
+
+3、call 的传参方法
+
+```js
+const dog = {
+  name: '旺财',
+  eat(food1, food2) {
+    console.log(`我喜欢吃${food1}和${food2}`)
+  },
+}
+
+const cat = {
+  name: '喵喵',
+}
+
+// call 的第一个参数是传递指向的对象 后面的参数传递的是函数接收的参数
+dog.eat.call(cat, '鱼', '骨头') // 我是喵喵喜欢吃鱼和骨头
+```
+
+**apply**
+
+直接哪来上面的例子
+
+call 传递的参数的依次往后传递的
+
+而 apple 参数的需要传递一个数组
+
+```js
+const dog = {
+  name: '旺财',
+  sayName() {
+    console.log(this.name)
+  },
+  eat(food1, food2) {
+    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
+  },
+}
+
+const cat = {
+  name: '喵喵',
+}
+
+dog.eat.apply(cat, ['鱼', '骨头']) // 我是喵喵喜欢吃鱼和骨头
+```
+
+**bind**
+
+call 和 apply 会直接调用函数
+
+bind 的传值方式和 call 是一样的，但是 bind 会将一个函数作为返回值返回出来
+
+bind 的特点呢也就是可以多次调用了，剩下的和 call 用法完全一样
+
+```js
+const dog = {
+  name: '旺财',
+  sayName() {
+    console.log(this.name)
+  },
+  eat(food1, food2) {
+    console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
+  },
+}
+
+const cat = {
+  name: '喵喵',
+}
+
+const res = dog.eat.bind(cat, '鱼', '骨头')
+res()
+```
+
+## call、apply、bind 的实际应用
+
+继承：子类可以使用父类的方法
+
+```js
+function Animal() {
+  // this 指向的是 小cat 那么也就成为了 cat 的方法了
+  this.eat = function () {
+    console.log('吃东西')
+  }
+}
+
+function Cat() {
+  // this 指向的是 小cat
+  Animal.call(this)
+}
+
+const cat = new Cat()
+cat.eat()
+```

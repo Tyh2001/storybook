@@ -61,7 +61,7 @@ export const themeData = {
         },
         {
           "text": "VuePress",
-          "link": "https://vuepress.vuejs.org/zh"
+          "link": "https://v2.vuepress.vuejs.org/zh/"
         }
       ]
     }
@@ -119,17 +119,4 @@ export const themeData = {
   "openInNewWindow": "open in new window",
   "toggleDarkMode": "toggle dark mode",
   "toggleSidebar": "toggle sidebar"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updateThemeData) {
-    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ themeData }) => {
-    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
-  })
 }

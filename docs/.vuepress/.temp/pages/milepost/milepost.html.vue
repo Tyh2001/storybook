@@ -1,6 +1,21 @@
 <template><h1 id="里程碑" tabindex="-1"><a class="header-anchor" href="#里程碑" aria-hidden="true">#</a> 里程碑</h1>
 <h2 id="写给自己的程序员职业开发手册" tabindex="-1"><a class="header-anchor" href="#写给自己的程序员职业开发手册" aria-hidden="true">#</a> 写给自己的程序员职业开发手册</h2>
-<p>今天是 2021-12-03 今天将此项目更新了整理了一下，后续将自己的程序员职业开发手册在这里更新（日常更新中）</p>
+<p>今天是 2021-12-03 今天将此项目更新了整理了一下，后续将自己的程序员职业开发手册在这里更新，日常更新中。。。</p>
+<p><strong>标注</strong></p>
+<table>
+<thead>
+<tr>
+<th>标注符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>阅读源码</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_2021-12-03" tabindex="-1"><a class="header-anchor" href="#_2021-12-03" aria-hidden="true">#</a> 2021-12-03</h2>
 <p>今天将这个 VuePress 的项目整理了一下，以后在这里记录一下每天的开发日常，不定时更新</p>
 <p>今天将防抖和节流在 js 工具函数中加入了，注册了 leetcode 网站，之后也要开始刷一下算法的题录，结果我第一题就不会，23333333333</p>
@@ -89,7 +104,7 @@
 <h2 id="_2021-12-19" tabindex="-1"><a class="header-anchor" href="#_2021-12-19" aria-hidden="true">#</a> 2021-12-19</h2>
 <p>冲冲冲～～</p>
 <p>现在时间 19：44 ，今天有点懈怠了一天，现在开始将笔记整理整理吧，今晚可能会晚点睡觉了，整理好之后再看看书。今天上午就只是逛了一下 Github，所以晚上要开始冲冲冲了</p>
-<h2 id="_2021-12-20-阅读源码" tabindex="-1"><a class="header-anchor" href="#_2021-12-20-阅读源码" aria-hidden="true">#</a> 2021-12-20(阅读源码)</h2>
+<h2 id="_2021-12-20" tabindex="-1"><a class="header-anchor" href="#_2021-12-20" aria-hidden="true">#</a> 2021-12-20*</h2>
 <p>11：21 刚刚阅读了一遍比较简单的<a href="https://github.com/Tyh2001/axios/blob/master/lib/utils.js" target="_blank" rel="noopener noreferrer">axios 工具函数的源码<ExternalLinkIcon/></a>，这算是真正意义上的第一次阅读源码，从简单开始，之后继续多读源码～</p>
 <p>也知道了阅读源码的作用：</p>
 <blockquote>

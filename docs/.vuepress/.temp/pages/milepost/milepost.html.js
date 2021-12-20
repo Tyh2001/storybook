@@ -110,26 +110,13 @@ export const data = {
     },
     {
       "level": 2,
-      "title": "2021-12-20(阅读源码)",
-      "slug": "_2021-12-20-阅读源码",
+      "title": "2021-12-20*",
+      "slug": "_2021-12-20",
       "children": []
     }
   ],
   "git": {
-    "updatedTime": 1639972738000
+    "updatedTime": 1639982207000
   },
   "filePathRelative": "milepost/milepost.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

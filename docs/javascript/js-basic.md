@@ -1515,3 +1515,27 @@ Object.getPrototypeOf(l).sayName() // 张同学
 所以新的原型链结构图如下：
 
 <img src="/javascript/prototype_3.jpg" alt="image"  />
+
+## 继承
+
+### 盗用构造函数
+
+```js
+    function A() {
+      this.colors = [1, 2, 3, 4, 5]
+    }
+
+    function B() {
+      A.call(this)
+    }
+
+    B.prototype = new A
+
+    const b1 = new B
+    b1.colors.push(12121)
+    console.log(b1.colors)
+
+    const b2 = new B
+    console.dir(b2.colors)
+```
+
