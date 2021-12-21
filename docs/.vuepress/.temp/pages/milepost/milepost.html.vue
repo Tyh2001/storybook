@@ -110,4 +110,6 @@
 <blockquote>
 <p>相信通过阅读源码，日积月累，并把这些代码或思想应用的自己项目中去，相信能够很好的提升自己的编码能力。</p>
 </blockquote>
+<h2 id="_2021-12-21" tabindex="-1"><a class="header-anchor" href="#_2021-12-21" aria-hidden="true">#</a> 2021-12-21</h2>
+<p>上午先看看后盾人的构造函数的教程</p>
 </template>

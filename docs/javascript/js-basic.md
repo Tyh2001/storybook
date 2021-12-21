@@ -1518,24 +1518,78 @@ Object.getPrototypeOf(l).sayName() // 张同学
 
 ## 继承
 
-### 盗用构造函数
+继承是原型的继承 而不是改变构造函数
+
+例如下面代码是错误的
 
 ```js
-    function A() {
-      this.colors = [1, 2, 3, 4, 5]
-    }
+function User() {}
 
-    function B() {
-      A.call(this)
-    }
+User.prototype.name = function () {
+  console.log('name')
+}
 
-    B.prototype = new A
+function Admin() {}
 
-    const b1 = new B
-    b1.colors.push(12121)
-    console.log(b1.colors)
+Admin.prototype = User.prototype
+// 这样直接赋值原型之后
+// 相当于 Admin 和 User 共用的是一个原型
 
-    const b2 = new B
-    console.dir(b2.colors)
+const admin = new Admin()
+admin.name()
 ```
 
+举个例子：上面的反例中，直接将 User 的原型赋值给 Admin 之后，虽然是实现了伪继承，但是这样继承了之后自己本来的原型就不存在了，两个构造函数用的就是同一个原型了，这样就会造成函数覆盖等情况，我们期望的是自己的原型还是保留的，再继承。好比现实中继承财产，继承是将继承的财产和自己本来的财产加在一起，而不是只是得到了继承的财产，而自己的财产就消失了。
+
+### Object.create()
+
+`Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的 `__proto__`
+
+可以使用 `Object.create()` 方法实现继承
+
+```js
+function User() {}
+User.prototype.userName = function () {
+  console.log('userName')
+}
+
+function Admin() {}
+Admin.prototype.adminName = function () {
+  console.log('adminName')
+}
+
+Admin.prototype.__proto__ = Object.create(User.prototype)
+Admin.prototype.constructor = Admin
+
+const admin = new Admin()
+
+admin.userName() // userName
+admin.adminName() // adminName
+```
+
+### 使用父类构造函数初始属性
+
+这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
+
+```js
+function User(name, age) {
+  this.name = name
+  this.age = age
+}
+
+function Admin(...params) {
+  User.apply(this, params)
+}
+
+Admin.prototype = Object.create(User.prototype)
+Object.defineProperty(Admin.prototype, 'constructor', {
+  value: Admin,
+  enumerable: false,
+})
+
+const admin = new Admin('张三', 18)
+console.log(admin)
+
+const admin2 = new admin.__proto__.constructor('李四', 2)
+console.log(admin2)
+```

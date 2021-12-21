@@ -275,10 +275,38 @@ export const data = {
           "children": []
         }
       ]
+    },
+    {
+      "level": 2,
+      "title": "继承",
+      "slug": "继承",
+      "children": [
+        {
+          "level": 3,
+          "title": "Object.create()",
+          "slug": "object-create",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "使用父类构造函数初始属性",
+          "slug": "使用父类构造函数初始属性",
+          "children": []
+        }
+      ]
     }
-  ],
-  "git": {
-    "updatedTime": 1639972738000
-  },
-  "filePathRelative": "javascript/js-basic.md"
+  ]
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

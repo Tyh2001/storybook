@@ -82,30 +82,6 @@ export const data = {
     },
     {
       "level": 2,
-      "title": "ES6 类",
-      "slug": "es6-类",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "ES6 继承",
-      "slug": "es6-继承",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "call、apply、bind",
-      "slug": "call、apply、bind",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "call、apply、bind 的实际应用",
-      "slug": "call、apply、bind-的实际应用",
-      "children": []
-    },
-    {
-      "level": 2,
       "title": "关于异步函数",
       "slug": "关于异步函数",
       "children": []
@@ -151,10 +127,47 @@ export const data = {
       "title": "普通函数和箭头函数",
       "slug": "普通函数和箭头函数",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "类",
+      "slug": "类",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "ES6 继承",
+      "slug": "es6-继承",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "call、apply、bind",
+      "slug": "call、apply、bind",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "call、apply、bind 的实际应用",
+      "slug": "call、apply、bind-的实际应用",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": 1639972738000
+    "updatedTime": 1639992393000
   },
   "filePathRelative": "javascript/js-function.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }
