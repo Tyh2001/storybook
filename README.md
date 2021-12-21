@@ -13,7 +13,7 @@ http://tianyuhao.icu/blog
 </p>
 
 <p align="center">
-  <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README_zh.md">Chinese</a> | English
+  中文 | <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">English</a>
 </p>
 
 <p align="center">
@@ -26,30 +26,30 @@ http://tianyuhao.icu/blog
   <a style="margin-left:15px;" href="http://tianyuhao.icu/tyhui/v3">
     <img src="https://img.shields.io/badge/tyh--ui2-docs-red" alt="docs">
   </a>
-  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/README_zh.md">
-    <img src="https://img.shields.io/badge/tyh--ui2-README__zh-yellowgreen" alt="README_zh">
+  <a style="margin-left:15px;" href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">
+    <img src="https://img.shields.io/badge/tyh--ui2-README__en-yellowgreen">
   </a>
 </p>
 
-## Introduction:bulb:
+## 介绍:bulb:
 
-The next generation UI component library of tyh UI is based on vue3 Version, fully embrace vue3
+tyh-ui 的下一代 ui 组件库，基于 vue3.0 版本，全面拥抱 vue3.0
 
-> Simplicity first
+> 简洁至上
 
-Tyh UI is very concise and clear as a whole, although it does not have many advanced components,But the results were achieved in a simple way.
+tyh-ui 整体非常简洁明了，虽没有很多高级的组件，但它是使用最简单的方式达到实用的效果。
 
-> Light weight and easy
+> 轻量容易
 
-Easy to use, simple configuration, clear directory, simple structure, lightweight components, easy to use, as easy as copy and paste.
+使用方便，配置简单，目录清晰，结构简单，组件轻量级，上手简单，像复制粘贴一样容易。
 
-## Install:wrench:
+## 安装:wrench:
 
 ```shell
 npm install tyh-ui2
 ```
 
-## Quick Start:key:
+## 快速上手:key:
 
 ```js
 import { createApp } from 'vue'
@@ -60,11 +60,11 @@ import 'tyh-ui2/style/index.css'
 createApp(App).use(tyhUi2).mount('#app')
 ```
 
-## Changelog:page_facing_up:
+## 更新日志:page_facing_up:
 
-Detailed changes for each release are documented in the [CHANGELOG](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md).
+[更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
 
-## Contribution:wave:
+## 贡献者:wave:
 
 <div style="display: flex; align-items: center;">
   <img style=" float: left;" height="60px" src="https://www.hualigs.cn/image/608132a6c15b2.jpg">
