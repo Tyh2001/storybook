@@ -292,21 +292,24 @@ export const data = {
           "title": "使用父类构造函数初始属性",
           "slug": "使用父类构造函数初始属性",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "对象工厂继承",
+          "slug": "对象工厂继承",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "多继承",
+          "slug": "多继承",
+          "children": []
         }
       ]
     }
-  ]
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
+  ],
+  "git": {
+    "updatedTime": 1640152455000
+  },
+  "filePathRelative": "javascript/js-basic.md"
 }

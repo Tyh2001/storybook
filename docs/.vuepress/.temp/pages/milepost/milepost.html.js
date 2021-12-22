@@ -119,23 +119,16 @@ export const data = {
       "title": "2021-12-21",
       "slug": "_2021-12-21",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "2021-12-22",
+      "slug": "_2021-12-22",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": 1640052668000
+    "updatedTime": 1640164388000
   },
   "filePathRelative": "milepost/milepost.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

@@ -4,7 +4,7 @@
 
 我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday:，我是一名前端开发者:computer:，现在在杭州工作。
 
-我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh UI](http://tianyuhao.icu/tyhui/v3):star:.
+我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh UI](http://tianyuhao.cn/tyhui/v3):star:.
 
 你可以通过[微博](https://weibo.com/tyh2001)了解我。
 
@@ -13,7 +13,7 @@
 ## 强烈推荐
 
 <p align="center">
-  <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.1320fb15.png">
+  <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.8a99342f.png">
 </p>
 
 <p align="center">

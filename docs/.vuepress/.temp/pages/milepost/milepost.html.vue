@@ -70,7 +70,7 @@
 <h2 id="_2021-12-10" tabindex="-1"><a class="header-anchor" href="#_2021-12-10" aria-hidden="true">#</a> 2021-12-10</h2>
 <p>今天学到了 XMLHttpRequest ，大概了解了 axios 内部的原理</p>
 <h2 id="_2021-12-11" tabindex="-1"><a class="header-anchor" href="#_2021-12-11" aria-hidden="true">#</a> 2021-12-11</h2>
-<p>今日更新了 Table 表格组件，还算很完美，自己还是很满意的，<a href="https://tianyuhao.icu/tyhui/v3/#/component/table" target="_blank" rel="noopener noreferrer">请点击这里查看<ExternalLinkIcon/></a></p>
+<p>今日更新了 Table 表格组件，还算很完美，自己还是很满意的，<a href="https://tianyuhao.cn/tyhui/v3/#/component/table" target="_blank" rel="noopener noreferrer">请点击这里查看<ExternalLinkIcon/></a></p>
 <h2 id="_2021-12-12" tabindex="-1"><a class="header-anchor" href="#_2021-12-12" aria-hidden="true">#</a> 2021-12-12</h2>
 <ul>
 <li>今天双 12 买了一本 <code>http权威指南的书</code></li>
@@ -97,7 +97,7 @@
 <img src="/javascript/prototype_2.jpg">
 第三版：
 <img src="/javascript/prototype_3.jpg"></p>
-<p>记录的笔记在这里<a href="http://tianyuhao.icu/blog/javascript/js-other.html#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE" target="_blank" rel="noopener noreferrer">原型链<ExternalLinkIcon/></a></p>
+<p>记录的笔记在这里<a href="https://tianyuhao.cn/blog/javascript/js-other.html#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE" target="_blank" rel="noopener noreferrer">原型链<ExternalLinkIcon/></a></p>
 <h2 id="_2021-12-18" tabindex="-1"><a class="header-anchor" href="#_2021-12-18" aria-hidden="true">#</a> 2021-12-18</h2>
 <p>今天又是周末，上午收拾了一下家里，下载开始学习～现在时间：下午 14：48</p>
 <p>最近一直在学习原型链，感觉是真的学的还不错</p>
@@ -112,4 +112,7 @@
 </blockquote>
 <h2 id="_2021-12-21" tabindex="-1"><a class="header-anchor" href="#_2021-12-21" aria-hidden="true">#</a> 2021-12-21</h2>
 <p>上午先看看后盾人的构造函数的教程</p>
+<p>下午更新了一个按钮组的组件，将组件库在 NPM 又增加了一些配置文件</p>
+<h2 id="_2021-12-22" tabindex="-1"><a class="header-anchor" href="#_2021-12-22" aria-hidden="true">#</a> 2021-12-22</h2>
+<p>今天继续研究继承相关方法！</p>
 </template>

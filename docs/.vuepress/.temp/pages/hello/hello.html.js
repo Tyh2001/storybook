@@ -51,20 +51,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1639980847000
+    "updatedTime": 1640164388000
   },
   "filePathRelative": "hello/hello.md"
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }
