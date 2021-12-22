@@ -87,7 +87,7 @@ change()
 
 ## 2021-12-11
 
-今日更新了 Table 表格组件，还算很完美，自己还是很满意的，[请点击这里查看](https://tianyuhao.icu/tyhui/v3/#/component/table)
+今日更新了 Table 表格组件，还算很完美，自己还是很满意的，[请点击这里查看](https://tianyuhao.cn/tyhui/v3/#/component/table)
 
 ## 2021-12-12
 
@@ -126,7 +126,7 @@ change()
 第三版：
 <img src="/javascript/prototype_3.jpg">
 
-记录的笔记在这里[原型链](http://tianyuhao.icu/blog/javascript/js-other.html#原型和原型链)
+记录的笔记在这里[原型链](https://tianyuhao.cn/blog/javascript/js-other.html#原型和原型链)
 
 ## 2021-12-18
 
