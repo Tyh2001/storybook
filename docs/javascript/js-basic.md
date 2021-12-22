@@ -1543,9 +1543,89 @@ admin.name()
 
 ### Object.create()
 
-`Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的 `__proto__`
+`Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的 `__proto__`，接收一个参数是需要继承的原型，如果不想要原型，那么可以传入 `null` 就是一个纯数据对象
 
-可以使用 `Object.create()` 方法实现继承
+```js
+// 纯数据对象
+Object.create(null)
+```
+
+```js
+// 新建一个对象继承 User 的原型
+function User() {}
+Object.create(User.prototype)
+```
+
+### 使用父类构造函数初始属性
+
+这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
+
+```js
+function User(name, age) {
+  this.name = name
+  this.age = age
+}
+
+function Admin(...params) {
+  User.apply(this, params)
+}
+
+Admin.prototype = User.prototype.__proto__
+Object.defineProperty(Admin.prototype, 'constructor', {
+  value: Admin,
+  enumerable: false,
+})
+
+const admin = new Admin('张三', 18)
+console.log(admin)
+
+const admin2 = new admin.__proto__.constructor('李四', 2)
+console.log(admin2)
+```
+
+**封装继承函数继承**
+
+```js
+// 继承函数
+function extend(sub, sup) {
+  sub.prototype = Object.create(sup.prototype)
+  Object.defineProperty(sub.prototype, 'constructor', {
+    value: sub,
+    enumerable: false,
+  })
+}
+
+function User(name, age) {
+  this.name = name
+  this.age = age
+}
+
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+function Admin(...params) {
+  User.apply(this, params)
+}
+
+function Teacher(...params) {
+  User.apply(this, params)
+}
+
+extend(Admin, User) // 调用函数继承
+const admin = new Admin('张三', 18)
+admin.sayName()
+
+extend(Teacher, User) // 调用函数继承
+const teacher = new Teacher('老师', 28)
+teacher.sayName()
+```
+
+### 对象工厂继承
+
+使用对象工厂也就是使用 `Object.create()` 来继承，这里推荐两种方式
+
+**方式一**
 
 ```js
 function User() {}
@@ -1567,9 +1647,7 @@ admin.userName() // userName
 admin.adminName() // adminName
 ```
 
-### 使用父类构造函数初始属性
-
-这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
+**方式二**
 
 ```js
 function User(name, age) {
@@ -1577,19 +1655,19 @@ function User(name, age) {
   this.age = age
 }
 
-function Admin(...params) {
-  User.apply(this, params)
+User.prototype.sayName = function () {
+  console.log(this.name, this.age)
 }
 
-Admin.prototype = Object.create(User.prototype)
-Object.defineProperty(Admin.prototype, 'constructor', {
-  value: Admin,
-  enumerable: false,
-})
+// 创建继承函数
+function inherit(name, age) {
+  const instance = Object.create(User.prototype) // 新建一个对象继承 User 的原型
+  User.call(instance, name, age) // 将 instance 内部调用 User
+  return instance // 返回继承好的对象
+}
 
-const admin = new Admin('张三', 18)
-console.log(admin)
+const admin = inherit('admin', 28)
+const admin2 = inherit('admin2', 281)
 
-const admin2 = new admin.__proto__.constructor('李四', 2)
-console.log(admin2)
+console.log(admin2.__proto__ === admin.__proto__) // true
 ```
