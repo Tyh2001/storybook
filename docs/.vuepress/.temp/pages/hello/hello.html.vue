@@ -1,12 +1,12 @@
 <template><h1 id="hello" tabindex="-1"><a class="header-anchor" href="#hello" aria-hidden="true">#</a> Hello</h1>
 <h2 id="welcome-to-my-blog" tabindex="-1"><a class="header-anchor" href="#welcome-to-my-blog" aria-hidden="true">#</a> Welcome to my Blog</h2>
 <p>我的名字是<strong>田宇浩</strong>😁，我的生日是 9 月 17 日🎂，我是一名前端开发者💻，现在在杭州工作。</p>
-<p>我最喜欢的开发框架是<a href="https://v3.cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js<ExternalLinkIcon/></a>，我还创建了自己的 Vue 组件库<a href="http://tianyuhao.icu/tyhui/v3" target="_blank" rel="noopener noreferrer">tyh UI<ExternalLinkIcon/></a>⭐.</p>
+<p>我最喜欢的开发框架是<a href="https://v3.cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js<ExternalLinkIcon/></a>，我还创建了自己的 Vue 组件库<a href="http://tianyuhao.cn/tyhui/v3" target="_blank" rel="noopener noreferrer">tyh UI<ExternalLinkIcon/></a>⭐.</p>
 <p>你可以通过<a href="https://weibo.com/tyh2001" target="_blank" rel="noopener noreferrer">微博<ExternalLinkIcon/></a>了解我。</p>
 <p>2021-9-18⌛</p>
 <h2 id="强烈推荐" tabindex="-1"><a class="header-anchor" href="#强烈推荐" aria-hidden="true">#</a> 强烈推荐</h2>
 <p align="center">
-  <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.1320fb15.png">
+  <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.8a99342f.png">
 </p>
 <p align="center">
   中文 | <a href="https://github.com/Tyh2001/tyh-ui2/blob/master/README.md">English</a>

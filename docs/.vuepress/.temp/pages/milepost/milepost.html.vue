@@ -115,4 +115,6 @@
 <p>下午更新了一个按钮组的组件，将组件库在 NPM 又增加了一些配置文件</p>
 <h2 id="_2021-12-22" tabindex="-1"><a class="header-anchor" href="#_2021-12-22" aria-hidden="true">#</a> 2021-12-22</h2>
 <p>今天继续研究继承相关方法！</p>
+<p>下午的时候域名终于备案完成了，新域名为 <code>tianyuhao.cn</code> ～～</p>
+<p>最近要做工作年度总结和分享的 PPT 了</p>
 </template>

@@ -35,7 +35,7 @@ export const data = {
         "details": "除 JS 外，还有一些 Vue、Vue3、TypeScript 和其它技术等最新特性的记录"
       }
     ],
-    "footer": "Tyh2001 | 浙ICP备2021024540号-1"
+    "footer": "Tyh2001 | 浙ICP备2021024540号-2"
   },
   "excerpt": "",
   "headers": [],
