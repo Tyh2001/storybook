@@ -1671,3 +1671,5 @@ const admin2 = inherit('admin2', 281)
 
 console.log(admin2.__proto__ === admin.__proto__) // true
 ```
+
+### 多继承
