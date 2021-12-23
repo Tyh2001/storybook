@@ -17,15 +17,15 @@ module.exports = {
         text: 'tyh-Ui',
         ariaLabel: 'Language Menu',
         children: [
-          { text: 'tyh-ui', link: 'https://tianyuhao.icu/tyhui' },
-          { text: 'tyh-ui2', link: 'https://tianyuhao.icu/tyhui/v3' }
+          { text: 'tyh-ui', link: 'https://tianyuhao.cn/tyhui' },
+          { text: 'tyh-ui2', link: 'https://tianyuhao.cn/tyhui/v3' }
         ]
       },
       {
         text: '关于我',
         ariaLabel: 'Language Menu',
         children: [
-          { text: '个人网站', link: 'https://tianyuhao.icu' },
+          { text: '个人网站', link: 'https://tianyuhao.cn' },
           { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
           { text: '微博', link: 'https://weibo.com/tyh2001' }
         ]
