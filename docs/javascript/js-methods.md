@@ -1026,36 +1026,6 @@ console.log(res)
 
 ## DOM 相关
 
-### getAttribute()
-
-`getAttribute()`方法可获取一个元素的属性值
-
-```html
-<img src="./src/壁纸.jpg" alt="" />
-
-<script>
-  const img = document.querySelector('img')
-  const res = img.getAttribute('src')
-  console.log(res)
-  // ./src/壁纸.jpg
-</script>
-```
-
-> 该方法仅可有一个参数
-
-### setAttribute()
-
-`setAttribute()`方法可更改一个元素的属性值
-
-```html
-<img src="./src/壁纸1.jpg" alt="" />
-
-<script>
-  const img = document.querySelector('img')
-  img.setAttribute('src', './src/壁纸2.jpg')
-</script>
-```
-
 ### childNodes
 
 `childNodes `方法可获取元素中内部的元素
@@ -1091,6 +1061,36 @@ console.log(res)
   const li = document.querySelector('li')
   console.log(li.parentNode)
   // <ul>...</ul>
+</script>
+```
+
+### getAttribute()
+
+`getAttribute()`方法可获取一个元素的属性值
+
+```html
+<img src="./src/壁纸.jpg" alt="" />
+
+<script>
+  const img = document.querySelector('img')
+  const res = img.getAttribute('src')
+  console.log(res)
+  // ./src/壁纸.jpg
+</script>
+```
+
+> 该方法仅可有一个参数
+
+### setAttribute()
+
+`setAttribute()`方法可更改一个元素的属性值
+
+```html
+<img src="./src/壁纸1.jpg" alt="" />
+
+<script>
+  const img = document.querySelector('img')
+  img.setAttribute('src', './src/壁纸2.jpg')
 </script>
 ```
 
