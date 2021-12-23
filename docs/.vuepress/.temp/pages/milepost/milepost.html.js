@@ -125,10 +125,16 @@ export const data = {
       "title": "2021-12-22",
       "slug": "_2021-12-22",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "2021-12-23",
+      "slug": "_2021-12-23",
+      "children": []
     }
   ],
   "git": {
-    "updatedTime": 1640164388000
+    "updatedTime": 1640228418000
   },
   "filePathRelative": "milepost/milepost.md"
 }

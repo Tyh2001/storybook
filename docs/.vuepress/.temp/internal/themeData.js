@@ -17,11 +17,11 @@ export const themeData = {
       "children": [
         {
           "text": "tyh-ui",
-          "link": "https://tianyuhao.icu/tyhui"
+          "link": "https://tianyuhao.cn/tyhui"
         },
         {
           "text": "tyh-ui2",
-          "link": "https://tianyuhao.icu/tyhui/v3"
+          "link": "https://tianyuhao.cn/tyhui/v3"
         }
       ]
     },
@@ -31,7 +31,7 @@ export const themeData = {
       "children": [
         {
           "text": "个人网站",
-          "link": "https://tianyuhao.icu"
+          "link": "https://tianyuhao.cn"
         },
         {
           "text": "Gitee",

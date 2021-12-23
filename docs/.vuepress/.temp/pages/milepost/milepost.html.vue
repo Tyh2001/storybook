@@ -117,4 +117,6 @@
 <p>今天继续研究继承相关方法！</p>
 <p>下午的时候域名终于备案完成了，新域名为 <code>tianyuhao.cn</code> ～～</p>
 <p>最近要做工作年度总结和分享的 PPT 了</p>
+<h2 id="_2021-12-23" tabindex="-1"><a class="header-anchor" href="#_2021-12-23" aria-hidden="true">#</a> 2021-12-23</h2>
+<p>今天是个悲伤的一天。。。。。。</p>
 </template>
