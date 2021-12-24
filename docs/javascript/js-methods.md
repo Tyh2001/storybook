@@ -1028,27 +1028,27 @@ console.log(res)
 
 ### childNodes
 
-`childNodes `方法可获取元素中内部的元素
+`childNodes` 方法可获取元素中内部的元素
+返回的并不是一个数组
 
 ```html
-<body>
-  <button>123</button>
+<ul class="list">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+```
 
-  <ul>
-    <li>哈哈哈</li>
-  </ul>
-  <script>
-    console.log(document.body.childNodes)
-    // NodeList(6) [text, button, text, ul, text, script]
-  </script>
-</body>
+```js
+const ul = document.querySelector('ul')
+console.log(ul.childNodes) // NodeList(7) [text, li, text, li, text, li, text]
 ```
 
 > childNodes 得到的结果并不是一个数组，但是它也有 `length` 属性，也可以使用数组的中括号方式通过索引获取里面的元素，使用 `Array.from()` 方法可以转换为真正的数组
 
 ### parentNode
 
-`parentNode `方法可获取父级元素
+`parentNode` 方法可获取父级元素
 
 > 仅会获得一个最近的亲父级标签元素
 
@@ -1061,6 +1061,212 @@ console.log(res)
   const li = document.querySelector('li')
   console.log(li.parentNode)
   // <ul>...</ul>
+</script>
+```
+
+### nodeName
+
+`nodeName` 方法可获取元素的标签名
+
+```html
+<ul class="list"></ul>
+
+<script>
+  const ul = document.querySelector('ul')
+  console.log(ul.nodeName) // UL
+</script>
+```
+
+### nodeValue
+
+`nodeValue` 方法可获取元素的节点值
+
+```html
+<button>按钮点击</button>
+<script>
+  console.log(document.querySelector('button').childNodes[0].nodeValue) // 按钮点击
+</script>
+```
+
+### firstChild
+
+`firstChild` 方法可获取子节点的第一个节点
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const c = document.querySelector('ul').childNodes[0]
+  const f = document.querySelector('ul').firstChild
+  console.log(c === f) // true
+</script>
+```
+
+> firstChild 就是简化了 childNodes[0] 的写法
+
+### lastChild
+
+`lastChild` 方法可获取子节点的最后一个节点
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const ul = document.querySelector('ul')
+  const c = ul.childNodes[ul.childNodes.length - 1]
+  const l = ul.lastChild
+  console.log(c === l)
+</script>
+```
+
+> lastChild 就是简化了 ul.childNodes[ul.childNodes.length - 1] 的写法
+
+### previousSibling
+
+`previousSibling` 方法可获取子节点之前的一个相邻兄弟节点
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const ul = document.querySelector('ul')
+  const c = ul.childNodes[ul.childNodes.length - 2] // 这里 -2 之后获取的是倒数第二个节点
+  const l = ul.lastChild.previousSibling // 获取最后一个的前一个节点
+  console.log(c === l) // true
+</script>
+```
+
+### nextSibling
+
+`nextSibling` 方法可获取子节点下一个的相邻兄弟节点
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const ul = document.querySelector('ul')
+  const c = ul.childNodes[1] // 获取第二个节点
+  const l = ul.firstChild.nextSibling // 获取第二个的下一个节点
+  console.log(c === l)
+</script>
+```
+
+如果获取最后一个节点的下一个节点则返回 null
+获取第一个节点的上一个节点返回的也是 null
+
+```js
+const ul = document.querySelector('ul')
+console.log(ul.lastChild.nextSibling)
+console.log(ul.firstChild.previousSibling)
+```
+
+下面是一个综合上述方法的关系代码，想把 `class="red"` 的标签背景色改为红色
+
+```html
+<ul>
+  <li>1</li>
+  <li>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+      <li class="red">3红色</li>
+      <li>4</li>
+    </ol>
+  </li>
+  <li>3</li>
+</ul>
+
+<script>
+  document.querySelector(
+    'ul'
+  ).lastChild.previousSibling.previousSibling.previousSibling.lastChild.previousSibling.lastChild.previousSibling.previousSibling.previousSibling.style.backgroundColor =
+    'red'
+</script>
+```
+
+### hasChildNodes()
+
+`hasChildNodes()` 方法可检测一个节点是否存在子节点，返回 `true` 说明存在一个或多个子结点，`false` 则没有子节点
+
+```html
+<ul>
+  <li class="a"></li>
+  <li class="b">哈哈</li>
+</ul>
+<script>
+  console.log(document.querySelector('ul').hasChildNodes()) // true
+  console.log(document.querySelector('.a').hasChildNodes()) // false
+  console.log(document.querySelector('.b').hasChildNodes()) // true
+</script>
+```
+
+> 有一个空格也会返回 true
+
+### appendChild()
+
+`appendChild()` 可以在 `childNodes` 列表结尾插入节点
+
+```html
+<ul>
+  <li class="a">1</li>
+  <li class="b">2</li>
+</ul>
+<script>
+  const LI = document.createElement('li')
+  LI.innerHTML = '我是插入者'
+  document.querySelector('ul').appendChild(LI)
+</script>
+```
+
+### insertBefore()
+
+`insertBefore()` 可以在 `childNodes` 列表指定位置插入节点
+
+它可接收两个参数，第一个是插入的节点，第二个是插入的位置，如果第二个参数不传，则和 `appendChild()` 效果一致
+
+```html
+<ul>
+  <li class="a">1</li>
+  <li class="b">2</li>
+</ul>
+<script>
+  const LI = document.createElement('li')
+  LI.innerHTML = '我是插入者'
+  document
+    .querySelector('ul')
+    .insertBefore(LI, document.querySelector('ul').childNodes[2]) // 插入第二个位置
+</script>
+```
+
+### replaceChild()
+
+因为 `appendChild()` 和 `insertBefore()` 都是插入节点不会替换节点
+所以 `replaceChild()` 方法可以替换指定位置的节点
+接收两个参数，第一个是插入的节点，第二个是替换的位置
+
+```html
+<ul>
+  <li class="a">1</li>
+  <li class="b">2</li>
+</ul>
+<script>
+  const LI = document.createElement('li')
+  LI.innerHTML = '我是插入者'
+  document
+    .querySelector('ul')
+    .replaceChild(LI, document.querySelector('ul').childNodes[1]) // 替换第一个节点
 </script>
 ```
 
