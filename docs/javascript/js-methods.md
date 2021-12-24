@@ -1314,32 +1314,6 @@ console.log(ul.firstChild.previousSibling)
 </script>
 ```
 
-### children
-
-`children `方法可获取子级元素
-
-该方法可以获取到一个标签下的所有子集元素节点
-
-```html
-<ul>
-  <li class="li1">
-    <p>哈哈哈</p>
-    <p>哈哈哈</p>
-    <p>哈哈哈</p>
-  </li>
-  <li class="li2">222</li>
-  <li class="li3">333</li>
-</ul>
-
-<script>
-  const ul = document.querySelector('ul')
-  console.log(ul.children)
-  // 0: li.li1
-  // 1: li.li2
-  // 2: li.li3
-</script>
-```
-
 > 该属性只返回元素节点
 
 ### nextElementSibling
