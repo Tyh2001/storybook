@@ -1242,11 +1242,10 @@ console.log(ul.firstChild.previousSibling)
   <li class="b">2</li>
 </ul>
 <script>
+  const ul = document.querySelector('ul')
   const LI = document.createElement('li')
   LI.innerHTML = '我是插入者'
-  document
-    .querySelector('ul')
-    .insertBefore(LI, document.querySelector('ul').childNodes[2]) // 插入第二个位置
+  ul.insertBefore(LI, ul.childNodes[2]) // 插入第二个位置
 </script>
 ```
 
@@ -1262,11 +1261,10 @@ console.log(ul.firstChild.previousSibling)
   <li class="b">2</li>
 </ul>
 <script>
+  const ul = document.querySelector('ul')
   const LI = document.createElement('li')
   LI.innerHTML = '我是插入者'
-  document
-    .querySelector('ul')
-    .replaceChild(LI, document.querySelector('ul').childNodes[1]) // 替换第一个节点
+  ul.replaceChild(LI, ul.childNodes[1]) // 替换第一个节点
 </script>
 ```
 
