@@ -39,7 +39,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": null
+    "updatedTime": 1640333252000
   },
   "filePathRelative": "annual_summary/README.md"
 }

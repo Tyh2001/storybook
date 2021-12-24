@@ -330,6 +330,12 @@ export const data = {
         },
         {
           "level": 3,
+          "title": "removeChild()",
+          "slug": "removechild",
+          "children": []
+        },
+        {
+          "level": 3,
           "title": "getAttribute()",
           "slug": "getattribute",
           "children": []
@@ -356,7 +362,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1640330625000
+    "updatedTime": 1640339682000
   },
   "filePathRelative": "javascript/js-methods.md"
 }
