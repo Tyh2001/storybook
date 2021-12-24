@@ -83,6 +83,7 @@ export const themeData = {
       ]
     },
     "/other/other",
+    "/annual_summary/",
     {
       "text": "前端面试题",
       "children": [

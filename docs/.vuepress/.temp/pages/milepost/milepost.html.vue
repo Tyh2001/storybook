@@ -119,4 +119,7 @@
 <p>最近要做工作年度总结和分享的 PPT 了</p>
 <h2 id="_2021-12-23" tabindex="-1"><a class="header-anchor" href="#_2021-12-23" aria-hidden="true">#</a> 2021-12-23</h2>
 <p>今天是个悲伤的一天。。。。。。</p>
+<h2 id="_2021-12-24" tabindex="-1"><a class="header-anchor" href="#_2021-12-24" aria-hidden="true">#</a> 2021-12-24</h2>
+<p>今天将年度终结写一写，再争取写一个 css3 的媒体查询相关的文章</p>
+<p>上午将红宝书的 dom 部分又看了看，重头开始重新做一下笔记</p>
 </template>

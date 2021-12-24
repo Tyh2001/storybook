@@ -2,6 +2,7 @@ import { Vuepress } from '@vuepress/client/lib/components/Vuepress'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
+  ["v-08b7d390","/annual_summary/",{"title":"年度总结"},["/annual_summary/index.html","/annual_summary/README.md"]],
   ["v-7b071d9d","/hello/hello.html",{"title":"Hello"},["/hello/hello","/hello/hello.md"]],
   ["v-613d41ab","/int-ques/ques-css.html",{"title":"Css 相关问题"},["/int-ques/ques-css","/int-ques/ques-css.md"]],
   ["v-3cd2b1b9","/int-ques/ques-html.html",{"title":"Html 相关问题"},["/int-ques/ques-html","/int-ques/ques-html.md"]],

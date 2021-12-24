@@ -258,18 +258,6 @@ export const data = {
       "children": [
         {
           "level": 3,
-          "title": "getAttribute()",
-          "slug": "getattribute",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "setAttribute()",
-          "slug": "setattribute",
-          "children": []
-        },
-        {
-          "level": 3,
           "title": "childNodes",
           "slug": "childnodes",
           "children": []
@@ -278,6 +266,78 @@ export const data = {
           "level": 3,
           "title": "parentNode",
           "slug": "parentnode",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "nodeName",
+          "slug": "nodename",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "nodeValue",
+          "slug": "nodevalue",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "firstChild",
+          "slug": "firstchild",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "lastChild",
+          "slug": "lastchild",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "previousSibling",
+          "slug": "previoussibling",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "nextSibling",
+          "slug": "nextsibling",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "hasChildNodes()",
+          "slug": "haschildnodes",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "appendChild()",
+          "slug": "appendchild",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "insertBefore()",
+          "slug": "insertbefore",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "replaceChild()",
+          "slug": "replacechild",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "getAttribute()",
+          "slug": "getattribute",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "setAttribute()",
+          "slug": "setattribute",
           "children": []
         },
         {
@@ -296,7 +356,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1639972738000
+    "updatedTime": 1640330625000
   },
   "filePathRelative": "javascript/js-methods.md"
 }

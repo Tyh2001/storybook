@@ -59,6 +59,7 @@ module.exports = {
         ]
       },
       '/other/other',
+      '/annual_summary/',
       {
         text: '前端面试题',
         children: [
