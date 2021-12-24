@@ -1202,8 +1202,8 @@ console.log(ul.firstChild.previousSibling)
 
 ```html
 <ul>
-  <li class="a"></li>
-  <li class="b">哈哈</li>
+  <li></li>
+  <li>哈哈</li>
 </ul>
 <script>
   console.log(document.querySelector('ul').hasChildNodes()) // true
@@ -1220,8 +1220,8 @@ console.log(ul.firstChild.previousSibling)
 
 ```html
 <ul>
-  <li class="a">1</li>
-  <li class="b">2</li>
+  <li>1</li>
+  <li>2</li>
 </ul>
 <script>
   const LI = document.createElement('li')
@@ -1238,8 +1238,8 @@ console.log(ul.firstChild.previousSibling)
 
 ```html
 <ul>
-  <li class="a">1</li>
-  <li class="b">2</li>
+  <li>1</li>
+  <li>2</li>
 </ul>
 <script>
   const ul = document.querySelector('ul')
@@ -1257,14 +1257,30 @@ console.log(ul.firstChild.previousSibling)
 
 ```html
 <ul>
-  <li class="a">1</li>
-  <li class="b">2</li>
+  <li>1</li>
+  <li>2</li>
 </ul>
 <script>
   const ul = document.querySelector('ul')
   const LI = document.createElement('li')
   LI.innerHTML = '我是插入者'
   ul.replaceChild(LI, ul.childNodes[1]) // 替换第一个节点
+</script>
+```
+
+### removeChild()
+
+`removeChild()` 方法移除一个节点元素
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const ul = document.querySelector('ul')
+  ul.removeChild(ul.lastChild.previousSibling)
 </script>
 ```
 
