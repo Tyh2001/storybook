@@ -171,3 +171,10 @@ change()
 今天将年度终结写一写，再争取写一个 css3 的媒体查询相关的文章
 
 上午将红宝书的 dom 部分又看了看，重头开始重新做一下笔记
+
+## 2021-12-26
+
+这两天放松了一下，两天花七个小时拼了个乐高，如下：
+
+<img src="/javascript/legao_1.jpg">
+<img src="/javascript/legao_2.jpg">

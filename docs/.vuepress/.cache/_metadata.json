@@ -1,0 +1,31 @@
+{
+  "hash": "511c9047",
+  "browserHash": "8a8e7aa7",
+  "optimized": {
+    "@vuepress/shared": {
+      "file": "D:/项目文件/my-blog/docs/.vuepress/.cache/@vuepress_shared.js",
+      "src": "D:/项目文件/my-blog/node_modules/@vuepress/shared/lib/esm/index.js",
+      "needsInterop": false
+    },
+    "vue": {
+      "file": "D:/项目文件/my-blog/docs/.vuepress/.cache/vue.js",
+      "src": "D:/项目文件/my-blog/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "file": "D:/项目文件/my-blog/docs/.vuepress/.cache/vue-router.js",
+      "src": "D:/项目文件/my-blog/node_modules/vue-router/dist/vue-router.esm-bundler.js",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "file": "D:/项目文件/my-blog/docs/.vuepress/.cache/@vueuse_core.js",
+      "src": "D:/项目文件/my-blog/node_modules/@vueuse/core/index.mjs",
+      "needsInterop": false
+    },
+    "nprogress": {
+      "file": "D:/项目文件/my-blog/docs/.vuepress/.cache/nprogress.js",
+      "src": "D:/项目文件/my-blog/node_modules/nprogress/nprogress.js",
+      "needsInterop": true
+    }
+  }
+}
