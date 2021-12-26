@@ -176,5 +176,5 @@ change()
 
 这两天放松了一下，两天花七个小时拼了个乐高，如下：
 
-<img src="/javascript/legao_1.jpg">
-<img src="/javascript/legao_2.jpg">
+<img src="/milepost/legao_1.jpg">
+<img src="/milepost/legao_2.jpg">
