@@ -143,8 +143,18 @@ export const data = {
       "title": "2021-12-26",
       "slug": "_2021-12-26",
       "children": []
+    },
+    {
+      "level": 2,
+      "title": "2021-12-27",
+      "slug": "_2021-12-27",
+      "children": []
     }
-  ]
+  ],
+  "git": {
+    "updatedTime": 1640573549000
+  },
+  "filePathRelative": "milepost/milepost.md"
 }
 
 if (import.meta.webpackHot) {

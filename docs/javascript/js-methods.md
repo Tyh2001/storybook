@@ -1284,6 +1284,25 @@ console.log(ul.firstChild.previousSibling)
 </script>
 ```
 
+### cloneNode()
+
+`removeChild()` 方法克隆一个节点元素，接收一个布尔值，表示是否深度克隆子元素
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  const ul = document.querySelector('ul')
+  ul.appendChild(ul.cloneNode(true)) // 深度克隆
+
+  console.log(ul.cloneNode(true).childNodes.length) // 8
+  console.log(ul.cloneNode(false).childNodes.length) // 0
+</script>
+```
+
 ### getAttribute()
 
 `getAttribute()`方法可获取一个元素的属性值

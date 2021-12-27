@@ -126,4 +126,6 @@
 <p>这两天放松了一下，两天花七个小时拼了个乐高，如下：</p>
 <img src="/milepost/legao_1.jpg">
 <img src="/milepost/legao_2.jpg">
+<h2 id="_2021-12-27" tabindex="-1"><a class="header-anchor" href="#_2021-12-27" aria-hidden="true">#</a> 2021-12-27</h2>
+<p>上午将 github 自己的仓库整理了一下，域名也配置了一下</p>
 </template>

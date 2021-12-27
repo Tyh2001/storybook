@@ -1,0 +1,66 @@
+<template><h1 id="typescript-基础" tabindex="-1"><a class="header-anchor" href="#typescript-基础" aria-hidden="true">#</a> TypeScript 基础</h1>
+<h2 id="数据类型" tabindex="-1"><a class="header-anchor" href="#数据类型" aria-hidden="true">#</a> 数据类型</h2>
+<h3 id="基本类型" tabindex="-1"><a class="header-anchor" href="#基本类型" aria-hidden="true">#</a> 基本类型</h3>
+<p>TypeScript 中最基本的数据类型包括布尔、数字、字符串、null、undefined</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">const</span> a<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">123</span>
+<span class="token keyword">const</span> b<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">'这是一段文字'</span>
+<span class="token keyword">const</span> c<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token keyword">const</span> d<span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token keyword">const</span> e<span class="token operator">:</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> <span class="token keyword">undefined</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="数组" tabindex="-1"><a class="header-anchor" href="#数组" aria-hidden="true">#</a> 数组</h3>
+<p>定于数组分为数字数组和字符串数组，分别使用 <code>string[]</code>和<code>number[]</code> 来定义</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">const</span> numberArr<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> stringArr<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'3'</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="元组" tabindex="-1"><a class="header-anchor" href="#元组" aria-hidden="true">#</a> 元组</h3>
+<p>元组用于定义一个已知数量和数据类型的数组</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">const</span> arr<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token builtin">number</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">number</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'123'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br></div></div><h3 id="any-任意" tabindex="-1"><a class="header-anchor" href="#any-任意" aria-hidden="true">#</a> any 任意</h3>
+<p>当不确定某个变量是什么类型时，可以使用 <code>any</code> 作为这个变量的类型。你可以用 <code>any</code> 标记任何属性，可以修改任何数据，访问任何方法也不会报错。也就是说，在 TypeScript 中，当你把变量的类型标记为 any 后，这个变量的使用就和 JavaScript 没啥区别了，错误只会在浏览器里运行的时候才会提示，但是大多数并不建议这么做</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">let</span> zz<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token number">123</span>
+zz <span class="token operator">=</span> <span class="token string">'121'</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="enum-枚举" tabindex="-1"><a class="header-anchor" href="#enum-枚举" aria-hidden="true">#</a> enum 枚举</h3>
+<p>可以使用 <code>enum</code> 去定义枚举类型，这样可以把类型限制在指定的场景之内</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">enum</span> isType <span class="token punctuation">{</span>
+  type1 <span class="token operator">=</span> <span class="token string">'男'</span><span class="token punctuation">,</span>
+  type2 <span class="token operator">=</span> <span class="token string">'女'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> res<span class="token operator">:</span> isType <span class="token operator">=</span> isType<span class="token punctuation">.</span>type1
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="类型联合" tabindex="-1"><a class="header-anchor" href="#类型联合" aria-hidden="true">#</a> 类型联合</h3>
+<p>可以使用 <code>|</code> 来实现类型联合，可以规定一个变量可以赋值为多个类型</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">let</span> course1 <span class="token operator">:</span> <span class="token builtin">string</span><span class="token operator">|</span><span class="token builtin">number</span> <span class="token operator">=</span> <span class="token string">'玩转vue 3'</span>
+course1 <span class="token operator">=</span> <span class="token number">1</span>
+course1 <span class="token operator">=</span> <span class="token boolean">true</span> <span class="token comment">// 报错</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="type" tabindex="-1"><a class="header-anchor" href="#type" aria-hidden="true">#</a> type</h3>
+<p><code>type</code> 可以规定一个变量可以赋哪些值</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">type</span> <span class="token class-name">courseScore</span> <span class="token operator">=</span> <span class="token string">'好'</span> <span class="token operator">|</span> <span class="token string">'非常好'</span> <span class="token operator">|</span> <span class="token string">'嘎嘎好'</span>
+<span class="token keyword">let</span> score1 <span class="token operator">:</span>courseScore <span class="token operator">=</span> <span class="token string">'好'</span>
+<span class="token keyword">let</span> score2 <span class="token operator">:</span>courseScore <span class="token operator">=</span> <span class="token string">'一般好'</span> <span class="token comment">// 报错</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="interface" tabindex="-1"><a class="header-anchor" href="#interface" aria-hidden="true">#</a> interface</h3>
+<p>通过<code> interface</code> 可以定义对象的类型限制</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token comment">// 定义课程对象类型限制</span>
+<span class="token keyword">interface</span> <span class="token class-name">curriculum</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token comment">// 名称为字符串</span>
+  price<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 价格为数字的数组</span>
+  audience<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token comment">// 受众是字符串</span>
+  avatar<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span> <span class="token comment">// 头像通过? 设置可选属性是字符串或者布尔值</span>
+  <span class="token keyword">readonly</span> url<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token comment">// 课程地址是一个只读的字符串，不能修改</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> vueCourse<span class="token operator">:</span> curriculum <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'玩转Vue 3全家桶'</span><span class="token punctuation">,</span>
+  price<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">59</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  audience<span class="token operator">:</span> <span class="token string">'学生'</span><span class="token punctuation">,</span>
+  avatar<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  url<span class="token operator">:</span> <span class="token string">"time.geekbang.org"</span>
+<span class="token punctuation">}</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>vueCourse<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h3 id="函数" tabindex="-1"><a class="header-anchor" href="#函数" aria-hidden="true">#</a> 函数</h3>
+<p>其实函数的定义，参数和返回值本质上也是变量的概念，都可以进行类型的定义。下面的代码中我们定义了参数 x 和 y 是数字，返回值也是数字的 add 函数，定义好参数和返回值类型</p>
+<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y
+<span class="token punctuation">}</span>
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></template>

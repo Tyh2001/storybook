@@ -336,6 +336,12 @@ export const data = {
         },
         {
           "level": 3,
+          "title": "cloneNode()",
+          "slug": "clonenode",
+          "children": []
+        },
+        {
+          "level": 3,
           "title": "getAttribute()",
           "slug": "getattribute",
           "children": []
@@ -354,11 +360,7 @@ export const data = {
         }
       ]
     }
-  ],
-  "git": {
-    "updatedTime": 1640339930000
-  },
-  "filePathRelative": "javascript/js-methods.md"
+  ]
 }
 
 if (import.meta.webpackHot) {
