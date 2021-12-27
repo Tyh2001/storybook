@@ -178,3 +178,7 @@ change()
 
 <img src="/milepost/legao_1.jpg">
 <img src="/milepost/legao_2.jpg">
+
+## 2021-12-27
+
+上午将 github 自己的仓库整理了一下，域名也配置了一下
