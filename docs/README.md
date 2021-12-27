@@ -6,7 +6,7 @@ tagline: 最怕你一生碌碌无为，还安慰自己平凡可贵。
 actionText: start
 actions:
   - text: 开始
-    link: /hello/hello
+    link: /hello
     type: primary
   - text: Github
     link: https://github.com/Tyh2001/my-blog

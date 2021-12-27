@@ -43,11 +43,11 @@ module.exports = {
     ],
     // 侧边栏
     sidebar: [
-      '/hello/hello',
-      '/milepost/milepost',
-      '/vue3/vue3',
-      '/vue2/vue2',
-      '/typescript/typescript',
+      '/hello',
+      '/milepost',
+      '/vue3',
+      '/vue2',
+      '/typescript',
       {
         text: 'Js 相关',
         children: [
@@ -58,7 +58,7 @@ module.exports = {
           '/javascript/js-computed'
         ]
       },
-      '/other/other',
+      '/other',
       '/annual_summary/',
       {
         text: '前端面试题',

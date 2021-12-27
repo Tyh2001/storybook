@@ -2,15 +2,17 @@
 
 ## Welcome to my Blog
 
-我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday:，我是一名前端开发者:computer:，现在在杭州工作。
+hi ～我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday:，我是一名前端开发者:computer:，现在在杭州工作。
 
-我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh UI](http://tianyuhao.cn/tyhui/v3):star:.
+我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh ui](http://tianyuhao.cn/tyhui/v3):star:。
 
 你可以通过[微博](https://weibo.com/tyh2001)了解我。
 
-2021-9-18:hourglass:
+## 你喜欢 vue 吗？
 
-## 强烈推荐
+不知道你喜不喜欢使用 `vue` 呢？如果你也喜欢使用 `vue`，那么我想下面推荐的内容可能会适合你，也希望你可以来支持～也很需要你在 [Github](https://github.com/Tyh2001/tyh-ui2) 上一个小小的 **Star**。
+
+## 推荐给你
 
 <p align="center">
   <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.8a99342f.png">
