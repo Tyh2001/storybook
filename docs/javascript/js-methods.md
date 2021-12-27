@@ -1303,6 +1303,124 @@ console.log(ul.firstChild.previousSibling)
 </script>
 ```
 
+### normalize()
+
+后续更新。。。。
+
+## document 类型
+
+### document.documentElement
+
+获取 `html`
+
+```js
+console.log(document.documentElement)
+```
+
+### document.body
+
+获取 `body`
+
+```js
+console.log(document.body) // body
+```
+
+### document.doctype
+
+获取 `<!DOCTYPE html>` 的引用
+
+```js
+console.log(document.doctype) // <!DOCTYPE html>
+```
+
+### document.title
+
+获取文档标题
+
+```js
+console.log(document.title) // Document
+```
+
+### document.URL
+
+获取页面完整的 `URL`
+
+```js
+console.log(document.URL)
+```
+
+### document.domain
+
+获取域名
+
+```js
+console.log(document.domain)
+```
+
+### document.referrer
+
+获取来源
+
+```js
+console.log(document.referrer)
+```
+
+### document.getElementById()
+
+获取 `id` 元素
+
+```html
+<div id="app"></div>
+<script>
+  console.log(document.getElementById('app')) // <div id="app"></div>
+</script>
+```
+
+### document.getElementsByTagName()
+
+获取元素集合，下面获取所有的 `div`
+
+```html
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+  console.log(document.getElementsByTagName('div')) // HTMLCollection(5) [div, div, div, div, div]
+</script>
+```
+
+> 也可以像数组一样操作它，但它并不是数组
+
+### namedItem()
+
+`namedItem()` 方法返回具有指定 `id` 或 `name` 的元素，只返回一个元素，`id` 优先级大于 `name`
+
+```html
+<div name="title"></div>
+<div id="title"></div>
+
+<script>
+  console.log(document.getElementsByTagName('div').namedItem('title')) // <div id="title"></div>
+</script>
+```
+
+> namedItem() 方法仅会返回一项
+
+### document.getElementsByName()
+
+获取指定 `name` 的集合
+
+```html
+<div name="title"></div>
+<div name="title"></div>
+<div name="title"></div>
+<script>
+  console.log(document.getElementsByName('title')) // NodeList(3) [div, div, div]
+</script>
+```
+
 ### getAttribute()
 
 `getAttribute()`方法可获取一个元素的属性值
