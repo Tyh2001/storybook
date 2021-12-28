@@ -1423,16 +1423,12 @@ console.log(document.referrer)
 
 ### getAttribute()
 
-`getAttribute()`方法可获取一个元素的属性值
+`getAttribute()` 方法可获取一个元素的属性值
 
 ```html
-<img src="./src/壁纸.jpg" alt="" />
-
+<div id="app"></div>
 <script>
-  const img = document.querySelector('img')
-  const res = img.getAttribute('src')
-  console.log(res)
-  // ./src/壁纸.jpg
+  console.log(document.getElementById('app').getAttribute('id')) // app
 </script>
 ```
 
@@ -1440,18 +1436,86 @@ console.log(document.referrer)
 
 ### setAttribute()
 
-`setAttribute()`方法可更改一个元素的属性值
+`setAttribute()` 方法可设置一个元素的属性值，接收两个参数，第一个是要设置的属性，第二个是设置的属性值
 
 ```html
-<img src="./src/壁纸1.jpg" alt="" />
-
+<div id="app"></div>
 <script>
-  const img = document.querySelector('img')
-  img.setAttribute('src', './src/壁纸2.jpg')
+  document.getElementById('app').setAttribute('class', 'box')
 </script>
 ```
 
-> 该属性只返回元素节点
+通过简写的方式也可以进行修改
+
+```html
+<div id="app"></div>
+<script>
+  document.getElementById('app').id = 'box'
+</script>
+```
+
+> 注意：简写方式仅仅可以修改属性，并不能添加不存在的属性
+
+### removeAttribute()
+
+`setAttribute()` 方法可删除一个元素的属性值，不是仅仅清楚属性值，而是将属性和属性值全部清除
+
+```html
+<div id="app" class="box"></div>
+<script>
+  document.getElementById('app').removeAttribute('class')
+</script>
+```
+
+### attributes
+
+`attributes` 包含一个 `NamedNodeMap` 对象，包含元素的每一个属性
+
+```html
+<div id="app" class="box"></div>
+<script>
+  console.log(document.getElementById('app').attributes)
+</script>
+```
+
+**返回结果**
+
+```js
+NamedNodeMap {
+  0: id
+  1: class
+  class: class
+  id: id
+  length: 2
+  [[Prototype]]: NamedNodeMap
+}
+```
+
+通过 `attributes` 就可以像下面方式修改属性了
+
+```html
+<div id="app" class="box"></div>
+<script>
+  console.log(document.getElementById('app').attributes.id.nodeValue) // 获取 id
+
+  document.getElementById('app').attributes.class.nodeValue = 'newClass' // 修改 class
+</script>
+```
+
+> 每个节点中的 nodeValue 记录着对应的属性值
+
+### attributes.removeNamedItem()
+
+`attributes.removeNamedItem()` 方法和 `removeAttribute()` 类似，都是可以删除一个属性值，只不过 `attributes.removeNamedItem()` 是删除属性的 `NamedNodeMap` 对象中的属性
+
+```html
+<div id="app" class="box"></div>
+<script>
+  document.getElementById('app').attributes.removeNamedItem('class')
+</script>
+```
+
+> `attributes.removeNamedItem()` 方法和 `removeAttribute()` 实际的效果是一样的，就是换了不同的方式表现而已，大多数都会使用 `removeAttribute()`、`setAttribute()` 和 `getAttribute()`
 
 ### nextElementSibling
 
