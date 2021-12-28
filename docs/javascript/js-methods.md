@@ -1442,6 +1442,15 @@ document.createElement('div') // 创建一个 div
 
 > 该方法仅可有一个参数
 
+## document.createComment()
+
+`document.createComment()` 方法可以创建一个注释
+但是在开发中基本不会使用
+
+```js
+document.body.appendChild(document.createComment('这是一段注释'))
+```
+
 ### setAttribute()
 
 `setAttribute()` 方法可设置一个元素的属性值，接收两个参数，第一个是要设置的属性，第二个是设置的属性值
