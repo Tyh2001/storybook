@@ -182,3 +182,16 @@ change()
 ## 2021-12-27
 
 上午将 github 自己的仓库整理了一下，域名也配置了一下
+
+## 2021-12-28
+
+留几个问题接下来要研究的：
+
+1. `哈希`是什么？
+2. `元宇宙`是什么？
+3. [意派](https://www.epub360.com) 这个网站可以看一下
+4. [码市](https://codemart.com) 这个网站可以看一下
+5. Vue 3 还内置了 `Fragment`、`Teleport` 和 `Suspense` 组件都是干啥的？
+6. [Pinia](https://pinia.vuejs.org)大致看一下
+7. [公众号数组方法](https://mp.weixin.qq.com/s/sYeL4qUSxqGE9VJMVz7uPw)
+8. [路由丝滑切换](https://github.com/zeroojs/zeroojs-todolist)

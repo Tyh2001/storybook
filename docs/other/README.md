@@ -354,3 +354,11 @@ VScode 安装 Live Server
 html 文件中右键点击 `Open with Live Server` 就可以启动一个端口了
 
 当编辑器中代码保存后浏览器不需要刷新就可以进行同步
+
+## 服务器的 ssl 配置文件在哪里？
+
+下面地址：
+
+```shell
+/usr/local/nginx/conf/nginx.conf
+```
