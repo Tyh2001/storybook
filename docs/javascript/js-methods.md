@@ -1421,6 +1421,14 @@ console.log(document.referrer)
 </script>
 ```
 
+### document.createElement()
+
+`document.createElement()` 方法可以创建一个元素，接受一个参数为标签名
+
+```js
+document.createElement('div') // 创建一个 div
+```
+
 ### getAttribute()
 
 `getAttribute()` 方法可获取一个元素的属性值
