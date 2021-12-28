@@ -21,7 +21,7 @@ console.log("\u4f60\u597d\u5417"); // 你好吗
 console.log("\u35\u32\u30"); // 520
 ```
 
-转换网站 http://tool.sufeinet.com/Code/ChineseUnicode.aspx
+[转换网站](http://tool.sufeinet.com/Code/ChineseUnicode.aspx)
 
 ## 本地存储
 
