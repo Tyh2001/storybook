@@ -195,3 +195,12 @@ change()
 6. [Pinia](https://pinia.vuejs.org)大致看一下
 7. [公众号数组方法](https://mp.weixin.qq.com/s/sYeL4qUSxqGE9VJMVz7uPw)
 8. [路由丝滑切换](https://github.com/zeroojs/zeroojs-todolist)
+
+## 2021-12-29
+
+将红宝书的 DOM 部分又看了一遍，这一便算是真的看懂了，笔记也都记录了
+
+最近看到几个比较另类的面试题，先记录一下，后面也整理到文档中
+
+1. [如何中断已发出去的请求？](https://mp.weixin.qq.com/s/HO_CYsH5DGKLcJWVEhEfxA)
+2. window.localStorage 怎么设置过期时间？

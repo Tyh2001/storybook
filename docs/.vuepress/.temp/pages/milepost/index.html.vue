@@ -140,4 +140,11 @@
 <li><a href="https://mp.weixin.qq.com/s/sYeL4qUSxqGE9VJMVz7uPw" target="_blank" rel="noopener noreferrer">公众号数组方法<ExternalLinkIcon/></a></li>
 <li><a href="https://github.com/zeroojs/zeroojs-todolist" target="_blank" rel="noopener noreferrer">路由丝滑切换<ExternalLinkIcon/></a></li>
 </ol>
+<h2 id="_2021-12-29" tabindex="-1"><a class="header-anchor" href="#_2021-12-29" aria-hidden="true">#</a> 2021-12-29</h2>
+<p>将红宝书的 DOM 部分又看了一遍，这一便算是真的看懂了，笔记也都记录了</p>
+<p>最近看到几个比较另类的面试题，先记录一下，后面也整理到文档中</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/HO_CYsH5DGKLcJWVEhEfxA" target="_blank" rel="noopener noreferrer">如何中断已发出去的请求？<ExternalLinkIcon/></a></li>
+<li>window.localStorage 怎么设置过期时间？</li>
+</ol>
 </template>

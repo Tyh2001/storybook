@@ -520,7 +520,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1640750657000
+    "updatedTime": 1640764109000
   },
   "filePathRelative": "javascript/js-methods.md"
 }
