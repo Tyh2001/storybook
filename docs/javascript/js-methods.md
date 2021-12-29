@@ -1600,7 +1600,7 @@ console.log(mut)
 
 ### 回调函数中的参数
 
-`MutationObserver` 回调可以接受一个参数，是一个数组，记录了当前那些部分发生了变化
+`MutationObserver` 回调可以接收的一个参数，是一个数组，记录了当前那些部分发生了变化
 
 ```html
 <div id="app"></div>
@@ -1645,4 +1645,108 @@ console.log(mut)
     [[Prototype]]: MutationRecord
   length: 2
   [[Prototype]]: Array(0)
+```
+
+`MutationObserver` 接收的第二个参数是观察变化的 `MutationObserver` 的实例
+
+```js
+const mut = new MutationObserver((MutationRecord, mutationObserver) => {
+  console.log(mut === mutationObserver) // true
+})
+```
+
+### disconnect()
+
+默认情况下，只有元素不被垃圾回收，`MutationObserver` 的回调函数就会响应 DOM 变化事件，从而执行。使用 `disconnect()` 可以提前终止回调函数，也会抛弃已经加入任务队列的项目
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver(() => console.log('改变了'))
+
+  mut.observe(app, { attributes: true })
+  app.setAttribute('class', 'box')
+  mut.disconnect()
+  app.setAttribute('data-app', 'add')
+  // 没有日志输出
+</script>
+```
+
+如果想让已经加入任务队列的项目执行完再调用可以使用 `setTimeout()` 来解决
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver(() => console.log('改变了'))
+
+  mut.observe(app, { attributes: true })
+  app.setAttribute('class', 'box') // 改变了
+  setTimeout(() => {
+    mut.disconnect()
+    app.setAttribute('data-app', 'add') // 没有日志输出
+  }, 0)
+</script>
+```
+
+### 重用 MutationObserver
+
+调用 `disconnect()` 的时候并不会结束 `MutationObserver` 的生命。还是可以重用这个观察者的，只需要将他在关联到目标节点即可。
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a.map((x) => x.target)))
+
+  mut.observe(app, { attributes: true })
+
+  setTimeout(() => {
+    mut.disconnect() // 断开连接
+    app.setAttribute('class', 'box') // 没有日志输出
+  }, 0)
+
+  setTimeout(() => {
+    mut.observe(app, { attributes: true }) // 重新连接
+    app.setAttribute('class', 'box') // [div#app.box]
+  }, 0)
+</script>
+```
+
+### 观察属性
+
+`MutationObserver.observe` 可以接收两个参数，第二个参数为以及一个 `MutationObserverInit` 对象。可以观察节点属性的添加、删除、修改。需要属性变化注册回调，需要字啊 `MutationObserverInit` 对象中将 `attributes` 设置为 `true`。
+
+但是将 `attributes` 设置为 `true` 默认是观察所有的属性，如果想要观察几个或者多个属性，可以使用 `attributeFilter` 属性设置白名单，即一个属性名的数组集合
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a.map((x) => x.target)))
+
+  mut.observe(app, { attributeFilter: ['food'] }) // 设置 food 为白名单
+
+  app.setAttribute('class', 'box') // [div#app.box]
+  app.setAttribute('food', 'admin') // 没有日志输出
+</script>
+```
+
+如果想要在变化的记录中保存原来的值，可以将 `attributeOldValue` 设置为 `true`
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a.map((x) => x.oldValue)))
+
+  mut.observe(app, { attributeOldValue: true })
+
+  app.setAttribute('class', 'box')
+  app.setAttribute('food', 'admin')
+  app.setAttribute('id', 'ccc')
+
+  // [null, null, 'app']
+</script>
 ```
