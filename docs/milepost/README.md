@@ -204,3 +204,7 @@ change()
 
 1. [如何中断已发出去的请求？](https://mp.weixin.qq.com/s/HO_CYsH5DGKLcJWVEhEfxA)
 2. window.localStorage 怎么设置过期时间？
+3. 反转二叉树是什么？
+4. 最长递增子序列是什么？
+5. 动态规划是什么？
+6. 设计模式是什么？

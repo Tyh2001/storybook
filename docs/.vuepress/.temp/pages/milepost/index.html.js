@@ -162,18 +162,9 @@ export const data = {
       "slug": "_2021-12-29",
       "children": []
     }
-  ]
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
+  ],
+  "git": {
+    "updatedTime": 1640764897000
+  },
+  "filePathRelative": "milepost/README.md"
 }
