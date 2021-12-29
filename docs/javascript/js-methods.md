@@ -1429,6 +1429,18 @@ console.log(document.referrer)
 document.createElement('div') // 创建一个 div
 ```
 
+### document.createTextNode()
+
+`document.createTextNode()` 方法可以创建一个文本节点
+
+```html
+<div id="app"></div>
+<script>
+  const text = document.createTextNode('这是一段文字')
+  document.getElementById('app').appendChild(text)
+</script>
+```
+
 ### getAttribute()
 
 `getAttribute()` 方法可获取一个元素的属性值
@@ -1442,7 +1454,7 @@ document.createElement('div') // 创建一个 div
 
 > 该方法仅可有一个参数
 
-## document.createComment()
+### document.createComment()
 
 `document.createComment()` 方法可以创建一个注释
 但是在开发中基本不会使用
@@ -1473,7 +1485,7 @@ document.body.appendChild(document.createComment('这是一段注释'))
 
 > 注意：简写方式仅仅可以修改属性，并不能添加不存在的属性
 
-### removeAttribute()
+### removeAttribut e()
 
 `setAttribute()` 方法可删除一个元素的属性值，不是仅仅清楚属性值，而是将属性和属性值全部清除
 
@@ -1554,3 +1566,83 @@ NamedNodeMap {
 ```
 
 > 或获得下一个元素及其下一个元素内包含的所有元素
+
+## MutationObserver 接口
+
+`MutationObserver 接口` 可以在 DOM 被修改时移步执行回调，使用 `MutationObserver` 可以观察整个文档、DOM 树的一部分或者元素。此外还可以观察元素的属性、子节点、文本，或者前三者的组合变化。
+
+### 基本使用
+
+`MutationObserver` 的实例要通过 `MutationObserver` 的构造函数，接收一个回调参数来创建
+
+```js
+const mut = new MutationObserver(() => console.log('123'))
+console.log(mut)
+```
+
+### observe()
+
+新创建的 `MutationObserver` 并不会关联 DOM 的任何部分，想要把 `MutationObserver` 和 DOM 关联起来，需要使用 `observe()` 方法。
+
+这个方法必须接收两个参数，第一个是要观察其变化的 DOM 节点，以及一个 `MutationObserverInit` 对象。
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver(() => console.log('div 改变了'))
+
+  mut.observe(app, { attributes: true })
+
+  app.setAttribute('class', 'box') // 改变之后执行 mut 的回调
+</script>
+```
+
+### 回调函数中的参数
+
+`MutationObserver` 回调可以接受一个参数，是一个数组，记录了当前那些部分发生了变化
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((MutationRecord) =>
+    console.log(MutationRecord)
+  )
+
+  mut.observe(app, { attributes: true })
+
+  app.setAttribute('class', 'box')
+  app.setAttribute('data-app', 'add')
+</script>
+```
+
+**打印结果**
+
+```shell
+(2) [MutationRecord, MutationRecord]
+  0: MutationRecord
+    addedNodes: NodeList []
+    attributeName: "class"
+    attributeNamespace: null
+    nextSibling: null
+    oldValue: null
+    previousSibling: null
+    removedNodes: NodeList []
+    target: div#app.box
+    type: "attributes"
+    [[Prototype]]: MutationRecord
+  1: MutationRecord
+    addedNodes: NodeList []
+    attributeName: "data-app"
+    attributeNamespace: null
+    nextSibling: null
+    oldValue: null
+    previousSibling: null
+    removedNodes: NodeList []
+    target: div#app.box
+    type: "attributes"
+    [[Prototype]]: MutationRecord
+  length: 2
+  [[Prototype]]: Array(0)
+```
