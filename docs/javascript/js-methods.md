@@ -1463,6 +1463,20 @@ document.createElement('div') // 创建一个 div
 document.body.appendChild(document.createComment('这是一段注释'))
 ```
 
+### document.getElementsByClassName()
+
+`document.getElementsByClassName()` 方法接收一个参数，即包含一个或者多个类名的字符串
+
+```html
+<div class="red box">1</div>
+<div class="box red">2</div>
+<script>
+  console.log(document.getElementsByClassName('red box'))
+</script>
+```
+
+> 因为两元素都包含 red 和 box 属性，所以获取两个，类名无视顺序
+
 ### setAttribute()
 
 `setAttribute()` 方法可设置一个元素的属性值，接收两个参数，第一个是要设置的属性，第二个是设置的属性值
@@ -1613,6 +1627,24 @@ NamedNodeMap {
   // <p class="p2">2</p>
 </script>
 ```
+
+### classList
+
+操作元素的类名，可以通过 `className` 来删除、替换。但是 `className` 是一个字符串，所以每次操作都需要重新设置才能生效，即使改变部分字符串也是一样，比如下面 `div` 有三个类名。想要删除一个，就得先把 `className` 拆开，删除不想要的那个，再设置回去，比如：
+
+```html
+<div id="app" class="box admin user"></div>
+<script>
+  const app = document.getElementById('app')
+  const classNames = app.className.split(/\s+/)
+  classNames.splice(1, 1)
+  app.className = classNames.join(' ')
+
+  // <div id="app" class="box user"></div>
+</script>
+```
+
+那么在 **HTML5** 中新增了更方便的方式
 
 ## MutationObserver 接口
 
