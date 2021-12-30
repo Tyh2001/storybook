@@ -2,7 +2,6 @@ import { Vuepress } from '@vuepress/client/lib/components/Vuepress'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
-  ["v-fe51d454","/hello/",{"title":"Hello"},["/hello/index.html","/hello/README.md"]],
   ["v-08b7d390","/annual_summary/",{"title":"年度总结"},["/annual_summary/index.html","/annual_summary/README.md"]],
   ["v-613d41ab","/int-ques/ques-css.html",{"title":"Css 相关问题"},["/int-ques/ques-css","/int-ques/ques-css.md"]],
   ["v-3cd2b1b9","/int-ques/ques-html.html",{"title":"Html 相关问题"},["/int-ques/ques-html","/int-ques/ques-html.md"]],
@@ -10,6 +9,7 @@ const routeItems = [
   ["v-9371fad0","/int-ques/ques-vue2.html",{"title":"Vue2 相关问题"},["/int-ques/ques-vue2","/int-ques/ques-vue2.md"]],
   ["v-90084992","/int-ques/ques-vue3.html",{"title":"Vue3 相关问题"},["/int-ques/ques-vue3","/int-ques/ques-vue3.md"]],
   ["v-7d3b22fa","/int-ques/ques-web.html",{"title":"Web 综合问题"},["/int-ques/ques-web","/int-ques/ques-web.md"]],
+  ["v-fe51d454","/hello/",{"title":"Hello"},["/hello/index.html","/hello/README.md"]],
   ["v-05b37346","/javascript/js-basic.html",{"title":"基础"},["/javascript/js-basic","/javascript/js-basic.md"]],
   ["v-0f9d7631","/javascript/js-computed.html",{"title":"算法"},["/javascript/js-computed","/javascript/js-computed.md"]],
   ["v-4d97c846","/javascript/js-function.html",{"title":"函数相关"},["/javascript/js-function","/javascript/js-function.md"]],

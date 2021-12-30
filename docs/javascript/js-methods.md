@@ -1753,7 +1753,7 @@ const mut = new MutationObserver((MutationRecord, mutationObserver) => {
 
 ### 观察字符数据
 
-将 `characterData` 设置为 `true` 可以为字符注册回调，当字符修改、删除、添加时，都可以触发回调
+将 `characterData` 设置为 `true` 可以为观察字符，当字符修改、删除、添加时，都可以触发回调
 
 ```html
 <div id="app">app</div>
@@ -1771,3 +1771,100 @@ const mut = new MutationObserver((MutationRecord, mutationObserver) => {
   // (3) [MutationRecord, MutationRecord, MutationRecord]
 </script>
 ```
+
+如果想要在变化的记录中保存原来的值，可以将 `characterDataOldValue` 设置为 `true`
+
+```html
+<div id="app">app</div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a.map((x) => x.oldValue)))
+
+  app.firstChild.textContent = '张三' //设置文本
+
+  mut.observe(app.firstChild, { characterDataOldValue: true })
+
+  app.firstChild.textContent = 'abc'
+  app.firstChild.textContent = 'admin'
+  app.firstChild.textContent = 'ppt'
+
+  // 修改过的值都被记录下来了
+  // (3) ['张三', 'abc', 'admin']
+</script>
+```
+
+### 观察子节点
+
+将 `childList` 设置为 `true` 可以观察子节点，当子节点修改、删除、添加时，都可以触发回调
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a))
+  mut.observe(app, { childList: true })
+
+  app.appendChild(document.createElement('p'))
+
+  // [MutationRecord]
+</script>
+```
+
+### 观察子树
+
+上述 将 `childList` 设置为 `true` 可以观察子节点，但是子节点的内部就观察不到了，所以还需要将 `subtree` 设置为 `true`，即可扩展到这个元素的子树，所有后代节点。
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a))
+  mut.observe(app, { attributes: true, subtree: true })
+
+  app.appendChild(document.createElement('p'))
+  app.querySelector('p').setAttribute('class', 'text')
+
+  // [MutationRecord]
+</script>
+```
+
+但是有意思的是：观察子树的节点被移出子树之后，仍然可以触发变化事件
+
+```html
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a))
+
+  const div1 = document.createElement('div')
+  mut.observe(app, { attributes: true, subtree: true }) // 观察子树
+  app.appendChild(div1) // 将新建的 div 放进 app 容器
+  document.body.insertBefore(div1, app) // 修改新建 div 的位置
+  div1.setAttribute('class', 'box1') // 改变属性
+
+  // 观察子树的节点被移出子树之后，仍然可以触发变化事件
+  // [MutationRecord]
+</script>
+```
+
+### takeRecords()
+
+`takeRecords()` 方法可以清空 `MutationObserver` 的记录队列，取出并返回所有 `MutationObserver` 实例
+
+```html
+<div id="app">哈哈</div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a.map((x) => x.oldValue)))
+  mut.observe(app.firstChild, { characterDataOldValue: true })
+
+  app.firstChild.textContent = 'abc'
+  app.firstChild.textContent = 'admin'
+  app.firstChild.textContent = 'ppt'
+
+  console.log(mut.takeRecords()) // (3) [MutationRecord, MutationRecord, MutationRecord]
+  console.log(mut.takeRecords()) // []
+</script>
+```
+
+这在希望断开与观目标的联系，但又希望处理由于调用 `disconnect()` 而被抛弃的记录队列中的 `MutationObserver` 实例还是比较有用的。

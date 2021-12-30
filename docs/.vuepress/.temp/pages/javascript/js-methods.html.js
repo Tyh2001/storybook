@@ -521,6 +521,24 @@ export const data = {
           "title": "观察字符数据",
           "slug": "观察字符数据",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "观察子节点",
+          "slug": "观察子节点",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "观察子树",
+          "slug": "观察子树",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "takeRecords()",
+          "slug": "takerecords",
+          "children": []
         }
       ]
     }
