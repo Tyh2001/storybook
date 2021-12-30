@@ -1750,3 +1750,24 @@ const mut = new MutationObserver((MutationRecord, mutationObserver) => {
   // [null, null, 'app']
 </script>
 ```
+
+### 观察字符数据
+
+将 `characterData` 设置为 `true` 可以为字符注册回调，当字符修改、删除、添加时，都可以触发回调
+
+```html
+<div id="app">app</div>
+<script>
+  const app = document.getElementById('app')
+  const mut = new MutationObserver((a) => console.log(a))
+  app.firstChild.textContent = '张三' //设置文本
+
+  mut.observe(app.firstChild, { characterData: true })
+  app.firstChild.textContent = 'abc'
+  app.firstChild.textContent = 'admin'
+  app.firstChild.textContent = 'ppt'
+
+  // 三次修改都被记录下来了
+  // (3) [MutationRecord, MutationRecord, MutationRecord]
+</script>
+```

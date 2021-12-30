@@ -1,10 +1,10 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
-  // path: /annual_summary/
-  "v-08b7d390": () => import(/* webpackChunkName: "v-08b7d390" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/annual_summary/index.html.js").then(({ data }) => data),
   // path: /hello/
   "v-fe51d454": () => import(/* webpackChunkName: "v-fe51d454" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/hello/index.html.js").then(({ data }) => data),
+  // path: /annual_summary/
+  "v-08b7d390": () => import(/* webpackChunkName: "v-08b7d390" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/annual_summary/index.html.js").then(({ data }) => data),
   // path: /int-ques/ques-css.html
   "v-613d41ab": () => import(/* webpackChunkName: "v-613d41ab" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/int-ques/ques-css.html.js").then(({ data }) => data),
   // path: /int-ques/ques-html.html

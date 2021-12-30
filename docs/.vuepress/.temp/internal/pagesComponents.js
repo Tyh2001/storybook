@@ -3,10 +3,10 @@ import { defineAsyncComponent } from 'vue'
 export const pagesComponents = {
   // path: /
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/index.html.vue")),
-  // path: /annual_summary/
-  "v-08b7d390": defineAsyncComponent(() => import(/* webpackChunkName: "v-08b7d390" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/annual_summary/index.html.vue")),
   // path: /hello/
   "v-fe51d454": defineAsyncComponent(() => import(/* webpackChunkName: "v-fe51d454" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/hello/index.html.vue")),
+  // path: /annual_summary/
+  "v-08b7d390": defineAsyncComponent(() => import(/* webpackChunkName: "v-08b7d390" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/annual_summary/index.html.vue")),
   // path: /int-ques/ques-css.html
   "v-613d41ab": defineAsyncComponent(() => import(/* webpackChunkName: "v-613d41ab" */"D:/Tyh--------tyh--------/我的笔记/my-note-web/docs/.vuepress/.temp/pages/int-ques/ques-css.html.vue")),
   // path: /int-ques/ques-html.html

@@ -146,5 +146,9 @@
 <ol>
 <li><a href="https://mp.weixin.qq.com/s/HO_CYsH5DGKLcJWVEhEfxA" target="_blank" rel="noopener noreferrer">如何中断已发出去的请求？<ExternalLinkIcon/></a></li>
 <li>window.localStorage 怎么设置过期时间？</li>
+<li>反转二叉树是什么？</li>
+<li>最长递增子序列是什么？</li>
+<li>动态规划是什么？</li>
+<li>设计模式是什么？</li>
 </ol>
 </template>

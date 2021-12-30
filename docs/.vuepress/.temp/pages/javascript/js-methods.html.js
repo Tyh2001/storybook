@@ -515,12 +515,27 @@ export const data = {
           "title": "观察属性",
           "slug": "观察属性",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "观察字符数据",
+          "slug": "观察字符数据",
+          "children": []
         }
       ]
     }
-  ],
-  "git": {
-    "updatedTime": 1640764109000
-  },
-  "filePathRelative": "javascript/js-methods.md"
+  ]
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }
