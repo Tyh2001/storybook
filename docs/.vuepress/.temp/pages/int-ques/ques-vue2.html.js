@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-9371fad0",
   "path": "/int-ques/ques-vue2.html",
-  "title": "Vue2 相关问题",
+  "title": "Vue2 相关",
   "lang": "en-US",
   "frontmatter": {},
   "excerpt": "",

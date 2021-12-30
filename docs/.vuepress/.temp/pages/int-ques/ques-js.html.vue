@@ -1,4 +1,4 @@
-<template><h1 id="js-相关问题" tabindex="-1"><a class="header-anchor" href="#js-相关问题" aria-hidden="true">#</a> Js 相关问题</h1>
+<template><h1 id="js-相关" tabindex="-1"><a class="header-anchor" href="#js-相关" aria-hidden="true">#</a> Js 相关</h1>
 <h2 id="闭包函数" tabindex="-1"><a class="header-anchor" href="#闭包函数" aria-hidden="true">#</a> 闭包函数</h2>
 <blockquote>
 <p>闭包定义</p>

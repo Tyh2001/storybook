@@ -1,4 +1,4 @@
-<template><h1 id="html-相关问题" tabindex="-1"><a class="header-anchor" href="#html-相关问题" aria-hidden="true">#</a> Html 相关问题</h1>
+<template><h1 id="html-相关" tabindex="-1"><a class="header-anchor" href="#html-相关" aria-hidden="true">#</a> Html 相关</h1>
 <h2 id="html5-有哪些新特性" tabindex="-1"><a class="header-anchor" href="#html5-有哪些新特性" aria-hidden="true">#</a> HTML5 有哪些新特性</h2>
 <blockquote>
 <p>详细参考：<a href="https://www.runoob.com/w3cnote/html5-canvas-intro.html" target="_blank" rel="noopener noreferrer">html5 新特性<ExternalLinkIcon/></a></p>

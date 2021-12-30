@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-3cd2b1b9",
   "path": "/int-ques/ques-html.html",
-  "title": "Html 相关问题",
+  "title": "Html 相关",
   "lang": "en-US",
   "frontmatter": {},
   "excerpt": "",

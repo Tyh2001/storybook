@@ -542,7 +542,11 @@ export const data = {
         }
       ]
     }
-  ]
+  ],
+  "git": {
+    "updatedTime": 1640836783000
+  },
+  "filePathRelative": "javascript/js-methods.md"
 }
 
 if (import.meta.webpackHot) {

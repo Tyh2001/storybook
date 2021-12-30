@@ -87,12 +87,12 @@ export const themeData = {
     {
       "text": "前端面试题",
       "children": [
+        "/int-ques",
         "/int-ques/ques-web",
         "/int-ques/ques-css",
         "/int-ques/ques-html",
         "/int-ques/ques-js",
-        "/int-ques/ques-vue2",
-        "/int-ques/ques-vue3"
+        "/int-ques/ques-vue2"
       ]
     }
   ],

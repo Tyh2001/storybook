@@ -1,4 +1,4 @@
-<template><h1 id="web-综合问题" tabindex="-1"><a class="header-anchor" href="#web-综合问题" aria-hidden="true">#</a> Web 综合问题</h1>
+<template><h1 id="web-相关" tabindex="-1"><a class="header-anchor" href="#web-相关" aria-hidden="true">#</a> Web 相关</h1>
 <h2 id="前端需要注意哪些-seo" tabindex="-1"><a class="header-anchor" href="#前端需要注意哪些-seo" aria-hidden="true">#</a> 前端需要注意哪些 SEO</h2>
 <blockquote>
 <p>SEO 是什么？</p>

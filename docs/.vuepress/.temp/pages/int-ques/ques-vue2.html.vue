@@ -1,4 +1,4 @@
-<template><h1 id="vue2-相关问题" tabindex="-1"><a class="header-anchor" href="#vue2-相关问题" aria-hidden="true">#</a> Vue2 相关问题</h1>
+<template><h1 id="vue2-相关" tabindex="-1"><a class="header-anchor" href="#vue2-相关" aria-hidden="true">#</a> Vue2 相关</h1>
 <h2 id="vue-路由懒加载是什么" tabindex="-1"><a class="header-anchor" href="#vue-路由懒加载是什么" aria-hidden="true">#</a> Vue 路由懒加载是什么</h2>
 <p>当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了</p>
 <p>Vue 是单页应用，当路由很大时，进入首页，加载资源过多导致页面白屏，用户体验很差。</p>

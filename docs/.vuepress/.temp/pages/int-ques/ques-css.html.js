@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-613d41ab",
   "path": "/int-ques/ques-css.html",
-  "title": "Css 相关问题",
+  "title": "Css 相关",
   "lang": "en-US",
   "frontmatter": {},
   "excerpt": "",

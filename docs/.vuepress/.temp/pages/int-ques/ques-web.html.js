@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-7d3b22fa",
   "path": "/int-ques/ques-web.html",
-  "title": "Web 综合问题",
+  "title": "Web 相关",
   "lang": "en-US",
   "frontmatter": {},
   "excerpt": "",
