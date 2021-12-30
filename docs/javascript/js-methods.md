@@ -1546,26 +1546,73 @@ NamedNodeMap {
 
 > `attributes.removeNamedItem()` 方法和 `removeAttribute()` 实际的效果是一样的，就是换了不同的方式表现而已，大多数都会使用 `removeAttribute()`、`setAttribute()` 和 `getAttribute()`
 
-### nextElementSibling
+### childElementCount
 
-`nextElementSibling`方法可获取一个元素的下一个元素
+`childElementCount` 方法可获取子节点的数量
 
 ```html
-<p class="title">哈哈哈</p>
-<ul>
-  <li>
-    <p>1</p>
-  </li>
-</ul>
-
+<div id="app">
+  <p>1</p>
+  <p>2</p>
+</div>
 <script>
-  const title = document.querySelector('.title')
-  console.log(title.nextElementSibling)
-  // <ul>...</ul>
+  console.log(document.getElementById('app').childElementCount) // 2
 </script>
 ```
 
-> 或获得下一个元素及其下一个元素内包含的所有元素
+### firstElementChild
+
+`firstElementChild` 方法可获取一个元素第一个子元素，类似 [firstChild](https://tianyuhao.cn/blog/javascript/js-methods.html#firstchild)
+
+```html
+<div id="app">
+  <p>1</p>
+  <p>2</p>
+</div>
+<script>
+  console.log(document.getElementById('app').firstElementChild) // <p>1</p>
+</script>
+```
+
+### lastElementChild
+
+`lastElementChild` 方法可获取一个元素第一个子元素，类似 [lastChild](https://tianyuhao.cn/blog/javascript/js-methods.html#lastchild)
+
+```html
+<div id="app">
+  <p>1</p>
+  <p>2</p>
+</div>
+<script>
+  console.log(document.getElementById('app').lastElementChild) // <p>2</p>
+</script>
+```
+
+### previousElementSibling
+
+`previousElementSibling` 方法指向前一个同胞兄弟节点
+
+```html
+<p class="p1">1</p>
+<p class="p2">2</p>
+<script>
+  console.log(document.querySelector('.p2').previousElementSibling)
+  // <p class="p1">1</p>
+</script>
+```
+
+### nextElementSibling
+
+`nextElementSibling` 方法指向后一个同胞兄弟节点
+
+```html
+<p class="p1">1</p>
+<p class="p2">2</p>
+<script>
+  console.log(document.querySelector('.p1').nextElementSibling)
+  // <p class="p2">2</p>
+</script>
+```
 
 ## MutationObserver 接口
 
