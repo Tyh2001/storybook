@@ -216,3 +216,7 @@ change()
 ## 2022-1-1
 
 新的一年要多些代码，多提交 github。祝各位奋斗晋升，喜欢摸鱼的都自由～
+
+新年的第一顿早餐
+
+<img src="/milepost/newyear.jpg">
