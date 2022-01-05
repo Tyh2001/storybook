@@ -1325,6 +1325,14 @@ console.log(document.documentElement)
 console.log(document.body) // body
 ```
 
+### document.header
+
+获取 `header`
+
+```js
+console.log(document.header) // header
+```
+
 ### document.doctype
 
 获取 `<!DOCTYPE html>` 的引用
@@ -1476,6 +1484,41 @@ document.body.appendChild(document.createComment('这是一段注释'))
 ```
 
 > 因为两元素都包含 red 和 box 属性，所以获取两个，类名无视顺序
+
+### document.readyState()
+
+判断文档是否加载完成，可以有两个可能值
+
+- loading 表示文档正在加载
+- complete 文档加载完成
+
+例如下面：
+
+```html
+<button onclick="ok()">点击</button>
+<script>
+  console.log(document.readyState) // loading
+
+  function ok() {
+    console.log(document.readyState) // complete
+  }
+</script>
+```
+
+### document.compatMode
+
+检测浏览器使用什么渲染模式，可以有两个可能值
+
+- CSS1Compat 标准模式
+- backCompat 混杂模式
+
+### document.characterSet
+
+获取文档使用的字符集
+
+```js
+console.log(document.characterSet) // UTF-8
+```
 
 ### setAttribute()
 
@@ -1645,6 +1688,34 @@ NamedNodeMap {
 ```
 
 那么在 **HTML5** 中新增了更方便的方式
+
+```html
+<div id="app" class="box"></div>
+```
+
+**add** 向类名列表中添加指定类名
+
+```js
+document.getElementById('app').classList.add('admin')
+```
+
+**contains** 检测一个类名是否存在 返回布尔值
+
+```js
+console.log(document.getElementById('app').classList.contains('box')) // true
+```
+
+**remove** 删除指定类名
+
+```js
+document.getElementById('app').classList.remove('box')
+```
+
+**toggle** 如果类名列表中存在 value 则删除，否则添加
+
+```js
+document.getElementById('app').classList.toggle('box2')
+```
 
 ## MutationObserver 接口
 
