@@ -37,7 +37,12 @@ module.exports = {
           { text: 'Vue3', link: 'https://v3.cn.vuejs.org' },
           { text: 'Vite', link: 'https://cn.vitejs.dev/' },
           { text: 'Pinia', link: 'https://pinia.esm.dev' },
-          { text: 'VuePress', link: 'https://v2.vuepress.vuejs.org/zh/' }
+          { text: 'VuePress', link: 'https://v2.vuepress.vuejs.org/zh/' },
+          { text: '你不知道的JavaScript 上', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_1.pdf' },
+          { text: '你不知道的JavaScript 中', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_2.pdf' },
+          { text: '你不知道的JavaScript 下', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_3.pdf' },
+          { text: 'JavaScript忍者秘籍', link: 'https://tianyuhao.cn/utils/pdf/secret_script.pdf' },
+          { text: 'JavaScript语言精粹', link: 'https://tianyuhao.cn/utils/pdf/quintessence.pdf' },
         ]
       }
     ],
