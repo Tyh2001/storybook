@@ -1717,6 +1717,65 @@ document.getElementById('app').classList.remove('box')
 document.getElementById('app').classList.toggle('box2')
 ```
 
+### outerHTML 和 innerHTML
+
+`outerHTML` 和 `innerHTML` 方法都可以获取到一个元素的及所有后代元素的 HTML 字符串
+
+```html
+<div id="app">
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
+<script>
+  console.log(document.getElementById('app').outerHTML)
+  console.log(document.getElementById('app').innerHTML)
+</script>
+```
+
+**打印结果**
+
+```
+<div id="app">
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
+
+<div id="app">
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
+```
+
+#### insertAdjacentHTML() 和 insertAdjacentText()
+
+`insertAdjacentHTML()` 和 `insertAdjacentText()` 方法都是用作插入标记，`insertAdjacentHTML()` 为插入 HTML 标记，`insertAdjacentText()` 为插入文本标记，它们都会接收两个参数，第一个参数必须是下列值中的一个
+
+- beforebegin：元素自身的前面
+- afterbegin：插入元素内部的第一个子节点之前
+- beforeend：插入元素内部的最后一个子节点之后
+- afterend：元素自身的后面
+
+第二个参数为插入的标记内容
+
+```html
+<div id="app">Hello</div>
+<script>
+  const app = document.getElementById('app')
+  app.insertAdjacentHTML('beforebegin', '<h1>你好</h1>')
+  app.insertAdjacentText('afterbegin', '哈哈哈哈')
+  app.insertAdjacentText('beforeend', '后面的')
+</script>
+```
+
 ## MutationObserver 接口
 
 `MutationObserver 接口` 可以在 DOM 被修改时移步执行回调，使用 `MutationObserver` 可以观察整个文档、DOM 树的一部分或者元素。此外还可以观察元素的属性、子节点、文本，或者前三者的组合变化。
