@@ -1755,7 +1755,7 @@ document.getElementById('app').classList.toggle('box2')
 </div>
 ```
 
-#### insertAdjacentHTML() 和 insertAdjacentText()
+### insertAdjacentHTML() 和 insertAdjacentText()
 
 `insertAdjacentHTML()` 和 `insertAdjacentText()` 方法都是用作插入标记，`insertAdjacentHTML()` 为插入 HTML 标记，`insertAdjacentText()` 为插入文本标记，它们都会接收两个参数，第一个参数必须是下列值中的一个
 
