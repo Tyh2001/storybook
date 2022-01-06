@@ -314,45 +314,106 @@ console.error('这是一段错误信息')
 console.warn('这是一段警告信息')
 ```
 
-## 普通事件和事件绑定
+## 事件绑定
 
-两种事件分别来说说：
+### addEventListener()
 
-- 普通事件（onclick）
+`addEventListener()` 方法接收三个参数：事件名、事件处理函数和一个布尔值，`true` 表示在捕获阶段处理程序；false(默认值)在冒泡阶段处理程序
 
-普通事件就是直接触发事件，同一时间只能指向唯一对象，所以会被覆盖掉。代码如下：
+```html
+<button id="btn">点击</button>
+<script>
+  document.getElementById('btn').addEventListener(
+    'click',
+    () => {
+      console.log('点击了')
+    },
+    false
+  )
 
-```js
-const btn2 = document.querySelector('.btn2')
-
-btn2.onclick = function () {
-  console.log('哈哈哈哈哈哈')
-}
-
-btn2.onclick = function () {
-  console.log('呵呵呵呵呵呵')
-}
+  // 点击了1
+</script>
 ```
 
-这样只会输出`呵呵呵呵呵呵`，以为后面的代码会覆盖掉前面的，个 click 处理器在同一时间只能指向唯一的对象。所以就算一个对象绑定了多次，其结果只会出现最后的一次绑定的对象
+`addEventListener()` 的优势是可以处理多个事件程序
 
-- 事件绑定（addEventListener）
+```html
+<button id="btn">点击</button>
+<script>
+  document.getElementById('btn').addEventListener(
+    'click',
+    () => {
+      console.log('点击了1')
+    },
+    false
+  )
 
-事件绑定就是对于一个可以绑定的事件对象，进行多次绑定事件都能运行。代码如下：
+  document.getElementById('btn').addEventListener(
+    'click',
+    () => {
+      console.log('点击了2')
+    },
+    false
+  )
 
-```js
-const btn1 = document.querySelector('.btn1')
-
-btn1.addEventListener('click', function () {
-  console.log('11111')
-})
-
-btn1.addEventListener('click', function () {
-  console.log('222222')
-})
+  // 点击了1
+  // 点击了2
+</script>
 ```
 
-这样会依次输出 `11111`和`222222`
+也可以定义函数通过函数名传参
+
+```html
+<button id="btn">点击</button>
+<script>
+  function _alert() {
+    console.log('点击了')
+  }
+
+  document.getElementById('btn').addEventListener('click', _alert, false)
+</script>
+```
+
+### removeEventListener()
+
+`removeEventListener()` 可以移除事件处理程序，需要接收两个参数：事件名和事件函数
+
+那也就是说通过 `addEventListener()` 添加的事件处理程序添加匿名函数是无法移除的，如下
+
+**反面案例**
+
+```html
+<button id="btn">点击</button>
+<script>
+  const btn = document.getElementById('btn')
+  btn.addEventListener(
+    'click',
+    function () {
+      console.log('点击')
+    },
+    false
+  )
+
+  btn.removeEventListener('click', function () {
+    console.log('点击')
+  })
+</script>
+```
+
+**正确的**
+
+```html
+<button id="btn">点击</button>
+<script>
+  function _alert() {
+    console.log('点击了')
+  }
+
+  const btn = document.getElementById('btn')
+  btn.addEventListener('click', _alert, false)
+  btn.removeEventListener('click', _alert) // 有效果
+</script>
+```
 
 ## 计算程序执行的时间
 
