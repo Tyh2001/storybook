@@ -1735,7 +1735,7 @@ console.log(admin2.__proto__ === admin.__proto__) // true
 
 ## 类
 
-## 创建类
+### 创建类
 
 通过 `constructor` 属性接受传递的参数进行赋值
 
