@@ -2,6 +2,22 @@
 
 ## 对象相关
 
+### Object.getOwnPropertyNames()
+
+`Object.getOwnPropertyNames()` 方法可以获取对象中的键名
+
+```js
+const obj = {
+  name: '张三',
+  age: 12,
+  sayName() {
+    console.log(this.name)
+  },
+}
+console.log(Object.getOwnPropertyNames(obj))
+// (3) ['name', 'age', 'sayName']
+```
+
 ### Object.defineProperty()
 
 `Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象

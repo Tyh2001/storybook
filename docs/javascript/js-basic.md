@@ -1732,3 +1732,57 @@ const admin2 = inherit('admin2', 281)
 
 console.log(admin2.__proto__ === admin.__proto__) // true
 ```
+
+## 类
+
+## 创建类
+
+通过 `constructor` 属性接受传递的参数进行赋值
+
+```js
+class User {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+const user = new User('张同学')
+console.log(user)
+// User {name: '张同学'}
+```
+
+也可以直接在类中赋值，也可以添加对象的属性
+
+```js
+class User {
+  age = 38
+  constructor(name) {
+    this.name = name
+  }
+}
+
+const user = new User('张同学')
+console.log(user)
+// User {age: 38, name: '张同学'}
+```
+
+可以通过在类中定义方法来改变某些数据，或者通过函数获取数据
+
+```js
+class User {
+  age = 38
+  constructor(name) {
+    this.name = name
+  }
+  changeName(newName) {
+    this.name = newName
+  }
+  sayName() {
+    return this.name
+  }
+}
+
+const user = new User('张同学')
+user.changeName('田同学')
+console.log(user.sayName())
+```
