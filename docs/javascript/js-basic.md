@@ -1786,3 +1786,56 @@ const user = new User('张同学')
 user.changeName('田同学')
 console.log(user.sayName())
 ```
+
+### 静态属性
+
+先来看一下构造函数的静态属性
+
+```js
+function User(url) {
+  this.url = url
+}
+
+const user = new User('https://123.com')
+// 给构造函数创建静态属性，会保留在原型中
+User.newUrl = 'https://baidu.com'
+
+console.dir(user)
+```
+
+打印结果
+
+```shell
+User
+  url: "https://123.com"
+  [[Prototype]]: Object
+    constructor: ƒ User(url)
+      newUrl: "https://baidu.com"
+      arguments: null
+      caller: null
+      length: 1
+      name: "User"
+      prototype: {constructor: ƒ}
+      [[FunctionLocation]]: 2.html:14
+      [[Prototype]]: ƒ ()
+      [[Scopes]]: Scopes[2]
+    [[Prototype]]: Object
+```
+
+那么在类中定义静态属性仅需要关键字 `static` 就可以实现了
+
+```js
+class User {
+  static url = 'https://www.baidu.com'
+  api() {
+    return `${User.url}/sayName`
+  }
+}
+
+const user = new User()
+console.log(user.api()) // https://www.baidu.com/sayName
+```
+
+如果一个属性是为所有对象共用的，不是为某一个对象来使用的，这时候就可以将其定义为静态属性，这样也会节省内存的占用，仅仅只会保存一份，定义到类里面
+
+### 静态方法
