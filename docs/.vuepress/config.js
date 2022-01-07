@@ -12,7 +12,7 @@ module.exports = {
     // 导航栏
     navbar: [
       { text: '首页', link: '/' },
-      { text: 'Github', link: 'https://github.com/Tyh2001/my-note-web' },
+      { text: 'Github', link: 'https://github.com/Tyh2001/tyh-blog' },
       {
         text: 'tyh-Ui',
         ariaLabel: 'Language Menu',
