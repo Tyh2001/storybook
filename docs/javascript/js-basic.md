@@ -2166,7 +2166,7 @@ const user = new User()
 user.changeSayName() // 你好
 ```
 
-### 类的继承
+### 类继承
 
 现回顾一下之前的构造函数的继承
 
@@ -2238,3 +2238,25 @@ Admin
     constructor: class Admin
     [[Prototype]]: Object
 ```
+
+> 注意，在类中继承必须在父类中使用 `super()` 调用子类，否则会提示警告报错
+
+```js
+class User {
+  say() {
+    console.log('hello')
+  }
+}
+
+class Admin extends User {
+  constructor(name) {
+    super() // 这里必须要调用！！！
+    this.name = name
+  }
+}
+
+const admin = new Admin('张三')
+admin.say() // hello
+```
+
+> 类和原型继承的原理是完全一样的，所以 class 类的性质，只不过是将之前的构造函数形式转换成了一个简写的形式。
