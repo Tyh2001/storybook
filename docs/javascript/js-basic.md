@@ -1949,3 +1949,23 @@ class User {
 User.sayName() // hello
 new User().sayName() // 你好
 ```
+
+下面是通过调用静态方法创建出构造函数的例子
+
+```js
+class User {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+  static create(...args) {
+    // 这里是 this 指向的就是当前对象
+    // 所以可以 new this 创建构造函数
+    return new this(...args)
+  }
+}
+
+// 通过调用静态方法创建出构造函数
+const user = User.create('张三', 19)
+console.log(user)
+```
