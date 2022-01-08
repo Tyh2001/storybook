@@ -2111,4 +2111,57 @@ user.url = 123
 
 但是上述方式在外部依然可以通过使用 `user._url` 进行修改，所以我们接下来将进行更严格的保护，在外部是修改不了的
 
-**使用Symbol保护**
+### 私有属性
+
+通过在属性名前面加入 `#` 来设定私有属性
+
+```js
+class User {
+  // 定义私有属性
+  #url = 'www.baidu.com'
+}
+
+const user = new User()
+console.log(user)
+```
+
+### 私有方法
+
+同样，使用 `#` 可以定义私有方法
+
+```js
+class User {
+  #url = 'www.baidu.com'
+  #sayName() {
+    console.log('你好')
+  }
+}
+
+const user = new User()
+user.#sayName()
+```
+
+这样调用私有属性的话会爆出错误
+
+```shell
+Uncaught SyntaxError: Private field '#sayName' must be declared in an enclosing class
+
+必须在封闭类中声明私有字段 #sayName
+```
+
+私有属性必须是在类的内部调用才可以，例如下面，通过定义一个非私有的函数，让它去调用私有函数是可以正常工作的
+
+```js
+class User {
+  #url = 'www.baidu.com'
+  #sayName() {
+    console.log('你好')
+  }
+  changeSayName() {
+    this.#sayName()
+  }
+}
+
+const user = new User()
+user.changeSayName() // 你好
+```
