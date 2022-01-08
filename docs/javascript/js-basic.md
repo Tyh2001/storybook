@@ -1969,3 +1969,105 @@ class User {
 const user = User.create('张三', 19)
 console.log(user)
 ```
+
+### 访问器
+
+访问器的作用是限制用户对对象中的值进行随意的更改，简单的方式是通过函数来修改属性值
+
+```js
+class User {
+  constructor() {
+    this.name = '李四'
+  }
+  // 通过 setName 函数来修改属性值
+  setName(name) {
+    // 限制逻辑
+    if (typeof name !== 'string') {
+      throw new Error('参数错误')
+    }
+    // 通过才可以进行修改
+    this.name = name
+  }
+}
+
+const user = new User()
+user.setName('张三') // 通过函数修改
+```
+
+但是通过函数的方法修改也会有一个问题，就是像下面修改的方式进行修改属性，还是可以进行随意修改的
+
+```js
+class User {
+  constructor() {
+    this.name = '李四'
+  }
+  // 通过 setName 函数来修改属性值
+  setName(name) {
+    // 限制逻辑
+    if (typeof name !== 'string') {
+      throw new Error('参数错误')
+    }
+    // 通过才可以进行修改
+    this.name = name
+  }
+}
+
+const user = new User()
+user.setName('张三') // 通过函数修改
+user.name = 123
+console.log(user)
+// User {name: 123}
+```
+
+所以为了代码的健壮而又优雅一下，可以使用访问器来对其有效限制
+
+访问器通过关键字 `set` 和 `get` 来针对修改和获取来进行限制处理，例如下面
+
+```js
+class User {
+  constructor() {
+    this._name = '李四'
+  }
+  // 通过 setName 函数来修改属性值
+  set name(name) {
+    // 限制逻辑
+    if (typeof name !== 'string') {
+      throw new Error('参数错误')
+    }
+    // 通过才可以进行修改
+    this._name = name
+  }
+}
+
+const user = new User()
+user.name = '张三'
+```
+
+或者定义定义一个对象来存储数据
+
+```js
+class User {
+  constructor(age) {
+    this.data = {
+      age,
+    }
+  }
+  // 通过 setName 函数来修改属性值
+  set name(name) {
+    // 限制逻辑
+    if (typeof name !== 'string') {
+      throw new Error('参数错误')
+    }
+    // 通过才可以进行修改
+    this.data.name = name
+  }
+  // 访问器返回用户所有的信息
+  get name() {
+    return `${this.data.name}今年${this.data.age}岁`
+  }
+}
+
+const user = new User(18)
+user.name = '张三'
+console.log(user.name)
+```
