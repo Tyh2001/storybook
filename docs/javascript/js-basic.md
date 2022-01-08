@@ -2071,3 +2071,44 @@ const user = new User(18)
 user.name = '张三'
 console.log(user.name)
 ```
+
+### 属性的保护
+
+正常的构造函数创建出来的对象都不是进行属性保护的，在外部都可以随意的进行修改，这些属性被称之为 `非保护属性`，例如下面
+
+```js
+class User {
+  constructor(age) {
+    this.age = age
+  }
+}
+
+const user = new User(18)
+user.age = 12313
+console.log(user)
+// User {age: 12313}
+```
+
+**通过命名保护**
+
+```js
+class User {
+  _url = 'www.baidu.com'
+  constructor(name) {
+    this.name = name
+  }
+  set url(url) {
+    if (typeof url !== 'string') {
+      throw new Error('参数错误')
+    }
+    this._url = url
+  }
+}
+
+const user = new User('张三')
+user.url = 123
+```
+
+但是上述方式在外部依然可以通过使用 `user._url` 进行修改，所以我们接下来将进行更严格的保护，在外部是修改不了的
+
+**使用Symbol保护**
