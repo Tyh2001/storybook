@@ -2165,3 +2165,76 @@ class User {
 const user = new User()
 user.changeSayName() // 你好
 ```
+
+### 类的继承
+
+现回顾一下之前的构造函数的继承
+
+```js
+function User(name) {
+  this.name = name
+}
+function Admin(name) {
+  User.call(this, name)
+}
+
+Admin.prototype = Object.create(User.prototype)
+const admin = new Admin('张三')
+console.dir(admin)
+```
+
+打印结果为
+
+```shell
+Admin {name: '张三'}
+  name: "张三"
+    [[Prototype]]: User
+      [[Prototype]]: Object
+      constructor: ƒ User(name)
+      [[Prototype]]: Object
+```
+
+类的继承使用 `extend` 关键字进行继承
+
+```js
+class User {}
+class Admin extends User {}
+console.dir(new Admin())
+```
+
+打印结果
+
+```shell
+Admin
+  [[Prototype]]: User
+    constructor: class Admin
+    [[Prototype]]: Object
+```
+
+那么在类中调用父类的构造函数传递参数的写法就需要使用 `super` 关键字进行调用父类的构造函数，完整写法为
+
+```js
+class User {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+class Admin extends User {
+  constructor(name) {
+    super(name)
+  }
+}
+
+console.dir(new Admin('张三'))
+```
+
+打印结果
+
+```shell
+Admin
+  name: "张三"
+  [[Prototype]]: User
+    constructor: class Admin
+    [[Prototype]]: Object
+```
