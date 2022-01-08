@@ -1881,3 +1881,71 @@ User.sayName('张三')
 ```
 
 接下来是在类中定义静态方法
+
+```js
+class User {
+  sayName() {
+    console.log('你好')
+  }
+}
+
+User.__proto__.sayName = function () {
+  console.log('我在原型上')
+}
+
+console.dir(User)
+```
+
+上面代码中，看似在类中定义了两个函数名一样的函数，可是这两个函数却是没有任何关系的，因为第一个在类中定义的函数，只要在 `new` 出来的对象中才可以使用，而后者是类的静态方法。
+
+上述打印结果：
+
+```shell
+class User
+  length: 0
+  name: "User"
+  prototype:
+    constructor: class User
+    sayName: ƒ sayName()
+    [[Prototype]]: Object
+  arguments: (...)
+  caller: (...)
+  [[FunctionLocation]]: 1.html:13
+  [[Prototype]]: ƒ ()
+  [[Scopes]]: Scopes[2]
+```
+
+打印的 `sayName` 实际上是函数的静态方法，下面分别打印一下
+
+```js
+class User {
+  sayName() {
+    console.log('你好')
+  }
+}
+
+User.__proto__.sayName = function () {
+  console.log('我在原型上')
+}
+
+User.sayName() // 我在原型上
+
+const user = new User()
+user.sayName() // 你好
+```
+
+了解上述关系之后，那么就可以直接使用类的语法糖的形式进行定义了，需要通过关键字 `static` 来定义静态方法
+
+```js
+class User {
+  sayName() {
+    console.log('你好')
+  }
+  static sayName() {
+    console.log('hello')
+  }
+}
+
+User.sayName() // hello
+new User().sayName() // 你好
+```
