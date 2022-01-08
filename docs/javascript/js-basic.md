@@ -1839,3 +1839,45 @@ console.log(user.api()) // https://www.baidu.com/sayName
 如果一个属性是为所有对象共用的，不是为某一个对象来使用的，这时候就可以将其定义为静态属性，这样也会节省内存的占用，仅仅只会保存一份，定义到类里面
 
 ### 静态方法
+
+引入函数也是对象，所以构造函数可以通过下面放方式定义静态方法
+
+```js
+function User() {}
+
+User.sayName = function () {
+  console.log('我是静态方法')
+}
+
+User.sayName('张三')
+```
+
+上面定义静态方法之后，就必须使用函数调用 `sayName` 方法，就不能使用 `new` 出来的对象进行调用了。
+
+当然也可以定义到原型上
+
+```js
+function User() {}
+
+User.__proto__.sayName = function () {
+  console.log('我是静态方法')
+}
+
+User.sayName('张三')
+console.dir(User)
+```
+
+那么里面的 `this` 指向的也是当前的对象
+
+```js
+function User() {}
+
+User.__proto__.sayName = function () {
+  console.log(this === User) // true
+  console.log(this === User.prototype.constructor) // true
+}
+
+User.sayName('张三')
+```
+
+接下来是在类中定义静态方法
