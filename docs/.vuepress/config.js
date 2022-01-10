@@ -60,7 +60,8 @@ module.exports = {
           '/javascript/js-function',
           '/javascript/js-methods',
           '/javascript/js-utils',
-          '/javascript/js-computed'
+          '/javascript/js-computed',
+          '/javascript/js-api',
         ]
       },
       '/other',
