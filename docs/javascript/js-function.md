@@ -1,4 +1,238 @@
-# 函数相关
+# 函数
+
+## 回调函数
+
+回调函数是：在一个函数中，又调用了一个函数，叫回调函数
+
+例如：
+
+```html
+<button id="btn">按钮</button>
+<script>
+  const btn = document.getElementById('btn')
+  btn.addEventListener('click', () => {
+    console.log('这是回调函数')
+  })
+</script>
+```
+
+比如这个点击事件，通过函数 `addEventListener` 定义点击事件，参数是传入的另一个函数，那么这样的函数就称之为回调函数。
+
+还有就是数组常用的 `map` 方法等等：
+
+```js
+const res2 = list.map((item) => {
+  item.age += 30
+  return item
+})
+```
+
+当出现类似下面这样的业务时候，一个回调函数里面又套了回调函数，请求时就是等这段代码结果产生之后再执行，那么这样回调套回调就会很麻烦了，不利于阅读，开发维护都麻烦
+
+回调地狱就是下面的情况
+
+```js
+axios({
+  method: '',
+  url: '',
+}).then((res) => {
+  axios({
+    method: '',
+    url: '',
+  }).then((res) => {
+    axios({
+      method: '',
+      url: '',
+    }).then((res) => {})
+  })
+})
+```
+
+## 递归函数
+
+直接或间接调用自己函数本身
+
+> 注：一定要有一个终止这个函数的处理，否则将出现死循环
+
+```js
+function fun1(n) {
+  console.log(n)
+  n--
+  if (!n) {
+    return
+  }
+  fun1(n)
+}
+```
+
+## 立即执行函数
+
+声明函数时，直接调用
+
+```js
+;(function () {
+  console.log('我是立即执行函数！')
+})()
+```
+
+那么立即执行函数用在哪里呢？
+
+下面是有 5 个 li 标签，我们要实现的效果是：点击哪个就弹出哪个 li 的索引值
+
+这是曾经使用立即执行函数的写法：
+
+```html
+<ul>
+  <li>11111</li>
+  <li>22222</li>
+  <li>33333</li>
+  <li>44444</li>
+  <li>55555</li>
+</ul>
+
+<script>
+  var li = document.querySelectorAll('li')
+
+  for (var i = 0; i < li.length; i++) {
+    li[i].onclick = (function (x) {
+      return function () {
+        alert(x)
+      }
+    })(i)
+  }
+</script>
+```
+
+因为但是还没有作用域的问题，当有了`es6`之后，一切就变得简单多了：
+
+```html
+<ul>
+  <li>11111</li>
+  <li>22222</li>
+  <li>33333</li>
+  <li>44444</li>
+  <li>55555</li>
+</ul>
+
+<script>
+  const btn = document.querySelector('button')
+  for (let i = 0; i < 5; i++) {
+    btn.onclick = function () {
+      console.log(i)
+    }
+  }
+</script>
+```
+
+> 直接换成 let 声明，就可以直接解决问题，也就直接可以省略了立即执行函数了
+
+看过 jQuery 源码的人应该知道，jQuery 开篇用的就是立即执行函数。立即执行函数常用于第三方库，好处在于隔离作用域，任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数
+
+1. 什么是立即执行函数
+
+在了解立即执行函数之前先明确一下函数声明、函数表达式及匿名函数的形式，如下代码
+
+```js
+// 函数声明
+function fun1 () {
+  console.log('hello')
+}
+
+// 函数表达式
+const fun2 = function () {
+  console.log('hello')
+}
+
+// 匿名函数
+function () {
+  console.log('hello')
+}
+```
+
+接下来看立即执行函数的两种常见形式：( function(){…} )()和( function (){…} () )，一个是一个匿名函数包裹在一个括号运算符中，后面再跟一个小括号，另一个是一个匿名函数后面跟一个小括号，然后整个包裹在一个括号运算符中，这两种写法是等价的。要想立即执行函数能做到立即执行，要注意两点，一是函数体后面要有小括号()，二是函数体必须是函数表达式而不能是函数声明。如下代码：
+
+```js
+// 输出 123 使用 () 运算符
+;(function (text) {
+  console.log(text)
+})(123)
+
+// 输出 123 使用 () 运算符
+// (function (text) {
+//   console.log(text)
+// }(123))
+
+// 输出 123 使用 ! 运算符
+!(function (text) {
+  console.log(text)
+})(123) +
+  // 输出 123 使用 + 运算符
+  (function (text) {
+    console.log(text)
+  })(123) -
+  // 输出 123 使用 - 运算符
+  (function (text) {
+    console.log(text)
+  })(123)
+
+// 输出 123 使用 = 运算符
+const fun = (function (text) {
+  console.log(text)
+})(123)
+```
+
+上面可见，除了使用 `()` 运算符之外，`！，+，-，=`等运算符都能起到立即执行的作用。这些运算符的作用就是将匿名函数或函数声明转换为函数表达式
+
+2. 使用立即执行函数的好处
+
+通过定义一个匿名函数，创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，如 jQuery 代码结构：
+
+```js
+;(function (window, undefined) {
+  // code
+})(window)
+```
+
+其中 window 即是全局对象。给其传入参数这样的好处是，可以缩短查询时的作用域链。作用域隔离非常重要，是一个 JS 框架必须支持的功能，jQuery 被应用在成千上万的 JavaScript 程序中，必须确保 jQuery 创建的变量不能和导入他的程序所使用的变量发生冲突。
+
+**闭包和立即执行函数**
+
+先看个例子
+
+```js
+const car = {
+  age: 0,
+  change() {
+    this.age = 40
+  },
+  getAge() {
+    return this.age
+  },
+}
+car.change()
+console.log(car.getAge()) // 40
+```
+
+这个对象有其成员变量`age`及成员函数`change`和`getAge`，但是它的成员变量没有私有化，同时它也没有办法被继承。要实现对象的继承，你可以使用构造函数和原型继承。但怎么才能将成员变量私有化来实现对象的封装呢（而且有时候我们也不想那么麻烦使用原型）？这里呢，或许我们就可以使用闭包函数
+
+```js
+function car() {
+  let age = 0
+  return {
+    // 返回的是一个对象
+    change() {
+      age = 40
+    },
+    getAge() {
+      return age
+    },
+  }
+}
+
+const car1 = car()
+car1.change()
+console.log(car1.getAge()) // 40
+```
 
 ## arguments 参数
 
@@ -72,42 +306,6 @@ fun(1, 2, 3, 4, 5, 6, 7)
 ```
 
 > 参数使用 `...item` 来接收，会收集到所有的参数，表现形式为数组
-
-## 函数参数
-
-下面实例中，使用数组的过滤方法，想要放回数组中小于等于 3 的元素返回：
-
-```js
-const arr = [1, 2, 3, 4, 5, 6, 7].filter(function (item) {
-  return item <= 3
-})
-console.log(arr)
-
-// (3) [1, 2, 3]
-```
-
-那么这样的情况下呢，可以不使用匿名函数，可以直接将函数单独抽离出来，直接将函数作为参数传递过来，在 filter 方法中直接调用函数：
-
-```js
-function fun(item) {
-  return item <= 3
-}
-const arr = [1, 2, 3, 4, 5, 6, 7].filter(fun)
-console.log(arr)
-
-// (3) [1, 2, 3]
-```
-
-除此之外，还有定时器方法，都是可以将函数作为参数直接传递进去的：
-
-```js
-function fun() {
-  console.log(1)
-}
-setInterval(fun, 1000)
-
-// 每一秒输出一次 1
-```
 
 ## this 指向
 
@@ -524,186 +722,6 @@ fun1() // 没有使用 new 调用
 new fun1() // 使用 new 调用
 ```
 
-## 构造函数
-
-简单的说构造函数也是函数, 可是却只有与 new 关键字配合才能形成构造函数。
-
-构造函数是用来创建对象使用的：
-
-构造函数的函数名建议首字母大写
-
-```js
-function Dog() {}
-
-const dog = new Dog()
-console.log(dog)
-
-// Dog {}
-```
-
-这就是一个构造函数的基础写法。
-
-```js
-function User(name) {
-  this.name = name
-  this.sayName = function () {
-    console.log(this.name)
-  }
-}
-
-const Z = new User('张同学')
-
-console.log(Z) // User {name: '张同学', sayName: ƒ}
-Z.sayName() // 张同学
-```
-
-构造函数中的 `this` 指的是当前调用方法的对象
-
-数据类型也都是可以通过构造函数创建的：
-
-```js
-const num = new Number(123)
-const str = new String('哈哈哈')
-const obj = new Object()
-```
-
-那么为什么有很多字符串或者其他的方法呢？原因就是因为在构造函数中那个定义了很多的方法才可以提供使用
-
-使用构造函数创建出来的其实是一个对象，但是想获取值的话，可以使用 `valueOf` 方法进行获取
-
-```js
-const num = new Number(123)
-const str = new String('哈哈哈')
-console.log(num.valueOf()) // 123
-console.log(str.valueOf()) // 哈哈哈
-```
-
-### 原型模式
-
-每个函数都会创建一个 `prototype` 属性，这是一个对象，这个对象就是通过构造函数创建出来的对象的原型，使用原型定义的好处是，在它上面定义的属性和方法可以被对象实例共享：
-
-```js
-function User(name, age) {}
-
-User.prototype.name = '张同学'
-User.prototype.age = 38
-User.prototype.sayName = function () {
-  console.log(this.name)
-}
-
-const user = new User()
-
-console.log(user.name) // 张同学
-```
-
-### 构造函数闭包
-
-上面例子中，新建了一个构造函数 `User` 之后，可以通过构造函数内部的方法来输出 `name` ,但是这个 name 在构造函数外部是可以进行修改的，这样得到的值就不准确了，所以这样要使用闭包的特性进行处理：
-
-```js
-function User(name) {
-  const data = { name } // 在内部定义数据
-  let sayName = function () {
-    console.log(data.name)
-  }
-  // 在对象上的方法调用内部的函数
-  this.sayName = function () {
-    sayName()
-  }
-}
-
-const Z = new User('张同学')
-Z.name = '小明' // 虽然修改 name 但是不生效
-Z.sayName()
-```
-
-## 面向对象
-
-面向对象呢，是和构造函数相关的，所以在了解构造函数之后呢，接下来来说一下面向对象
-
-如果一个构造函数的结果只仅仅会输出一个对象，那么这样创建出来的对象是没有意义的，里面也没有内容，所以就可以通过 `this` 来拿到指向的这个对象，来添加一些属性：
-
-```js
-// 通过接收两个参数 来给对象添加一个 name 和一个 age 的属性
-function Dog(n, a) {
-  // 构造函数这里的 this 指向的就是这个对象
-  this.name = n
-  this.age = a
-}
-
-const dog = new Dog('旺财', 2)
-console.log(dog)
-// Dog {name: "旺财", age: 2}
-```
-
-那么这种方式呢，也是一个面向对象的写法了，那么 Dog 就代表了一类的狗，`new` 的时候就是创建出了一个对象，那么就是狗类的实例
-
-##对象
-通过原型对象，为构造函数生成新的对象（prototype）：
-
-`prototype` 是构造函数的一个属性，我们可以在这个属性上添加一些函数或者方法，那么这些方法就可以在所有类的实例上进行调用，或者说可以被构造函数所有的实例来使用，例如：
-
-```js
-function Dog(n, a) {
-  this.name = n
-  this.age = a
-}
-
-Dog.prototype.sayName = function () {
-  console.log(`我的名字是${this.name}`)
-}
-
-const dog = new Dog('旺财', 2)
-dog.sayName()
-// 我的名字是旺财
-```
-
-这样就可以通过 `dog.sayName()` 来调用这个方法。
-
-其实不仅仅是函数，其实我们可以给任何的类或者对象，去扩展它的方法。比如：
-
-```js
-const arr = new Array(1, 2, 34, 5, 6, 7, 2)
-
-Array.prototype.changeLength = function () {
-  console.log(`数组的长度是${this.length}`)
-}
-
-arr.changeLength()
-// 数组的长度是7
-```
-
-这样就可以给所有的数组都添加了一个 `changeLength` 的方法。
-
-## 原型链继承
-
-通过原型链，我们可以实现一个继承，继承就是有父类，有子类，那么子类可以访问父类的属性和方法，例如：
-
-```js
-function Dog(name) {
-  this.name = name
-}
-
-Dog.prototype.changeName = function () {
-  console.log(`我的名字是${this.name}`)
-}
-
-// Cat 可以调用父级 Dog 的方法
-function Cat(name) {
-  this.name = name
-}
-
-// 直接将 Cat 这个原型对象赋值为 Dog 这个实例
-Cat.prototype = new Dog()
-
-const cat = new Cat('小明')
-
-cat.changeName()
-// 我的名字是小明
-```
-
-上面是使用原型链实现的基础，这是 ES5 的一个写法，暂时了解即可，因为 ES6 有了更好的解决方案
-
 ## 关于异步函数
 
 通常情况下，代码的执行顺序都是从上到下执行的，比如
@@ -738,7 +756,7 @@ console.log(3)
 $.ajax({
   method: '',
   url: '',
-  success: function (data) {
+  success(data) {
     // data 是响应结果
   },
 })
@@ -1008,248 +1026,14 @@ console.log(fun1())
 - 闭包 的最⼤⽤处有两个，⼀个是可以读取函数内部的变量，另⼀个就是让这些变量始终保持在内存中
 
 - 闭包的另⼀个⽤处，是封装对象的私有属性和私有⽅法
-- **好处：**能够实现封装和缓存等
-- **坏处：**就是消耗内存、不正当使⽤会造成内存溢出的问题
+- 好处：能够实现封装和缓存等
+- 坏处：就是消耗内存、不正当使⽤会造成内存溢出的问题
 
 > 使用闭包需要的注意点
 
 - 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很⼤，所以不能滥⽤闭包，否则会造成⽹⻚的性能问题，在 IE 中可能导致内存泄露
 
 - 解决⽅法是，在退出函数之前，将不使⽤的局部变量全部删除
-
-## 回调函数
-
-回调函数是：在一个函数中，又调用了一个函数，叫回调函数
-
-例如：
-
-```html
-<button id="btn">按钮</button>
-<script>
-  const btn = document.getElementById('btn')
-  btn.addEventListener('click', function () {
-    console.log('这是回调函数')
-  })
-</script>
-```
-
-比如这个点击事件，通过函数 `addEventListener` 定义点击事件，参数是传入的另一个函数，那么这样的函数就称之为回调函数。
-
-还有就是数组常用的 `map` 方法等等：
-
-```js
-const res2 = list.map((item) => {
-  item.age += 30
-  return item
-})
-```
-
-当出现类似下面这样的业务时候，一个回调函数里面又套了回调函数，请求时就是等这段代码结果产生之后再执行，那么这样回调套回调就会很麻烦了，不利于阅读，开发维护都麻烦
-
-回调地狱就是下面的情况
-
-```js
-axios({
-  method: '',
-  url: '',
-}).then((res) => {
-  axios({
-    method: '',
-    url: '',
-  }).then((res) => {
-    axios({
-      method: '',
-      url: '',
-    }).then((res) => {})
-  })
-})
-```
-
-## 递归函数
-
-直接或间接调用自己函数本身
-
-> 注：一定要有一个终止这个函数的处理，否则将出现死循环
-
-```js
-function fun1(n) {
-  console.log(n)
-  n--
-  if (!n) {
-    return
-  }
-  fun1(n)
-}
-```
-
-## 立即执行函数
-
-声明函数时，直接调用
-
-```js
-;(function () {
-  console.log('我是立即执行函数！')
-})()
-```
-
-那么立即执行函数用在哪里呢？
-
-下面是有 5 个 li 标签，我们要实现的效果是：点击哪个就弹出哪个 li 的索引值
-
-这是曾经使用立即执行函数的写法：
-
-```html
-<ul>
-  <li>11111</li>
-  <li>22222</li>
-  <li>33333</li>
-  <li>44444</li>
-  <li>55555</li>
-</ul>
-
-<script>
-  var li = document.querySelectorAll('li')
-
-  for (var i = 0; i < li.length; i++) {
-    li[i].onclick = (function (x) {
-      return function () {
-        alert(x)
-      }
-    })(i)
-  }
-</script>
-```
-
-因为但是还没有作用域的问题，当有了`es6`之后，一切就变得简单多了：
-
-```html
-<ul>
-  <li>11111</li>
-  <li>22222</li>
-  <li>33333</li>
-  <li>44444</li>
-  <li>55555</li>
-</ul>
-
-<script>
-  const btn = document.querySelector('button')
-  for (let i = 0; i < 5; i++) {
-    btn.onclick = function () {
-      console.log(i)
-    }
-  }
-</script>
-```
-
-> 直接换成 let 声明，就可以直接解决问题，也就直接可以省略了立即执行函数了
-
-看过 jQuery 源码的人应该知道，jQuery 开篇用的就是立即执行函数。立即执行函数常用于第三方库，好处在于隔离作用域，任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数
-
-1. 什么是立即执行函数
-
-在了解立即执行函数之前先明确一下函数声明、函数表达式及匿名函数的形式，如下代码
-
-```js
-// 函数声明
-function fun1 () {
-  console.log('hello')
-}
-
-// 函数表达式
-const fun2 = function () {
-  console.log('hello')
-}
-
-// 匿名函数
-function () {
-  console.log('hello')
-}
-```
-
-接下来看立即执行函数的两种常见形式：( function(){…} )()和( function (){…} () )，一个是一个匿名函数包裹在一个括号运算符中，后面再跟一个小括号，另一个是一个匿名函数后面跟一个小括号，然后整个包裹在一个括号运算符中，这两种写法是等价的。要想立即执行函数能做到立即执行，要注意两点，一是函数体后面要有小括号()，二是函数体必须是函数表达式而不能是函数声明。如下代码：
-
-```js
-// 输出 123 使用 () 运算符
-;(function (text) {
-  console.log(text)
-})(123)
-
-// 输出 123 使用 () 运算符
-// (function (text) {
-//   console.log(text)
-// }(123))
-
-// 输出 123 使用 ! 运算符
-!(function (text) {
-  console.log(text)
-})(123) +
-  // 输出 123 使用 + 运算符
-  (function (text) {
-    console.log(text)
-  })(123) -
-  // 输出 123 使用 - 运算符
-  (function (text) {
-    console.log(text)
-  })(123)
-
-// 输出 123 使用 = 运算符
-const fun = (function (text) {
-  console.log(text)
-})(123)
-```
-
-上面可见，除了使用 `()` 运算符之外，`！，+，-，=`等运算符都能起到立即执行的作用。这些运算符的作用就是将匿名函数或函数声明转换为函数表达式
-
-2. 使用立即执行函数的好处
-
-通过定义一个匿名函数，创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，如 jQuery 代码结构：
-
-```js
-;(function (window, undefined) {
-  // code
-})(window)
-```
-
-其中 window 即是全局对象。给其传入参数这样的好处是，可以缩短查询时的作用域链。作用域隔离非常重要，是一个 JS 框架必须支持的功能，jQuery 被应用在成千上万的 JavaScript 程序中，必须确保 jQuery 创建的变量不能和导入他的程序所使用的变量发生冲突。
-
-**闭包和立即执行函数**
-
-先看个例子
-
-```js
-const car = {
-  age: 0,
-  change() {
-    this.age = 40
-  },
-  getAge() {
-    return this.age
-  },
-}
-car.change()
-console.log(car.getAge()) // 40
-```
-
-这个对象有其成员变量`age`及成员函数`change`和`getAge`，但是它的成员变量没有私有化，同时它也没有办法被继承。要实现对象的继承，你可以使用构造函数和原型继承。但怎么才能将成员变量私有化来实现对象的封装呢（而且有时候我们也不想那么麻烦使用原型）？这里呢，或许我们就可以使用闭包函数
-
-```js
-function car() {
-  let age = 0
-  return {
-    // 返回的是一个对象
-    change() {
-      age = 40
-    },
-    getAge() {
-      return age
-    },
-  }
-}
-
-const car1 = car()
-car1.change()
-console.log(car1.getAge()) // 40
-```
 
 ## 柯里化函数
 

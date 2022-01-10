@@ -52,7 +52,7 @@ tyh-ui 整体非常简洁明了，虽没有很多高级的组件，但它是使�
 ### 安装
 
 ```shell
-npm install tyh-ui2
+npm i tyh-ui2
 ```
 
 ### 快速上手
