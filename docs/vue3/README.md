@@ -35,7 +35,7 @@ npm init vite vue-demo
 
 接下来进入项目目录，安装依赖后，使用 `npm run dev` 来启动项目
 
-## vite.config.js 基础配置
+## vite.config.js 配置
 
 ```js
 import vue from '@vitejs/plugin-vue'

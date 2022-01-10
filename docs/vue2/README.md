@@ -270,7 +270,7 @@ module.exports = {
 
 当我们在使用下面方法进行路由跳转时：
 
-```js
+```html
 <p @click="$router.push('/setting')">设置</p>
 ```
 
