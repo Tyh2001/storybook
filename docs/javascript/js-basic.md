@@ -1,16 +1,5 @@
 # 基础
 
-## JS 数据类型
-
-数据类型除了 Number 、 String 、 Boolean 、 Object、 null 和 undefined ，还新增了 Symbol
-
-- Symbol 是原始数据类型
-
-> 什么是原始数据类型？什么是引用数据类型？
-
-- 原始数据类型：Undefined，Null，Boolean，Number、String
-- 引用数据类型：对象、数组、函数
-
 ## Unicode 码
 
 可以在网页上打印 Unicode 编码的汉字数字或者字母
@@ -53,7 +42,7 @@ window.localStorage.removeItem('名称')
 
 ## 关于 JSON
 
-### JSON.stringify()
+**JSON.stringify()**
 
 使用 `JSON.stringify()` 方法可以将对象转换为 JSON 对象
 
@@ -107,7 +96,7 @@ console.log(JSON.stringify(obj, null, 2))
 }
 ```
 
-### JSON.parse()
+**JSON.parse()**
 
 使用 `JSON.parse()` 方法可以将 JSON 对象转换为对象
 
@@ -566,7 +555,7 @@ console.log(mapList.get('name'))
 
 `has()` 、 `delete()` 方法和 Set 用法一样
 
-## indexOf () 方法
+## indexOf()
 
 返回指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。
 
@@ -619,7 +608,7 @@ console.log(arr.indexOf(1, 2))
 
 同样，类似的方法还有：
 
-**lastIndexOf()**
+## lastIndexOf()
 
 同样是用于查找指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
 
@@ -633,68 +622,22 @@ const arr = [1, 3, 7, 5, 6, 7, 9]
 console.log(arr.lastIndexOf(7)) // 5
 ```
 
-## 关于基本类型和引用类型内存覆盖问题
-
-- 基本类型
-
-例：当定义了一个值 `a` 之后，但是又将 `b = a` 再给 `b` 赋新的值
-
-```js
-let a = 1
-let b = a
-b = 99
-console.log(a) // 1
-console.log(b) // 99
-```
-
-这时候的 a 仍然是 1，b 的值的 99
-
-> 目前内存当中是有一个数据 a 那么让 b = a 之后，内存中又产生了一个新的值为 b，所以分别打印出来就是内存中两个不同的值 a 和 b
-
-同样的处理那么在引用类型中：
-
-- 引用类型
-
-这里使用数组举例
-
-```js
-let arr1 = [1, 3, 5, 6]
-let arr2 = arr1
-arr1[1] = 'hello'
-console.log(arr1) // [1, "hello", 5, 6]
-console.log(arr2) // [1, "hello", 5, 6]
-```
-
-那么这时候 arr1 和 arr2 同事输出 [1, "hello", 5, 6]
-
-> 目前内存当中是有一个数组 arr1 那么让 arr2 = arr1 之后，并不是又复制了一个数组，而是两个变量使用的同一个数组，所以打印出来的就是内存中被改变出来的数组
-
-```
-所以，基本类型重新赋值会在内存中重新生成，引用类型新的变量会公用之前的内容
-```
-
 ## Referer 说明
 
 解决关于图片请求失败 403 报错问题解决
 
-```shell
-GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-197810269.jpg 403 (Forbidden)
-```
+> GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-197810269.jpg 403 (Forbidden)
 
-> 为什么项目中有时候图片加载失败后报错会返回 403？
+为什么项目中有时候图片加载失败后报错会返回 403？
 
-```
 因为有些项目中的数据是通过爬虫抓取第三方的数据来进行展示的，而第三方对图片做了放到链保护处理，也就是说不能让你直接通过图片地址访问图片资源。
-```
 
 > 第三方平台是怎么处理图片资源保护的呢？
 
-```
-服务器一般使用 Referer 请求头识别图片来源，然后处理资源访问。
-我们在浏览器中发的任何请求，都会携带一个叫 Referer 的字段，会包含请求资源来源页面的地址，也就是你从哪里来的，如果你从网站 A 来的，那么 Referer 就是网站 A 的地址。
-服务器一般使用 Referer 请求头识别来源，可能会进行统计分析、日志记录以及缓存优化等
-那么服务器一看不是自己的网站，那么就会禁止访问，返回 403，不允许请求。
-```
+> 服务器一般使用 Referer 请求头识别图片来源，然后处理资源访问。
+> 我们在浏览器中发的任何请求，都会携带一个叫 Referer 的字段，会包含请求资源来源页面的地址，也就是你从哪里来的，如果你从网站 A 来的，那么 Referer 就是网站 A 的地址。
+> 服务器一般使用 Referer 请求头识别来源，可能会进行统计分析、日志记录以及缓存优化等
+> 那么服务器一看不是自己的网站，那么就会禁止访问，返回 403，不允许请求。
 
 需要注意的是：`referer` 实际是 **referrer** 错误拼写。
 
@@ -704,13 +647,11 @@ GET https://img2018.cnblogs.com/blog/1480369/201809/1480369-20180929001746684-19
 Referer: http://localhost:8080/
 ```
 
-> 怎么解决？
+**怎么解决？**
 
-```
-那么就不要发送 Referer，这样对方服务器就不知道你是从哪里来的了，姑且认为你是自己人吧。
-```
+> 那么就不要发送 Referer，这样对方服务器就不知道你是从哪里来的了，姑且认为你是自己人吧。
 
-> 如何设置？
+**如何设置？**
 
 能发 Referer 的资源有很多，比如;
 
@@ -737,28 +678,17 @@ Referer: http://localhost:8080/
 实例，通过 input 上传图片预览出上传的图片：
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Document</title>
-  </head>
+<input type="file" accept="image/*" />
+<img src="" alt="" />
 
-  <body>
-    <input type="file" accept="image/*" />
-    <img src="" alt="" />
-
-    <script>
-      const inp = document.querySelector('input')
-      const img = document.querySelector('img')
-      inp.onchange = function () {
-        const blob = URL.createObjectURL(inp.files[0])
-        img.setAttribute('src', blob)
-      }
-    </script>
-  </body>
-</html>
+<script>
+  const inp = document.querySelector('input')
+  const img = document.querySelector('img')
+  inp.onchange = function () {
+    const blob = URL.createObjectURL(inp.files[0])
+    img.setAttribute('src', blob)
+  }
+</script>
 ```
 
 ## Symbol 数据类型
@@ -868,7 +798,7 @@ for (const key of Reflect.ownKeys(obj)) {
 }
 ```
 
-## window 对象属性
+## BOM
 
 ```js
 // navigator 导航器对象
@@ -894,7 +824,7 @@ window.history.go() // 返回某个具体页面
 
 ## typeof 和 instanceof
 
-`typeof`可以判断一个变量是原始类型中的那种类型，但是在下面情况中，就会显得不那么的友好：
+`typeof` 可以判断一个变量是原始类型中的那种类型，但是在下面情况中，就会显得不那么的友好：
 
 ```js
 const arr = [1, 2, 3, 4]

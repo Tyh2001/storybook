@@ -1303,10 +1303,6 @@ console.log(ul.firstChild.previousSibling)
 </script>
 ```
 
-### normalize()
-
-后续更新。。。。
-
 ## document 类型
 
 ### document.documentElement
@@ -1317,36 +1313,12 @@ console.log(ul.firstChild.previousSibling)
 console.log(document.documentElement)
 ```
 
-### document.body
-
-获取 `body`
-
-```js
-console.log(document.body) // body
-```
-
-### document.header
-
-获取 `header`
-
-```js
-console.log(document.header) // header
-```
-
 ### document.doctype
 
 获取 `<!DOCTYPE html>` 的引用
 
 ```js
 console.log(document.doctype) // <!DOCTYPE html>
-```
-
-### document.title
-
-获取文档标题
-
-```js
-console.log(document.title) // Document
 ```
 
 ### document.URL
@@ -1373,17 +1345,6 @@ console.log(document.domain)
 console.log(document.referrer)
 ```
 
-### document.getElementById()
-
-获取 `id` 元素
-
-```html
-<div id="app"></div>
-<script>
-  console.log(document.getElementById('app')) // <div id="app"></div>
-</script>
-```
-
 ### document.getElementsByTagName()
 
 获取元素集合，下面获取所有的 `div`
@@ -1400,21 +1361,6 @@ console.log(document.referrer)
 ```
 
 > 也可以像数组一样操作它，但它并不是数组
-
-### namedItem()
-
-`namedItem()` 方法返回具有指定 `id` 或 `name` 的元素，只返回一个元素，`id` 优先级大于 `name`
-
-```html
-<div name="title"></div>
-<div id="title"></div>
-
-<script>
-  console.log(document.getElementsByTagName('div').namedItem('title')) // <div id="title"></div>
-</script>
-```
-
-> namedItem() 方法仅会返回一项
 
 ### document.getElementsByName()
 
@@ -1448,19 +1394,6 @@ document.createElement('div') // 创建一个 div
   document.getElementById('app').appendChild(text)
 </script>
 ```
-
-### getAttribute()
-
-`getAttribute()` 方法可获取一个元素的属性值
-
-```html
-<div id="app"></div>
-<script>
-  console.log(document.getElementById('app').getAttribute('id')) // app
-</script>
-```
-
-> 该方法仅可有一个参数
 
 ### document.createComment()
 
@@ -1520,6 +1453,19 @@ document.body.appendChild(document.createComment('这是一段注释'))
 console.log(document.characterSet) // UTF-8
 ```
 
+### getAttribute()
+
+`getAttribute()` 方法可获取一个元素的属性值
+
+```html
+<div id="app"></div>
+<script>
+  console.log(document.getElementById('app').getAttribute('id')) // app
+</script>
+```
+
+> 该方法仅可有一个参数
+
 ### setAttribute()
 
 `setAttribute()` 方法可设置一个元素的属性值，接收两个参数，第一个是要设置的属性，第二个是设置的属性值
@@ -1542,7 +1488,7 @@ console.log(document.characterSet) // UTF-8
 
 > 注意：简写方式仅仅可以修改属性，并不能添加不存在的属性
 
-### removeAttribut e()
+### removeAttribute()
 
 `setAttribute()` 方法可删除一个元素的属性值，不是仅仅清楚属性值，而是将属性和属性值全部清除
 
@@ -1602,6 +1548,21 @@ NamedNodeMap {
 ```
 
 > `attributes.removeNamedItem()` 方法和 `removeAttribute()` 实际的效果是一样的，就是换了不同的方式表现而已，大多数都会使用 `removeAttribute()`、`setAttribute()` 和 `getAttribute()`
+
+### namedItem()
+
+`namedItem()` 方法返回具有指定 `id` 或 `name` 的元素，只返回一个元素，`id` 优先级大于 `name`
+
+```html
+<div name="title"></div>
+<div id="title"></div>
+
+<script>
+  console.log(document.getElementsByTagName('div').namedItem('title')) // <div id="title"></div>
+</script>
+```
+
+> namedItem() 方法仅会返回一项
 
 ### childElementCount
 
