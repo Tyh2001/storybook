@@ -188,3 +188,14 @@ change()
 这两天买的河豚今天到货了，下面
 
 <img src="/milepost/hetun.jpg">
+
+## 2022-01-13
+
+最近事情有点多，先记录一下
+
+1. 发布 vscode 插件
+2. tyh-ui 组件开发。[鼠标滑入弹出](https://github.com/Tyh2001/microtip)
+3. 表单组件 尝试开发，参考红宝书部分
+4. 了解 `封装继承多状态`
+5. 看大圣的视频和课程
+6. tyh-ui Readme 更新
