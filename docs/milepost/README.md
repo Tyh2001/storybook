@@ -199,3 +199,19 @@ change()
 4. 了解 `封装继承多状态`
 5. 看大圣的视频和课程
 6. tyh-ui Readme 更新
+
+## 2022-01-16
+
+今天给大家介绍一位新的小伙伴叫 [tyh-theme](https://github.com/Tyh2001/tyh-theme-vscode)，这是一个由我最近开发的一款 vscode 主题插件，内置黑暗主题和明亮主题两种，欢迎各位开发者下载使用～
+
+效果显示：
+
+<img src="/milepost/tyh-theme-dark.png">
+<img src="/milepost/tyh-theme-light.png">
+
+另外接下来的任务也在这里总结一下：
+
+1. 看大圣最新发的视频
+2. 看大圣的极课时间
+3. tyh-ui2 组件更新
+4. 面试题答案更新
