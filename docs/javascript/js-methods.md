@@ -125,6 +125,72 @@ console.log(Object.getPrototypeOf(obj)) // {constructor: ƒ, __defineGetter__: �
 
 > 不过现在主流的浏览器都已经更新了，对象中不再存在 `__proto__` 属性，而是改为了 `[[Prototype]]`
 
+### Object.setPrototypeOf()
+
+`Object.setPrototypeOf()` 方法用于重新设置对象的原型
+
+```js
+function User() {}
+
+const user = new User()
+
+const newProto = {
+  satName() {
+    console.log('你好')
+  },
+}
+
+Object.setPrototypeOf(user, newProto)
+console.dir(Object.getPrototypeOf(user))
+```
+
+> Object.setPrototypeOf() 可能会影响代码的性能
+
+### Object.create()
+
+因为上述使用 `Object.setPrototypeOf()` 方法改变对象的原型，可能会导致性能下降，所以可以通过 `Object.create()` 来创建一个新对象，同时指定原型
+
+它接收一个参数：新创建对象的原型对象
+
+```js
+const newProto = {
+  satName() {
+    console.log('你好')
+  },
+}
+
+const user = Object.create(newProto)
+user.name = '张同学'
+console.dir(user)
+console.log(Object.getPrototypeOf(user) === newProto) // true
+```
+
+打印结果
+
+```shell
+Object
+  name: "张同学"
+  [[Prototype]]: Object
+    satName: ƒ satName()
+    [[Prototype]]: Object
+```
+
+### Object.keys()
+
+`Object.keys()` 可以获取对象上所有可以枚举的实例属性
+
+```js
+function User() {
+  this.name = '张三'
+  this.name2 = '张三'
+}
+User.prototype.age = 13
+const user = new User()
+
+console.log(Object.keys(user)) // ['name', 'name2']
+console.log(Object.keys(User.prototype)) // ['age']
+```
+
 ### Object.entries()
 
 `Object.entries` 方法可以将对象中的每个键和值转换为数组形式，**返回一个给定对象自身可枚举属性的键值对数组**
@@ -225,6 +291,68 @@ Object.freeze(obj)
 // 冻结对象，configurable = false，writable = false
 
 console.log(Object.isFrozen(obj)) // true
+```
+
+### Object.hasOwnProperty()
+
+`Object.hasOwnProperty()` 方法用于检测一个属性是否在来自对象的实例，来自实例返回 `true`，来着原型返回 `false`
+
+```js
+function User() {
+  this.name = '张三'
+}
+User.prototype.age = 13
+const user = new User()
+
+console.log(user.hasOwnProperty('name')) // true
+console.log(Object.hasOwnProperty.call(user, 'age')) // true
+```
+
+简写方式
+
+```js
+function User() {
+  this.name = '张三'
+}
+
+User.prototype.age = 12
+const user = new User()
+
+console.log(user.hasOwnProperty('name')) // true
+console.log(user.hasOwnProperty('age')) // false
+```
+
+### Object.hasOwnProperty()
+
+### isPrototypeOf()
+
+`isPrototypeOf()` 方法用于测试一个对象是否存在于另一个对象的原型链上
+
+```js
+function User() {
+  this.name = '张三'
+}
+
+const user = new User()
+console.log(User.prototype.isPrototypeOf(user)) // true
+```
+
+### in
+
+`in` 操作符可以用在两个场景，一个是 `for in` 循环中，还有一个是单独使用，可以检测对象上是否存在某个属性，无论在实例上还是原型上
+
+```js
+function User() {
+  this.name = '张三'
+}
+User.prototype.age = 13
+const user = new User()
+
+console.log(user.hasOwnProperty('name')) // true
+console.log(user.hasOwnProperty('age')) // false
+
+console.log('name' in user) // true
+console.log('age' in user) // true
 ```
 
 ## 数组相关
