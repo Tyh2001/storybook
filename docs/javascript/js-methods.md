@@ -2,22 +2,6 @@
 
 ## 对象相关
 
-### Object.getOwnPropertyNames()
-
-`Object.getOwnPropertyNames()` 方法可以获取对象中的键名
-
-```js
-const obj = {
-  name: '张三',
-  age: 12,
-  sayName() {
-    console.log(this.name)
-  },
-}
-console.log(Object.getOwnPropertyNames(obj))
-// (3) ['name', 'age', 'sayName']
-```
-
 ### Object.defineProperty()
 
 `Object.defineProperty()` 方法可以直接在一个对象上定义一个新的属性，或者修改一个对象的现有属性，返回此对象
@@ -177,7 +161,7 @@ Object
 
 ### Object.keys()
 
-`Object.keys()` 可以获取对象上所有可以枚举的实例属性
+`Object.keys()` 可以获取对象上所有可以枚举的属性，不过仅限于当前作用域对象，不会向上攀升查找
 
 ```js
 function User() {
@@ -191,9 +175,64 @@ console.log(Object.keys(user)) // ['name', 'name2']
 console.log(Object.keys(User.prototype)) // ['age']
 ```
 
-### Object.entries()
+### Object.getOwnPropertyNames()
 
-`Object.entries` 方法可以将对象中的每个键和值转换为数组形式，**返回一个给定对象自身可枚举属性的键值对数组**
+`Object.getOwnPropertyNames()` 可以获取对象上所有属性，无论是否可以枚举，都可以获取到，不过仅限于当前作用域对象，不会向上攀升查找
+
+```js
+function User() {
+  this.name = '张三'
+  this.name2 = '张三'
+}
+User.prototype.age = 13
+const user = new User()
+
+console.log(Object.getOwnPropertyNames(User.prototype)) // ['constructor', 'age']
+```
+
+```
+在适当的时候，Object.keys() 和 Object.getOwnPropertyNames() 方法可以适当代替 for in 循环操作
+```
+
+### Object.getOwnPropertySymbols()
+
+因为 `ES6` 新增了 `Symbol` 数据类型，那么针对于 `Symbol`，普通的循环是遍历不出来的
+
+```js
+const key1 = Symbol('key1')
+const key2 = Symbol('key2')
+const obj = {
+  [key1]: '张三',
+  [key2]: 20,
+}
+
+for (const key in obj) {
+  console.log(obj[key])
+}
+// 没有日志输出
+```
+
+所以 `Object.getOwnPropertySymbols()` 方法是针对于处理 `Symbol` 数据类型的
+
+```js
+const key1 = Symbol('key1')
+const key2 = Symbol('key2')
+const obj = {
+  [key1]: '张三',
+  [key2]: 20,
+}
+
+for (const key of Object.getOwnPropertySymbols(obj)) {
+  console.log(obj[key])
+}
+
+// 张三
+// 20
+```
+
+### Object.values()
+
+`Object.values()` 方法可以将对象中的键以数组形式返回
 
 ```js
 const obj = {
@@ -201,11 +240,31 @@ const obj = {
   age: 39,
 }
 
-for (const item of Object.entries(obj)) {
-  console.log(item)
+console.log(Object.values(obj))
+//  ['张同学', 39]
+```
+
+### Object.entries()
+
+`Object.entries` 方法可以将对象中的每个键和值转换为数组形式返回
+
+```js
+const obj = {
+  name: '张同学',
+  age: 39,
 }
-// ['name', '张同学']
-// ['age', 39]
+
+console.log(Object.entries(arr))
+```
+
+打印结果
+
+```shell
+(2) [Array(2), Array(2)]
+  0: (2) ['name', '张同学']
+  1: (2) ['age', 39]
+  length: 2
+  [[Prototype]]: Array(0)
 ```
 
 ### Object.getOwnPropertyDescriptor()
