@@ -1,5 +1,7 @@
 # 算法
 
+更多算法参考[这里](https://github.com/Tyh2001/leetcode-sprint)
+
 ## 冒泡排序
 
 基础算法
