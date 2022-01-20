@@ -1606,6 +1606,8 @@ Object.getPrototypeOf(l).sayName() // 张同学
 
 ## 继承
 
+### 了解继承
+
 继承是原型的继承 而不是改变构造函数
 
 例如下面代码是错误的
@@ -1628,6 +1630,59 @@ admin.name()
 ```
 
 举个例子：上面的反例中，直接将 User 的原型赋值给 Admin 之后，虽然是实现了伪继承，但是这样继承了之后自己本来的原型就不存在了，两个构造函数用的就是同一个原型了，这样就会造成函数覆盖等情况，我们期望的是自己的原型还是保留的，再继承。好比现实中继承财产，继承是将继承的财产和自己本来的财产加在一起，而不是只是得到了继承的财产，而自己的财产就消失了。
+
+### 盗用构造函数继承
+
+在子类构造函数中调用父类构造函数。因为毕竟函数就是在指定上下文中执行的代码最简单的对象，所以可以使用 `call` 或者 `apply` 方法以新创建的对象为上下文执行构造函数
+
+```js
+function User() {
+  this.arr = [1, 2, 3, 4]
+}
+
+function Admin() {
+  User.call(this) // 继承 User
+}
+
+const admin = new Admin()
+admin.arr.push(5)
+
+const admin2 = new Admin()
+
+console.log(admin.arr) // (5) [1, 2, 3, 4, 5]
+console.log(admin2.arr) // (4) [1, 2, 3, 4]
+```
+
+**传递参数**
+
+相比使用原型链，盗用构造函数的优点就是：可以在子类构造函数中向父类构造函数传递参数
+
+```js
+function User(name) {
+  this.name = name
+}
+
+function Admin(age) {
+  User.call(this, '张三')
+  this.age = age
+}
+
+const admin = new Admin(18)
+console.dir(admin)
+```
+
+打印结果
+
+```shell
+Admin
+  age: 18
+  name: "张三"
+  [[Prototype]]: Object
+```
+
+```
+盗用构造函数的主要缺点，也是使用构造函数模式自定义类型的问题：必须在构造函数中定义方法，因此函数不能重用，此外，子类也不能访问父类原型上定义的方法，因此所有类型都只能通过使用构造函数模式。由于存在这些问题，盗用构造函数也不会单独使用。
+```
 
 ### Object.create()
 
