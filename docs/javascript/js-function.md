@@ -1774,6 +1774,36 @@ user2.friend.push('d')
 console.log(z.friend) // (4) ['a', 'b', 'c', 'd']
 ```
 
+### 寄生式继承
+
+与原型式继承比较相似的一种继承叫 `寄生式继承`，`寄生式继承` 背后的思路类似于寄生构造函数和工厂模式：创建一个实现继承的函数，以某种方式增强对象，然后返回这个对象，基本寄生模式如下：
+
+```js
+function object(o) {
+  function F() {}
+  F.prototype = o
+  return new F()
+}
+
+function createAnother(param) {
+  const clone = object(param)
+  clone.sayHi = function () {
+    console.log('hi')
+  }
+  return clone
+}
+
+const z = {
+  name: '张三',
+  arr: [1, 3, 4],
+}
+
+const res = createAnother(z)
+res.sayHi() // hi
+```
+
+### 寄生式组合继承
+
 ### 使用父类构造函数初始属性
 
 这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
