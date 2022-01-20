@@ -132,13 +132,31 @@ console.dir(Object.getPrototypeOf(user))
 
 ### Object.create()
 
+`Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的`__proto__`，接收一个参数是需要继承的原型，如果不想要原型，那么可以传入 `null` 就是一个纯数据对象
+
+```js
+// 纯数据对象
+console.log(Object.create(null))
+```
+
+```js
+const obj = {
+  name: '张三',
+  arr: [1, 2, 3, 4],
+}
+
+const newObj = Object.create(obj)
+
+console.log(newObj.__proto__ === obj) // true
+```
+
 因为上述使用 `Object.setPrototypeOf()` 方法改变对象的原型，可能会导致性能下降，所以可以通过 `Object.create()` 来创建一个新对象，同时指定原型
 
 它接收一个参数：新创建对象的原型对象
 
 ```js
 const newProto = {
-  satName() {
+  sayName() {
     console.log('你好')
   },
 }
@@ -157,6 +175,26 @@ Object
   [[Prototype]]: Object
     satName: ƒ satName()
     [[Prototype]]: Object
+```
+
+`Object.create` 的第二个参数和 [Object.defineProperties](https://tianyuhao.cn/blog/javascript/js-methods.html#object-defineproperties)一样，每个属性都有各自的描述符来描述据。以这种方式添加的属性会遮蔽原型对象上本书的属性
+
+```js
+const z = {
+  name: '张三',
+}
+
+const res = Object.create(z, {
+  name: {
+    value: '张同学',
+  },
+})
+
+console.log(z.name) // 张同学
+```
+
+```
+原型式继承非常适合不需要单独创建构造函数，但是仍然需要在对象之间共享信息的场合。但是属性中包含的引用值始终会在香港对象间共享，跟使用原型模式是一样的。
 ```
 
 ### Object.keys()

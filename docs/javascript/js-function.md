@@ -1684,19 +1684,94 @@ Admin
 盗用构造函数的主要缺点，也是使用构造函数模式自定义类型的问题：必须在构造函数中定义方法，因此函数不能重用，此外，子类也不能访问父类原型上定义的方法，因此所有类型都只能通过使用构造函数模式。由于存在这些问题，盗用构造函数也不会单独使用。
 ```
 
-### Object.create()
+### 组合继承
 
-`Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的 `__proto__`，接收一个参数是需要继承的原型，如果不想要原型，那么可以传入 `null` 就是一个纯数据对象
+组合继承也叫伪经典继承，综合了原型链和盗用构造函数，将两者有点结合了起来。基本的思路就是使用原型链继承原型上的属性和方法，而通过盗用构造函数继承实例属性。这样可以把方法定义在原型上以实现重用，又可以让实例有自己的属性。
 
 ```js
-// 纯数据对象
-Object.create(null)
+function User(name) {
+  this.name = name
+  this.arr = [1, 2, 3]
+}
+
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+function Admin(name, age) {
+  // 继承实例属性
+  User.call(this, name)
+  this.age = age
+}
+
+Admin.prototype = new User() // 继承原型属性
+Admin.prototype.sayAge = function () {
+  console.log(this.age)
+}
+
+const admin1 = new Admin('张三', 12)
+admin1.arr.push('张三')
+console.log(admin1.arr) // (4) [1, 2, 3, '张三']
+admin1.sayName() // 张三
+admin1.sayAge() // 12
+
+const admin2 = new Admin('李四', 22)
+admin2.arr.push('李四')
+console.log(admin2.arr) // (4) [1, 2, 3, '李四']
+admin2.sayName() // 李四
+admin2.sayAge() // 22
 ```
 
+### 原型式继承
+
+先给出一个函数
+
 ```js
-// 新建一个对象继承 User 的原型
-function User() {}
-Object.create(User.prototype)
+function object(o) {
+  function F() {}
+  F.prototype = o
+  return new F()
+}
+```
+
+这个 `object` 函数会创建出一个临时的构造函数，将传入的对象赋值给构造函数的原型，然后返回这个临时的一个实例。本质上，`object` 是对传入的对象进行了一次浅复制，见下面例子
+
+```js
+const z = {
+  name: '张三',
+  friend: ['a', 'b'],
+}
+
+const user1 = object(z)
+user1.name = '李四'
+user1.friend.push('c')
+
+const user2 = object(z)
+user2.name = '小明'
+user2.friend.push('d')
+
+console.log(z.friend) // (4) ['a', 'b', 'c', 'd']
+```
+
+这种原型式继承适用于以下情况：你有一个对象，想在它的基础上再创建一个对象，你需要先将这个对象传递给 `object` 函数，然后再对返回的对象进行修改。上面例子中也就意味这，`z.friend` 不仅仅是 `z` 的属性，也会和 `user1` 和 `user2` 共享。这里实际上是克隆的两个 `z`。
+
+但是后来出现了 [Object.create()](https://tianyuhao.cn/blog/javascript/js-methods.html#object-create) 方法，将 `原型式继承` 的概念规范化了。
+
+```js
+const z = {
+  name: '张三',
+  friend: ['a', 'b'],
+}
+
+const user1 = Object.create(z)
+user1.name = '李四'
+user1.friend.push('c')
+
+const user2 = Object.create(z)
+user2.name = '小明'
+user2.friend.push('d')
+
+console.log(z.friend) // (4) ['a', 'b', 'c', 'd']
 ```
 
 ### 使用父类构造函数初始属性
