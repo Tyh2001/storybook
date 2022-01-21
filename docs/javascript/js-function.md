@@ -1854,6 +1854,52 @@ Admin
 
 上面代码在执行 `User.call(this, name)` 的时候，会在 `Admin.prototype` 上新增两个属性 `name` 和 `color`。它们都是 `User` 实例，现在成为了 `Admin` 的原型属性。当调用 `Admin` 构造函数的时候，也会调用 `User` 构造函数，这一次在新对象上创建实例属性 `name` 和 `color`，但是这两属性会遮蔽原型的属性。
 
+但是通过上面方式继承，就会有两组 `name` 和 `color` 属性，一组是在实例上，另一组在 `User` 的原型上。这就是调用 `User` 的结果。好在有版本解决这个问题。
+
+寄生式组合继承通过盗用构造函数继承属性，但使用混合继承的原型继承方法。基本思路是不通过调用父类构造函数给子类原型赋值，而是取得父类原型的一个副本。基本模式如下：
+
+```js
+function object(o) {
+  function F() {}
+  F.prototype = o
+  return new F()
+}
+
+/**
+ * @param { object } subclass 子类构造函数
+ * @param { object } superclass 父类构造函数
+ */
+function inheritPrototype(subclass, superclass) {
+  const prototype = object(superclass.prototype) // 创建对象
+  prototype.constructor = subclass // 增强对象
+  subclass.prototype = prototype // 赋值对象
+}
+
+function User(name) {
+  this.name = name
+  this.color = ['red', 'blue', 'black']
+}
+
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+function Admin(name, age) {
+  // 调用 User，将 User 内部属性移到 Admin 内部
+  User.call(this, name) // 第二次调用 User
+  this.age = age
+}
+
+inheritPrototype(Admin, User)
+
+Admin.prototype.sayAge = function () {
+  console.log(this.age)
+}
+
+const admin = new Admin('张三', 18)
+console.dir(admin)
+```
+
 ### 使用父类构造函数初始属性
 
 这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
