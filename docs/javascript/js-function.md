@@ -1804,6 +1804,56 @@ res.sayHi() // hi
 
 ### 寄生式组合继承
 
+[组合继承]() 其实也存在效率问题，最主要的问题就是父类构造函数被调用了两次，一次是在创建子原型时调用，另一次是在子类构造函数中调用，例如下面：
+
+```js
+function User(name) {
+  this.name = name
+  this.color = ['red', 'blue', 'black']
+}
+
+User.prototype.sayName = function () {
+  console.log(this.name)
+}
+
+function Admin(name, age) {
+  // 调用 User，将 User 内部属性移到 Admin 内部
+  User.call(this, name) // 第二次调用 User
+  this.age = age
+}
+
+Admin.prototype = new User() // 第一次调用 User
+
+// 继承之后会丢失 constructor 属性，所以将 constructor 设置会 Admin
+Admin.prototype.constructor = Admin
+Admin.prototype.sayAge = function () {
+  console.log(this.age)
+}
+
+const admin = new Admin('张三', 20)
+
+console.dir(Object.getPrototypeOf(admin).constructor === Admin) // true
+
+console.dir(admin)
+```
+
+打印结果
+
+```shell
+Admin
+  age: 20
+  color: (3) ['red', 'blue', 'black']
+  name: "张三"
+  [[Prototype]]: User
+    color: (3) ['red', 'blue', 'black']
+    constructor: ƒ Admin(name, age)
+    name: undefined
+    sayAge: ƒ ()
+    [[Prototype]]: Object
+```
+
+上面代码在执行 `User.call(this, name)` 的时候，会在 `Admin.prototype` 上新增两个属性 `name` 和 `color`。它们都是 `User` 实例，现在成为了 `Admin` 的原型属性。当调用 `Admin` 构造函数的时候，也会调用 `User` 构造函数，这一次在新对象上创建实例属性 `name` 和 `color`，但是这两属性会遮蔽原型的属性。
+
 ### 使用父类构造函数初始属性
 
 这种方式可以在父类构造函数的原型中添加公共的属性，以免单独在每个构造函数中重复声明
