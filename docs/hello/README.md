@@ -2,11 +2,23 @@
 
 ## Welcome to my Blog
 
-hi ～我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday:，我是一名前端开发者:computer:，现在在杭州工作。
+<p align="center">
+  <img height="99px" src="https://tianyuhao.cn/images/my.png">
+</p>
 
-我最喜欢的开发框架是[Vue.js](https://v3.cn.vuejs.org)，我还创建了自己的 Vue 组件库[tyh ui](http://tianyuhao.cn/tyhui/v3):star:。
+<h1 align="center">Hi~ I'm Tian Yuhao.</h1>
 
-你可以通过[微博](https://weibo.com/tyh2001)了解我。
+<p align="center">I am an independent developer,Now I work in Hangzhou.</p>
+
+<p align="center">My favorite development framework is <a href="https://v3.cn.vuejs.org" target="_back">vue.js</a>,I also created my own vue component library <a href="https://tianyuhao.cn/tyhui/v3" target="_back">tyh-ui</a>.</p>
+
+<p align="center">You can also get to know me through <a href="https://weibo.com/tyh2001" target="_back">microblog</a> and <a href="https://twitter.com/tyh20011" target="_back">twitter</a>.</p>
+
+<p align="center">
+  <a href="https://github.com/Tyh2001/tyh-ui2" target="_back">
+    <img height="200px" src="https://github-readme-stats.vercel.app/api?username=Tyh2001">
+  </a>
+</p>
 
 ## 你喜欢 vue 吗？
 
@@ -15,7 +27,7 @@ hi ～我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday
 ## 推荐给你
 
 <p align="center">
-  <img height="260px" src="https://tianyuhao.cn/tyhui/v3/assets/logo.8a99342f.png">
+  <img height="260px" src="https://tianyuhao.cn/images/tyh-ui/tyh-ui2-logo.svg">
 </p>
 
 <p align="center">
@@ -37,7 +49,7 @@ hi ～我的名字是**田宇浩**:grin:，我的生日是 9 月 17 日:birthday
   </a>
 </p>
 
-### 介绍
+### 介绍:bulb:
 
 tyh-ui 的下一代 ui 组件库，基于 vue3.0 版本，全面拥抱 vue3.0
 
@@ -49,13 +61,13 @@ tyh-ui 整体非常简洁明了，虽没有很多高级的组件，但它是使�
 
 使用方便，配置简单，目录清晰，结构简单，组件轻量级，上手简单，像复制粘贴一样容易。
 
-### 安装
+### 安装:wrench:
 
 ```shell
 npm i tyh-ui2
 ```
 
-### 快速上手
+### 快速上手:key:
 
 ```js
 import { createApp } from 'vue'
@@ -66,11 +78,13 @@ import 'tyh-ui2/style/index.css'
 createApp(App).use(tyhUi2).mount('#app')
 ```
 
-### 更新日志
+### 关于:page_facing_up:
 
-[更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
+- [更新日志](https://github.com/Tyh2001/tyh-ui2/blob/master/CHANGELOG.md)中记录了每个版本的详细更改。
+- 项目的安装和启动请参考[Start_project](https://github.com/Tyh2001/tyh-ui2/blob/master/Start_project.md)。
+- 在这里可以[报告漏洞](https://github.com/Tyh2001/tyh-ui2/blob/master/SECURITY.md)
 
-### 贡献者
+### 贡献者:wave:
 
 <div style="display: flex; align-items: center;">
   <img style=" float: left;" height="60px" src="https://www.hualigs.cn/image/608132a6c15b2.jpg">
