@@ -30,19 +30,19 @@
 发现一段神仙代码段，笑死我了～
 
 ```js
-const fun = true
+const fun = true;
 
 if (fun) {
   function change() {
-    console.log('ok')
+    console.log("ok");
   }
 } else {
   function change() {
-    console.log('no')
+    console.log("no");
   }
 }
 
-change()
+change();
 ```
 
 居然还真的可以执行，哈哈哈哈哈哈哈哈哈
@@ -236,3 +236,11 @@ change()
 ## 2022-01-25
 
 今天坐火车回家了，年前的工作做好了，最近 tyh-ui 下载量还不错，最近回家出一期视频正式的介绍一下它吧
+
+## 2022-01-27
+
+过完年的计划：
+
+1. 给 vue3 贡献 **10** 行代码，让尤大大放到 `master` 分支的
+2. 优化性能，在调试窗口点击 `Lighthouse` 进行评分
+3. 怎么让自己的项目发生错误之后第一时间可以通知到我，如果一旦发现报错信息，就可以立即给我发送钉钉消息或者邮件，并且可以说明报错信息
