@@ -862,7 +862,39 @@ console.log(arr_.next()) // {value: 5, done: false}
 console.log(arr_.next()) // {value: undefined, done: true}
 ```
 
-## Promise
+## 异步编程
+
+### 什么是异步编程
+
+js 是单线程语言，只能同时处理一个任务，如果请求的是后端，这个响应可能是几秒之后才响应，所以要先跳过这个任务，继续向下执行。必须等主进程全部执行完成之后再执行异步函数。就算主进程再慢，也要等主进程全部加载完成之后再加载。
+
+下面是一个图片加载的异步例子
+
+```js
+function loadImage(url, load, error) {
+  const image = new Image()
+  image.src = url
+  image.onload = load
+  image.onerror = error
+}
+
+loadImage(
+  './image/1.png',
+  () => {
+    console.log('加载成功')
+  },
+  () => {
+    console.log('加载失败')
+  }
+)
+
+console.log('ok')
+
+// ok
+// 加载成功
+```
+
+### Promise
 
 `Promise` 是一个构造函数，可以通过 `new` 关键字来创建
 
@@ -893,4 +925,42 @@ console.log(p3) // pending -> rejected
 > pending 状态的 Promise 不会触发 then 和 catch 方法
 > 成功状态会执行 then 里的草错，失败会执行 catch 里的操作
 
-## 异步编程
+**成功**
+
+```js
+new Promise((resolve, reject) => {
+  resolve()
+}).then(
+  (res) => {
+    console.log('成功的处理程序')
+  },
+  (err) => {
+    console.log('失败的处理程序')
+  }
+)
+
+// 成功的处理程序
+```
+
+**失败**
+
+```js
+new Promise((resolve, reject) => {
+  reject()
+}).then(
+  (res) => {
+    console.log('成功的处理程序')
+  },
+  (err) => {
+    console.log('失败的处理程序')
+  }
+)
+
+// 失败的处理程序
+```
+
+> promise 会生成微任务，相反的是宏任务，当全部添加到任务队列中的时候，先执行微任务
+
+### 微任务和宏任务的执行顺序
+
+
