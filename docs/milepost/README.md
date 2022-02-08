@@ -30,19 +30,19 @@
 发现一段神仙代码段，笑死我了～
 
 ```js
-const fun = true;
+const fun = true
 
 if (fun) {
   function change() {
-    console.log("ok");
+    console.log('ok')
   }
 } else {
   function change() {
-    console.log("no");
+    console.log('no')
   }
 }
 
-change();
+change()
 ```
 
 居然还真的可以执行，哈哈哈哈哈哈哈哈哈
@@ -245,3 +245,12 @@ change();
 2. 优化性能，在调试窗口点击 `Lighthouse` 进行评分
 3. 怎么让自己的项目发生错误之后第一时间可以通知到我，如果一旦发现报错信息，就可以立即给我发送钉钉消息或者邮件，并且可以说明报错信息
 
+## 2022-02-08
+
+今天算是上班的第一天，开工了，下面是一张今早拍的照片
+
+年这么快就过完了
+
+年后努力工作努力学习～～
+
+<img src="/milepost/first_work.jpg">
