@@ -892,3 +892,5 @@ console.log(p3) // pending -> rejected
 
 > pending 状态的 Promise 不会触发 then 和 catch 方法
 > 成功状态会执行 then 里的草错，失败会执行 catch 里的操作
+
+## 异步编程
