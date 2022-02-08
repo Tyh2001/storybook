@@ -963,4 +963,40 @@ new Promise((resolve, reject) => {
 
 ### 微任务和宏任务的执行顺序
 
+```js
+setTimeout(() => {
+  console.log('你好')
+}, 0)
 
+console.log('ok')
+
+// ok
+// 你好
+```
+
+上面代码中，js 只要碰到了 `setTimeout` 就要先将其添加到任务队列中去（这是一个宏任务），需要等同步代码执行完成之后再进行执行。
+
+再比如下面代码
+
+```js
+// setTimeout 为宏任务，直接添加到任务队列中
+setTimeout(() => {
+  console.log('4')
+}, 0)
+
+new Promise((resolve) => {
+  console.log('1') // 第一个主线任务，第一个执行
+  resolve() // 返回成功通知，执行 then 的回调函数
+}).then((res) => {
+  console.log('2') // promise 是微任务，也添加到任务队列中
+})
+
+console.log('3') // 第二个主线任务，第二个执行
+
+// 1
+// 3
+// 2
+// 4
+```
+
+所以程序的执行顺序是：**主线任务 > 微任务 > 宏任务**
