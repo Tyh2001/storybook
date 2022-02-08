@@ -961,6 +961,41 @@ new Promise((resolve, reject) => {
 
 > promise 会生成微任务，相反的是宏任务，当全部添加到任务队列中的时候，先执行微任务
 
+promise 的 `.then` 的回调函数中接收两个参数，分别是成功的处理函数和失败的处理函数
+
+```js
+new Promise((resolve, reject) => {
+  resolve('成功了')
+}).then(
+  (value) => console.log(value),
+  (reason) => console.log(reason)
+)
+
+// 成功了
+```
+
+`.catch` 可以统一处理错误信息，这样就避免每个 promise 都要写独立的错误处理程序了，直接使用 `catch` 统一处理，建议将 `catch` 放在最后。如果 promise 有独立的错误处理程序，那么将使用自己的处理程序执行。
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  console.log(a)
+  resolve('成功了')
+})
+  .then((value) => {
+    return new Promise((resolve, reject) => {
+      resolve('ok')
+    })
+  })
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+// ReferenceError: a is not defined
+```
+
 ### 微任务和宏任务的执行顺序
 
 ```js
