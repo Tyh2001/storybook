@@ -1214,3 +1214,45 @@ Promise.all([p1, p2])
     console.log(err) // 第一个异步函数失败了
   })
 ```
+
+### Promise.allSettled()
+
+`Promise.allSettled()` 可以处理多个 `Promise`，但是无论 `Promise` 的状态是成功还是失败，它都是已经解决的状态
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  reject('no')
+})
+
+const p2 = new Promise((resolve, reject) => {
+  resolve('ok')
+})
+
+Promise.allSettled([p1, p2]).then((res) => {
+  console.log(res)
+})
+```
+
+### Promise.race()
+
+`Promise.race()` 方法可以获取多个 `Promise` 但是它最终只会获取到一个，取得获取最快的一个
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('第一个')
+  }, 2000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('第二个')
+  }, 1000)
+})
+
+Promise.race([p1, p2]).then((res) => {
+  console.log(res) // 第二个
+})
+```
+
+> Promise.race() 方法可以用在后端请求超时处理
