@@ -1052,3 +1052,23 @@ console.log('3') // 第二个主线任务，第二个执行
 ```
 
 所以程序的执行顺序是：**主线任务 > 微任务 > 宏任务**
+
+### 使用 Promise 动态加载图片
+
+```js
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image()
+    image.src = src
+    image.onload = () => {
+      resolve(image)
+    }
+    image.onerror = reject
+    document.body.appendChild(image)
+  })
+}
+
+loadImage('./image/1.png').then((img) => {
+  img.style.border = `2px solid black`
+})
+```
