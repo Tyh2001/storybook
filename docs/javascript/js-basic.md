@@ -1170,3 +1170,47 @@ new Promise((resolve, reject) => {
 ```
 
 ### Promise.all()
+
+`Promise.all()` 可以处理多个 `Promise`，如果有一个返回的是失败状态，那么 `Promise.all()` 返回的就是失败状态，当所有的返回都是成功状态，那么 `Promise.all()` 返回的则是成功状态
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('第一个异步函数')
+  }, 1000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('第二个异步函数')
+  }, 1000)
+})
+
+Promise.all([p1, p2]).then((res) => {
+  console.log(res) // (2) ['第一个异步函数', '第二个异步函数']
+})
+```
+
+`Promise.all()` 也可以统一处理错误信息
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('第一个异步函数失败了')
+  }, 1000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('第二个异步函数')
+  }, 1000)
+})
+
+Promise.all([p1, p2])
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err) // 第一个异步函数失败了
+  })
+```
