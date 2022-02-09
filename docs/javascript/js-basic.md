@@ -1053,7 +1053,9 @@ console.log('3') // 第二个主线任务，第二个执行
 
 所以程序的执行顺序是：**主线任务 > 微任务 > 宏任务**
 
-### 使用 Promise 动态加载图片
+### 使用 Promise
+
+**动态加载图片**
 
 ```js
 function loadImage(src) {
@@ -1072,3 +1074,99 @@ loadImage('./image/1.png').then((img) => {
   img.style.border = `2px solid black`
 })
 ```
+
+**定时器**
+
+```js
+function timeout(time = 1000) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time)
+  })
+}
+
+timeout(2000)
+  .then(() => {
+    console.log('你好')
+    return timeout(2000)
+  })
+  .then(() => {
+    console.log('哈哈哈')
+  })
+```
+
+### Promise.resolve()
+
+`Promise.resolve()` 默认是成功状态，直接返回成功状态
+
+```js
+Promise.resolve('成功状态').then((res) => {
+  console.log(res)
+})
+```
+
+它的实际应用在哪里呢？比如我我们想要反复请求一个数据，但是我们希望的是不要每次都发送请求，我们可以走本地的缓存进行处理，减少请求次数
+
+```js
+function query() {
+  if (query.user) {
+    console.log('走了缓存数据')
+    return Promise.resolve(query.user) // 直接返回成功状态的 promise
+  }
+  return axios(
+    'https://infinitymcn.com/citi/citi-form-backend/public/index.php/index/Votetfourth/getVoteRes'
+  ).then((res) => {
+    query.user = res
+    console.log('没走缓存数据')
+    return res
+  })
+}
+
+query().then((res) => {
+  console.log(res)
+})
+
+setTimeout(() => {
+  query().then((res) => {
+    console.log(res)
+  })
+
+  query().then((res) => {
+    console.log(res)
+  })
+
+  query().then((res) => {
+    console.log(res)
+  })
+
+  query().then((res) => {
+    console.log(res)
+  })
+}, 1000)
+```
+
+这样就只有第一次请求是通过访问后端接口，剩下的都是通过返回的本地缓存进行的，可以增加响应速度。
+
+### Promise.reject()
+
+`Promise.reject()` 默认是失败状态，直接返回失败状态
+
+该方法可以在执行成功之后，遇到错误进行给 `catch` 中进行反馈，例如下面
+
+```js
+new Promise((resolve, reject) => {
+  resolve(200) // 执行成功操作 传递参数为 成功了
+})
+  .then((res) => {
+    // 成功操作会进入这里
+    // 那么在成功之后可以再进行判断，如果不是我们想要的值
+    // 就可以返回 Promise.reject 来让 catch 进行处理
+    if (res !== 201) {
+      return Promise.reject('参数不是201')
+    }
+  })
+  .catch((error) => {
+    console.log(error) // 参数不是201
+  })
+```
+
+### Promise.all()
