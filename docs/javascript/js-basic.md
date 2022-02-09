@@ -959,6 +959,23 @@ new Promise((resolve, reject) => {
 // 失败的处理程序
 ```
 
+但是除了成功和失败，还有一个 `finally` 的回调，是无论成功还是失败都会执行的
+
+```js
+new Promise((resolve, reject) => {
+  resolve()
+})
+  .then((res) => {
+    console.log('成功的处理程序')
+  })
+  .finally(() => {
+    console.log('永远会执行')
+  })
+
+// 成功的处理程序
+// 永远会执行
+```
+
 > promise 会生成微任务，相反的是宏任务，当全部添加到任务队列中的时候，先执行微任务
 
 promise 的 `.then` 的回调函数中接收两个参数，分别是成功的处理函数和失败的处理函数
