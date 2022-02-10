@@ -1282,3 +1282,24 @@ async function load2() {
 
 load2().then((res) => console.log(res)) // 哈哈哈
 ```
+
+例子
+
+```js
+async function sleep(time) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
+async function show() {
+  for (const user of ['张三', '李四']) {
+    await sleep(1000)
+    console.log(user)
+  }
+}
+
+show()
+```
