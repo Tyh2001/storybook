@@ -1256,3 +1256,29 @@ Promise.race([p1, p2]).then((res) => {
 ```
 
 > Promise.race() 方法可以用在后端请求超时处理
+
+## async 函数
+
+`async` 函数是 `Promise` 的语法糖，返回值是 `Promise`，同样可以使用 `.then` 来接收
+
+```js
+async function load() {
+  return '你好啊'
+}
+
+console.log(load()) // Promise {<fulfilled>: '你好啊'}
+
+load().then((res) => console.log(res)) // 你好啊
+```
+
+或者直接返回 `Promise` 也可以
+
+```js
+async function load2() {
+  return new Promise((resolve) => {
+    resolve('哈哈哈')
+  })
+}
+
+load2().then((res) => console.log(res)) // 哈哈哈
+```
