@@ -1320,4 +1320,34 @@ fun().catch((err) => {
 
 ### await 捕获错误流程
 
+可以使用 `try catch` 来捕获 `await` 中的错误
 
+```js
+async function fun(name) {
+  try {
+    const admin = await `${name}的年龄是${age}`
+    return admin
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+fun('张同学') // ReferenceError: age is not defined
+```
+
+正确的语法如下
+
+```js
+async function fun(name, age) {
+  try {
+    const admin = await `${name}的年龄是${age}`
+    return admin
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+fun('张同学', 18).then((res) => {
+  console.log(res)
+})
+```
