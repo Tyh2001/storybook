@@ -1257,7 +1257,7 @@ Promise.race([p1, p2]).then((res) => {
 
 > Promise.race() 方法可以用在后端请求超时处理
 
-## async 函数
+### async 函数
 
 `async` 函数是 `Promise` 的语法糖，返回值是 `Promise`，同样可以使用 `.then` 来接收
 
@@ -1303,3 +1303,21 @@ async function show() {
 
 show()
 ```
+
+### async 捕获错误
+
+使用 `async` 函数之后，也是可以捕获错误的，因为 `async` 返回的也是 `promise`
+
+```js
+async function fun() {
+  console.log(a)
+}
+
+fun().catch((err) => {
+  console.log(err) // ReferenceError: a is not defined
+})
+```
+
+### await 捕获错误流程
+
+
