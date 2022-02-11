@@ -1351,3 +1351,91 @@ fun('张同学', 18).then((res) => {
   console.log(res)
 })
 ```
+
+### await 并行执行
+
+`Promise` 不是并行执行的，`Promise` 必须等上一个 `Promise` 执行完成之后再执行，见下面例子
+
+```js
+function p1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第一个函数')
+    }, 2000)
+  })
+}
+
+function p2() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第二个函数')
+    }, 2000)
+  })
+}
+
+async function load() {
+  const res1 = await p1()
+  console.log(res1) // 两秒后执行 第一个函数
+  const res2 = await p2()
+  console.log(res2) // 再等两秒后（4秒后）执行 第二个函数
+}
+load()
+```
+
+但是现在我希望上面两个可以同时执行，那么写法为
+
+```js
+function p1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第一个函数')
+    }, 2000)
+  })
+}
+
+function p2() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第二个函数')
+    }, 2000)
+  })
+}
+
+async function load() {
+  const res1 = p1()
+  const res2 = p2()
+  const res1Val = await res1
+  const res2Val = await res2
+  console.log(res1Val)
+  console.log(res2Val)
+}
+load()
+```
+
+或者也可以使用 `Promise.all()` 方法
+
+```js
+function p1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第一个函数')
+    }, 2000)
+  })
+}
+
+function p2() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('第二个函数')
+    }, 2000)
+  })
+}
+
+async function load() {
+  const res = await Promise.all([p1(), p2()])
+  console.log(res)
+}
+load()
+```
+
+> 第一种方式写的是原理，第二种方式才是务实的方法
