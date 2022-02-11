@@ -1257,6 +1257,44 @@ Promise.race([p1, p2]).then((res) => {
 
 > Promise.race() 方法可以用在后端请求超时处理
 
+### Promise 异步捕获错误
+
+通常情况下，同步代码使用 `try catch` 来进行捕获错误
+
+```js
+try {
+  throw new Error('foo')
+} catch (error) {
+  console.log(error) // Error: foo
+}
+```
+
+上面代码可以精准的捕获错误
+
+但是在 `Promise` 中，情况就会不一样了
+
+```js
+try {
+  Promise.reject(new Error('bar'))
+} catch (error) {
+  console.log(error)
+}
+
+// Uncaught (in promise) Error: bar
+```
+
+但是在 `Promise` 中，错误就不能正确的捕获了，而是浏览器通知了错误信息。为什么会这样呢？因为同步代码可以使用 `try catch` 来进行捕获，而 `Promise` 必须通过异步模式来进行捕获错误，所以可以更改为
+
+```js
+try {
+  Promise.reject(new Error('bar')).catch((err) => console.log(err)) //Error: bar
+} catch (error) {
+  console.log(error)
+}
+```
+
+这样既可正确的捕获错误
+
 ### async 函数
 
 `async` 函数是 `Promise` 的语法糖，返回值是 `Promise`，同样可以使用 `.then` 来接收
