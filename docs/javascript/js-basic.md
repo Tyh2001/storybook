@@ -1257,6 +1257,17 @@ Promise.race([p1, p2]).then((res) => {
 
 > Promise.race() 方法可以用在后端请求超时处理
 
+### Promise.finally()
+
+`Promise.finally()` 方法可以返回一个新的 `Promise` 实例
+
+```js
+const p1 = new Promise(() => {})
+const p2 = p1.finally()
+console.log(p2) // Promise {<pending>}
+console.log(p1 === p2) // false
+```
+
 ### Promise 异步捕获错误
 
 通常情况下，同步代码使用 `try catch` 来进行捕获错误
