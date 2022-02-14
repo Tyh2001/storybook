@@ -1525,3 +1525,85 @@ for (let i = 0; i < 10000; i++) {
 }
 console.log('循环结束')
 ```
+
+### DOM 渲染任务
+
+如果我们将外部引入的 `*.js` 文件全部放在 dom 渲染之前进行加载，那么载入的时候就需要先将引入的文件全部加载完成之后再进行渲染 dom，那么就会产生加载白屏的状态，所以需要将外部加载的模块放在 dom 渲染之后加载
+
+**反例**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="./js/1.js"></script>
+  </head>
+
+  <body>
+    <h1>hello</h1>
+  </body>
+</html>
+```
+
+**推荐的**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>hello</h1>
+    <script src="./js/1.js"></script>
+  </body>
+</html>
+```
+
+### 进度条例子
+
+```html
+<style>
+  #sel {
+    height: 20px;
+    background-color: green;
+  }
+</style>
+
+<div id="sel"></div>
+<script>
+  function handle() {
+    let i = 0
+    ;(function run() {
+      sel.innerHTML = i
+      sel.style.width = i + '%'
+      if (++i <= 100) {
+        setTimeout(run, 20)
+      }
+    })()
+  }
+
+  handle()
+</script>
+```
+
+### Promise 微任务处理复杂业务
+
+```js
+async function load(num) {
+  const res = await Promise.resolve().then((_) => {
+    let count = 0
+    for (let i = 0; i < num; i++) {
+      count += num--
+    }
+    return count
+  })
+  console.log(res)
+}
+load(987654321)
+console.log('主任务不要被影响')
+```
