@@ -1618,3 +1618,228 @@ async function load(num) {
 load(987654321)
 console.log('主任务不要被影响')
 ```
+
+### 手写 Promise
+
+```js
+class myPromise {
+  // 定义 promise 的三种状态
+  // 因为值是固定的 所以定义为静态属性
+  static PENDING = 'pending'
+  static FULFILLED = 'fulfilled'
+  static REJECTED = 'rejected'
+
+  /**
+   * @param { object } executor 回调函数
+   * 因为 promise 就只会接收到一个参数，就是一个函数
+   * 那么 executor 就是传入 promise 的那个函数
+   * 然后 executor 函数还会接受到两个参数 一个 resolve，一个 reject
+   */
+  constructor(executor) {
+    this.status = myPromise.PENDING // 默认为准备状态
+    this.value = null // 获取到的值
+    this.callbacks = [] // 存放将来要执行的函数
+
+    /**
+     * 为什么使用 try catch？
+     * 因为在执行 promise 的内部，可能会产生错误
+     * 所以一旦尝试错误就直接调用拒绝函数 reject
+     */
+    try {
+      /**
+       * 这里需要将 this 指向改变
+       * 这里将 executor 的两个参数传递过去
+       * 因为参数还是两个函数 所以这里是一类方法进行传递
+       */
+      executor(this.resolve.bind(this), this.reject.bind(this))
+    } catch (error) {
+      this.reject(error)
+    }
+  }
+
+  /**
+   * 成功状态
+   * @param {*} value 得到的值
+   * 当写了：new myPromise((resolve, reject) => resolve('成功了吗'))
+   * 的时候，就调用了 resolve 函数，传递的参数是 '成功了吗'
+   * 所以这里的 value 就会接收到这个参数
+   */
+  resolve(value) {
+    // promise 状态一旦生成就不能改变
+    if (this.status === myPromise.PENDING) {
+      this.status = myPromise.FULFILLED // 改变状态
+      this.value = value // 改变值
+
+      setTimeout(() => {
+        this.callbacks.map((callback) => {
+          callback.onResolve(value)
+        })
+      })
+    }
+  }
+
+  /**
+   * 拒绝状态
+   * @param {*} reason 拒绝的因素
+   */
+  reject(reason) {
+    if (this.status === myPromise.PENDING) {
+      this.status = myPromise.REJECTED // 改变状态
+      this.value = reason // 改变值
+
+      setTimeout(() => {
+        this.callbacks.map((callback) => {
+          callback.onReject(reason)
+        })
+      })
+    }
+  }
+
+  /**
+   * .then 方法
+   * @param { function } onResolve 捕获成功
+   * @param { function } obReject 捕获拒绝
+   */
+  then(onResolve, onReject) {
+    if (typeof onResolve !== 'function') {
+      // 直接返回 value，解决穿透效果
+      onResolve = () => this.value
+    }
+
+    if (typeof onReject !== 'function') {
+      onReject = () => this.value
+    }
+
+    /**
+     * 为了 promise 可以使用链式操作
+     * 这里直接返回一个新的 promise ，类似递归
+     */
+    const promise = new myPromise((resolve, reject) => {
+      // 成功状态
+      if (this.status === myPromise.FULFILLED) {
+        /**
+         * 为什么使用 try catch？
+         * 因为有可能函数传递的是未定义的参数
+         * 为什么使用 setTimeout？
+         * 因为 promise 中 .then() 并不是同步执行
+         * 需要等主进程执行完成之后再执行
+         */
+        setTimeout(() => {
+          this.parse(promise, onResolve(this.value), resolve, reject)
+        })
+      }
+
+      // 拒绝状态
+      if (this.status === myPromise.REJECTED) {
+        setTimeout(() => {
+          this.parse(promise, onReject(this.value), resolve, reject)
+        })
+      }
+
+      // 等待状态
+      if (this.status === myPromise.PENDING) {
+        // 如果在 promise 中出现定时器，就先将函数放到数组中
+        this.callbacks.push({
+          onResolve: (value) => {
+            this.parse(promise, onResolve(value), resolve, reject)
+          },
+          onReject: (value) => {
+            this.parse(promise, onReject(value), resolve, reject)
+          },
+        })
+      }
+    })
+
+    return promise
+  }
+
+  /**
+   * 代码封装
+   * @param { function } promise 返回的 promise
+   * @param { function } result 结果
+   * @param { function } resolve 成功状态函数
+   * @param { function } reject 拒绝状态函数
+   */
+  parse(promise, result, resolve, reject) {
+    if (promise === result) {
+      throw new TypeError('Chaining cycle detected')
+    }
+    try {
+      /**
+       * 如果返回的是普通类型的值，下一个 .then 可以直接接到
+       * 那么如果返回的是一个 promise 的话，就需要做区分
+       */
+      if (result instanceof myPromise) {
+        // promise
+        result.then(resolve, reject)
+      } else {
+        // 普通对象
+        resolve(result) // 成功状态返回的 promise 是成功状态
+      }
+    } catch (error) {
+      reject(error)
+    }
+  }
+
+  /**
+   * promise.resolve 方法
+   * @param {*} value 值
+   */
+  static resolve(value) {
+    return new myPromise((resolve, reject) => {
+      if (value instanceof myPromise) {
+        value.then(resolve, reject)
+      } else {
+        resolve(value)
+      }
+    })
+  }
+
+  /**
+   * promise.reject 方法
+   * @param {*} value 值
+   */
+  static reject(value) {
+    return new myPromise((resolve, reject) => {
+      reject(value)
+    })
+  }
+
+  /**
+   * promise.all 方法
+   * @param { array } promises promise 的集合
+   */
+  static all(promises) {
+    const values = []
+    return new myPromise((resolve, reject) => {
+      promises.forEach((promise) => {
+        promise.then(
+          (value) => {
+            values.push(value)
+            if (values.length === promises.length) {
+              resolve(values)
+            }
+          },
+          (reason) => reject(reason)
+        )
+      })
+    })
+  }
+
+  /**
+   * promise.race 方法
+   * 谁快就打印谁
+   * @param { array } promises promise 的集合
+   */
+  static race(promises) {
+    return new myPromise((resolve, reject) => {
+      promises.map((promise) => {
+        promise.then(
+          (value) => resolve(value),
+          (reason) => reject(reason)
+        )
+      })
+    })
+  }
+}
+```
