@@ -27,7 +27,8 @@ module.exports = {
         children: [
           { text: '个人网站', link: 'https://tianyuhao.cn' },
           { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
-          { text: '微博', link: 'https://weibo.com/tyh2001' }
+          { text: '微博', link: 'https://weibo.com/tyh2001' },
+          { text: '哔哩哔哩', link: 'https://space.bilibili.com/246484504?spm_id_from=333.1007.0.0' },
         ]
       },
       {
@@ -35,12 +36,13 @@ module.exports = {
         ariaLabel: 'Language Menu',
         children: [
           { text: 'Vue3', link: 'https://v3.cn.vuejs.org' },
+          { text: 'Vue3-new', link: 'https://staging-cn.vuejs.org' },
           { text: 'Vite', link: 'https://cn.vitejs.dev/' },
           { text: 'Pinia', link: 'https://pinia.esm.dev' },
           { text: 'VuePress', link: 'https://v2.vuepress.vuejs.org/zh/' },
-          { text: '你不知道的JavaScript 上', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_1.pdf' },
-          { text: '你不知道的JavaScript 中', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_2.pdf' },
-          { text: '你不知道的JavaScript 下', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_3.pdf' },
+          { text: '你不知道的JavaScript-上', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_1.pdf' },
+          { text: '你不知道的JavaScript-中', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_2.pdf' },
+          { text: '你不知道的JavaScript-下', link: 'https://tianyuhao.cn/utils/pdf/yellowBook_3.pdf' },
           { text: 'JavaScript忍者秘籍', link: 'https://tianyuhao.cn/utils/pdf/secret_script.pdf' },
           { text: 'JavaScript语言精粹', link: 'https://tianyuhao.cn/utils/pdf/quintessence.pdf' },
         ]
