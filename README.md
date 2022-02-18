@@ -26,12 +26,21 @@
 
 ## js 相关
 
-- [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-basic.md)
-- [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-function.md)
-- [方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-methods.md)
-- [Js 工具函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-utils.md)
-- [算法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-computed.md)
-- [API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/js-api.md)
+- [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
+- [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/basic.md)
+- [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/functions.md)
+- [数组方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-methods.md)
+- [数组迭代](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-iteration.md)
+- [对象方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/date-object.md)
+- [日期对象](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/object-methods.md)
+- [数学对象](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/math-object.md)
+- [异步函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/fun-async.md)
+- [微任务与宏任务](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/task-type.md)
+- [面向对象编程](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/fun-prototype.md)
+- [类](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/fun-class.md)
+- [Js 工具函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/fun-utils.md)
+- [JavaScript API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/javascript-api.md)
+- [leetcode 算法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/leetcode.md)
 
 ## 其它技术
 
