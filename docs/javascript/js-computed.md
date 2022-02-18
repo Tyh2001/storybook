@@ -1,88 +1,133 @@
 # 算法
 
-更多算法参考[这里](https://github.com/Tyh2001/leetcode-sprint)
-
-## 冒泡排序
-
-基础算法
+## 1. 二分查找
 
 ```js
-const arr = [30, 42, 12, 4, 13, 54, 13, 11]
+/**
+ * https://leetcode-cn.com/problems/binary-search/
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  let firstIndex = 0,
+    lastIndex = nums.length - 1
 
-function BubblingSort(arr) {
-  let item
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      if (arr[i] > arr[j]) {
-        item = arr[i]
-        arr[i] = arr[j]
-        arr[j] = item
-      }
+  while (firstIndex <= lastIndex) {
+    if (nums[middleIndex] === target) {
+      return middleIndex
+    } else if (nums[middleIndex] > target) {
+      lastIndex = middleIndex - 1
+    } else {
+      firstIndex = middleIndex + 1
     }
   }
-  return arr
+  return -1
 }
-
-console.log(BubblingSort(arr))
 ```
 
-ES6 新增 `sort()` 方法
+## 2.搜索插入位置
 
 ```js
-const arr = [30, 42, 12, 4, 13, 54, 13, 11]
-const res = arr.sort((a, b) => a - b)
-console.log(res)
-```
+/**
+ * https://leetcode-cn.com/problems/search-insert-position/
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
 
-```js
-const arr = [5, 2, 6, 11, 5, 1, 62, 7, 8, 13, 14, 643, 23]
+var searchInsert = function (nums, target) {
+  let firstIndex = 0,
+    lastIndex = nums.length - 1,
+    res = nums.length
 
-function bubbleSort(arr) {
-  let isSwapped
-
-  for (let i = arr.length; i > 0; i--) {
-    isSwapped = false
-    for (let j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
-      }
-    }
-    if (!isSwapped) {
-      break
+  while (firstIndex <= lastIndex) {
+    const middleIndex = Math.floor((firstIndex + lastIndex) / 2)
+    if (nums[middleIndex] === target) {
+      return middleIndex
+    } else if (nums[middleIndex] > target) {
+      res = middleIndex
+      lastIndex = middleIndex - 1
+    } else {
+      firstIndex = middleIndex + 1
     }
   }
-
-  return arr
+  return res
 }
-
-console.log(bubbleSort(arr))
 ```
 
-## 求 n 个自然数的和
+## 3.两数之和
 
 ```js
-function add(n) {
-  if (n == 1) {
-    return 1
-  } else {
-    return add(n - 1) + n
+/**
+ * https://leetcode-cn.com/problems/two-sum/
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  let keys = {}
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i]
+    let diff = target - num
+    if (num in keys) {
+      return [keys[num], i]
+    }
+    keys[diff] = i
   }
 }
-
-console.log(add(5))
 ```
 
-## 斐波那契数列
+## 4.回文数
 
 ```js
-// 斐波那契数列
-// 1、1、2、3、5、8、13、21、34
-// 计算公式：
-// F(0)=0, F(1)=1, F(n)=F(n - 1)+F(n - 2)
-function fibonacci(n) {
-  if (n <= 2 && n !== 0) return 1
-  return fibonacci(n - 1) + fibonacci(n - 2)
+/**
+ * https://leetcode-cn.com/problems/palindrome-number/
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function (x) {
+  const str = new String(x).split('')
+  const res = []
+  for (let i = 0; i < str.length; i++) {
+    res[i] = str[str.length - 1 - i]
+  }
+  return res.join('') == x
 }
+```
 
-console.log(fibonacci(6))
+## 5.罗马数字转整数
+
+```js
+/**
+ * https://leetcode-cn.com/problems/roman-to-integer/
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  const list = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  }
+  const arr = []
+  let result = 0
+
+  for (let i = 0; i < s.length; i++) {
+    const tmp = list[s[i]]
+    if (arr[arr.length - 1] < tmp) {
+      result += tmp - arr.pop()
+    } else {
+      arr.push(tmp)
+    }
+  }
+  const res = arr.reduce((pre, cur) => {
+    return pre + cur
+  }, 0)
+  return res + result
+}
 ```
