@@ -2026,6 +2026,8 @@ document.getElementById('app').classList.toggle('box2')
 
 ## MutationObserver 接口
 
+### 描述
+
 `MutationObserver 接口` 可以在 DOM 被修改时移步执行回调，使用 `MutationObserver` 可以观察整个文档、DOM 树的一部分或者元素。此外还可以观察元素的属性、子节点、文本，或者前三者的组合变化。
 
 ### 基本使用
