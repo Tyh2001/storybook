@@ -657,6 +657,15 @@ console.log(arr)
 // (2) ["java", "python"]
 ```
 
+`pop()` 方法也可以删除最后一项的元素并返回
+
+```js
+const arr = ['red', 'abc', '12']
+const res = arr.pop()
+console.log(res) // 12
+console.log(arr) // ['red', 'abc']
+```
+
 ### unshift()
 
 `unshift()` 在数组开头添加元素
@@ -668,7 +677,7 @@ console.log(arr)
 // (4) ["c++", "java", "python", "c"]
 ```
 
-> 注：支持多个添加
+> 支持多个添加
 
 ### shift()
 
@@ -679,6 +688,14 @@ const arr = ['java', 'python', 'c']
 arr.shift()
 console.log(arr)
 // (2) ["python", "c"]
+```
+
+`shift()` 也可以删除数组的第一个元素并返回
+
+```js
+const arr = ['java', 'python', 'c']
+const res = arr.shift()
+console.log(res) // java
 ```
 
 ### slice()
@@ -892,7 +909,45 @@ console.log(Array.from(arr.entries()))
 [[Prototype]]: Array(0)
 ```
 
-## 数组进阶
+### fill()
+
+`fill()` 方法可以可以向数组中插入全部或部分相同的值
+
+它可以接收三个参数：
+
+- 要插入的内容
+- 开始的索引位置
+- 结束的索引位置
+
+```js
+const arr = [1, 2, 3, 4, 5]
+arr.fill('改变', 0, 3)
+console.log(arr) // ['改变', '改变', '改变', 4, 5]
+```
+
+```js
+const arr = [1, 2, 3, 4, 5]
+arr.fill('改变')
+console.log(arr) // ['改变', '改变', '改变', '改变', '改变']
+```
+
+```js
+const arr = [1, 2, 3, 4, 5]
+arr.fill('改变', 4)
+console.log(arr) // [1, 2, 3, 4, '改变']
+```
+
+### copyWithin()
+
+`copyWithin()` 方法会按照指定范围进行潜复制，然后插入到指定索引的位置
+
+```js
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+arr.copyWithin(5)
+console.log(arr) // [1, 2, 3, 4, 5, 1, 2, 3, 4]
+```
+
+## 数组循环
 
 ### forEach
 
