@@ -856,6 +856,42 @@ console.log(f === e)
 // 这样把e 赋值给了 f 那么就全等了，返回 true
 ```
 
+### keys()
+
+`keys()` 方法可以返回数组索引的迭代器
+
+```js
+const arr = ['西瓜', '苹果', '芒果']
+console.log(Array.from(arr.keys())) // [0, 1, 2]
+```
+
+### values()
+
+`values()` 方法可以返回数组元素的迭代器
+
+```js
+const arr = ['西瓜', '苹果', '芒果']
+console.log(Array.from(arr.values())) // ['西瓜', '苹果', '芒果']
+```
+
+### entries()
+
+`entries()` 方法可以返回数组`索引/元素`的迭代器
+
+```js
+const arr = ['西瓜', '苹果', '芒果']
+console.log(Array.from(arr.entries()))
+```
+
+```
+[Array(2), Array(2), Array(2)]
+  0: (2) [0, '西瓜']
+  1: (2) [1, '苹果']
+  2: (2) [2, '芒果']
+  length: 3
+[[Prototype]]: Array(0)
+```
+
 ## 数组进阶
 
 ### forEach
