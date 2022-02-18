@@ -947,6 +947,36 @@ arr.copyWithin(5)
 console.log(arr) // [1, 2, 3, 4, 5, 1, 2, 3, 4]
 ```
 
+### reverse()
+
+`reverse()` 方法可以让数组反向排序
+
+```js
+const arr = [1, 2, 3, 4]
+console.log(arr.reverse()) // [4, 3, 2, 1]
+```
+
+### sort()
+
+`sort()` 方法可以让数组升序排列
+
+```js
+const arr = [5, 9, 1, 2, 3, 4]
+console.log(arr.sort()) // [1, 2, 3, 4, 5, 9]
+```
+
+也可以通过一个比较函数来确定排序方法
+
+```js
+const arr = [5, 9, 1, 2, 3, 4]
+console.log(arr.sort((x, y) => y - x)) // [9, 5, 4, 3, 2, 1]
+```
+
+```js
+const arr = [5, 9, 1, 2, 3, 4]
+console.log(arr.sort((x, y) => x - y)) // [1, 2, 3, 4, 5, 9]
+```
+
 ## 数组循环
 
 ### forEach
