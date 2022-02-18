@@ -618,7 +618,33 @@ console.log(obj.length) // 2
 console.log(Array.from(obj)) // ["小明", 12]
 ```
 
-**注：对象转换的方法实际中很少用，此处仅对有无 .length 转换结果作为参考比较**
+> 对象转换的方法实际中很少用，此处仅对有无 .length 转换结果作为参考比较\*\*
+
+`Array.from()` 还可以接收到第二个参数，可以直接增强数组中的每个值
+
+```js
+const arr = [1, 3, 4, 5]
+const res = Array.from(arr, (x) => x * 2)
+console.log(res) // [2, 6, 8, 10]
+```
+
+### Array.of()
+
+`Array.of()` 方法可以将一组参数转换为数组
+
+```js
+const res = Array.of(1, 2, 3, 4, 5)
+console.log(res) // [1, 2, 3, 4, 5]
+```
+
+### Array.isArray()
+
+`Array.isArray()` 方法用于检测一个值是否是一个数组
+
+```js
+const arr = [1, 2, 3]
+console.log(Array.isArray(arr)) // true
+```
 
 ### pop()
 
