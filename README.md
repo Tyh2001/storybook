@@ -28,7 +28,7 @@
 
 - [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
 - [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/basic.md)
-- [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/functions.md)
+- [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/function.md)
 - [数组方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-methods.md)
 - [数组迭代](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-iteration.md)
 - [对象方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/date-object.md)
