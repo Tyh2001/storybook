@@ -58,12 +58,21 @@ module.exports = {
       {
         text: 'Js 相关',
         children: [
-          '/javascript/js-basic',
-          '/javascript/js-function',
-          '/javascript/js-methods',
-          '/javascript/js-utils',
-          '/javascript/js-computed',
-          '/javascript/js-api',
+          '/javascript/dom', // DOM 相关
+          '/javascript/basic', // 基础
+          '/javascript/function', // 函数
+          '/javascript/array-methods', // 数组方法
+          '/javascript/array-iteration', // 数组迭代
+          '/javascript/object-methods', // 对象方法
+          '/javascript/date-object', // 日期对象
+          '/javascript/math-object', // 数学对象
+          '/javascript/fun-async', // 异步函数
+          '/javascript/task-type', // 微任务与宏任务
+          '/javascript/fun-prototype', // 面向对象编程
+          '/javascript/fun-class', // 类
+          '/javascript/fun-utils', // Js 工具函数
+          '/javascript/javascript-api', // JavaScript API
+          '/javascript/leetcode', // leetcode 算法
         ]
       },
       '/other',
