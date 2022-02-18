@@ -246,7 +246,7 @@ console.log(Array.isArray(arr)) // true
 
 ## slice()
 
-`slice()` 数组截取
+`slice()` 数组截取，它不会改变原数组，而是会创建一个新的数组
 
 ```js
 const arr = ['css', 'html', 'js', 'java', 'html5']
@@ -257,9 +257,8 @@ console.log(arr2)
 
 `slice()` 可以传入两个参数，根据索引进行截取，分别是：
 
-> 第一个参数是：从第几个开始截取（包括开始元素索引元素）
->
-> 第二个参数是：截取到第几个元素（不包括结束元素索引元素）
+- 从第几个开始截取（包括开始元素索引元素）
+- 第二个参数是：截取到第几个元素（不包括结束元素索引元素）
 
 如果传递了一个参数：那就代表从指定位数截取到结尾（不包括开始元素）
 
@@ -279,78 +278,83 @@ console.log(arr2)
 // (5) ["css", "html", "js", "java", "html5"]
 ```
 
-> 注：`slice()` 方法不会改变原数组，而是会创建一个新的数组
+`slice()` 方法可以存在负值，如果是负值，那么就是分别对应数组的长度加上这个负值得到的结果数
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+const arr2 = arr.slice(-2, -1)
+// 详单于 arr.slice(3, 4)
+console.log(arr2) // ['java']
+```
 
 ## splice()
 
-`splice()` 数组 截取 || 添加数据 || 移除 || 替换
+`splice()` 方法可能是数组**最强大**的方法了，它可以：`删除、插入、替换`
 
-同样都是数组截取，`slice()` 和 `splice()` 还是有区别的
+<!-- `splice()` 数组 截取 || 添加数据 || 移除 || 替换 -->
 
-`splice()` 不仅仅有截取的方法，还可以添加、移除、替换 等操作，下面分别来说说：
+### 删除
 
-- 截取：
+删除可以从数组中删除一个或多个元素，需要接收两个参数：
 
-`splice()` 也是通过索引进行截取，里面包含两个参数：
-
-> 第一个参数是：从第几个开始截取（包括当前索引元素）
->
-> 第二个参数是：截取几个元素
+- 要删除的第一个元素的位置
+- 要删除元素的数量
 
 ```js
 const arr = ['css', 'html', 'js', 'java', 'html5']
-const arr2 = arr.splice(0, 3)
-console.log(arr2)
-// (3) ["css", "html", "js"]
-
-// 截取完之后会改变原数组，原数组剩下未截取的部分
-console.log(arr)
-// (2) ["java", "html5"]
+arr.splice(0, 2) // 从 0 的索引开始，删除两位
+console.log(arr) // ['js', 'java', 'html5']
 ```
 
-- 添加：
+如果只传入一个参数，那么就从指定索引删除到结尾
 
-上述例子中，通过传递两个参数，截取了制定的元素，可以继续通过添加参数的方法来往**原数组中**添加元素
+> 删除会删除开始索引位置的值
 
 ```js
 const arr = ['css', 'html', 'js', 'java', 'html5']
-const arr2 = arr.splice(0, 3, 'javascript', 'node')
-
-// 截取出来的数组
-console.log(arr2) // (3) ["css", "html", "js"]
-
-// 原数组 - 截取的元素 + 添加的新元素
-console.log(arr) // (4) ["javascript", "node", "java", "html5"]
+arr.splice(2)
+console.log(arr) // ['css', 'html']
 ```
 
-- 移除
+### 插入
 
-比如这里想把 `js` 移除，那么通过传递两个参数
+可以在数组中指定位置进行插入，插入需要传入三个参数：
 
-> 第一个参数：移除元素的索引：2
->
-> 第二个参数：移除的数量：1
-
-所以就是：
+- 开始位置
+- 0 / 要删除的元素数量
+- 要插入的元素
 
 ```js
 const arr = ['css', 'html', 'js', 'java', 'html5']
-arr.splice(2, 1)
-console.log(arr)
-// (4) ["css", "html", "java", "html5"]
+// 从数组索引 2 的位置，删除 0 个元素，并插入后面的元素
+arr.splice(2, 0, 'python', 'c++')
+console.log(arr) // ['css', 'html', 'python', 'c++', 'js', 'java', 'html5']
 ```
 
-- 替换
-
-和移除类似，比如：
-
-把 `js` 移除了之后，想要替换成 `javascript` 那么仅需要在后面加上一个参数即可：
+上面例子中，第二关参数为 `0`，代表并没有删除元素，其实也可以删除部分元素，并添加
 
 ```js
 const arr = ['css', 'html', 'js', 'java', 'html5']
-arr.splice(2, 1, 'javascript')
-console.log(arr)
-// (5) ["css", "html", "javascript", "java", "html5"]
+// 从数组索引 2 的位置，删除 2 个元素，并插入后面的元素
+arr.splice(2, 2, 'python', 'c++')
+console.log(arr) // ['css', 'html', 'python', 'c++', 'html5']
+```
+
+通过上面例子，再次引入下面替换的方法
+
+### 替换
+
+`splice()` 在删除和元素的同时可以指定位置插入新的元素，同样需要三个参数：
+
+- 开始位置
+- 要删除的元素数量
+- 要插入的元素
+
+```js
+const arr = ['css', 'html', 'js', 'java', 'html5']
+// 从数组索引 1 的位置，删除 2 个元素，并插入后面的元素，相当于替换的元素
+arr.splice(1, 2, 'python', 'c++')
+console.log(arr) // ['css', 'python', 'c++', 'java', 'html5']
 ```
 
 ## includes()
@@ -521,4 +525,27 @@ console.log(arr.sort((x, y) => y - x)) // [9, 5, 4, 3, 2, 1]
 ```js
 const arr = [5, 9, 1, 2, 3, 4]
 console.log(arr.sort((x, y) => x - y)) // [1, 2, 3, 4, 5, 9]
+```
+
+## concat()
+
+`concat()` 方法可以创建一个原有数组的副本，但是并不全等之前的数组
+
+```js
+const arr = [1, 2, 3]
+const res1 = arr.concat()
+console.log(res1) // [1, 2, 3]
+console.log(res1 === arr) // false
+```
+
+`concat()` 主要的作用是可以将数组进行合并，可以接受多个参数，添加到数组的末尾
+
+```js
+const arr = [1, 2, 3]
+
+const res1 = arr.concat(4, 5)
+console.log(res1) // [1, 2, 3, 4, 5]
+
+const res2 = arr.concat(4, 5, [6, 7], [8, 9])
+console.log(res2) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
