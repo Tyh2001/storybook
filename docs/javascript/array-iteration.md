@@ -87,6 +87,12 @@ console.log(filter(hd, [2, 3]))
 
 `map()` 方法用于映射数组
 
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
+
 当你需要将项目从一个数组转换为另一个数组时
 
 例如，如果你想将数组中的所有值都乘以 2
@@ -225,6 +231,12 @@ console.log(res) // 2
 
 `some()` 方法返回布尔值，**遍历出的每一项只要有一项为真，就返回真；如果为假，则每一项都遍历一次**
 
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
+
 ```js
 const items = [1, 2, 3, 4]
 const hasNumber2 = items.some((item, index) => {
@@ -238,6 +250,12 @@ console.log(hasNumber2) // true
 ## every()
 
 `every()` 方法返回布尔值，**遍历出的每一项必须全部为真，才返回真，否则返回假**
+
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
 
 ```js
 const user = [
@@ -255,6 +273,26 @@ console.log(res) // true
 ```
 
 ## reduce()
+
+`reduce()` 函数返回的任何值，都会作为下一次调用同一函数的第一个参数
+
+可以接收四个参数：
+
+- 上一次归并值
+- 当前项
+- 当前项的索引
+- 原数组
+
+```js
+const arr = [1, 3, 7, 5]
+arr.reduce((prev, cur, index, array) => {
+  console.log(prev, cur, index, array)
+})
+
+// 1 3 1 [1, 3, 7, 5]
+// undefined 7 2 [1, 3, 7, 5]
+// undefined 5 3 [1, 3, 7, 5]
+```
 
 当你需要从数组中获取单个值时。此处的 `单个值` 可以是一个数组。
 
@@ -282,3 +320,25 @@ const sum = items.reduce((accumulator, currentValue) => {
 ```
 
 > 当你使用 reduce 时，你需要在每次迭代中返回 accumulator（reduce 方法返回的值），并且你还应该初始化这个 accumulator（在上面的例子中我们将累加器初始化为 0）！
+
+## reduceRight()
+
+`reduceRight()` 方法和 `reduce()` 方法基本类似，但是 `reduceRight()` 是从右往左遍历
+
+可以接收四个参数：
+
+- 上一次归并值
+- 当前项
+- 当前项的索引
+- 原数组
+
+```js
+const arr = [1, 3, 7, 5]
+arr.reduceRight((prev, cur, index, array) => {
+  console.log(prev, cur, index, array)
+})
+
+// 5 7 2 [1, 3, 7, 5]
+// undefined 3 1 [1, 3, 7, 5]
+// undefined 1 0 [1, 3, 7, 5]
+```
