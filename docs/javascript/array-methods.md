@@ -549,3 +549,61 @@ console.log(res1) // [1, 2, 3, 4, 5]
 const res2 = arr.concat(4, 5, [6, 7], [8, 9])
 console.log(res2) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
+
+## indexOf()
+
+`indexOf()` 该方法从数组的左侧向右侧查找回指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
+
+可以分别用在数组和字符串中，它接收两个参数：
+
+- 要查找的元素
+- 开始索引的位置（可选）
+
+字符串：
+
+```js
+const arr = '12334'
+
+console.log(arr.indexOf(0)) // 没有 0 输出 -1
+console.log(arr.indexOf(2)) // 有 2 输出2的索引 1
+```
+
+数组：
+
+```js
+const arr = [1, 3, 4]
+
+console.log(arr.indexOf(0)) // 没有 0 输出 -1
+console.log(arr.indexOf(4)) // 有 4 输出4的索引 2
+```
+
+```js
+const arr = [1, 3, '7', 5]
+
+console.log(arr.indexOf(1, 2))
+// 虽然数组中存在 1，但是从第二位开始查找，后面找不到，所以返回 -1
+```
+
+`indexOf()` 方法 是严格类型查找，比如下面实例中：
+
+比如数组中有一个字符串`'7'` 那么是查找不到的
+
+```js
+const arr = [1, 3, '7', 5]
+console.log(arr.indexOf(7)) // -1
+// 严格类型匹配查询不到字符串7，所以返回 -1
+```
+
+## lastIndexOf()
+
+同样是用于查找指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
+
+不过`lastIndexOf()`是从右往左查找的
+
+比如：数组中有两个`7` 这时返回的就是从右侧查找到的第一个 `7`
+
+```js
+const arr = [1, 3, 7, 5, 6, 7, 9]
+
+console.log(arr.lastIndexOf(7)) // 5
+```
