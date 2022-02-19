@@ -119,7 +119,7 @@ items.forEach((item) => {
 })
 ```
 
-使用 reduce（正确 ✅ ）
+使用 reduce (正确)
 
 ```js
 const items = [1, 2, 3, 4]
@@ -133,7 +133,11 @@ const sum = items.reduce((accumulator, currentValue) => {
 
 ## find()
 
-`find` 方法，当你需要找到符合条件的项目并打算之后使用该项目的情况下。
+`find` 方法，当你需要找到符合条件的项目并打算之后使用该项目的情况下，可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
 
 ```js
 const items = [1, 2, 3, 4]

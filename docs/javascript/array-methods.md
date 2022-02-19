@@ -596,14 +596,33 @@ console.log(arr.indexOf(7)) // -1
 
 ## lastIndexOf()
 
-同样是用于查找指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
+`lastIndexOf()` 方法可以查找指定字符在字符串或者数组中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
 
-不过`lastIndexOf()`是从右往左查找的
+不过 `lastIndexOf()` 是从右往左查找的
 
 比如：数组中有两个`7` 这时返回的就是从右侧查找到的第一个 `7`
 
+它接收两个参数：
+
+- 要查找的元素
+- 开始索引的位置（可选）
+
 ```js
 const arr = [1, 3, 7, 5, 6, 7, 9]
-
 console.log(arr.lastIndexOf(7)) // 5
+```
+
+## includes()
+
+`includes()` 方法和 `indexOf()` 类似，都是从左往右查找，但是 `includes()` 返回的是一个布尔类型来表示是否查到
+
+它接收两个参数：
+
+- 要查找的元素
+- 开始索引的位置（可选）
+
+```js
+const arr = [1, 3, 7, 5, 6, 7, 9]
+console.log(arr.includes(3)) // true
+console.log(arr.includes(0)) // false
 ```
