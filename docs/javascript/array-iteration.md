@@ -1,12 +1,16 @@
 # 数组迭代
 
-## forEach
+## forEach()
 
 我们不应该过度滥用`forEach`。当然，在某些情况下`forEach`是一个非常好的方法。
 
 如果你需要迭代数组以执行特定操作（例如控制台记录每个项目）。
 
-而每当需要填充新数组时，则不应该使用 forEach（在此之前，请检查是否可以使用其他方法）
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
 
 ```js
 const items = [1, 2, 3, 4, 5]
@@ -23,7 +27,13 @@ toto // undefined
 
 ## filter()
 
-`filter` 方法，允许根据条件过滤数组中的某些值，查找满足条件的所有元素，返回数组。该方法中可以有三个参数，分别是：**每一项元素、索引、原数组**
+`filter` 方法，允许根据条件过滤数组中的某些值，查找满足条件的所有元素，返回数组
+
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
 
 例如，如果你想删除奇数
 
@@ -71,7 +81,7 @@ console.log(filter(hd, [2, 3]))
 // (2) [1, 4]
 ```
 
-当你使用 filter 时，你应该在每次迭代中返回一个布尔值（filter 的条件）。（否则 JS 引擎会把返回值强制转换为布尔值！）
+> 当你使用 filter 时，你应该在每次迭代中返回一个布尔值（filter 的条件）。（否则 JS 引擎会把返回值强制转换为布尔值！）
 
 ## map()
 
@@ -100,36 +110,7 @@ const result = items.map((item) => {
 })
 ```
 
-当你使用 map 时，你需要在每次迭代中返回一个项目（转换后的项目）。
-
-## reduce()
-
-当你需要从数组中获取单个值时。此处的“单个值”可以是一个数组。
-
-例如，如果你想对数组中的所有数字求和。
-
-使用 forEach (不建议)
-
-```js
-const items = [1, 2, 3, 4]
-let accumulator = 0
-
-items.forEach((item) => {
-  accumulator += item
-})
-```
-
-使用 reduce (正确)
-
-```js
-const items = [1, 2, 3, 4]
-
-const sum = items.reduce((accumulator, currentValue) => {
-  return (accumulator += currentValue)
-}, 0)
-```
-
-当你使用 reduce 时，你需要在每次迭代中返回 accumulator（reduce 方法返回的值），并且你还应该初始化这个 accumulator（在上面的例子中我们将累加器初始化为 0）！
+> 当你使用 map 时，你需要在每次迭代中返回一个项目（转换后的项目）。
 
 ## find()
 
@@ -140,9 +121,31 @@ const sum = items.reduce((accumulator, currentValue) => {
 - 原数组
 
 ```js
-const items = [1, 2, 3, 4]
+const arr = [1, 2, 3, 4]
 
-const item = items.find((item) => item === 3)
+arr.find((element, index, array) => {
+  console.log(element, index, array)
+})
+
+// 1 0 (4) [1, 2, 3, 4]
+// 2 1 (4) [1, 2, 3, 4]
+// 3 2 (4) [1, 2, 3, 4]
+// 4 3 (4) [1, 2, 3, 4]
+```
+
+找到指定 `name` 的元素，并返回该元素
+
+```js
+const arr = [
+  { name: '张三', age: 12 },
+  { name: '李四', age: 23 },
+  { name: '小明', age: 34 },
+]
+
+const res = arr.find((element, index, array) => {
+  return element.name === '小明'
+})
+console.log(res) //{name: '小明', age: 34}
 ```
 
 查找满足条件的第一个单个元素 **返回布尔值**，找到符合条件的元素，然后返回该元素，没有符合条件的，则返回 undefined
@@ -158,7 +161,7 @@ console.log(changeArr())
 // 15
 ```
 
-- filter 和 find 结合实例
+**filter 和 find 结合实例**
 
 有一个数组 arr1 和 arr2 现在想要得到 arr1 - arr2 的数据，并且返回一个新的数组
 
@@ -195,6 +198,29 @@ console.log(changeArr())
 // ]
 ```
 
+## findIndex()
+
+`findIndex()` 方法和 `find` 方法类似，但是 `findIndex()` 并不是返回的匹配的指定的元素，而是返回匹配元素的索引值
+
+可以接收三个参数：
+
+- 每一项元素
+- 每一项元素的索引值
+- 原数组
+
+```js
+const arr = [
+  { name: '张三', age: 12 },
+  { name: '李四', age: 23 },
+  { name: '小明', age: 34 },
+]
+
+const res = arr.findIndex((element, index, array) => {
+  return element.name === '小明'
+})
+console.log(res) // 2
+```
+
 ## some()
 
 `some()` 方法返回布尔值，**遍历出的每一项只要有一项为真，就返回真；如果为假，则每一项都遍历一次**
@@ -227,3 +253,32 @@ const res = user.every((item) => {
 
 console.log(res) // true
 ```
+
+## reduce()
+
+当你需要从数组中获取单个值时。此处的 `单个值` 可以是一个数组。
+
+例如，如果你想对数组中的所有数字求和。
+
+使用 forEach (不建议)
+
+```js
+const items = [1, 2, 3, 4]
+let accumulator = 0
+
+items.forEach((item) => {
+  accumulator += item
+})
+```
+
+使用 reduce (正确)
+
+```js
+const items = [1, 2, 3, 4]
+
+const sum = items.reduce((accumulator, currentValue) => {
+  return (accumulator += currentValue)
+}, 0)
+```
+
+> 当你使用 reduce 时，你需要在每次迭代中返回 accumulator（reduce 方法返回的值），并且你还应该初始化这个 accumulator（在上面的例子中我们将累加器初始化为 0）！
