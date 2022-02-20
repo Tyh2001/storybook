@@ -185,6 +185,25 @@ m.forEach((item, value) => {
 })
 ```
 
+把数组复制到映射
+
+```js
+const arr = ['css', 'html', 'js']
+const m = new Map(
+  arr.map((item, index) => {
+    return [index + 1, item]
+  })
+)
+
+console.log(m)
+```
+
+打印结果
+
+```shell
+Map(3) {1 => 'css', 2 => 'html', 3 => 'js'}
+```
+
 ## WeakMap()
 
 `WeakMap()` 是 `Map()` 的一个兄弟，但是也是有些区别的
@@ -232,79 +251,35 @@ ES6 提供了新的数据结构 `Set()`。它类似于数组，但是成员的�
 const s = new Set()
 ```
 
-常用方法
+`Set()` 和 `Map()` 类似，有着很多共同效果的方法：
 
-`size` 方法获取元素的数量
+- `size` 方法获取元素的数量
+- `add()` 方法添加元素
+- `delete()` 方法删除元素
+- `has()` 方法检测集合中有无指定元素，返回布尔值
+- `clear()` 方法可清空所有元素
+
+`values()` 和 `keys()` 方法可以获取其中的每一项进行遍历
+
+`values()` 和 `keys()` 是全等的，所以用哪个都可以
 
 ```js
 const s = new Set([1, 2, 3, 4])
-console.log(s.size) // 4
-```
+console.log(s.values === s.keys) // true
+console.log(s.keys()) // SetIterator {1, 2, 3, 4}
 
-`add()` 添加元素
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add(43)
-setArr.add([1, 4, 56])
-setArr.add({ name: '小明' })
-console.log(setArr)
-
-// Set(4) {"1", 43, Array(3), {…}}
-```
-
-> 可以添加任何数据类型
-
-但是如果添加一样的元素，那么就只会留下一个
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add('1')
-console.log(setArr)
-
-// Set(1) {"1"}
-```
-
-`delete()` 删除元素
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add(678)
-setArr.delete('1')
-console.log(setArr)
-
-// Set(1) {678}
-```
-
-`has()` 方法检测集合中有无指定元素，返回布尔值
-
-```js
-// 检测集合中有无字符串1
-const setArr = new Set()
-setArr.add('1')
-console.log(setArr.has('1'))
-
-// true
-```
-
-`size` 检测集合的长度
-
-```js
-const setArr = new Set()
-setArr.add(34)
-setArr.add(45)
-setArr.add(12)
-console.log(setArr.size)
-
+for (const item of s.keys()) {
+  console.log(item)
+}
+// 1
+// 2
 // 3
+// 4
 ```
 
-将 Set 转换为数组
+**将 Set 转换为数组**
 
-可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换
+可以使用 Es6 的扩展运算符 `...` 对 `Set` 展开进行转换
 
 ```js
 const setArr = new Set([1, 3, 3, 3, 3, 4, 6])
@@ -313,6 +288,15 @@ console.log(arr)
 
 // (4) [1, 3, 4, 6]
 ```
+
+## WeakSet()
+
+`WeakSet()` 是 `Set()` 的一个兄弟，但是也是有些区别的
+
+`WeakSet()` 的键只能是 `Object` 类型
+
+- `WeakSet()` 不可被迭代
+- `clear()` 方法不能使用
 
 ## Symbol()
 
