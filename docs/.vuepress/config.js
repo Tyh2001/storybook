@@ -61,6 +61,7 @@ module.exports = {
           '/javascript/dom', // DOM 相关
           '/javascript/basic', // 基础
           '/javascript/function', // 函数
+          '/javascript/data-type', // 数据类型
           '/javascript/array-methods', // 数组方法
           '/javascript/array-iteration', // 数组迭代
           '/javascript/object-methods', // 对象方法
