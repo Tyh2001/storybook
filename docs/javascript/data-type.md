@@ -53,7 +53,7 @@ console.log(setArr)
 // Set(1) {678}
 ```
 
-`has()` 检测集合中有无指定元素（返回布尔值）
+`has()` 方法检测集合中有无指定元素，返回布尔值
 
 ```js
 // 检测集合中有无字符串1
@@ -90,11 +90,30 @@ console.log(arr)
 
 ## Map()
 
-Map 类型实际上是键值对的有序集合，键和值是任意类型
+Map 类型实际上是键值对的有序集合，键和值是任意类型，可以使用构造函数来创建，一个键对应一个值
 
-> 键值对：一个键对应一个值
+```js
+const m = new Map()
 
-`set()` 添加元素
+const m2 = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+console.log(m2)
+// Map(2) {'name' => '张三', 'age' => '12'}
+```
+
+`size` 方法可以获取键值的数量，相当于数组的 `length` 方法
+
+```js
+const m2 = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+console.log(m2.size) // 2
+```
+
+`set()` 方法添加元素，接收两个参数：`键/值`
 
 ```js
 const mapList = new Map()
@@ -105,9 +124,7 @@ console.log(mapList)
 // Map(2) {"name" => "张三", "age" => 12}
 ```
 
-> set 方法传入两参数，一个是键名，一个键值
-
-`get()` 通过指定键名获取键值
+`get()` 方法通过指定键名获取键值
 
 ```js
 const mapList = new Map()
@@ -118,7 +135,143 @@ console.log(mapList.get('name'))
 // 张三
 ```
 
-`has()` 、 `delete()` 方法和 Set 用法一样
+`has()` 方法检测集合中有无指定元素，返回布尔值
+
+```js
+const m2 = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+console.log(m2.has('name')) // true
+console.log(m2.has('name2')) // false
+```
+
+`delete()` 方法可删除元素
+
+```js
+const m2 = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+m2.delete('name')
+console.log(m2) // Map(1) {'age' => '12'}
+```
+
+`clear()` 方法可以清楚所有的键值
+
+```js
+const m2 = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+m2.clear()
+console.log(m2) // Map(0) {size: 0}
+```
+
+`keys()` 方法可以获取到所有的键
+
+```js
+const m = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+
+console.log(m.keys()) // MapIterator {'name', 'age'}
+```
+
+`values()` 可以获取每一项的值
+
+```js
+const m = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+
+console.log(m.values()) // MapIterator {'张三', '12'}
+```
+
+`Map` 与 `Objet` 类型不同的是，它可以用任意的键作为键名
+
+```js
+function fun() {}
+const sy = Symbol()
+const obj = {}
+
+const m = new Map([
+  [fun, '这是函数'],
+  [sy, '这是 Symbol'],
+  [obj, '这是 obj'],
+])
+
+console.log(m.get(fun)) // 这是函数
+console.log(m.get(sy)) // 这是 Symbol
+console.log(m.get(obj)) // 这是 obj
+
+console.dir(m)
+```
+
+打印结果
+
+```shell
+Map(3)
+  [[Entries]]
+    0: {function fun () { } => "这是函数"}
+    1: "这是 Symbol"
+    2: {Object => "这是 obj"}
+  size: 3
+  [[Prototype]]: Map
+```
+
+可以使用 [entries](https://tianyuhao.cn/blog/javascript/array-methods.html#entries) 方法进行迭代
+
+```js
+const m = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+
+for (const item of m.entries()) {
+  console.log(item)
+  // ['name', '张三']
+  // ['age', '12']
+}
+```
+
+也可以使用 `[Symbol.iterator]()` 方法进行迭代
+
+> [Symbol.iterator]() 和 entries() 是全等的
+
+```js
+console.log(m.entries === m[Symbol.iterator]) // true
+```
+
+```js
+const m = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+
+for (const item of m[Symbol.iterator]()) {
+  console.log(item)
+  // ['name', '张三']
+  // ['age', '12']
+}
+```
+
+或者使用数组方法进行遍历
+
+```js
+const m = new Map([
+  ['name', '张三'],
+  ['age', '12'],
+])
+
+m.forEach((item, value) => {
+  console.log(item, value)
+  // 张三 name
+  // 12 age
+})
+```
 
 ## Symbol()
 
