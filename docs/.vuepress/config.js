@@ -76,7 +76,14 @@ module.exports = {
           '/javascript/leetcode', // leetcode 算法
         ]
       },
-      '/other',
+      {
+        text: '我的文章',
+        children: [
+          '/article/github-page', // GitHubPages 部署项目
+          '/article/highlightjs', // highlightjs 使用方法
+          '/article/article',
+        ]
+      },
       {
         text: '前端面试题',
         children: [
