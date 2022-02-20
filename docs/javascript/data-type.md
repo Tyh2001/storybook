@@ -1,93 +1,5 @@
 # 数据类型
 
-## Set()
-
-ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值
-
-创建一个 `Set` 数据结构也很简单：
-
-```js
-const setArr = new Set()
-console.log(setArr)
-
-// Set(0) {}
-```
-
-下面说一下 Sat 数据结构的一些常用方法
-
-`add()` 添加元素
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add(43)
-setArr.add([1, 4, 56])
-setArr.add({ name: '小明' })
-console.log(setArr)
-
-// Set(4) {"1", 43, Array(3), {…}}
-```
-
-> 可以添加任何数据类型
-
-但是如果添加一样的元素，那么就只会留下一个
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add('1')
-console.log(setArr)
-
-// Set(1) {"1"}
-```
-
-`delete()` 删除元素
-
-```js
-const setArr = new Set()
-setArr.add('1')
-setArr.add(678)
-setArr.delete('1')
-console.log(setArr)
-
-// Set(1) {678}
-```
-
-`has()` 方法检测集合中有无指定元素，返回布尔值
-
-```js
-// 检测集合中有无字符串1
-const setArr = new Set()
-setArr.add('1')
-console.log(setArr.has('1'))
-
-// true
-```
-
-`size` 检测集合的长度
-
-```js
-const setArr = new Set()
-setArr.add(34)
-setArr.add(45)
-setArr.add(12)
-console.log(setArr.size)
-
-// 3
-```
-
-将 Set 转换为数组
-
-可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换
-
-```js
-const setArr = new Set([1, 3, 3, 3, 3, 4, 6])
-const arr = [...setArr]
-console.log(arr)
-
-// (4) [1, 3, 4, 6]
-```
-
 ## Map()
 
 Map 类型实际上是键值对的有序集合，键和值是任意类型，可以使用构造函数来创建，一个键对应一个值
@@ -271,6 +183,131 @@ m.forEach((item, value) => {
   // 张三 name
   // 12 age
 })
+```
+
+## WeakMap()
+
+`WeakMap()` 是 `Map()` 的一个兄弟，但是也是有些区别的
+
+`WeakMap()` 的键只能是 `Object` 类型
+
+- 错误的
+
+```js
+const wm = new WeakMap([['age', '12']])
+
+console.dir(wm) // TypeError:用作弱映射键的值无效
+```
+
+- 正确的
+
+```js
+const obj = {}
+const wm = new WeakMap([[obj, '12']])
+```
+
+如果想使用字符串进行作为键，可以先包装成对象再作为键
+
+```js
+const obj = {}
+const str = new String('name')
+const wm = new WeakMap([
+  [obj, '12'],
+  [str, '张三'],
+])
+```
+
+还有不同的是：
+
+- `WeakMap()` 不可被迭代
+- `clear()` 方法不能使用
+
+## Set()
+
+ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值
+
+创建一个 `Set` 数据结构也很简单：
+
+```js
+const setArr = new Set()
+console.log(setArr)
+
+// Set(0) {}
+```
+
+下面说一下 Sat 数据结构的一些常用方法
+
+`add()` 添加元素
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add(43)
+setArr.add([1, 4, 56])
+setArr.add({ name: '小明' })
+console.log(setArr)
+
+// Set(4) {"1", 43, Array(3), {…}}
+```
+
+> 可以添加任何数据类型
+
+但是如果添加一样的元素，那么就只会留下一个
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add('1')
+console.log(setArr)
+
+// Set(1) {"1"}
+```
+
+`delete()` 删除元素
+
+```js
+const setArr = new Set()
+setArr.add('1')
+setArr.add(678)
+setArr.delete('1')
+console.log(setArr)
+
+// Set(1) {678}
+```
+
+`has()` 方法检测集合中有无指定元素，返回布尔值
+
+```js
+// 检测集合中有无字符串1
+const setArr = new Set()
+setArr.add('1')
+console.log(setArr.has('1'))
+
+// true
+```
+
+`size` 检测集合的长度
+
+```js
+const setArr = new Set()
+setArr.add(34)
+setArr.add(45)
+setArr.add(12)
+console.log(setArr.size)
+
+// 3
+```
+
+将 Set 转换为数组
+
+可以使用 Es6 的扩展运算符 **...** 对 Set 展开进行转换
+
+```js
+const setArr = new Set([1, 3, 3, 3, 3, 4, 6])
+const arr = [...setArr]
+console.log(arr)
+
+// (4) [1, 3, 4, 6]
 ```
 
 ## Symbol()
