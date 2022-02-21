@@ -40,7 +40,7 @@ app.mount('#app')
 
 在组件中使用
 
-```vue
+```html
 <template>
   <pre v-highlight>
     <code class="html">{{ code }}</code>
