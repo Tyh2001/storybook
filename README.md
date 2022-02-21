@@ -26,8 +26,8 @@
 
 ## js 相关
 
-- [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
 - [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/basic.md)
+- [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
 - [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/function.md)
 - [数组方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-methods.md)
 - [数组迭代](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-iteration.md)
@@ -42,9 +42,11 @@
 - [JavaScript API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/javascript-api.md)
 - [leetcode 算法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/leetcode.md)
 
-## 其它技术
+## 我的文章
 
-- [其它技术](https://github.com/Tyh2001/tyh-blog/blob/master/docs/other/README.md)
+- [GitHubPages 部署项目](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/github-page.md)
+- [highlightjs 使用方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/highlightjs.md)
+- [其它记录](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/article.md)
 
 ## 前端面试题
 

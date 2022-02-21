@@ -58,8 +58,8 @@ module.exports = {
       {
         text: 'Js 相关',
         children: [
-          '/javascript/dom', // DOM 相关
           '/javascript/basic', // 基础
+          '/javascript/dom', // DOM 相关
           '/javascript/function', // 函数
           '/javascript/data-type', // 数据类型
           '/javascript/array-methods', // 数组方法
