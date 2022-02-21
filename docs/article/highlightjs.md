@@ -48,7 +48,7 @@ app.mount('#app')
 </template>
 
 <script setup>
-const code = `
+  const code = `
   <div id="app">
     <h1>Hello</h1>
   </div>
@@ -57,3 +57,10 @@ const code = `
 ```
 
 这样即可使代码段进行高亮显示
+
+## 关于我
+
+- 个人网站：`https://tianyuhao.cn`
+- github：`https://github.com/Tyh2001`
+- blog：`https://tianyuhao.cn/blog/`
+- tyh-ui：`https://github.com/Tyh2001/tyh-ui`

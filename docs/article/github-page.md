@@ -116,3 +116,10 @@ jobs:
 - 怎么查看部署地址？
 
 在远程仓库的 `Setting / page`，中查看部署的地址和分支。
+
+## 关于我
+
+- 个人网站：`https://tianyuhao.cn`
+- github：`https://github.com/Tyh2001`
+- blog：`https://tianyuhao.cn/blog/`
+- tyh-ui：`https://github.com/Tyh2001/tyh-ui`
