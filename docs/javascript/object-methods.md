@@ -195,6 +195,28 @@ console.log(z.name) // 张同学
 原型式继承非常适合不需要单独创建构造函数，但是仍然需要在对象之间共享信息的场合。但是属性中包含的引用值始终会在香港对象间共享，跟使用原型模式是一样的。
 ```
 
+也可以配置对象的内部属性
+
+```js
+const obj = { a: '1' }
+
+const o = Object.create(obj, {
+  b: {
+    value: '2',
+    enumerable: true,
+    writable: false,
+    configurable: false,
+  },
+  c: {
+    value: '3',
+    enumerable: true,
+    writable: false,
+    configurable: false,
+  },
+})
+console.log(o) // {b: '2', c: '3'}
+```
+
 ## Object.keys()
 
 `Object.keys()` 可以获取对象上所有可以枚举的属性，不过仅限于当前作用域对象，不会向上攀升查找
