@@ -51,7 +51,13 @@ module.exports = {
     // 侧边栏
     sidebar: [
       '/hello',
-      '/milepost',
+      {
+        text: '里程碑',
+        children: [
+          '/milepost/2021',
+          '/milepost/2022',
+        ]
+      },
       '/vue3',
       '/vue2',
       '/typescript',
