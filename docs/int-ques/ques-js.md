@@ -111,10 +111,6 @@ const a = 1
 
 > 基本类型不能改变，引用类型可以更改里面的属性值
 
-## 什么是异步函数
-
-通常情况下，代码的执行顺序都是从上到下执行的，最常见的异步函数就是定时器。异步函数，就是不等一段代码执行完，也继续往下执行。
-
 ## 解释一下什么是事件代理
 
 事件代理（Event Delegation ）有称之为事件委托，是 JavaScript 中绑定事件的常用技巧。
@@ -122,12 +118,6 @@ const a = 1
 顾名思义，事件代理，即是把原本需要处理的事件委托给父级，让父元素担当事件监听的职务。事件代理的原理是 DOM 元素的事件冒泡。
 
 使用事件代理的好处是提高性能。
-
-## 说一说对 This 的理解
-
-- this 总是指向函数的调用者
-- 如果有 `new` 关键字，this 指向 new 出来的那个对象
-- 在事件中，this 指向触发这个事件的对象，但是特殊的是： IE 中的 attachEvent 中的 this 指向的 windows
 
 ## 事件模型
 
@@ -209,45 +199,4 @@ router.get('/getdata', async (ctx) => {
 
 ```
 那么目前比较主流的 就是 CORS 和 服务器代理，jsonp 很少用，因为 jsonp 只支持 get 请求
-```
-
-## 什么是 promise
-
-Promise 对象用于表示一个异步函数操作的最终完成（或失败）的结果值。
-
-Promise 是异步编程的一种解决方案：从语法上讲，promise 是一个对象，从它可以获取异步操作的消息。
-
-Promise 有三种状态：**pending（等待态），fulfilled（成功态），rejected（失败态）**
-
-使用 `Promise.then()` 可以通过一个回调函数来获取异步请求成功的数据
-
-使用 `promise.catch()` 可以通过一个回调函数来获取异步请求失败的结果
-
-可以通过 `new` 关键字来创建一个 promise 对象：
-
-```js
-const pro = new Promise(function (resolve, reject) {
-  // 要做的事情...
-})
-console.log(pro)
-// Promise {<pending>}
-```
-
-## async 是什么
-
-通过 `async` + `await` 我们就可以像写同步代码一样来写异步代码了，就不需要再套回调函数了
-
-只要是函数 就可以被标记为 async，async 函数最终的返回值都会返回一个 Promise 对象，如果返回值不是一个 Promise 对象，则将返回值包装到 Promise 中，如果返回值就是一个 Promise 对象，则不作任何处理。
-
-代码示例：
-
-```js
-// 这里使用 async 来定义了一个函数
-async function fun1() {
-  return 123
-}
-
-console.log(fun1())
-// Promise {<fulfilled>: 123}
-// 那么这时将会返回一个 promise 对象
 ```

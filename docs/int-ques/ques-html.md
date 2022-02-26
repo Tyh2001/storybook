@@ -77,31 +77,6 @@ window.localStorage.removeItem('user')
 - 另外是书写习惯的差别
   - XHTML 元素必须被正确地嵌套，闭合，区分⼤小写，⽂档必须拥有根元素
 
-## HTML 全局属性(global attribute)有哪些
-
-> global attribute：全局属性
-
-- `class`：为元素设置类标识
-- `id`：元素 id 属性，文档内唯一
-- `lang`：元素内容的语言
-- `style`：行内 css 样式
-- `title`：元素相关建议信息
-- `draggable`：设置元素是否可以拖拽
-
-```html
-<style>
-  div {
-    width: 200px;
-    height: 300px;
-    background: red;
-  }
-</style>
-
-<div draggable="true"></div>
-```
-
-- `data-*`：为元素添加自定义属性
-
 ## Canvas 和 SVG 有什么区别
 
 - SVG 是矢量图形，矢量图形不管怎么放大缩小都不会失真或模糊，通过 AI 绘制出

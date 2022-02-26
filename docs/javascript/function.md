@@ -799,7 +799,16 @@ console.log(obj.change())
 </script>
 ```
 
-总结一句话就是：**箭头函数中的 this 是指向的父级的 this 如果父级的 this 指向的是某个对象，那么箭头函数中的 this 就指向该对象，如果父级的 this 指向的 window 那么箭头函数指定的是也是 window**
+总结一句话就是：
+
+> 箭头函数中的 this 是指向的父级的 this 如果父级的 this 指向的是某个对象，那么箭头函数中的 this 就指向该对象，如果父级的 this 指向的 window 那么箭头函数指定的是也是 window
+
+判断 this
+
+1. 函数是否在 `new` 中调用的？如果是的话，那么 `this` 指向的就是新创建的对象。
+2. 函数是否使用 `call`、`apply`、`bind` 进行显示绑定的？如果是的话，那么 `this` 指向的就是新创建的对象。
+3. 函数是否在整个上下文对象中调用（隐式绑定）？如果是的话，`this` 绑定的就是那个上下文对象。
+4. 如果都不是的话，就是使用默认绑定。在严格模式下，`this` 为 `undefined`，否则指向全局对象 `window`
 
 ## new.target
 
@@ -953,4 +962,22 @@ const cat = {
 
 const res = dog.eat.bind(cat, '鱼', '骨头')
 res()
+```
+
+可以直接手写一个 `bind` 函数，来帮我们了解其中的原理
+
+```js
+function bind(fn, obj) {
+  return function () {
+    fn.apply(obj, arguments)
+  }
+}
+
+function foo() {
+  console.log(this.name)
+}
+
+const obj = { name: '张三' }
+
+bind(foo, obj)()
 ```
