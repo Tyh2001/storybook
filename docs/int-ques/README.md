@@ -56,3 +56,5 @@ node 处理[高并发](https://blog.csdn.net/weixin_42476601/article/details/822
 ## 设计模式是什么？
 
 ## 用户从输入 URL，然后点击回车，到页面完全显示出来，这一过程中到底发生了什么？
+
+## new 操作符都做了什么？
