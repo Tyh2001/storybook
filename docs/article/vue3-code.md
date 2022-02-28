@@ -38,17 +38,17 @@ vue3 的仓库 [core](https://github.com/vuejs/core) 在这里，可以先 `fork
 
 ## 看 vue3 源码前的准备
 
-**知识点**
+### 知识点
 
 - [TypeScript](https://www.tslang.cn/index.html) TypeScript 在 vue3 的源码中，大概涵盖了 `97%`
 - [the-super-tiny-compiler](https://github.com/Tyh2001/the-super-tiny-compilerr) 一个编译器，用于学习 `compiler` 层面，可能是有史以来最小的编译器
 - [the-der-tiny-compiler](https://github.com/Tyh2001/the-der-tiny-compiler) 一个非常 der 的 vue compiler 实现
 
-**算法**
+### 算法
 
 - [最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)，在源码中，最长递增子序列的算法在[这里](https://github.com/Tyh2001/core/blob/main/packages/runtime-core/src/renderer.ts) 的 `2393` 行，最后一个函数。
 
-**其它**
+### 其它
 
 - 位运算
 - 设计模式
