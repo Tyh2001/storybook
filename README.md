@@ -10,7 +10,8 @@
 
 ## 里程碑
 
-- [里程碑](https://github.com/Tyh2001/tyh-blog/blob/master/docs/milepost/README.md)
+- [里程碑 2021](https://github.com/Tyh2001/tyh-blog/blob/master/docs/milepost/2021.md)
+- [里程碑 2022](https://github.com/Tyh2001/tyh-blog/blob/master/docs/milepost/2022.md)
 
 ## vue3 相关
 
