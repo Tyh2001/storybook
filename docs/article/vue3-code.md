@@ -30,6 +30,8 @@
 
 - 怎么把项目跑起来？
 
+在 [贡献指南](https://github.com/vuejs/core/blob/main/.github/contributing.md) 中，有详细的贡献细节描述、目录结构描述、安装方式，可以根据文档进行操作。
+
 ## 将代码克隆到本地
 
 vue3 的仓库 [core](https://github.com/vuejs/core) 在这里，可以先 `fork` 下来之后下载到本地。
@@ -95,3 +97,19 @@ vue3 由 `reactivity`、`compiler`、`runtime` 构成 `vue3` 最核心的源码�
 ### Pull requests
 
 在这里可以看到最新的 [PR](https://github.com/vuejs/core/pulls)，可以根据别人提交 `PR` 的方式试着进去模仿提交新的 `PR`。
+
+## 资源
+
+在 [awesome-vue3](https://github.com/Tyh2001/awesome-vue3) 里面，我整理了众多的 `vue3` 的一些周边资源，提供使用，欢迎大家 `star`。
+
+vue3 目前有两个官方文档，这里介绍一下：
+
+**最新文档**
+
+- [最新中文文档](https://staging-cn.vuejs.org/)
+- [Github](https://github.com/vuejs-translations/docs-zh-cn)
+
+**老文档**
+
+- [中文文档](https://v3.cn.vuejs.org/)
+- [Github](https://github.com/vuejs/docs-next-zh-cn)
