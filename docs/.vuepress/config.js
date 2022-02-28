@@ -68,9 +68,11 @@ module.exports = {
           '/javascript/dom', // DOM 相关
           '/javascript/function', // 函数
           '/javascript/data-type', // 数据类型
-          '/javascript/array-methods', // 数组方法
+          '/javascript/methods-number', // 数字方法
+          '/javascript/methods-string', // 字符串方法
+          '/javascript/methods-array', // 数组方法
           '/javascript/array-iteration', // 数组迭代
-          '/javascript/object-methods', // 对象方法
+          '/javascript/methods-object', // 对象方法
           '/javascript/date-object', // 日期对象
           '/javascript/math-object', // 数学对象
           '/javascript/fun-async', // 异步函数
