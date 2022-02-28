@@ -46,6 +46,7 @@
 
 - [GitHubPages 部署项目](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/github-page.md)
 - [highlightjs 使用方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/highlightjs.md)
+- [Vue3 的源码怎么看？](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/vue3-code.md)
 - [其它记录](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/article.md)
 
 ## 前端面试题
