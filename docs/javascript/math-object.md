@@ -78,3 +78,14 @@ console.log(2 + Math.ceil(Math.random() * (5 - 2)))
   name.innerHTML = arr[num]
 </script>
 ```
+
+## Math.abs()
+
+`Math.abs()` 返回指定数字的绝对值
+
+什么是绝对值？正数的绝对值是它本身，负数的绝对值是去掉负号
+
+```js
+console.log(Math.abs(-12)) // 12
+console.log(Math.abs(22)) // 22
+```

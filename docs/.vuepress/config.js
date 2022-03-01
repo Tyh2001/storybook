@@ -90,6 +90,7 @@ module.exports = {
           '/article/github-page', // GitHubPages 部署项目
           '/article/highlightjs', // highlightjs 使用方法
           '/article/vue3-code', // Vue3 的源码怎么看？
+          '/article/two-sum', // 别再写循环套循环了
           '/article/article',
         ]
       },

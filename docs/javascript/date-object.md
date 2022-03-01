@@ -9,23 +9,6 @@ const date = new Date()
 console.log(date)
 ```
 
-## Date.now()
-
-`Date.now()` 获取当前时间戳
-
-```js
-console.log(Date.now())
-```
-
-通过时间戳，我们可以计算程序执行所用的时间，下面以 for 循环举例
-
-```js
-const a = Date.now() // 开始执行 for 循环的时间戳
-for (i = 0; i < 22222220; i++) {} // 执行 for 循环
-const b = Date.now() // 结束 for 循环的时间戳
-console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
-```
-
 ## getTime()
 
 获取指定日期的时间戳 `getTime()`
@@ -108,4 +91,21 @@ const date = new Date()
 const res = date.toLocaleDateString()
 console.log(res)
 // 2021/4/23
+```
+
+## Date.now()
+
+`Date.now()` 获取当前时间戳
+
+```js
+console.log(Date.now())
+```
+
+通过时间戳，我们可以计算程序执行所用的时间，下面以 for 循环举例
+
+```js
+const a = Date.now() // 开始执行 for 循环的时间戳
+for (i = 0; i < 22222220; i++) {} // 执行 for 循环
+const b = Date.now() // 结束 for 循环的时间戳
+console.log(b - a) // 两个时间戳相减 = for 循环所用的时间(毫秒)
 ```
