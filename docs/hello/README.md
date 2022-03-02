@@ -1,28 +1,24 @@
 # Hello
 
-## Welcome to my Blog
+## Hi~ I'm Tian Yuhao.
 
-<p align="center">
-  <img height="99px" src="https://tianyuhao.cn/images/my.png">
-</p>
+I am an independent developer,Now I work in Hangzhou.
 
-<h1 align="center">Hi~ I'm Tian Yuhao.</h1>
+My favorite development framework is [vue.js](https://v3.cn.vuejs.org),I also created my own vue component library [tyh-ui](https://github.com/Tyh2001/tyh-ui).
 
-<p align="center">I am an independent developer,Now I work in Hangzhou.</p>
+You can also get to know me through [blog](https://tianyuhao.cn/blog) and [twitter](https://twitter.com/tyh20011).
 
-<p align="center">My favorite development framework is <a href="https://v3.cn.vuejs.org" target="_back">vue.js</a>,I also created my own vue component library <a href="https://tianyuhao.cn/v3" target="_back">tyh-ui</a>.</p>
+:speech_balloon: WeChat: **VirgoTyh**
 
-<p align="center">You can also get to know me through <a href="https://weibo.com/tyh2001" target="_back">microblog</a> and <a href="https://twitter.com/tyh20011" target="_back">twitter</a>.</p>
+:envelope: Mail: **1469442737@qq.com**
 
-<p align="center">
-  <a href="https://github.com/Tyh2001/tyh-ui2" target="_back">
-    <img height="200px" src="https://github-readme-stats.vercel.app/api?username=Tyh2001">
-  </a>
-</p>
+<a href="https://github.com/Tyh2001/tyh-ui" target="_back">
+  <img height="200px" src="https://github-readme-stats.vercel.app/api?username=Tyh2001">
+</a>
 
 ## 你喜欢 vue 吗？
 
-不知道你喜不喜欢使用 `vue` 呢？如果你也喜欢使用 `vue`，那么我想下面推荐的内容可能会适合你，也希望你可以来支持～也很需要你在 [Github](https://github.com/Tyh2001/tyh-ui2) 上一个小小的 **Star**。
+不知道你喜不喜欢使用 `vue` 呢？如果你也喜欢使用 `vue`，那么我想下面推荐的内容可能会适合你，也希望你可以来支持～也很需要你在 [Github](https://github.com/Tyh2001/tyh-ui) 上一个小小的 `Star`。
 
 ## 推荐给你
 
@@ -84,9 +80,12 @@ createApp(App).use(tyhUi2).mount('#app')
 - 项目的安装和贡献请参考[贡献指南](https://github.com/Tyh2001/tyh-ui/blob/master/contributing.md)。
 - 在这里可以[报告漏洞](https://github.com/Tyh2001/tyh-ui/blob/master/SECURITY.md)
 
-### 贡献者:wave:
+### 非常感谢:sparkling_heart:
 
-<div style="display: flex; align-items: center;">
-  <img style=" float: left;" height="60px" src="https://www.hualigs.cn/image/608132a6c15b2.jpg">
-  <h4 style="display: inline-block;">tyh2001</h4>
-</div>
+**Star**
+
+[![Stargazers repo roster for @Tyh2001/tyh-ui](https://reporoster.com/stars/Tyh2001/tyh-ui)](https://github.com/Tyh2001/tyh-ui/stargazers)
+
+**Fork**
+
+[![Forkers repo roster for @Tyh2001/tyh-ui](https://reporoster.com/forks/Tyh2001/tyh-ui)](https://github.com/Tyh2001/tyh-ui/network/members)
