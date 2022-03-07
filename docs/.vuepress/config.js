@@ -82,6 +82,7 @@ module.exports = {
           '/javascript/fun-utils', // Js 工具函数
           '/javascript/javascript-api', // JavaScript API
           '/javascript/leetcode', // leetcode 算法
+          '/javascript/generator', // 生成器
         ]
       },
       {

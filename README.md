@@ -45,6 +45,7 @@
 - [Js 工具函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/fun-utils.md)
 - [JavaScript API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/javascript-api.md)
 - [leetcode 算法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/leetcode.md)
+- [生成器](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/generator.md)
 
 ## 我的文章
 
