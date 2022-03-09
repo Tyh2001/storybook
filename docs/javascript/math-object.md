@@ -1,5 +1,14 @@
 # 数学对象
 
+## Math.round()
+
+`Math.round()` 取整，四舍五入
+
+```js
+console.log(Math.round(2.4)) // 2
+console.log(Math.round(2.5)) // 3
+```
+
 ## Math.max()
 
 `Math.max()` 获取最大值
@@ -89,3 +98,15 @@ console.log(2 + Math.ceil(Math.random() * (5 - 2)))
 console.log(Math.abs(-12)) // 12
 console.log(Math.abs(22)) // 22
 ```
+
+## Math.PI
+
+`Math.PI` 获取圆周率
+
+```js
+console.log(Math.PI) // 3.141592653589793
+```
+
+## Math.sin / Math.cos
+
+正弦 余弦
