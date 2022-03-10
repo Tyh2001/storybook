@@ -226,6 +226,21 @@ const res = Array.from(arr, (x) => x * 2)
 console.log(res) // [2, 6, 8, 10]
 ```
 
+`Array.from()` 还可以接收到第三个参数，可以指定 this
+
+```js
+const arr = [1, 2, 3, 4, 5]
+
+const res = Array.from(
+  arr,
+  function (x) {
+    return x * this.num
+  },
+  { num: 3 }
+)
+console.log(res) // [3, 6, 9, 12, 15]
+```
+
 ## Array.of()
 
 `Array.of()` 方法可以将一组参数转换为数组
