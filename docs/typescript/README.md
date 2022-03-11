@@ -1,28 +1,5 @@
 # TypeScript 基础
 
-## 数据类型
-
-### 基本类型
-
-TypeScript 中最基本的数据类型包括布尔、数字、字符串、null、undefined
-
-```ts
-const a: number = 123
-const b: string = '这是一段文字'
-const c: null = null
-const d: boolean = false
-const e: undefined = undefined
-```
-
-### 数组
-
-定于数组分为数字数组和字符串数组，分别使用 `string[]`和`number[]` 来定义
-
-```ts
-const numberArr: number[] = [1, 2, 3, 4]
-const stringArr: string[] = ['1', '2', '3']
-```
-
 ### 元组
 
 元组用于定义一个已知数量和数据类型的数组

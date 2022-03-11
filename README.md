@@ -21,11 +21,11 @@
 
 - [vue2 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue2/README.md)
 
-## typeScript 基础
+## typeScript
 
-- [typeScript 基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/README.md)
+- [数据类型](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/type.md)
 
-## js 相关
+## JavaScript
 
 - [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/basic.md)
 - [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)

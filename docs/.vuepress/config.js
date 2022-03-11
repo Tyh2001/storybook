@@ -48,9 +48,14 @@ module.exports = {
       },
       '/vue3',
       '/vue2',
-      '/typescript',
       {
-        text: 'Js 相关',
+        text: 'TypeScript',
+        children: [
+          '/typescript/type', // 数据类型
+        ]
+      },
+      {
+        text: 'JavaScript',
         children: [
           '/javascript/basic', // 基础
           '/javascript/dom', // DOM 相关
