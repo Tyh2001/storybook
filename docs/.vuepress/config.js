@@ -52,6 +52,7 @@ module.exports = {
         text: 'TypeScript',
         children: [
           '/typescript/type', // 数据类型
+          '/typescript/function', // 函数
         ]
       },
       {

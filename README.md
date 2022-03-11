@@ -24,6 +24,7 @@
 ## typeScript
 
 - [数据类型](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/type.md)
+- [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/function.md)
 
 ## JavaScript
 
