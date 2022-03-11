@@ -398,34 +398,3 @@ console.log(obj instanceof Object)
 这样就可以很好的分清楚是对象还是数组了
 
 > 注意：instanceof 只能进行检查引用类型，检查原始类型全部返回 false！
-
-## 迭代器
-
-可以迭代对象可以使用 `Symbol.iterator` 作为键来查看是否可以进行迭代，这个在实际开发中并不常用。
-
-```js
-const num = 1
-const arr = [1, 2, 34, 5, 5]
-
-console.log(num[Symbol.iterator]) // undefined
-console.log(arr[Symbol.iterator]) // ƒ values() { [native code] }
-
-// 所以 num 是不可迭代的，arr 是可迭代的
-```
-
-**next()**
-
-迭代器 API 使用 `next()` 方法可以在迭代器中遍历数据，每次成功调用 `next()` 都会返回一个 `IteratorResult` 对象，对象中有两个键值，其中 `value` 是当前迭代的值，`done` 是否完成迭代(布尔值)，`done` 为 `true` 时，表示当前迭代已经被耗尽，`value` 返回 `undefined`
-
-```js
-const arr = [1, 2, 34, 5, 5]
-
-const arr_ = arr[Symbol.iterator]()
-
-console.log(arr_.next()) // {value: 1, done: false}
-console.log(arr_.next()) // {value: 2, done: false}
-console.log(arr_.next()) // {value: 34, done: false}
-console.log(arr_.next()) // {value: 5, done: false}
-console.log(arr_.next()) // {value: 5, done: false}
-console.log(arr_.next()) // {value: undefined, done: true}
-```
