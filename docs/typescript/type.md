@@ -263,4 +263,18 @@ const a: 'hello' | 'world' = 'hello'
 const arr = ['123', 89, true] as const
 ```
 
+定义的方式也可以像下面这样
+
+```ts
+const arr = <const>['123', 89, true]
+```
+
 > as const 就是根据具体的值转换类型
+
+如果明确某个变量是存在的，可以使用 `!` 来表示非空断言，下面两种写法相等
+
+```ts
+const el1: HTMLDivElement = document.querySelector('.app') as const
+
+const el: HTMLDivElement = document.querySelector('.app')!
+```
