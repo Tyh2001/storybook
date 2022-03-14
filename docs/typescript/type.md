@@ -12,6 +12,15 @@ const num: number = 12
 const text: string = 'hello'
 ```
 
+但是有些情况下，类型不一定是 `string`，也可以是指定的某些值
+
+```ts
+let admin: '张三' | '小明'
+admin = '张三'
+
+console.log(admin)
+```
+
 ## boolean
 
 ```ts
@@ -197,3 +206,61 @@ function change(user: userType): void {}
 ```ts
 const arr: [number, string, number] = [1, '123', 3]
 ```
+
+## enum 枚举
+
+可以使用 `enum` 去定义枚举类型，这样可以把类型限制在指定的场景之内
+
+```ts
+enum isType {
+  type1 = '男',
+  type2 = '女',
+}
+
+const res: isType = isType.type1
+console.log(res)
+```
+
+## as 断言
+
+普通断言，规定类型
+
+```ts
+let res = 123 as number
+res = 999
+console.log(res)
+```
+
+`const` 断言
+
+比如使用 `let` 的时候声明一个变量，只要是字符串就可以随便修改
+
+```ts
+let a = '哈哈哈'
+a = '你好'
+console.log(a) // 你好
+```
+
+但是使用了 `const` 断言情况如下
+
+```ts
+let a = 'hello' as const
+```
+
+这样使用 const 断言之后，`a` 就不能随意赋值了，就只能赋值为 `hello`
+
+也就相当于下面写法，`a` 只能是两个值其中的一个
+
+```ts
+const a: 'hello' | 'world' = 'hello'
+```
+
+断言数组
+
+断言数组之后就会被转换为元组
+
+```ts
+const arr = ['123', 89, true] as const
+```
+
+> as const 就是根据具体的值转换类型
