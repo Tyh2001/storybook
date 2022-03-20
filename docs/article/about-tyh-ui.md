@@ -177,6 +177,6 @@ export default T
 
 你可以通过下面方式联系到我：
 
-- 微信：VirgoTyh
+- 微信：`VirgoTyh`
 - [Github](https://github.com/Tyh2001)
 - [官网首页](https://tianyuhao.cn)
