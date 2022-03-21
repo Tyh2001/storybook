@@ -341,3 +341,77 @@ const proxy = new Proxy(foo, {
 
 console.log(Object.keys(proxy)) // ['id']
 ```
+
+## getPrototypeOf()
+
+`getPrototypeOf()` 捕获器会在 [Object.getPrototypeOf()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-getprototypeof) 操作符中调用，对应的反射 API 为 `Reflect.getPrototypeOf()`。它可以接收一个参数：
+
+- 目标对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  getPrototypeOf(target) {
+    console.log(target) // {id: 123}
+    return Reflect.getPrototypeOf(...arguments)
+  },
+})
+
+console.log(Object.getPrototypeOf(proxy)) // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+```
+
+## setPrototypeOf()
+
+`setPrototypeOf()` 捕获器会在 [Object.setPrototypeOf()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-setprototypeof) 操作符中调用，对应的反射 API 为 `Reflect.setPrototypeOf()`。它可以接收两个参数：
+
+- 目标对象
+- 目标对象的代替原型
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  setPrototypeOf(target, property) {
+    console.log(target) // {id: 123}
+    console.log(property) // {age: 12}
+    return Reflect.setPrototypeOf(...arguments)
+  },
+})
+
+console.log(Object.setPrototypeOf(proxy, { age: 12 })) // Proxy {id: 123}
+```
+
+## isExtensible()
+
+`isExtensible()` 捕获器会在 [Object.isExtensible()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-isExtensible) 操作符中调用，对应的反射 API 为 `Reflect.isExtensible()`。它可以接收一个参数：
+
+- 目标对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  isExtensible(target) {
+    console.log(target) // {id: 123}
+    return Reflect.isExtensible(...arguments)
+  },
+})
+
+console.log(Object.isExtensible(proxy)) // true
+```
+
+## preventExtensions()
+
+`preventExtensions()` 捕获器会在 [Object.preventExtensions()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-preventExtensions) 操作符中调用，对应的反射 API 为 `Reflect.preventExtensions()`。它可以接收一个参数：
+
+- 目标对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  preventExtensions(target) {
+    console.log(target) // {id: 123}
+    return Reflect.preventExtensions(...arguments)
+  },
+})
+
+console.log(Object.preventExtensions(proxy)) // Proxy {id: 123}
+```

@@ -439,7 +439,26 @@ console.log(user.hasOwnProperty('name')) // true
 console.log(user.hasOwnProperty('age')) // false
 ```
 
-## Object.hasOwnProperty()
+## Object.isExtensible()
+
+`Object.isExtensible()` 方法判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）
+
+```js
+const foo = { id: 123 }
+console.log(Object.isExtensible(foo)) // true
+```
+
+## Object.preventExtensions()
+
+`Object.preventExtensions()` 方法让一个对象变的不可扩展，也就是永远不能再添加新的属性
+
+```js
+const foo = { id: 123 }
+console.log(Object.preventExtensions(foo)) // { id: 123 }
+
+foo.age = 12
+console.log(foo) // { id: 123 }
+```
 
 ## isPrototypeOf()
 
