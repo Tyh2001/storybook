@@ -62,7 +62,6 @@ module.exports = {
           '/javascript/dom', // DOM 相关
           '/javascript/function', // 函数
           '/javascript/data-type', // 数据类型
-          '/javascript/methods-number', // 数字方法
           '/javascript/methods-string', // 字符串方法
           '/javascript/methods-array', // 数组方法
           '/javascript/array-iteration', // 数组迭代
@@ -77,6 +76,7 @@ module.exports = {
           '/javascript/javascript-api', // JavaScript API
           '/javascript/leetcode', // leetcode 算法
           '/javascript/generator', // 生成器
+          '/javascript/proxy', // proxy 代理
         ]
       },
       {
