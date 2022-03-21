@@ -32,7 +32,6 @@
 - [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
 - [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/function.md)
 - [数据类型](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/data-type.md)
-- [数字方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/methods-number.md)
 - [字符串方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/methods-string.md)
 - [数组方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/methods-array.md)
 - [数组迭代](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/array-iteration.md)
@@ -47,6 +46,7 @@
 - [JavaScript API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/javascript-api.md)
 - [leetcode 算法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/leetcode.md)
 - [生成器](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/generator.md)
+- [proxy 代理](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/proxy.md)
 
 ## 我的文章
 
