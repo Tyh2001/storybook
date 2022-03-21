@@ -415,3 +415,47 @@ const proxy = new Proxy(foo, {
 
 console.log(Object.preventExtensions(proxy)) // Proxy {id: 123}
 ```
+
+## apply
+
+`apply()` 捕获器会在调用函数中被调用，对应的反射 API 为 `Reflect.apply()`。它可以接三个参数：
+
+- 目标对象
+- 调用函数时候的 this 参数
+- 调用参数时的参数列表
+
+```js
+const foo = () => {}
+const proxy = new Proxy(foo, {
+  apply(target, thisArg, ...argumentsList) {
+    console.log(target) // () => { }
+    console.log(thisArg) // undefined
+    console.log(argumentsList) // [Array(0)]
+    return Reflect.apply(...arguments)
+  },
+})
+
+proxy()
+```
+
+## construct
+
+`construct()` 捕获器会在 `new` 操作符中被调用，对应的反射 API 为 `Reflect.construct()`。它可以接三个参数：
+
+- 目标构造函数
+- 传递给目标构造函数的参数列表
+- 最初调用的构造函数
+
+```js
+const foo = function () {}
+const proxy = new Proxy(foo, {
+  construct(target, argumentsList, newTarget) {
+    console.log(target) // ƒ () { }
+    console.log(argumentsList) // []
+    console.log(newTarget) // Proxy {length: 0, name: 'foo', arguments: null, caller: null, prototype: {…}}
+    return Reflect.construct(...arguments)
+  },
+})
+
+new proxy()
+```
