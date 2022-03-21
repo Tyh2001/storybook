@@ -8,9 +8,7 @@
 - 处理程序对象
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, {})
 
 // id 会得到同一个值
@@ -34,9 +32,7 @@ console.log(foo.id) // 987
 下面定义了一个 `get` 捕获器，当调用 `get()` 的时候触发
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get() {
     return 'hello'
@@ -58,9 +54,7 @@ console.log(proxy.id) // hello
 - 代理对象
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get(targe, property, receiver) {
     console.log(targe) // {id: 123}
@@ -75,9 +69,7 @@ console.log(proxy.id)
 多数情况下，不需要手动重建原始行为，而是可以通过调用全局 [Reflect](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect) 对象上的同名方法来轻松重建
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get() {
     return Reflect.get(...arguments)
@@ -91,9 +83,7 @@ console.log(foo.id) // 123
 甚至可以写的更简洁一些
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get: Reflect.get,
 })
@@ -105,9 +95,7 @@ console.log(foo.id) // 123
 如果想要创建一个可以捕获所有方法，然后每个方法都转发给对应反射 API 的空代理，甚至不需要定义处理程序对象
 
 ```js
-const foo = {
-  id: 123,
-}
+const foo = { id: 123 }
 const proxy = new Proxy(foo, Reflect)
 
 console.log(proxy.id) // 123
@@ -186,4 +174,170 @@ console.log(proxyB.name)
 
 ## get()
 
+`get()` 捕获器会在捕获属性之间被调用，对应的反射 API 为 `Reflect.get()`。它可以接收三个参数：
+
+- 代理的目标对象
+- 要查询的属性
+- 代理对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  get(targe, property, receiver) {
+    console.log(targe) // {id: 123}
+    console.log(property) // id
+    console.log(receiver) // Proxy {id: 123}
+  },
+})
+
+console.log(proxy.id)
+```
+
 ## set()
+
+`set()` 捕获器会在设置属性的操作中被调用，对应的反射 API 为 `Reflect.set()`。它可以接收四个参数：
+
+- 代理的目标对象
+- 要查询的属性
+- 需要设置的新属性
+- 代理对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  set(targe, property, value, receiver) {
+    console.log(targe) // {id: 123}
+    console.log(property) // id
+    console.log(value) // 222
+    console.log(receiver) // Proxy {id: 123}
+  },
+})
+
+proxy.id = 222
+```
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  set(targe, property, value, receiver) {
+    targe[property] = value + 10
+  },
+})
+
+proxy.id = 222
+
+console.log(foo.id) // 232
+console.log(proxy.id) // 232
+```
+
+## has()
+
+`has()` 捕获器会在 `in` 操作符中调用，对应的反射 API 为 `Reflect.has()`。它可以接收两个参数：
+
+- 目标对象
+- 引用的目标对象上的字符串属性
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  has(target, property) {
+    console.log(target) // {id: 123}
+    console.log(property) // id
+    return Reflect.has(...arguments)
+  },
+})
+
+console.log('id' in proxy) // true
+console.log('name' in proxy) // false
+```
+
+## defineProperty()
+
+`defineProperty()` 捕获器会在 [Object.defineProperty()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-defineproperty) 中调用，对应的反射 API 为 `Reflect.defineProperty()`。它可以接收三个参数：
+
+- 目标对象
+- 引用目标对象上的字符串属性
+- 包含可选的描述对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  defineProperty(target, property, descriptor) {
+    console.log(target) // {id: 123}
+    console.log(property) // name
+    console.log(descriptor) // {value: '田同学', enumerable: false}
+    return Reflect.defineProperty(...arguments)
+  },
+})
+
+Object.defineProperty(proxy, 'name', {
+  value: '田同学',
+  enumerable: false, // 禁止循环
+})
+
+for (const key in proxy) {
+  console.log(key) // id
+}
+```
+
+## getOwnPropertyDescriptor()
+
+`getOwnPropertyDescriptor()` 捕获器会在 [Object.getOwnPropertyDescriptor()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-getownpropertydescriptorhttps://tianyuhao.cn/blog/javascript/methods-object.html#object-getownpropertydescriptor) 中调用，对应的反射 API 为 `Reflect.getOwnPropertyDescriptor()`。它可以接收两个参数：
+
+- 目标对象
+- 引用目标对象上的字符串属性
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  getOwnPropertyDescriptor(target, property) {
+    console.log(target) // {id: 123}
+    console.log(property) // name
+    return Reflect.getOwnPropertyDescriptor(...arguments)
+  },
+})
+
+const res = Object.getOwnPropertyDescriptor(proxy, 'id')
+console.log(res) // {value: 123, writable: true, enumerable: true, configurable: true}
+```
+
+## deleteProperty()
+
+`deleteProperty()` 捕获器会在 `delete` 操作符中调用，对应的反射 API 为 `Reflect.deleteProperty()`。它可以接收两个参数：
+
+- 目标对象
+- 引用目标对象上的字符串属性
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  deleteProperty(target, property) {
+    console.log(target) // {id: 123}
+    console.log(property) // name
+    return Reflect.deleteProperty(...arguments)
+  },
+})
+
+delete proxy.id
+
+console.log(foo) // {}
+console.log(proxy) // Proxy {}
+```
+
+## ownKeys()
+
+`ownKeys()` 捕获器会在 [Object.keys()](https://tianyuhao.cn/blog/javascript/methods-object.html#object-keys) 操作符中调用，对应的反射 API 为 `Reflect.ownKeys()`。它可以接收一个参数：
+
+- 目标对象
+
+```js
+const foo = { id: 123 }
+const proxy = new Proxy(foo, {
+  ownKeys(target) {
+    console.log(target) // {id: 123}
+    return Reflect.ownKeys(...arguments)
+  },
+})
+
+console.log(Object.keys(proxy)) // ['id']
+```
