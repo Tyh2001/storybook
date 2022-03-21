@@ -133,3 +133,57 @@ const proxy = new Proxy(foo, {
 console.log(proxy.name) // 田同学
 console.log(proxy.age) // 18岁
 ```
+
+## 可撤销代理
+
+使用 `new Proxy()` 创建的代理，会在代理对象的生命周期内一直存在，如果想要撤销，可以使用 `Proxy.revocable()` 方法创建一个可撤销的代理，撤销操作上不可逆的，使用其内部的 `revoke` 方法可以撤销代理，撤销之后的代理尝试再次调用代理将会抛出 TypeError 异常
+
+```js
+const foo = {
+  name: '田同学',
+}
+const revocable = Proxy.revocable(foo, {
+  get() {
+    return 'hello'
+  },
+})
+
+console.log(revocable.proxy.name) // hello
+proxy.revoke()
+console.log(revocable.proxy.name) // 1.html:23 Uncaught ReferenceError: proxy is not defined
+```
+
+## 代理另一个代理
+
+代理可以拦截反射 API 的操作，而这意味着完全可以创建一个代理，通过它去代理另一个代理
+
+```js
+const foo = {
+  name: '田同学',
+}
+
+const proxyA = new Proxy(foo, {
+  get() {
+    console.log('proxyA')
+    return Reflect.get(...arguments)
+  },
+})
+
+const proxyB = new Proxy(proxyA, {
+  get() {
+    console.log('proxyB')
+    return Reflect.get(...arguments)
+  },
+})
+
+console.log(proxyB.name)
+// proxyB
+// proxyA
+// 田同学
+```
+
+接下来将介绍一些代理捕获器与反射的一些方法
+
+## get()
+
+## set()
