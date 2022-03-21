@@ -71,3 +71,65 @@ const proxy = new Proxy(foo, {
 
 console.log(proxy.id)
 ```
+
+多数情况下，不需要手动重建原始行为，而是可以通过调用全局 [Reflect](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect) 对象上的同名方法来轻松重建
+
+```js
+const foo = {
+  id: 123,
+}
+const proxy = new Proxy(foo, {
+  get() {
+    return Reflect.get(...arguments)
+  },
+})
+
+console.log(proxy.id) // 123
+console.log(foo.id) // 123
+```
+
+甚至可以写的更简洁一些
+
+```js
+const foo = {
+  id: 123,
+}
+const proxy = new Proxy(foo, {
+  get: Reflect.get,
+})
+
+console.log(proxy.id) // 123
+console.log(foo.id) // 123
+```
+
+如果想要创建一个可以捕获所有方法，然后每个方法都转发给对应反射 API 的空代理，甚至不需要定义处理程序对象
+
+```js
+const foo = {
+  id: 123,
+}
+const proxy = new Proxy(foo, Reflect)
+
+console.log(proxy.id) // 123
+console.log(foo.id) // 123
+```
+
+下面例子中，将对某些指定的属性进行访问的时候，可以加如一些修饰
+
+```js
+const foo = {
+  name: '田同学',
+  age: 18,
+}
+const proxy = new Proxy(foo, {
+  get(targe, property, receiver) {
+    if (property === 'age') {
+      return Reflect.get(...arguments) + '岁'
+    }
+    return Reflect.get(...arguments)
+  },
+})
+
+console.log(proxy.name) // 田同学
+console.log(proxy.age) // 18岁
+```
