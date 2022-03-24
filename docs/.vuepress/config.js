@@ -46,7 +46,13 @@ module.exports = {
           '/milepost/2022',
         ]
       },
-      '/vue3',
+      {
+        text: 'vue3',
+        children: [
+          '/vue3/basics',
+          '/vue3/api',
+        ]
+      },
       '/vue2',
       {
         text: 'TypeScript',

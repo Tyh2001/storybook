@@ -82,7 +82,7 @@ export default {
 
 ## setup
 
-`sepup` 是在单文件组件中使用**组合式 API** 的编译时的语法糖，相比普通的 script 语法，它有更多的优势：
+`setup` 是在单文件组件中使用**Composition API** 的编译时的语法糖，相比普通的 script 语法，它有更多的优势：
 
 - 更少的样板内容，更简洁的代码。
 - 能够使用纯 Typescript 声明 props 和抛出事件。
