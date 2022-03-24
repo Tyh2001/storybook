@@ -15,7 +15,8 @@
 
 ## vue3 相关
 
-- [vue3 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/README.md)
+- [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/basics.md)
+- [API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/api.md)
 
 ## vue2 相关
 
