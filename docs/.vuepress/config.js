@@ -38,7 +38,7 @@ module.exports = {
     ],
     // 侧边栏
     sidebar: [
-      '/hello',
+      '/hello/hello',
       {
         text: '里程碑',
         children: [
