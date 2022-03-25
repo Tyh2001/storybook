@@ -53,6 +53,14 @@ module.exports = {
           '/vue3/api',
         ]
       },
+      {
+        text: 'Vue.js 设计与实现',
+        children: [
+          '/vue3/chapter-1',
+          '/vue3/chapter-2',
+          '/vue3/chapter-3',
+        ]
+      },
       '/vue2',
       {
         text: 'TypeScript',
