@@ -6,6 +6,7 @@
     "Pinia",
     "pnpm",
     "substr",
+    "typeof",
     "vitejs"
   ]
 }
