@@ -22,6 +22,7 @@ module.exports = {
           { text: 'Gitee', link: 'https://gitee.com/tyh666999' },
           { text: '微博', link: 'https://weibo.com/tyh2001' },
           { text: '哔哩哔哩', link: 'https://space.bilibili.com/246484504?spm_id_from=333.1007.0.0' },
+          { text: '掘金', link: 'https://juejin.cn/user/2243446742456888' },
         ]
       },
       {
@@ -59,6 +60,7 @@ module.exports = {
           '/vue-design/chapter-1',
           '/vue-design/chapter-2',
           '/vue-design/chapter-3',
+          '/vue-design/chapter-4',
         ]
       },
       '/vue2',
