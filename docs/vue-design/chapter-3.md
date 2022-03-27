@@ -124,10 +124,124 @@ function render(node, root) {
 
 ## 3.3 组件的本质
 
+其实组件的本质，就说一组虚拟 DOM 的封装，我们知道，在 JavaScript 中，我们正常都是使用函数进行封装代码的，那么组件其实也可以理解为是一个函数返回的一个虚拟 DOM，就是需要渲染的内容，比如：
+
+```js
+const component = function () {
+  return {
+    tag: 'div',
+    props: {
+      onClick: () => alert('hello'),
+    },
+    children: 'click me',
+  }
+}
+```
+
+那么这时候的虚拟 dom 就是这样的了：
+
+```js
+const node = {
+  tag: component,
+}
+```
+
+那么这时在对于处理函数和字符串的时候，render 函数就需要做一些修改了：
+
+```js
+// 模拟虚拟 dom
+const node = {
+  // tag 接收的是一个函数
+  tag: component,
+}
+
+// 模拟组件函数
+function component() {
+  return {
+    tag: 'div',
+    props: {
+      onClick: () => alert('hello'),
+    },
+    children: 'click me',
+  }
+}
+
+// 字符串 渲染函数
+function mountElement(node, root) {
+  const el = document.createElement(node.tag)
+
+  for (const key in node.props) {
+    if (/^on/.test(key)) {
+      el.addEventListener(key.substr(2).toLowerCase(), () => {
+        node.props[key]()
+      })
+    }
+  }
+
+  if (typeof node.children === 'string') {
+    const text = document.createTextNode(node.children)
+    console.log(text)
+    el.appendChild(text)
+  } else if (Array.isArray(node.children) && node.children.length) {
+    node.children.forEach((item) => {
+      render(item, el)
+    })
+  }
+
+  root.appendChild(el)
+}
+
+// 函数渲染函数
+function mountComponent(node, root) {
+  const subtree = node.tag()
+  render(subtree, root)
+}
+
+// 主 render 函数
+function render(node, root) {
+  // 如果是函数
+  if (typeof node.tag === 'function') {
+    mountComponent(node, root)
+    // 如果是字符串
+  } else if (typeof node.tag === 'string') {
+    mountElement(node, root)
+  }
+}
+
+// 调用 render 函数
+render(node, document.body)
+```
+
 ## 3.4 模板的工作原理
 
+无论是手写虚拟 DOM，还是使用模板，都是属于声明式 UI，前文讲过，需要将虚拟 DOM 转换为真实 DOM，这一过程需要的就是**编译器**。
+
+编译器和渲染器一样，就是一个程序，编译器的作用就是将模板编译成渲染函数，如下模板：
+
+```html
+<template>
+  <button @click="change">按钮</button>
+</template>
+
+<script setup>
+  function change() {
+    alert('hello')
+  }
+</script>
+```
+
+会编译成：
+
+```js
+export default {
+  render() {
+    return h('button', { onclick: change }, '按钮')
+  },
+}
+```
+
+对于一个 `*.vue` 组件来说，它需要渲染的内容最终都是通过渲染函数产生的，然后渲染器把渲染函数返回的虚拟 DOM，渲染为真实 DOM，这也是模板的工作原理，也是 vue 渲染页面的流程。
+
+编译器的作用就是将模板编译成虚拟 DOM，然后使用渲染器进行渲染，是这样的一个工作流程。
+
 ## 3.5 Vue.js 是各个模块组成的有机整体
-
-```
-
-```
