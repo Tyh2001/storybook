@@ -38,6 +38,42 @@ obj.text = 'hello world'
 
 ## 4.2 响应式数据的基本实现
 
+之前介绍了，响应式系统需要的是，当副作用函数被调用时候，会获取 `obj.text` 的操作，那么当下一次修改数据时候，也可以希望能调用副作用函数重新赋值。vue3 中使用 [proxy](https://tianyuhao.cn/blog/javascript/proxy.html) 来实现对数据的代理，实现每一次操作都可以被监听到。下面来实现一个简单的例子进行演示基本的响应式系统：
+
+```js
+// 原始数据
+const obj = { text: 'hello' }
+
+const set = new Set() // 用来存储副作用函数
+
+// 创建代理，代理 obj
+const p = new Proxy(obj, {
+  // 获取
+  get(target, key) {
+    set.add(inner) // 将副作用函数添加到容器中
+    return target[key] // 返回指定的值
+  },
+  // 设置
+  set(target, key, newVal) {
+    target[key] = newVal // 赋值为新值
+    set.forEach((fn) => fn()) // 调用副作用函数重新渲染页面
+  },
+})
+
+// 副作用函数
+function inner() {
+  document.body.innerText = p.text
+}
+inner()
+
+// 三秒后重新赋值，可以发现已经成为响应式了
+setTimeout(() => {
+  p.text = '改变啦'
+}, 3000)
+```
+
+这就是一个基本的响应式系统的实现，但是这个逻辑还存在着很多问题，其实还远远的不够灵活。
+
 ## 4.3 设计一个完善的响应式系统
 
 ## 4.4 分支切换与 cleanup
