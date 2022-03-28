@@ -123,12 +123,108 @@ effect(() => {
 })
 ```
 
-接下来看另一个问题：如果定时器中，是给 obj 设置了一个新的属性，而不是修改之前的属性，那么就不需要触发响应式系统了，但是现在，不管怎么操作，都会触发响应式系统，这显然是不合理的
+接下来看另一个问题：如果定时器中，是给 obj 设置了一个新的属性，而不是修改之前的属性，那么就不需要触发响应式系统了，但是现在，不管怎么操作，都会触发响应式系统，这显然是不合理的，我们实际需要的是：**只需要在副作用函数与被操作的字段直接产生联系即可**。
 
 ```js
 setTimeout(() => {
   obj.say = '响应式数据' // 也会调用函数触发响应式
 }, 2000)
+```
+
+所以接下来要重新设置拦截器代码。那么接下来将会使用到：[Map()](https://tianyuhao.cn/blog/javascript/data-type.html#map)、[WeakMap()](https://tianyuhao.cn/blog/javascript/data-type.html#weakmap) 和 [Set()](https://tianyuhao.cn/blog/javascript/data-type.html#set)
+
+```js
+const bucket = new WeakMap()
+let activeEffect
+const data = { text: 'hello' }
+
+const obj = new Proxy(data, {
+  get(target, key) {
+    // 如果没用 activeEffect 直接返回
+    if (!activeEffect) return
+    // 取得 WeakMap 中键值所对应的函数
+    let depsMap = bucket.get(target)
+    // 如果 depsMap 不存在，那么就新建一个 Map 与 target 关联
+    if (!depsMap) {
+      bucket.set(target, (depsMap = new Map()))
+    }
+    // 根据 key 从 depsMap 中取得 deps，它是一个 Set 类型
+    // 里面存放的是与当前所有 key 相关的副作用函数 effects
+    let deps = depsMap.get(key)
+    // 如果 deps 不存在 同样新建一个 Set 并与 key 并联
+    if (!deps) {
+      depsMap.set(key, (deps = new Set()))
+    }
+    // 将副作用函数添加到容器中
+    deps.add(activeEffect)
+    // 返回属性值
+    return target[key]
+  },
+  set(target, key, newVal) {
+    // 设置属性值
+    target[key] = target
+    // 根据 target 从容器中取得 depsMap
+    const depsMap = bucket.get(target)
+    // 如果不存在 直接返回
+    if (!depsMap) return
+    // 根据 key 取得所有副作用函数
+    const effects = depsMap.get(key)
+    // 执行每一个副作用函数
+    effects && effects.forEach((fn) => fn())
+  },
+})
+```
+
+最终的数据结构如下：
+
+```shell
+WeakMap
+  [[Entries]]
+    0: {Object => Map(1)}
+      key:
+        text: "改变啦"
+        text2: "新增的数据"
+        [[Prototype]]: Object
+      value: Map(1)
+        [[Entries]]
+        0: {"text" => Set(1)}
+          key: "text"
+          value: Set(1)
+            [[Entries]]
+            size: 1
+            [[Prototype]]: Set
+        size: 1
+        [[Prototype]]: Map
+  [[Prototype]]: WeakMap
+```
+
+也许这样并不直观，下面的图描述了它们之间的关系
+
+```
+┌──────────┐
+│  weakMap │
+└────┬─────┘
+     │
+┌────┴─────┐
+│    key   │
+└────┬─────┘
+     │
+┌────▼─────┐     ┌──────────┐
+│   value1 ├────►│   Map    │
+└────┬─────┘     └────┬─────┘
+     │                │
+┌────▼─────┐          │
+│  value2  │     ┌────┴─────┐     ┌─────────┐
+└──────────┘     │    key   ├────►│  Set    │
+                 └────┬─────┘     └───┬─────┘
+                      │               │
+                 ┌────▼─────┐     ┌───┴─────┐
+                 │   value1 │     │  value1 │
+                 └────┬─────┘     └───┬─────┘
+                      │               │
+                 ┌────▼─────┐     ┌───▼─────┐
+                 │ value2   │     │  value2 │
+                 └──────────┘     └─────────┘
 ```
 
 ## 4.4 分支切换与 cleanup
