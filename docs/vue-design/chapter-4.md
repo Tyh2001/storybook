@@ -23,7 +23,7 @@ function change() {
 
 ```js
 const obj = { text: 'hello' }
-function inner() {
+function effect() {
   document.body.innerText = obj.text
 }
 ```
@@ -50,7 +50,7 @@ const set = new Set() // 用来存储副作用函数
 const p = new Proxy(obj, {
   // 获取
   get(target, key) {
-    set.add(inner) // 将副作用函数添加到容器中
+    set.add(effect) // 将副作用函数添加到容器中
     return target[key] // 返回指定的值
   },
   // 设置
@@ -61,10 +61,10 @@ const p = new Proxy(obj, {
 })
 
 // 副作用函数
-function inner() {
+function effect() {
   document.body.innerText = p.text
 }
-inner()
+effect()
 
 // 三秒后重新赋值，可以发现已经成为响应式了
 setTimeout(() => {
@@ -75,6 +75,61 @@ setTimeout(() => {
 这就是一个基本的响应式系统的实现，但是这个逻辑还存在着很多问题，其实还远远的不够灵活。
 
 ## 4.3 设计一个完善的响应式系统
+
+在上个例子中，副作用函数名为 `effect`，但是如果副作用函数一旦不叫这个名字了，那么整个系统就会崩溃，接下来解决这个问题：
+
+```js
+const data = { text: 'hello' }
+
+// 定义全局变量来存储副作用函数
+let activeEffect
+
+const set = new Set()
+const obj = new Proxy(data, {
+  get(target, key) {
+    // 如果有了副作用函数的话
+    if (activeEffect) {
+      set.add(activeEffect) // 就添加到容器中
+    }
+    return target[key]
+  },
+  set(target, key, newVal) {
+    target[key] = newVal
+    set.forEach((fn) => fn())
+  },
+})
+
+function effect(fn) {
+  activeEffect = fn // 先将函数赋值给全局变量
+  fn() // 再调用，触发 get
+}
+
+// 传入一个匿名函数
+effect(() => (document.body.innerText = obj.text))
+
+setTimeout(() => {
+  obj.text = '响应式数据'
+}, 2000)
+```
+
+解决的方法是：通过一个全局的变量 `activeEffect` 来存储副作用函数，`effect` 变成了可以给 `activeEffect` 赋值的函数，并且调用传递进来的函数，并调用触发 `get`。
+
+可以通过打印发现，其实 `effect` 被调用了两次，一次是在页面刚加载的时候，还有一次是重新设置值的时候
+
+```js
+effect(() => {
+  document.body.innerText = obj.text
+  console.log('调用') // 会触发两次
+})
+```
+
+接下来看另一个问题：如果定时器中，是给 obj 设置了一个新的属性，而不是修改之前的属性，那么就不需要触发响应式系统了，但是现在，不管怎么操作，都会触发响应式系统，这显然是不合理的
+
+```js
+setTimeout(() => {
+  obj.say = '响应式数据' // 也会调用函数触发响应式
+}, 2000)
+```
 
 ## 4.4 分支切换与 cleanup
 
