@@ -30,6 +30,7 @@
 
 ## typeScript
 
+- [其它](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/other.md)
 - [数据类型](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/type.md)
 - [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/function.md)
 
