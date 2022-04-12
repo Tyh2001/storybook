@@ -1,5 +1,31 @@
 # JavaScript API
 
+## File
+
+当选择一个文件时，可以获得这个文件的描述对象
+
+```html
+<input type="file" id="file" />
+
+<script>
+  const file = document.getElementById('file')
+  file.addEventListener('change', (e) => {
+    console.dir(e.target.files[0])
+  })
+</script>
+```
+
+```shell
+File
+  lastModified: 1646398643613
+  lastModifiedDate: Fri Mar 04 2022 20:57:23 GMT+0800 (中国标准时间) {}
+  name: "world6.jpg"
+  size: 1179107
+  type: "image/jpeg"
+  webkitRelativePath: ""
+  [[Prototype]]: File
+```
+
 ## URL.createObjectURL()
 
 该方法多数用于图片预览
