@@ -110,3 +110,7 @@ console.log(Math.PI) // 3.141592653589793
 ## Math.sin / Math.cos
 
 正弦 余弦
+
+## Math.sqrt()
+
+返回一个数的平方根
