@@ -23,9 +23,9 @@
 
 **Vue.js 设计与实现**
 
-[第一章 权衡的艺术](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-1.md)
-[第二章 框架设计的核心要素](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-2.md)
-[第三章 Vue.js 3 的设计思路](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-3.md)
+- [第一章 权衡的艺术](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-1.md)
+- [第二章 框架设计的核心要素](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-2.md)
+- [第三章 Vue.js 3 的设计思路](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-3.md)
 
 **vue2 相关**
 
