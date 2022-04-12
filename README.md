@@ -8,33 +8,36 @@
 
 # 目录
 
-## 里程碑
+**里程碑**
 
 - [里程碑 2021](https://github.com/Tyh2001/tyh-blog/blob/master/docs/milepost/2021.md)
 - [里程碑 2022](https://github.com/Tyh2001/tyh-blog/blob/master/docs/milepost/2022.md)
 
-## vue3 相关
+**vue3 相关**
 
 - [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/basics.md)
 - [API](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/api.md)
+- [vue-router](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/vue-router.md)
+- [vuex](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/vuex.md)
+- [pinia](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue3/pinia.md)
 
-## Vue.js 设计与实现
+**Vue.js 设计与实现**
 
 [第一章 权衡的艺术](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-1.md)
 [第二章 框架设计的核心要素](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-2.md)
 [第三章 Vue.js 3 的设计思路](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue-design/chapter-3.md)
 
-## vue2 相关
+**vue2 相关**
 
 - [vue2 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/vue2/README.md)
 
-## typeScript
+**TypeScript**
 
 - [其它](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/other.md)
 - [数据类型](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/type.md)
 - [函数](https://github.com/Tyh2001/tyh-blog/blob/master/docs/typescript/function.md)
 
-## JavaScript
+**JavaScript**
 
 - [基础](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/basic.md)
 - [DOM 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/dom.md)
@@ -56,7 +59,7 @@
 - [生成器](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/generator.md)
 - [proxy 代理](https://github.com/Tyh2001/tyh-blog/blob/master/docs/javascript/proxy.md)
 
-## 我的文章
+**我的文章**
 
 - [GitHubPages 部署项目](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/github-page.md)
 - [highlightjs 使用方法](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/highlightjs.md)
@@ -64,7 +67,7 @@
 - [别再写循环套循环了](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/two-sum.md)
 - [其它记录](https://github.com/Tyh2001/tyh-blog/blob/master/docs/article/article.md)
 
-## 前端面试题
+**前端面试题**
 
 - [2022 更新面试题](https://github.com/Tyh2001/tyh-blog/blob/master/docs/int-ques/README.md)
 - [Web 相关](https://github.com/Tyh2001/tyh-blog/blob/master/docs/int-ques/ques-web.md)

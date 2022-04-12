@@ -52,6 +52,9 @@ module.exports = {
         children: [
           '/vue3/basics',
           '/vue3/api',
+          '/vue3/vue-router',
+          '/vue3/vuex',
+          '/vue3/pinia',
         ]
       },
       {
