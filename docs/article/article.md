@@ -36,6 +36,9 @@ git checkout master
 
 # 合并分支 把 dev 分支合并到 master 分支
 git merge dev
+
+# 将合并的分支提交到仓库
+git push
 ```
 
 ## Npm 一些命令
