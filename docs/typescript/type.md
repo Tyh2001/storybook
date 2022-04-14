@@ -278,3 +278,56 @@ const el1: HTMLDivElement = document.querySelector('.app') as const
 
 const el: HTMLDivElement = document.querySelector('.app')!
 ```
+
+## generics 泛型
+
+泛型代表的是不确定的类型，宽泛的类型，比如下面例子中：
+
+```ts
+function msg(num) {
+  return num
+}
+
+console.log(msg('hello'))
+console.log(msg(true))
+```
+
+上面代码中，无论函数传入什么类型，都会直接返回指定的类型，但是这些类型都是 `any`，大多数时候我们并不希望是 `any` 所以这里就需要使用到了泛型。
+
+所以就需要传递不同的参数的时候，动态的传递指定的类型。类型也是可以类型函数接收参数一样：
+
+```ts
+function msg<type>(num: type): type {
+  return num
+}
+
+console.log(msg<string>('hello'))
+console.log(msg<boolean>(true))
+```
+
+## 类型的继承
+
+使用 `extends` 可以继承一个属性
+
+```ts
+// 这里让 t 继承一个 { length: number }
+function getLength<t extends { length: number }>(target: t): number {
+  // 类型 t 里面没用任何规范 可能不存在 length 属性
+  return target.length
+}
+
+console.log(getLength('setting'))
+console.log(getLength([1, 2, 3, 4]))
+```
+
+或者也可以继承一个有长度的类型，比如 `string`，或者联合类型
+
+```ts
+function getLength<t extends string>(target: t): number {
+  return target.length
+}
+
+function getLength2<t2 extends string | any[]>(target: t2): number {
+  return target.length
+}
+```
