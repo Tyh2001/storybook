@@ -52,3 +52,48 @@ import { useStore } from './store'
 const store = useStore()
 </script>
 ```
+
+## getters
+
+`getters` 相当于组件中的 `computed` 计算属性一样，可以使用箭头函数和普通函数进行返回
+
+```ts
+// store/index.ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  // 定义数据
+  state: () => ({
+    counter: 0,
+  }),
+
+  // 计算属性
+  getters: {
+    // 箭头函数定义
+    doubleCountTwo: (state) => state.counter + 2,
+
+    // 普通函数
+    doubleCount(state): number {
+      return state.counter * 2
+    },
+
+    // 通过函数计算
+    doublePlusOne(): number {
+      return this.doubleCount + 1
+    },
+  },
+})
+```
+
+```vue
+<template>
+  <h2>{{ store.doubleCountTwo }}</h2>
+  <h2>{{ store.doubleCount }}</h2>
+  <h2>{{ store.doublePlusOne }}</h2>
+</template>
+
+<script lang="ts" setup>
+import { useStore } from './store'
+const store = useStore()
+</script>
+```
