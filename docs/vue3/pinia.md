@@ -53,6 +53,35 @@ const store = useStore()
 </script>
 ```
 
+想要更改 `state` 中的值也是非常简单
+
+```ts
+// store/index.ts
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('main', {
+  // 定义数据
+  state: () => ({
+    counter: 0,
+  }),
+})
+```
+
+```vue
+<template>
+  <p>{{ store.counter }}</p>
+  <button @click="change">更改</button>
+</template>
+
+<script lang="ts" setup>
+import { useStore } from './store'
+const store = useStore()
+function change() {
+  store.counter++
+}
+</script>
+```
+
 ## getters
 
 `getters` 相当于组件中的 `computed` 计算属性一样，可以使用箭头函数和普通函数进行返回
@@ -66,6 +95,13 @@ export const useStore = defineStore('main', {
   state: () => ({
     counter: 0,
   }),
+
+  // 可以定义业务逻辑 可以异步获取数据
+  actions: {
+    increment() {
+      this.counter++
+    }
+  }
 
   // 计算属性
   getters: {
@@ -96,4 +132,12 @@ export const useStore = defineStore('main', {
 import { useStore } from './store'
 const store = useStore()
 </script>
+```
+
+## action
+
+`action` 可以异步获取数据
+
+```ts
+// store/index.ts
 ```
