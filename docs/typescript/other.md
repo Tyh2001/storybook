@@ -165,3 +165,25 @@ Axios.mark()
 Axios.mark()
 // 创建实例
 ```
+
+## get 和 set
+
+```ts
+class Article {
+  private _article: any[] = []
+
+  public get article(): any[] {
+    return this._article
+  }
+
+  public set article(list: any[]) {
+    this._article = list
+  }
+}
+
+const art = new Article()
+console.log(art.article)
+
+art.article = [{ title: 'hello', name: 'http权威指南' }]
+console.log(art.article)
+```
