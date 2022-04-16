@@ -1,11 +1,10 @@
 {
-  "name": "tyh-blog-next",
-  "version": "0.0.0",
+  "name": "tyh-blog",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
     "dev": "docusaurus start",
     "build": "docusaurus build",
+    "docusaurus": "docusaurus",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
