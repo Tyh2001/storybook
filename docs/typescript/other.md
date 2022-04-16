@@ -138,3 +138,30 @@ const user = new User()
 
 console.log(User.url)
 ```
+
+## 单例模式
+
+单利模式中，希望无论调用多少次的构造函数，它只执行一次，这样可以节约资源
+
+```ts
+class Axios {
+  private static instance: Axios | null = null
+  private constructor() {}
+
+  static mark() {
+    if (Axios.instance === null) {
+      console.log('创建实例')
+
+      Axios.instance = new Axios()
+    }
+    return Axios.instance
+  }
+}
+
+Axios.mark()
+Axios.mark()
+Axios.mark()
+Axios.mark()
+Axios.mark()
+// 创建实例
+```
