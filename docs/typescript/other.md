@@ -120,3 +120,21 @@ class Axios {
 const axios = new Axios('github.com')
 console.log(axios.url)
 ```
+
+## static
+
+`static` 方法可以定义静态熟悉和方法，只能在类中进行访问
+
+和原生是一样的
+
+```ts
+class User {
+  static url: string = 'baidu.com'
+}
+
+const user = new User()
+
+// console.log(user.url) // 获取不到
+
+console.log(User.url)
+```
