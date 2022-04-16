@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
       <>
         记录自己的程序员职业开发手册，将日常的开发记录在里程碑中
       </>
-    ),
+    )
   },
   {
     title: 'JavaScript',
@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
       <>
         主要以 JavaScript 的笔记为主，将日常开发中的各种 API 和一些写法记录在此
       </>
-    ),
+    )
   },
   {
     title: '更多技术',
@@ -34,8 +34,8 @@ const FeatureList: FeatureItem[] = [
       <>
         除 JavaScript 外，还有一些 Vue3、TypeScript 和一些新的技术的记录
       </>
-    ),
-  },
+    )
+  }
 ]
 
 function Feature({ title, Svg, description }: FeatureItem) {

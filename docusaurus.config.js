@@ -15,11 +15,11 @@ const config = {
     [
       'classic',
       ({
-        blog: {
+        docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
         },
-        docs: {
+        blog: {
           showReadingTime: true,
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
@@ -36,12 +36,11 @@ const config = {
       navbar: {
         title: 'Tyh2001',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Logo',
           src: 'img/web/logo.svg'
         },
         items: [
           {
-            type: 'doc',
             docId: 'Hello',
             position: 'right',
             label: 'Blog'
@@ -50,8 +49,8 @@ const config = {
             href: 'https://github.com/Tyh2001/tyh-blog',
             label: 'GitHub',
             position: 'right'
-          },
-        ],
+          }
+        ]
       },
       footer: {
         style: 'dark',
@@ -65,11 +64,11 @@ const config = {
               { label: 'Gitee', to: 'https://gitee.com/tyh666999' },
               { label: '微博', to: 'https://weibo.com/tyh2001' },
               { label: 'bilibili', to: 'https://space.bilibili.com/246484504?spm_id_from=333.1007.0.0' },
-              { label: '掘金', to: 'https://juejin.cn/user/2243446742456888' },
+              { label: '掘金', to: 'https://juejin.cn/user/2243446742456888' }
             ]
           }
         ],
-        copyright: 'Tyh2001 | 浙ICP备2021024540号-2',
+        copyright: 'Tyh2001 | 浙ICP备2021024540号-2'
       },
       prism: {
         theme: lightCodeTheme,
