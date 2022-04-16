@@ -91,3 +91,32 @@ class Admin extends User {
   }
 }
 ```
+
+## readonly
+
+`readonly` 修饰的熟悉是不能更改的，也就是说这个熟悉是只读的
+
+```ts
+class Axios {
+  readonly url: string = 'www.baidu.con'
+}
+
+const axios = new Axios()
+console.log(axios.url)
+
+// axios.url = 'http://localhost' // 不能进行更改
+```
+
+但也不一定是绝对不能更改的，比如下面例子，类在初始化的时候，也是可以进行更改的
+
+```ts
+class Axios {
+  readonly url: string = 'www.baidu.con'
+  public constructor(url) {
+    this.url = url
+  }
+}
+
+const axios = new Axios('github.com')
+console.log(axios.url)
+```
