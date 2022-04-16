@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# GitHubPages 部署项目
-
 ## 前言
 
 很多的静态网站都是部署在 `GitHub Pages` 上的，比如很多其它的个人网站、博客等等，那么部署在 `GitHub Pages` 上有什么好处呢？

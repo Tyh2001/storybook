@@ -2,8 +2,6 @@
 sidebar_position: 2
 ---
 
-# highlightjs 使用方法
-
 ## 前言
 
 [highlightjs](https://github.com/highlightjs/highlight.js)是具有语言自动检测和零依赖性的 JavaScript 语法高亮器。
