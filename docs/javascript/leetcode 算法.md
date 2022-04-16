@@ -2,8 +2,6 @@
 sidebar_position: 17
 ---
 
-# leetcode 算法
-
 ## 1. 二分查找
 
 ```js

@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Vue2 相关
-
 ## 创建 Vue 项目
 
 1. 下载 vue-cli（下载之后才可以使用 Vue 命令）

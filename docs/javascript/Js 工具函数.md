@@ -2,8 +2,6 @@
 sidebar_position: 15
 ---
 
-# Js 工具函数
-
 ## 添加本地存储
 
 ```js

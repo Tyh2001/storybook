@@ -2,8 +2,6 @@
 sidebar_position: 4
 ---
 
-# Vuex
-
 ## 安装
 
 在 vue3 的项目中使用 vuex 首先需要下载：

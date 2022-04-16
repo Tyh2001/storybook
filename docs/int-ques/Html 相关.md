@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Html 相关
-
 ## HTML5 有哪些新特性
 
 > 详细参考：[html5 新特性](https://www.runoob.com/w3cnote/html5-canvas-intro.html)

@@ -2,8 +2,6 @@
 sidebar_position: 16
 ---
 
-# JavaScript API
-
 ## File
 
 当选择一个文件时，可以获得这个文件的描述对象

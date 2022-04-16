@@ -2,8 +2,6 @@
 sidebar_position: 3
 ---
 
-# Vue Router
-
 ## 安装
 
 ```shell

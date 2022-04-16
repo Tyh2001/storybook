@@ -2,8 +2,6 @@
 sidebar_position: 2
 ---
 
-# DOM
-
 ## childNodes
 
 `childNodes` 方法可获取元素中内部的元素

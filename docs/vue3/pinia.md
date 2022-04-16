@@ -2,8 +2,6 @@
 sidebar_position: 5
 ---
 
-# Pinia
-
 ## 安装
 
 ```shell

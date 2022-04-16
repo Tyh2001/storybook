@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Vue3 相关
-
 ## Vite 创建项目
 
 使用 Vite 创建项目需要 node 的版本 >= 12.0.0

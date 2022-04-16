@@ -2,8 +2,6 @@
 sidebar_position: 2
 ---
 
-# API
-
 ## h
 
 `h` 函数是一个渲染函数，通常缩写为叫 `VNode`，也许可以更准确地将其命名为 `createVNode()`，可以渲染一个标签，接收三个参数：
