@@ -52,7 +52,9 @@ console.log(user.info) // [Function: info]
 
 ## protected 修饰符
 
-`protected` 是受保护的数据类型，就只能在类的内部进行使用
+`protected` 是受保护的数据类型，就只能在类的内部进行使用，在类的外部不能进行方法。
+
+但是可以通过类的继承进行访问
 
 ```ts
 class User {
@@ -64,6 +66,28 @@ class User {
   }
   protected info(): string {
     return `${this.name} 的年龄是 ${this.age}`
+  }
+}
+
+// console.log(user.name) 不能访问
+```
+
+## private
+
+`private` 修饰符仅限于当前构造函数使用，就算是继承的类也不能进行使用
+
+```ts
+class User {
+  private name: string
+  constructor(n: string) {
+    this.name = n
+  }
+}
+
+class Admin extends User {
+  constructor(name) {
+    super(name)
+    // console.log(this.name) // 不能访问
   }
 }
 ```
