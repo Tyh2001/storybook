@@ -1,15 +1,18 @@
 {
   "cSpell.words": [
+    "Apng",
     "bilibili",
     "browserslist",
     "clsx",
     "CNAME",
+    "FOUC",
     "Gitee",
     "highlightjs",
     "hljs",
     "horiz",
     "instanceof",
     "jiaban",
+    "jpge",
     "leetcode",
     "legao",
     "mvvm",
@@ -22,9 +25,11 @@
     "tianyuhao",
     "typecheck",
     "typeof",
+    "Unstyled",
     "vite",
     "vitejs",
     "Vuex",
+    "Webp",
     "Yuhao"
   ]
 }
