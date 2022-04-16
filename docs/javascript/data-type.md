@@ -1,3 +1,7 @@
+<!-- ---
+sidebar_position: 4
+---
+
 # 数据类型
 
 ## Map()
@@ -483,4 +487,4 @@ fd.append('name', 'data')
 
 `append` 方法接收两个参数 键和值
 
-使用 FormDate 就不需要给 xhr 对象设置响应头了，因为 xhr 对象可以识别作为 FormDate 实例传入的数据类型并自动配置响应头
+使用 FormDate 就不需要给 xhr 对象设置响应头了，因为 xhr 对象可以识别作为 FormDate 实例传入的数据类型并自动配置响应头 -->

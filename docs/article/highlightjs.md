@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # highlightjs 使用方法
 
 ## 前言

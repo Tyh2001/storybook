@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # GitHubPages 部署项目
 
 ## 前言
@@ -19,7 +23,7 @@
 5. 记录值为 `你的 Github 用户名 + github.io`，比如我就填写 `tyh2001.github.io`
 6. TTL 默认
 
-<img src="https://www.hualigs.cn/image/621262dd9c842.jpg" style="zoom:40%;" />
+<!-- <img src="https://www.hualigs.cn/image/621262dd9c842.jpg" style="zoom:40%;" /> -->
 
 内容是你之前设置是`主机记录值.你的域名`
 
@@ -31,19 +35,19 @@
 
 随便设置一个 `token` 的名称，然后勾选 `repo` 和 `workflow` 两个选项
 
-<img src="https://www.hualigs.cn/image/621262df9b33d.jpg" style="zoom:40%;" />
+<!-- <img src="https://www.hualigs.cn/image/621262df9b33d.jpg" style="zoom:40%;" /> -->
 
 最后滚动到最下面，点击 `Generate token` 进行创建 `token`
 
 创建完成之后，点击复制先保存 `token`，因为**token 只会显示一次，如果关闭页面或者刷新了页面之后，token 就再也找不到了**。如果意外丢失，只能重新创建一个新的。
 
-<img src="https://www.hualigs.cn/image/621262df39863.jpg" style="zoom:40%;" />
+<!-- <img src="https://www.hualigs.cn/image/621262df39863.jpg" style="zoom:40%;" /> -->
 
 ## 配置远程仓库
 
 进入需要部署的远程仓库，在远程仓库的 `Settings / Secrets / Actions` 的设置界面中，点击 `New repository secret`，进行添加 `新存储库机密`。
 
-<img src="https://www.hualigs.cn/image/621262dfe94ef.jpg" style="zoom:40%;" />
+<!-- <img src="https://www.hualigs.cn/image/621262dfe94ef.jpg" style="zoom:40%;" /> -->
 
 - Name: `ACCESS_TOKEN`（必须是这个名字）
 - Value: 之前生成的 GitHub 访问令牌

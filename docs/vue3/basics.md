@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Vue3 相关
 
 ## Vite 创建项目

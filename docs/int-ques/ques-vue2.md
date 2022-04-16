@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Vue2 相关
 
 ## Vue 路由懒加载是什么

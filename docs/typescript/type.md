@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # 数据类型
 
 ## number

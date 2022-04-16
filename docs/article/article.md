@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # 其它记录
 
 ## Git 常用命令

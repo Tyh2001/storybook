@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # 其它
 
 ## 生成 ts 配置文件

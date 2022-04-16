@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Vue3 的源码怎么看？
 
 ## 说明

@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # 第三章 Vue.js 3 的设计思路
 
 ## 3.1 声明式的描述 UI

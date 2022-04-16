@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # 关于组件库
 
 ## Hi

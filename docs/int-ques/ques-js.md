@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Js 相关
 
 ## 闭包函数
