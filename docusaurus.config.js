@@ -30,7 +30,6 @@ const config = {
       })
     ]
   ],
-
   themeConfig:
     ({
       navbar: {
@@ -41,6 +40,7 @@ const config = {
         },
         items: [
           {
+            type: 'doc',
             docId: 'Hello',
             position: 'right',
             label: 'Blog'
@@ -60,11 +60,20 @@ const config = {
             items: [
               { label: 'Tyh2001', to: 'https://tianyuhao.cn' },
               { label: 'Github', to: 'https://github.com/Tyh2001' },
-              { label: 'tyh-ui', to: 'https://github.com/Tyh2001/tyh-ui' },
+              { label: 'tyh-ui', to: 'https://tianyuhao.cn/v3' },
               { label: 'Gitee', to: 'https://gitee.com/tyh666999' },
               { label: '微博', to: 'https://weibo.com/tyh2001' },
               { label: 'bilibili', to: 'https://space.bilibili.com/246484504?spm_id_from=333.1007.0.0' },
               { label: '掘金', to: 'https://juejin.cn/user/2243446742456888' }
+            ]
+          },
+          {
+            title: '友链',
+            items: [
+              { label: 'Vue3', to: 'https://staging-cn.vuejs.org' },
+              { label: 'Docusaurus', to: 'https://docusaurus.io/zh-CN/' },
+              { label: 'Vite', to: 'https://cn.vitejs.dev' },
+              { label: 'Pinia', to: 'https://pinia.esm.dev' }
             ]
           }
         ],
