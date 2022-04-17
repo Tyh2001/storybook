@@ -28,25 +28,64 @@ File
   [[Prototype]]: File
 ```
 
-## URL.createObjectURL()
+## Blob
 
-该方法多数用于图片预览
+`Blob` 类型可以通过一个构造函数进行创建
 
-参考文档：[URL.createObjectURL() ](https://developer.mozilla.org/zh-CN/search?q=URL.createObjectURL%28%29)
+```js
+const blob = new Blob(['foo'])
+console.log(blob) // Blob {size: 3, type: ''}
+```
 
-实例，通过 input 上传图片预览出上传的图片：
+## 对象 URL
+
+可以将 `File` 或者 `Blob` 类型传入 `window.URL.createObjectURL()` 方法中来返回一个指向内存中地址的字符串
+
+比如下面通过上传图片预览的效果：
 
 ```html
 <input type="file" accept="image/*" />
 <img src="" alt="" />
 
 <script>
-  const inp = document.querySelector('input')
+  const input = document.querySelector('input')
   const img = document.querySelector('img')
-  inp.onchange = function () {
-    const blob = URL.createObjectURL(inp.files[0])
+  input.addEventListener('change', (e) => {
+    const blob = URL.createObjectURL(e.target.files[0])
     img.setAttribute('src', blob)
-  }
+  })
+</script>
+```
+
+## Notification
+
+可以通过全局对象 `Notification` 向用户请求通知。这个对象有一个 `requestPermission()` 方法，该方法返回一个 `Promise`，用户在授权对话框上执行操作后这个 `Promise` 会解决
+
+```html
+<button id="btn">点击</button>
+<script>
+  document.getElementById('btn').addEventListener('click', () => {
+    Notification.requestPermission().then((pre) => {
+      console.log(pre) // granted
+    })
+  })
+</script>
+```
+
+输出 `granted` 代表用户授权了通知权限。
+
+可以通过构造函数 `Notification` 来显示通知，也可以通过传入第二个参数进行更多配置
+
+```html
+<button id="btn">点击</button>
+<script>
+  document.getElementById('btn').addEventListener('click', () => {
+    new Notification('title', {
+      body: 'hello',
+      image: '',
+      // ...
+    })
+  })
 </script>
 ```
 
