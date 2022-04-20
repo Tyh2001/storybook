@@ -40,15 +40,15 @@ vue3 的仓库 [core](https://github.com/vuejs/core) 在这里，可以先 `fork
 
 ## 看 vue3 源码前的准备
 
-### 知识点
+### 技术点
 
-- [TypeScript](https://www.tslang.cn/index.html) TypeScript 在 vue3 的源码中，大概涵盖了 `97%`
+- [TypeScript](https://www.tslang.cn/index.html) 在 vue3 的源码中，大概涵盖了 `97%`
 - [the-super-tiny-compiler](https://github.com/Tyh2001/the-super-tiny-compilerr) 一个编译器，用于学习 `compiler` 层面，可能是有史以来最小的编译器
 - [the-der-tiny-compiler](https://github.com/Tyh2001/the-der-tiny-compiler) 一个非常 der 的 vue compiler 实现
 
 ### 算法
 
-- [最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)，在源码中，最长递增子序列的算法在[这里](https://github.com/Tyh2001/core/blob/main/packages/runtime-core/src/renderer.ts) 的 `2393` 行，最后一个函数。
+- [最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)，在源码中，最长递增子序列的算法在 [runtime-core](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/renderer.ts) 的 `2393` 行，最后一个函数。
 
 ### 其它
 
@@ -56,37 +56,40 @@ vue3 的仓库 [core](https://github.com/vuejs/core) 在这里，可以先 `fork
 - 设计模式
 - 动态规划
 
-## Vue3 代码主要分成三大块
+## Vue3 核心代码
 
-vue3 由 `reactivity`、`compiler`、`runtime` 构成 `vue3` 最核心的源码，下面分别来介绍一下
+vue3 的核心源码在 [packages](https://github.com/vuejs/core/tree/main/packages) 中，简单分为三大模块，分别是由 `reactivity`、`compiler`、`runtime` 构成最核心的源码，下面分别来介绍一下
 
 ### reactivity
 
-`reactivity`：响应式
-
-`reactivity` 的源码建议第一个看，因为它只有 `1000` 行左右。
-
-`reactivity` 也就是常说的 `响应式`，读完之后你大概就可以知道响应式是怎么执行的，`proxy` 和 `get`、`set` 是怎么劫持的。
+`reactivity` 也就是响应式，它的源码建议第一个看，因为它只有 `1000` 行左右。读完之后你大概就可以知道响应式是怎么执行的，`proxy` 和 `get`、`set` 是怎么劫持的。
 
 ### compiler
 
-`compiler`：编译器
-
-第二个要看的就是 `compiler`。`compiler` 就需要硬啃了，如果对 `compiler` 不太熟悉，那么读 `runtime` 就非常痛苦。
+`compiler` 是编译器。第二个要看的就是 `compiler`。`compiler` 就需要硬啃了，如果对 `compiler` 不太熟悉，那么读 `runtime` 就非常痛苦。
 
 如果你在读 `compiler` 的时候是非常痛苦的，那么你就需要了解基本是编译原理。这里推荐一个库，可能是有史以来最小的编译器：[the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)，大概是一个 `200行` 左右的编译器实现。
 
 ### runtime
 
-`runtime`：运行时
+`runtime` 是运行时。`runtime` 接收的是 `compiler` 执行之后的结果，所以建议最后来看。
 
-`runtime` 接收的是 `compiler` 执行之后的结果，所以建议最后来看。
+### 简单介绍一下目录结构
+
+- [reactivity](https://github.com/vuejs/core/tree/main/packages/reactivity): vue 独立的响应式模块
+- [compiler-core](https://github.com/vuejs/core/tree/main/packages/compiler-core): 与平台无关的编译模块，例如基础的 baseCompile 编译模版文件, baseParse 生成 AST
+- [compiler-dom](https://github.com/vuejs/core/tree/main/packages/compiler-dom): 基于 compiler-core，专为浏览器的编译模块，可以看到它基于 baseCompile，baseParse，重写了 compiler、parse
+- [compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc): 用来编译 vue 单文件组件
+- [compiler-ssr](https://github.com/vuejs/core/tree/main/packages/compiler-ssr): 服务端渲染相关的
+- [runtime-core](https://github.com/vuejs/core/tree/main/packages/runtime-core): 也是与平台无关的基础模块，有 vue 的各类 API，虚拟 dom 的渲染器
+- [runtime-dom](https://github.com/vuejs/core/tree/main/packages/runtime-dom): 基于 runtime-core，针对浏览器的运行时
+- [vue](https://github.com/vuejs/core/tree/main/packages/vue): 引入导出 runtime-core，还有编译方法
 
 ## 先从社区入手
 
 ### 浏览最新 issues
 
-根据众多的 [issues](https://github.com/vuejs/core/issues) 中可以进行根据他人提出的一些问题或者 `Bug`，可以根据描述进行修复，修复完成之后可以进行提交 `PR`。
+根据众多的 [issues](https://github.com/vuejs/core/issues) 中可以进行根据他人提出的一些问题或者 `Bug`，可以根据描述进行修复，修复完成之后可以进行提交 `pr`。
 
 ### 根据 close 的 issues 进行推断
 
@@ -106,12 +109,7 @@ vue3 由 `reactivity`、`compiler`、`runtime` 构成 `vue3` 最核心的源码�
 
 vue3 目前有两个官方文档，这里介绍一下：
 
-**最新文档**
-
-- [最新中文文档](https://staging-cn.vuejs.org/)
-- [Github](https://github.com/vuejs-translations/docs-zh-cn)
-
-**老文档**
-
-- [中文文档](https://v3.cn.vuejs.org/)
-- [Github](https://github.com/vuejs/docs-next-zh-cn)
+- [vue3 最新中文文档](https://staging-cn.vuejs.org/)
+- [新版 Github](https://github.com/vuejs-translations/docs-zh-cn)
+- [vue3 老版中文文档](https://v3.cn.vuejs.org/)
+- [老版 Github](https://github.com/vuejs/docs-next-zh-cn)
