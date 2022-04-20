@@ -28,7 +28,7 @@ sidebar_position: 3
 
 但是在阅读之前，需要将其中的项目说明文件进行阅读一遍，这也就是一个项目的说明书，不看说明书，可能你会摸不着头脑。
 
-所以要先将 `说明书` 先看一遍。
+所以要先将 `说明书`（贡献指南）先看一遍。
 
 - 怎么把项目跑起来？
 
@@ -63,6 +63,8 @@ vue3 的核心源码在 [packages](https://github.com/vuejs/core/tree/main/packa
 ### reactivity
 
 `reactivity` 也就是响应式，它的源码建议第一个看，因为它只有 `1000` 行左右。读完之后你大概就可以知道响应式是怎么执行的，`proxy` 和 `get`、`set` 是怎么劫持的。
+
+vue3 的 `reactivity` 是使用的 ES6 的 [Proxy](https://tianyuhao.cn/blog/docs/javascript/Proxy%20%E4%BB%A3%E7%90%86) 进行实现的，简单的实现方式可以参考 [第四章 响应系统的作用与实现](https://tianyuhao.cn/blog/docs/vue-design/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%93%8D%E5%BA%94%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0)
 
 ### compiler
 
