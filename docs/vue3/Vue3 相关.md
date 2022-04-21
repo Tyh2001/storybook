@@ -1080,3 +1080,21 @@ h1 {
 ```
 
 可以试一下效果依然可以实现
+
+## 动态引入图片或视频
+
+```ts
+const contentIndex = ref<number>(1)
+// 点击圆圈
+const clickCircle = (num: number): void => {
+  contentIndex.value = num + 1
+}
+
+// 加载指定的视频
+const videoExample = computed(() => {
+  return new URL(
+    `/src/assets/video/chase/v1-${contentIndex.value}.mp4`,
+    import.meta.url
+  ).href
+})
+```
