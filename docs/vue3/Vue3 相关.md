@@ -40,24 +40,33 @@ npm init vite vue-demo
 ## vite.config.js 配置
 
 ```js
-import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-const { resolve } = require('path')
+import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
 export default defineConfig({
-  base: './', // 公共路径
+  base: './',
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'), // 使用 @ 访问 src 目录
-    },
+      '@': resolve(__dirname, './src')
+    }
   },
   server: {
     host: '127.0.0.1',
     port: '2001', // 端口号
     open: true, // 自动打开
-  },
+    // 服务器代理
+    proxy: {
+      '/api': {
+        target: 'https://xxxxx.com', // 代理地址
+        changeOrigin: true, // 允许跨域
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
+
 ```
 
 ## 组件结构
