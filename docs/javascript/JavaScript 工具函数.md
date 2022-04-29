@@ -294,7 +294,7 @@ export const getFormData = (object) => {
  * @param { number } no 保留位数
  * @returns 转换结果
  */
-export const = cutNumber (number, no = 2) => {
+export const cutNumber = (number, no = 2) => {
   if (typeof number != 'number') {
     number = Number(number)
   }
