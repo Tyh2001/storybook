@@ -27,3 +27,11 @@ export default {
   },
 }
 ```
+
+## defineAsyncComponent
+
+定义一个异步组件，它在运行时是懒加载的。参数可以是一个装载函数，或是对装载行为有更进一步控制的一个选项对象
+
+```js
+const FButton = defineAsyncComponent(() => import('../components/FButton.vue'))
+```
