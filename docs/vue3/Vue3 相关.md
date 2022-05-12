@@ -1092,6 +1092,8 @@ h1 {
 
 ## 动态引入图片或视频
 
+https://cn.vitejs.dev/guide/assets.html#new-url-url-import-meta-url
+
 ```ts
 const contentIndex = ref<number>(1)
 // 点击圆圈
