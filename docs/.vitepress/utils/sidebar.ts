@@ -1,0 +1,97 @@
+export const sidebar = {
+  '/docs/': [
+    {
+      text: 'Hello',
+      link: 'docs/hello/hello',
+      children: [
+        { text: 'Hello', link: 'docs/hello/hello' }
+      ]
+    }, {
+      text: 'JavaScript',
+      link: 'docs/javascript/basic',
+      children: [
+        { text: '基础', link: 'docs/javascript/basic' },
+        { text: 'DOM 相关', link: 'docs/javascript/dom' },
+        { text: '函数', link: 'docs/javascript/function' },
+        { text: '数据类型', link: 'docs/javascript/data-type' },
+        { text: '字符串方法', link: 'docs/javascript/methods-string' },
+        { text: '数组方法', link: 'docs/javascript/methods-array' },
+        { text: '数组迭代', link: 'docs/javascript/array-iteration' },
+        { text: '对象方法', link: 'docs/javascript/methods-object' },
+        { text: '日期对象', link: 'docs/javascript/date-object' },
+        { text: '数学对象', link: 'docs/javascript/math-object' },
+        { text: '异步函数', link: 'docs/javascript/fun-async' },
+        { text: '微任务与宏任务', link: 'docs/javascript/task-type' },
+        { text: '面向对象编程', link: 'docs/javascript/fun-prototype' },
+        { text: 'Class 类的使用', link: 'docs/javascript/fun-class' },
+        { text: 'JavaScript API', link: 'docs/javascript/javascript-api' },
+        { text: 'leetCode 算法', link: 'docs/javascript/leetCode' },
+        { text: '生成器', link: 'docs/javascript/generator' },
+        { text: 'proxy 代理', link: 'docs/javascript/proxy' }
+      ]
+    }, {
+      text: 'Vue',
+      link: 'docs/vue/vue2',
+      children: [
+        { text: 'Vue2 基础', link: 'docs/vue/vue2' },
+        { text: 'Vue3 基础', link: 'docs/vue/vue3' },
+        { text: 'Vue3 API', link: 'docs/vue/vue3-api' },
+        { text: 'Vue3 Router', link: 'docs/vue/vue3-router' },
+        { text: 'Vuex', link: 'docs/vue/vuex' },
+        { text: 'Pinia', link: 'docs/vue/pinia' },
+      ]
+    }, {
+      text: 'TypeScript',
+      link: 'docs/typescript/type',
+      children: [
+        { text: '类型', link: 'docs/typescript/type' },
+        { text: '其它', link: 'docs/typescript/other' },
+      ]
+    }
+  ],
+  '/article/': [
+    {
+      text: '里程碑',
+      link: 'article/milepost/milepost-2021',
+      children: [
+        { text: '里程碑 2021', link: 'article/milepost/milepost-2021' },
+        { text: '里程碑 2022', link: 'article/milepost/milepost-2022' },
+      ]
+    }, {
+      text: '我的文章',
+      link: 'article/article/article-0',
+      children: [
+        { text: '杂项记录', link: 'article/article/article-0' },
+        { text: '别再写循环套循环了', link: 'article/article/article-1' },
+        { text: '关于组件库', link: 'article/article/article-2' },
+        { text: '看书的分享', link: 'article/article/article-3' },
+        { text: 'GitHubPages 部署项目', link: 'article/article/article-4' },
+        { text: 'highlightjs 使用方法', link: 'article/article/article-5' },
+        { text: 'Node.js 版本切换', link: 'article/article/article-6' },
+        { text: 'Vue3 + pnpm 搭建 monorepo 项目', link: 'article/article/article-7' },
+        { text: 'Git 常用命令', link: 'article/article/article-8' },
+        { text: 'Vue3 的源码怎么看', link: 'article/article/article-9' },
+      ]
+    }, {
+      text: 'Vue.js 设计与实现',
+      link: 'article/vue-design/page-1',
+      children: [
+        { text: '第一章 权衡的艺术', link: 'article/vue-design/page-1' },
+        { text: '第二章 框架设计的核心要素', link: 'article/vue-design/page-2' },
+        { text: '第三章 Vue.js 3 的设计思路', link: 'article/vue-design/page-3' },
+        { text: '第四章 响应系统的作用与实现', link: 'article/vue-design/page-4' },
+      ]
+    }, {
+      text: '前端面试题',
+      link: 'article/ques/ques-new',
+      children: [
+        { text: '更新面试题', link: 'article/ques/ques-new' },
+        { text: 'Web 相关', link: 'article/ques/ques-web' },
+        { text: 'Html 相关', link: 'article/ques/ques-html' },
+        { text: 'Css 相关', link: 'article/ques/ques-css' },
+        { text: 'JavaScript 相关', link: 'article/ques/ques-javascript' },
+        { text: 'Vue2 相关', link: 'article/ques/ques-vue2' },
+      ]
+    }
+  ]
+}
