@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { nav } from './utils/nav'
 import { sidebar } from './utils/sidebar'
+import docsearch from '@docsearch/js'
 
 const config = defineConfig({
   title: 'Tyh',
@@ -12,7 +13,12 @@ const config = defineConfig({
   themeConfig: {
     logo: 'https://tianyuhao.cn/images/my.png',
     nav,
-    sidebar
+    sidebar,
+    algolia: {
+      appId: 'R2IYF7ETH7',
+      apiKey: '599cec31baffa4868cae4e79f180729b',
+      indexName: 'docsearch'
+    }
   }
 })
 
