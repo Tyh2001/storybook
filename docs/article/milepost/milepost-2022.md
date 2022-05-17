@@ -228,3 +228,9 @@ tyh-ui 最近又完善了好多东西，ts 的类型更加的严谨了。
 另外还开发了一个新的库，叫 [Tsmango](https://github.com/tyh2001/tsmango) 是一个可爱的芒果，它是一个实用的工具函数库，封装了一些我们常用的函数，以便提示我们的开发效率。只不过现在还是 `beta` 版本中，还在更新迭代。
 
 ![](../images/22.jpg)
+
+## 2022-05-18
+
+终于把 [Fighting Design](https://github.com/Tyh2001/fighting-design) 的打包做好了，npm 已经发布[测试版](https://www.npmjs.com/package/fighting-design)
+
+虽然实现的方式优点挫，后续再慢慢优化，先暂时这样，哈哈~~
