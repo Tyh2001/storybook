@@ -40,7 +40,7 @@ npm init vite vue-demo
 ```js
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-const { resolve } = require('path')
+import { resolve } from 'path'
 
 export default defineConfig({
   base: './', // 公共路径
@@ -58,31 +58,9 @@ export default defineConfig({
 })
 ```
 
-## 组件结构
-
-vue3 的组件结构和 vue2 的结果在 js 部分的差别的最大的，文件结构为：
-
-```vue
-<template></template>
-
-<script>
-export default {
-  setup() {
-    return {}
-  },
-}
-</script>
-
-<style scoped></style>
-```
-
-`template` 中不再可以有一个根节点了，现在是可以有很多个。
-
-`script` 中不再有 `data、mounted、created、watch、mounted` 等钩子函数，现在需要将所有的都集合到了 `setup` 函数中
-
 ## setup
 
-`setup` 是在单文件组件中使用**Composition API** 的编译时的语法糖，相比普通的 script 语法，它有更多的优势：
+`setup` 是在单文件组件中使用 `Composition API` 的编译时的语法糖，相比普通的 script 语法，它有更多的优势：
 
 - 更少的样板内容，更简洁的代码。
 - 能够使用纯 Typescript 声明 props 和抛出事件。
@@ -91,7 +69,7 @@ export default {
 
 ### 定义变量
 
-在 `setup` 中可以定义函数或者变量，**但是必须将这些函数或变量 return 出去**，才可以正常在模板中使用。
+在 `setup` 中可以定义函数或者变量，`但是必须将这些函数或变量 return 出去`，才可以正常在模板中使用。
 
 ```vue
 <template>
@@ -426,42 +404,6 @@ const num = computed(() => {
 
 但是组合 api 可以将所有的变量数据函数全部都放在 setup 一个函数中，这样其实我们可以将固定的模块抽离出一个单独的文件进行处理，然后再引入传参解构进行调用，如果逻辑很多的情况下，使用这种组合拆分的方式，你的组件里的代码就会越来越少了，每个模块单独管理方便维护。
 
-## 组件中使用路由方法
-
-**方式一 ：通过 getCurrentInstance 方法获取当前组件实例，从而获取 route 和 router**
-
-```js
-import { getCurrentInstance } from 'vue'
-
-export default {
-  setup() {
-    const { proxy } = getCurrentInstance()
-    console.log(proxy.$route)
-    console.log(proxy.$router)
-  },
-}
-```
-
-**方式二：通过从路由中导入 useRoute useRouter 使用 route 和 router**
-
-安装路由：
-
-```shell
-npm install vue-router@4
-```
-
-```js
-import { useRoute, useRouter } from 'vue-router'
-export default {
-  setup() {
-    const $route = useRoute()
-    const $router = useRouter()
-    console.log($route)
-    console.log($router)
-  },
-}
-```
-
 ## 组件绑定事件
 
 在 Vue2 中，想要给组件绑定事件需要在子组件向父组件发送自定义事件才可以，但是在 Vue3 中，可以对组件直接进行绑定事件
@@ -723,7 +665,7 @@ const componentsName = computed(() => {
 
 当在这些组件之间切换的时候，你有时会想保持这些组件的状态，比如下面引入的子组件中有一个文本框的组件 `MyInput`，但是当我点击按钮写换渲染的组件之后再切换回来的时候，发现之前在文本框中输入的内容没有了，但是我想在输入之后切换组件回来的时候文本框中的内容依然存在，那么就需要 `keep-alive` 元素将其动态组件包裹起来，那么这样的话失活的组件将会被缓存，当我切换回 `MyInput` 组件的时候，里面内容依然存在
 
-```vue
+```html
 <keep-alive>
   <component :is="componentsName"></component>
 </keep-alive>
