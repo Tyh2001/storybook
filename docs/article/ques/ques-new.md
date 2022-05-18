@@ -70,5 +70,3 @@ node 处理[高并发](https://blog.csdn.net/weixin_42476601/article/details/822
 ## 如何中断已发出去的请求？
 
 ## localStorage 怎么设置过期时间？
-
-## 设计模式是什么？

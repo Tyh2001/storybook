@@ -21,11 +21,9 @@ export const sidebar = {
         { text: '日期对象', link: 'docs/javascript/date-object' },
         { text: '数学对象', link: 'docs/javascript/math-object' },
         { text: '异步函数', link: 'docs/javascript/fun-async' },
-        { text: '微任务与宏任务', link: 'docs/javascript/task-type' },
         { text: '面向对象编程', link: 'docs/javascript/fun-prototype' },
         { text: 'Class 类的使用', link: 'docs/javascript/fun-class' },
         { text: 'JavaScript API', link: 'docs/javascript/javascript-api' },
-        { text: 'leetCode 算法', link: 'docs/javascript/leetCode' },
         { text: '生成器', link: 'docs/javascript/generator' },
         { text: 'proxy 代理', link: 'docs/javascript/proxy' }
       ]
