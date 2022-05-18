@@ -69,6 +69,7 @@ export const sidebar = {
         { text: 'Vue3 + pnpm 搭建 monorepo 项目', link: 'article/article/article-7' },
         { text: 'Git 常用命令', link: 'article/article/article-8' },
         { text: 'Vue3 的源码怎么看', link: 'article/article/article-9' },
+        { text: 'Vite + TS 配置 .env 环境文件', link: 'article/article/article-10' },
       ]
     }, {
       text: 'Vue.js 设计与实现',
