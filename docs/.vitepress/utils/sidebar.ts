@@ -72,6 +72,12 @@ export const sidebar = {
         { text: 'Vite + TS 配置 .env 环境文件', link: 'article/article/article-10' },
       ]
     }, {
+      text: 'JavaScript 设计模式',
+      link: 'article/design-mode/design-1',
+      children: [
+        { text: '高阶函数', link: 'article/design-mode/design-1' },
+      ]
+    }, {
       text: 'Vue.js 设计与实现',
       link: 'article/vue-design/page-1',
       children: [
