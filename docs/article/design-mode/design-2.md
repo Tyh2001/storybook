@@ -100,3 +100,28 @@ console.log(node1 === node2) // true
 惰性单例是在需要的时候再创建出对象实例。
 
 惰性单例模式用在弹出框上面，下面就用一个提示框来展示一下惰性单例
+
+```html
+<button id="btn">展示浮窗</button>
+<script>
+  const render = (function () {
+    let div
+    return function () {
+      if (!div) {
+        div = document.createElement('div')
+        div.style.display = 'none'
+        div.innerText = '这是一个提示框'
+        document.body.appendChild(div)
+      }
+      return div
+    }
+  })()
+
+  document.getElementById('btn').addEventListener('click', () => {
+    const node = render()
+    node.style.display = 'block'
+  })
+</script>
+```
+
+## 通用惰性单例
