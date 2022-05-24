@@ -1,127 +1,156 @@
-# 单例模式
+# 高阶函数
 
-## 单例定义
+## 前言
 
-单例模式的定义就是：`保证一个类只有一个实例，并提供一个访问他的全局站点`
+高阶函数至少要满足下面条件之一的
 
-## 实现单例模式
+- 函数可以作为参数被传递
+- 函数可以作为返回值输出
 
-我们只要用一个标识标记是否已经创建过对象，如果是，则在下一次获取时直接返回之前创建的实例
+## 回调函数
 
-```js
-class User {
-  constructor(name) {
-    this.name = name
-    this.instance = null
-  }
-  static getInstance(name) {
-    if (!this.instance) {
-      this.instance = new User(name)
-    }
-    return this.instance
-  }
-}
+下面例子中使用回调函数给新建的每个 `div` 设置样式，如果全部都在一个函数里，显然是不合理的，这样可以将创建 `div` 和设置样式的两个逻辑进行分离
 
-const user1 = User.getInstance('张三')
-const user2 = User.getInstance('李四')
-
-console.log(user2 === user1) // true
-```
-
-上面已经实现了一个简单的单例模式，但是这样意义并不是很大，下面一步步编写出更好的单例模式
-
-## 透明单例
-
-接下来来实现一个透明的单例模式，用户从这个类中创建对象的时候，可以像使用其他普通类一样进行使用
-
-下面来实现创建一个唯一的 `div` 节点
+其实设置样式可能是用户发起的，所以这样就完美了进行了分离
 
 ```js
-class Render {
-  constructor(html) {
-    if (!Render.instance) {
-      Render.instance = this
-      this.html = html
-      this.init()
-    }
-    return Render.instance
-  }
-  init() {
+function renderDiv(callback) {
+  for (let i = 0; i < 10; i++) {
     const div = document.createElement('div')
-    div.innerText = this.html
+    div.innerText = i
     document.body.appendChild(div)
+    if (typeof callback === 'function') {
+      callback(div)
+    }
   }
 }
 
-const node1 = new Render('hello')
-const node2 = new Render('hello2')
-
-console.log(node1 === node2) // true
+renderDiv((node) => {
+  node.style.color = 'red'
+})
 ```
 
-这个，不管我们 `new` 多少次这个类，始终都是创建一个实例
+## 函数作为返回值输出
 
-## 使用代理实现单例
+比如我们可以使用 `Object.prototype.toString` 可以进行类型是判断
 
-接下来使用代理方式，来再写一遍上面例子
+见下面例子
 
 ```js
-// 渲染类
-class CreateDiv {
-  constructor(html) {
-    this.html = html
-    this.init()
-  }
-  init() {
-    const div = document.createElement('div')
-    div.innerText = this.html
-    document.body.appendChild(div)
+function getType(type) {
+  return function (target) {
+    return Object.prototype.toString.call(target) === `[object ${type}]`
   }
 }
 
-// 代理类
-class Render {
-  constructor(html) {
-    if (!Render.instance) {
-      Render.instance = new CreateDiv(html)
-    }
-    return Render.instance
-  }
-}
+const t1 = getType('String')
 
-const node1 = new Render('hello')
-const node2 = new Render('hello-121')
-
-console.log(node1 === node2) // true
+console.log(t1('123')) // true
+console.log(t1(222)) // false
 ```
 
-## 惰性单例
+## 简单的单例模式
 
-惰性单例是在需要的时候再创建出对象实例。
+下面是一个简单的单例模式例子，单例模式将会在下一章进行详细介绍
 
-惰性单例模式用在弹出框上面，下面就用一个提示框来展示一下惰性单例
+```js
+function fun(callback) {
+  let res
+  return function () {
+    return res || (res = callback())
+  }
+}
 
-```html
-<button id="btn">展示浮窗</button>
-<script>
-  const render = (function () {
-    let div
-    return function () {
-      if (!div) {
-        div = document.createElement('div')
-        div.style.display = 'none'
-        div.innerText = '这是一个提示框'
-        document.body.appendChild(div)
+const getFun = fun(() => {
+  return { name: '张三' }
+})
+
+const res1 = getFun()
+const res2 = getFun()
+
+console.log(res1 === res2) // true
+```
+
+上面是一个高阶函数的例子，既把函数作为参数传递，又在函数执行后返回了一个函数
+
+## 高阶函数应用
+
+比如我们想要计算我们一个月每天总共的开销，代码如下
+
+```js
+let moneyAll = 0
+function add(money) {
+  moneyAll += money
+}
+
+add(19)
+add(20)
+add(12)
+
+console.log(moneyAll) // 51
+```
+
+但是呢，我们其实并不关心每天花多少钱，所以只需要到月底直接计算一次就可以了，所以改写函数为
+
+```js
+function addMoney() {
+  const moneyArr = []
+
+  return function () {
+    // 代表需要求值了
+    if (arguments.length === 0) {
+      let money = 0
+      for (let i = 0; i < moneyArr.length; i++) {
+        money += moneyArr[i][0]
       }
-      return div
+      return money
+    } else {
+      // 存储值
+      moneyArr.push(arguments)
     }
-  })()
+  }
+}
 
-  document.getElementById('btn').addEventListener('click', () => {
-    const node = render()
-    node.style.display = 'block'
-  })
-</script>
+const add = addMoney()
+
+add(10)
+add(20)
+add(90)
+add(80)
+
+console.log(add()) // 200
 ```
 
-## 通用惰性单例
+但是项目的函数相对较大，所有的逻辑都放在一个函数里面了，下面进行拆分
+
+```js
+function addMoney(callback) {
+  const moneyArr = []
+  return function () {
+    if (arguments.length === 0) {
+      return callback.apply(this, moneyArr)
+    } else {
+      moneyArr.push(arguments[0])
+    }
+  }
+}
+
+function cont(...moneyArr) {
+  let money = 0
+  return function () {
+    for (let i = 0; i < moneyArr.length; i++) {
+      money += moneyArr[i]
+    }
+    return money
+  }
+}
+
+const add = addMoney(cont)
+
+add(10)
+add(20)
+add(30)
+
+const res = add()
+console.log(res())
+```

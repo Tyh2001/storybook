@@ -1,156 +1,61 @@
-# 高阶函数
+# 基础知识
 
-## 前言
+## 基础多态
 
-高阶函数至少要满足下面条件之一的
-
-- 函数可以作为参数被传递
-- 函数可以作为返回值输出
-
-## 回调函数
-
-下面例子中使用回调函数给新建的每个 `div` 设置样式，如果全部都在一个函数里，显然是不合理的，这样可以将创建 `div` 和设置样式的两个逻辑进行分离
-
-其实设置样式可能是用户发起的，所以这样就完美了进行了分离
+比如想要通过一个类，来描述不同动物的叫声，可以使用下面写法：
 
 ```js
-function renderDiv(callback) {
-  for (let i = 0; i < 10; i++) {
-    const div = document.createElement('div')
-    div.innerText = i
-    document.body.appendChild(div)
-    if (typeof callback === 'function') {
-      callback(div)
-    }
+function makeSound(anima) {
+  if (anima instanceof Duck) {
+    console.log('嘎嘎嘎')
+  } else if (anima instanceof Chicken) {
+    console.log('咯咯咯')
   }
 }
 
-renderDiv((node) => {
-  node.style.color = 'red'
-})
+class Duck {}
+class Chicken {}
+
+makeSound(new Duck()) // 嘎嘎嘎
+makeSound(new Chicken()) // 咯咯咯
 ```
 
-## 函数作为返回值输出
+但是这里如果后面要新增一个动物的叫声，就需要改变 `makeSound` 函数，修改代码总是危险的，后续如果增加的动物越多，可能会导致 `makeSound` 函数变得巨大。
 
-比如我们可以使用 `Object.prototype.toString` 可以进行类型是判断
+所以我们要将 `做什么` 和 `谁去做` 分开来，因为动物会叫，这是不变的，但是不同的动物怎么叫是变化的。把不变的部分分离出来，把可变的部分封装起来，这样就可以让我们的程序是一个可生长的状态。
 
-见下面例子
+## 封装多态
+
+下面将上面的例子进行封装：
 
 ```js
-function getType(type) {
-  return function (target) {
-    return Object.prototype.toString.call(target) === `[object ${type}]`
+// 通用函数
+function makeSound(anima) {
+  anima.sound()
+}
+
+class Duck {
+  sound() {
+    console.log('嘎嘎嘎')
   }
 }
 
-const t1 = getType('String')
+class Chicken {
+  sound() {
+    console.log('咯咯咯')
+  }
+}
 
-console.log(t1('123')) // true
-console.log(t1(222)) // false
+makeSound(new Duck()) // 嘎嘎嘎
+makeSound(new Chicken()) // 咯咯咯
 ```
 
-## 简单的单例模式
-
-下面是一个简单的单例模式例子，单例模式将会在下一章进行详细介绍
+这样，如果后续还需要再新增一个狗的叫声，就直接新增一个 `Dog` 类即可，而不需要去改变原始代码
 
 ```js
-function fun(callback) {
-  let res
-  return function () {
-    return res || (res = callback())
+class Dog {
+  sound() {
+    console.log('汪汪汪')
   }
 }
-
-const getFun = fun(() => {
-  return { name: '张三' }
-})
-
-const res1 = getFun()
-const res2 = getFun()
-
-console.log(res1 === res2) // true
-```
-
-上面是一个高阶函数的例子，既把函数作为参数传递，又在函数执行后返回了一个函数
-
-## 高阶函数应用
-
-比如我们想要计算我们一个月每天总共的开销，代码如下
-
-```js
-let moneyAll = 0
-function add(money) {
-  moneyAll += money
-}
-
-add(19)
-add(20)
-add(12)
-
-console.log(moneyAll) // 51
-```
-
-但是呢，我们其实并不关心每天花多少钱，所以只需要到月底直接计算一次就可以了，所以改写函数为
-
-```js
-function addMoney() {
-  const moneyArr = []
-
-  return function () {
-    // 代表需要求值了
-    if (arguments.length === 0) {
-      let money = 0
-      for (let i = 0; i < moneyArr.length; i++) {
-        money += moneyArr[i][0]
-      }
-      return money
-    } else {
-      // 存储值
-      moneyArr.push(arguments)
-    }
-  }
-}
-
-const add = addMoney()
-
-add(10)
-add(20)
-add(90)
-add(80)
-
-console.log(add()) // 200
-```
-
-但是项目的函数相对较大，所有的逻辑都放在一个函数里面了，下面进行拆分
-
-```js
-function addMoney(callback) {
-  const moneyArr = []
-  return function () {
-    if (arguments.length === 0) {
-      return callback.apply(this, moneyArr)
-    } else {
-      moneyArr.push(arguments[0])
-    }
-  }
-}
-
-function cont(...moneyArr) {
-  let money = 0
-  return function () {
-    for (let i = 0; i < moneyArr.length; i++) {
-      money += moneyArr[i]
-    }
-    return money
-  }
-}
-
-const add = addMoney(cont)
-
-add(10)
-add(20)
-add(30)
-
-const res = add()
-console.log(res())
 ```
