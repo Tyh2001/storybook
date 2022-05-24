@@ -233,3 +233,9 @@ tyh-ui 最近又完善了好多东西，ts 的类型更加的严谨了。
 终于把 [Fighting Design](https://github.com/Tyh2001/fighting-design) 的打包做好了，npm 已经发布[测试版](https://www.npmjs.com/package/fighting-design)
 
 虽然实现的方式优点挫，后续再慢慢优化，先暂时这样，哈哈~~
+
+## 2022-05-24
+
+最近 `Fighting Design` 运行良好，单元测试也基本上写好了，最近在写一个制作组件库的教程，包括我在写的时候遇到的一些坑，我都进行了记录，准备后续可能做到一个课程，哈哈。
+
+`《JavaScript 设计模式与开发实践》` 这本书从头到尾读完一遍了，接下来就开始准备再看一遍，然后记一下笔记了，笔记在这里：[设计模式](https://tianyuhao.cn/blog/article/design-mode/design-1.html)
