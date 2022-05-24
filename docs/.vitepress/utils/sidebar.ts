@@ -4,7 +4,8 @@ export const sidebar = {
       text: 'Hello',
       link: 'docs/hello/hello',
       children: [
-        { text: 'Hello', link: 'docs/hello/hello' }
+        { text: 'Hello', link: 'docs/hello/hello' },
+        { text: '关于我', link: 'docs/hello/about' },
       ]
     }, {
       text: 'JavaScript',
