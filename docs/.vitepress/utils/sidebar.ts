@@ -4,7 +4,8 @@ export const sidebar = {
       text: 'Hello',
       link: 'docs/hello/hello',
       children: [
-        { text: 'Hello', link: 'docs/hello/hello' }
+        { text: 'Hello', link: 'docs/hello/hello' },
+        { text: '关于我', link: 'docs/hello/about' },
       ]
     }, {
       text: 'JavaScript',
@@ -78,6 +79,7 @@ export const sidebar = {
         { text: '基础知识', link: 'article/design-mode/design-1' },
         { text: '高阶函数', link: 'article/design-mode/design-2' },
         { text: '单例模式', link: 'article/design-mode/design-3' },
+        { text: '策略模式', link: 'article/design-mode/design-4' },
       ]
     }, {
       text: 'Vue.js 设计与实现',
