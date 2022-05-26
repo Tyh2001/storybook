@@ -14,8 +14,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: '@/views/home/index.vue',
-  },
+    component: '@/views/home/index.vue'
+  }
 ]
 
 // 懒加载
@@ -23,8 +23,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home/index.vue'),
-  },
+    component: () => import('@/views/home/index.vue')
+  }
 ]
 ```
 
@@ -38,9 +38,9 @@ const router = new VueRouter({
     {
       path: '/user',
       name: 'user',
-      component: () => import('@/views/user'),
-    },
-  ],
+      component: () => import('@/views/user')
+    }
+  ]
 })
 ```
 
@@ -151,8 +151,8 @@ state: {
   import { mapState } from 'vuex'
   export default {
     computed: {
-      ...mapState(['name']),
-    },
+      ...mapState(['name'])
+    }
   }
 </script>
 ```
@@ -290,7 +290,7 @@ export default {
 ```js
 const XiaoMing = {}
 Object.defineProperty(XiaoMing, 'name', {
-  value: '小明',
+  value: '小明'
 })
 console.log(XiaoMing)
 // {name: "小明"}
@@ -308,7 +308,7 @@ console.log(XiaoMing)
 'use strict'
 const XiaoMing = {}
 Object.defineProperty(XiaoMing, 'name', {
-  value: '小明',
+  value: '小明'
 })
 XiaoMing.name = 'Ming'
 console.log(XiaoMing)
@@ -329,7 +329,7 @@ Object.defineProperty(XiaoMing, 'name', {
   configurable: true, // 是否可以删除属性
   writable: true, // 是否可以修改
   enumerable: true,
-  value: '小明',
+  value: '小明'
 })
 ```
 

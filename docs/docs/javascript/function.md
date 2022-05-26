@@ -34,15 +34,15 @@ const res2 = list.map((item) => {
 ```js
 axios({
   method: '',
-  url: '',
+  url: ''
 }).then((res) => {
   axios({
     method: '',
-    url: '',
+    url: ''
   }).then((res) => {
     axios({
       method: '',
-      url: '',
+      url: ''
     }).then((res) => {})
   })
 })
@@ -207,7 +207,7 @@ const car = {
   },
   getAge() {
     return this.age
-  },
+  }
 }
 car.change()
 console.log(car.getAge()) // 40
@@ -225,7 +225,7 @@ function car() {
     },
     getAge() {
       return age
-    },
+    }
   }
 }
 
@@ -458,7 +458,7 @@ const obj = {
   name: '小明',
   sayName() {
     console.log(this.name)
-  },
+  }
 }
 obj.sayName() // 小明
 ```
@@ -503,7 +503,7 @@ const obj = {
   name: '小明',
   sayName() {
     console.log(this)
-  },
+  }
 }
 obj.sayName() // {name: "小明", sayName: ƒ}
 // 上面通过在对象中调用一个方法，输入 this 那么这个 this 打印的就是该对象
@@ -514,7 +514,7 @@ const obj2 = {
     setTimeout(function () {
       console.log(this)
     })
-  },
+  }
 }
 obj2.sayName() // window
 // 如果是通过计时器输出的就是 window，计时器指向 window
@@ -527,7 +527,7 @@ const obj3 = {
     setTimeout(() => {
       console.log(this)
     })
-  },
+  }
 }
 obj3.sayName() // {name: "小明", sayName: ƒ}
 ```
@@ -549,7 +549,7 @@ const obj = {
   name: '小明',
   change() {
     console.log(obj.name) // 小明
-  },
+  }
 }
 obj.change()
 ```
@@ -561,7 +561,7 @@ const obj = {
   name: '小明',
   change() {
     console.log(this.name) // 小明
-  },
+  }
 }
 obj.change()
 ```
@@ -574,7 +574,7 @@ const obj = {
   change() {
     console.log(this)
     // {name: "小明", change: ƒ}
-  },
+  }
 }
 obj.change()
 ```
@@ -591,7 +591,7 @@ const obj = {
       console.log(this) // window
     }
     fun1()
-  },
+  }
 }
 obj.change()
 ```
@@ -612,7 +612,7 @@ const obj = {
       console.log(this_)
     }
     fun1()
-  },
+  }
 }
 obj.change()
 ```
@@ -628,7 +628,7 @@ const obj = {
     return this.lists.map((item) => {
       return `${this_.title}-${item}`
     })
-  },
+  }
 }
 console.log(obj.change())
 
@@ -645,7 +645,7 @@ const obj = {
     return this.lists.map((item) => {
       return `${this.title}-${item}`
     }, this)
-  },
+  }
 }
 console.log(obj.change())
 ```
@@ -698,7 +698,7 @@ const obj = {
       // {title: "学习", lists: Array(3), change: ƒ}
       return `${this.title}-${item}`
     })
-  },
+  }
 }
 console.log(obj.change())
 
@@ -721,7 +721,7 @@ console.log(obj.change())
         console.log(this)
         // 这里的 this 指的是 <button id="btn">按钮</button> 这个标签
       })
-    },
+    }
   }
   obj.change()
 </script>
@@ -741,7 +741,7 @@ console.log(obj.change())
         console.log(this)
         // {title: "这是标题", change: ƒ}
       })
-    },
+    }
   }
   obj.change()
 </script>
@@ -773,7 +773,7 @@ console.log(obj.change())
         console.log(event.target) // <button id="btn">按钮</button>
         console.log(this.title + event.target.innerHTML)
       })
-    },
+    }
   }
   obj.change()
 </script>
@@ -793,7 +793,7 @@ console.log(obj.change())
       btn.addEventListener('click', function () {
         console.log(this_.title + this.innerHTML)
       })
-    },
+    }
   }
   obj.change()
 </script>
@@ -870,7 +870,7 @@ function fun() {
 
 // 这里是一个独立的对象
 const obj = {
-  name: '小明',
+  name: '小明'
 }
 
 // 那么就可以通过调用函数 再使用 call 把 obj 这个对象传递过去
@@ -885,11 +885,11 @@ const dog = {
   name: '旺财',
   sayName() {
     console.log(this.name)
-  },
+  }
 }
 
 const cat = {
-  name: '喵喵',
+  name: '喵喵'
 }
 
 dog.sayName.call(cat)
@@ -902,11 +902,11 @@ const dog = {
   name: '旺财',
   eat(food1, food2) {
     console.log(`我喜欢吃${food1}和${food2}`)
-  },
+  }
 }
 
 const cat = {
-  name: '喵喵',
+  name: '喵喵'
 }
 
 // call 的第一个参数是传递指向的对象 后面的参数传递的是函数接收的参数
@@ -927,11 +927,11 @@ const dog = {
   },
   eat(food1, food2) {
     console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  },
+  }
 }
 
 const cat = {
-  name: '喵喵',
+  name: '喵喵'
 }
 
 dog.eat.apply(cat, ['鱼', '骨头']) // 我是喵喵喜欢吃鱼和骨头
@@ -953,11 +953,11 @@ const dog = {
   },
   eat(food1, food2) {
     console.log(`我是${this.name}喜欢吃${food1}和${food2}`)
-  },
+  }
 }
 
 const cat = {
-  name: '喵喵',
+  name: '喵喵'
 }
 
 const res = dog.eat.bind(cat, '鱼', '骨头')

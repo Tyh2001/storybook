@@ -17,11 +17,11 @@ export default {
   props: {
     num: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { slots }) {
     return () => h('h' + props.num, {}, slots.default())
-  },
+  }
 }
 ```

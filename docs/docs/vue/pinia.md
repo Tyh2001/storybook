@@ -37,8 +37,8 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('main', {
   state: () => ({
     name: 'admin',
-    age: 12,
-  }),
+    age: 12
+  })
 })
 ```
 
@@ -48,8 +48,8 @@ export const useStore = defineStore('main', {
 </template>
 
 <script lang="ts" setup>
-import { useStore } from './store'
-const store = useStore()
+  import { useStore } from './store'
+  const store = useStore()
 </script>
 ```
 
@@ -62,8 +62,8 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('main', {
   // 定义数据
   state: () => ({
-    counter: 0,
-  }),
+    counter: 0
+  })
 })
 ```
 
@@ -74,11 +74,11 @@ export const useStore = defineStore('main', {
 </template>
 
 <script lang="ts" setup>
-import { useStore } from './store'
-const store = useStore()
-function change() {
-  store.counter++
-}
+  import { useStore } from './store'
+  const store = useStore()
+  function change() {
+    store.counter++
+  }
 </script>
 ```
 
@@ -129,8 +129,8 @@ export const useStore = defineStore('main', {
 </template>
 
 <script lang="ts" setup>
-import { useStore } from './store'
-const store = useStore()
+  import { useStore } from './store'
+  const store = useStore()
 </script>
 ```
 

@@ -47,14 +47,14 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'), // 使用 @ 访问 src 目录
-    },
+      '@': resolve(__dirname, './src') // 使用 @ 访问 src 目录
+    }
   },
   server: {
     host: '127.0.0.1',
     port: '2001', // 端口号
-    open: true, // 自动打开
-  },
+    open: true // 自动打开
+  }
 })
 ```
 
@@ -79,20 +79,20 @@ export default defineConfig({
 </template>
 
 <script>
-export default {
-  setup() {
-    const text = 'hello vue3'
+  export default {
+    setup() {
+      const text = 'hello vue3'
 
-    function onclick() {
-      console.log('被点击了')
-    }
+      function onclick() {
+        console.log('被点击了')
+      }
 
-    return {
-      text,
-      onclick,
+      return {
+        text,
+        onclick
+      }
     }
-  },
-}
+  }
 </script>
 ```
 
@@ -108,20 +108,20 @@ export default {
 </template>
 
 <script>
-export default {
-  setup() {
-    let text = 'hello vue3'
+  export default {
+    setup() {
+      let text = 'hello vue3'
 
-    function change() {
-      text = '你好啊'
-    }
+      function change() {
+        text = '你好啊'
+      }
 
-    return {
-      text,
-      change,
+      return {
+        text,
+        change
+      }
     }
-  },
-}
+  }
 </script>
 ```
 
@@ -135,24 +135,24 @@ export default {
 </template>
 
 <script>
-// 通过在 vue 中解构出 ref 函数
-import { ref } from 'vue'
-export default {
-  setup() {
-    // 使变量变成响应式变量
-    let text = ref('hello vue3')
+  // 通过在 vue 中解构出 ref 函数
+  import { ref } from 'vue'
+  export default {
+    setup() {
+      // 使变量变成响应式变量
+      let text = ref('hello vue3')
 
-    function change() {
-      // 通过变量名.value 来改变变量
-      text.value = '你好啊'
-    }
+      function change() {
+        // 通过变量名.value 来改变变量
+        text.value = '你好啊'
+      }
 
-    return {
-      text,
-      change,
+      return {
+        text,
+        change
+      }
     }
-  },
-}
+  }
 </script>
 ```
 
@@ -162,19 +162,19 @@ export default {
 
 ```vue
 <script>
-import { reactive } from 'vue'
-export default {
-  setup() {
-    const student = reactive({
-      name: '小明',
-      ahe: 12,
-    })
+  import { reactive } from 'vue'
+  export default {
+    setup() {
+      const student = reactive({
+        name: '小明',
+        ahe: 12
+      })
 
-    return {
-      student,
+      return {
+        student
+      }
     }
-  },
-}
+  }
 </script>
 ```
 
@@ -190,9 +190,9 @@ export default {
     const name = '张三'
 
     return {
-      name,
+      name
     }
-  },
+  }
 }
 ```
 
@@ -208,7 +208,7 @@ export default {
 </template>
 
 <script setup>
-const name = '张三'
+  const name = '张三'
 </script>
 ```
 
@@ -224,7 +224,7 @@ const name = '张三'
 </template>
 
 <script setup>
-import MyButton from './components/MyButton.vue'
+  import MyButton from './components/MyButton.vue'
 </script>
 ```
 
@@ -240,7 +240,7 @@ import MyButton from './components/MyButton.vue'
 </template>
 
 <script setup>
-import MyButton from './components/MyButton.vue'
+  import MyButton from './components/MyButton.vue'
 </script>
 ```
 
@@ -252,10 +252,10 @@ import MyButton from './components/MyButton.vue'
 </template>
 
 <script setup>
-const props = defineProps({
-  title1: String,
-  title2: String,
-})
+  const props = defineProps({
+    title1: String,
+    title2: String
+  })
 </script>
 ```
 
@@ -272,13 +272,13 @@ const props = defineProps({
 </template>
 
 <script setup>
-import MyButton from './components/MyButton.vue'
-import { ref } from 'vue'
-const title = ref('这是父组件的内容')
+  import MyButton from './components/MyButton.vue'
+  import { ref } from 'vue'
+  const title = ref('这是父组件的内容')
 
-function change(val) {
-  title.value = val
-}
+  function change(val) {
+    title.value = val
+  }
 </script>
 ```
 
@@ -291,12 +291,12 @@ function change(val) {
 </template>
 
 <script setup>
-// 使用 defineEmits 来声明 emit，里面是一个数组
-// 数组的值是发送自定义事件的事件名
-const emit = defineEmits(['changeTitle'])
-function onchangeTitle() {
-  emit('changeTitle', '嘿嘿嘿')
-}
+  // 使用 defineEmits 来声明 emit，里面是一个数组
+  // 数组的值是发送自定义事件的事件名
+  const emit = defineEmits(['changeTitle'])
+  function onchangeTitle() {
+    emit('changeTitle', '嘿嘿嘿')
+  }
 </script>
 ```
 
@@ -306,13 +306,13 @@ function onchangeTitle() {
 
 ```vue
 <script>
-export default {
-  name: 'app',
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
 <script setup>
-const name = '小明'
+  const name = '小明'
 </script>
 ```
 
@@ -347,7 +347,7 @@ export default {
     })
 
     console.log('setup')
-  },
+  }
 }
 
 // 输出结果：
@@ -369,12 +369,12 @@ export default {
     function loadData() {
       axios({
         method: 'GET',
-        url: 'http://api.wod.xyz/Ip/outGetIpInfo?ip=57.23.66.35',
+        url: 'http://api.wod.xyz/Ip/outGetIpInfo?ip=57.23.66.35'
       }).then((res) => {
         console.log(res)
       })
     }
-  },
+  }
 }
 ```
 
@@ -388,13 +388,13 @@ export default {
 </template>
 
 <script setup>
-// 引入 computed
-import { computed } from 'vue'
-// computed 内部传入一个回调函数再赋值给变量 num
-const num = computed(() => {
-  // 计算属性必须有返回值
-  return 10 + 20
-})
+  // 引入 computed
+  import { computed } from 'vue'
+  // computed 内部传入一个回调函数再赋值给变量 num
+  const num = computed(() => {
+    // 计算属性必须有返回值
+    return 10 + 20
+  })
 </script>
 ```
 
@@ -424,10 +424,10 @@ const num = computed(() => {
 </template>
 
 <script setup>
-import Btn from './components/demo/Btn.vue'
-function add() {
-  alert('点击了')
-}
+  import Btn from './components/demo/Btn.vue'
+  function add() {
+    alert('点击了')
+  }
 </script>
 ```
 
@@ -462,7 +462,7 @@ Vue3 相比 Vue2 插槽也有了一定的变化，尤其是具名插槽
 </template>
 
 <script setup>
-import MyCom from './components/demo/My-com.vue'
+  import MyCom from './components/demo/My-com.vue'
 </script>
 ```
 
@@ -480,12 +480,12 @@ import MyCom from './components/demo/My-com.vue'
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-const myRef = ref(null)
+  import { ref, onMounted } from 'vue'
+  const myRef = ref(null)
 
-onMounted(() => {
-  console.log(myRef)
-})
+  onMounted(() => {
+    console.log(myRef)
+  })
 </script>
 ```
 
@@ -502,9 +502,9 @@ onMounted(() => {
 </template>
 
 <script setup>
-const setRef = (el) => {
-  console.log(el)
-}
+  const setRef = (el) => {
+    console.log(el)
+  }
 </script>
 ```
 
@@ -516,10 +516,10 @@ const setRef = (el) => {
 </template>
 
 <script setup>
-import { nextTick } from 'vue'
-nextTick(() => {
-  console.log(document.querySelector('.text'))
-})
+  import { nextTick } from 'vue'
+  nextTick(() => {
+    console.log(document.querySelector('.text'))
+  })
 </script>
 ```
 
@@ -534,9 +534,9 @@ nextTick(() => {
 </template>
 
 <script setup>
-import MyInput from './components/MyInput.vue'
-import { ref } from 'vue'
-const text = ref('')
+  import MyInput from './components/MyInput.vue'
+  import { ref } from 'vue'
+  const text = ref('')
 </script>
 ```
 
@@ -552,35 +552,35 @@ const text = ref('')
 </template>
 
 <script setup>
-// 在父组件上绑定了 v-model 后，相当于传递了一个 modelValue 的参数
-// modelValue 的名字的固定的，不能改变
-// 并且 prop 还会抛出 update:modelValue 事件，事件名称也是不能改变的
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-})
-const emit = defineEmits(['update:modelValue'])
-// 通过调用函数 向父组件发送文本框的内容
-function myInput(evt) {
-  emit('update:modelValue', evt.target.value)
-}
+  // 在父组件上绑定了 v-model 后，相当于传递了一个 modelValue 的参数
+  // modelValue 的名字的固定的，不能改变
+  // 并且 prop 还会抛出 update:modelValue 事件，事件名称也是不能改变的
+  const props = defineProps({
+    modelValue: {
+      type: String,
+      default: ''
+    }
+  })
+  const emit = defineEmits(['update:modelValue'])
+  // 通过调用函数 向父组件发送文本框的内容
+  function myInput(evt) {
+    emit('update:modelValue', evt.target.value)
+  }
 </script>
 
 <style scoped>
-input {
-  width: 200px;
-  height: 35px;
-  border-radius: 5px;
-  color: #3f536e;
-  border: 1px solid #c5d9e8;
-  outline: 0;
-  padding: 0 10px;
-  transition: border 0.35s;
-  background: #fff;
-  box-sizing: border-box;
-}
+  input {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    color: #3f536e;
+    border: 1px solid #c5d9e8;
+    outline: 0;
+    padding: 0 10px;
+    transition: border 0.35s;
+    background: #fff;
+    box-sizing: border-box;
+  }
 </style>
 ```
 
@@ -601,11 +601,11 @@ input {
 </template>
 
 <script setup>
-import MyComponent from './components/MyComponent.vue'
-import { provide } from 'vue'
-const say = '这是父组件提供的数据' // 需要提供的数据
-// 使用 provide 函数，第一个参数为提供数据的名称，可以自定义，第二个是需要提供的数据
-provide('AppSay', say)
+  import MyComponent from './components/MyComponent.vue'
+  import { provide } from 'vue'
+  const say = '这是父组件提供的数据' // 需要提供的数据
+  // 使用 provide 函数，第一个参数为提供数据的名称，可以自定义，第二个是需要提供的数据
+  provide('AppSay', say)
 </script>
 ```
 
@@ -618,9 +618,9 @@ provide('AppSay', say)
 </template>
 
 <script setup>
-import { inject } from 'vue'
-// 通过 inject 函数接收父组件提供的数据，可以通过名称 AppSay 获取
-const res = inject('AppSay')
+  import { inject } from 'vue'
+  // 通过 inject 函数接收父组件提供的数据，可以通过名称 AppSay 获取
+  const res = inject('AppSay')
 </script>
 ```
 
@@ -640,22 +640,22 @@ const res = inject('AppSay')
 </template>
 
 <script setup>
-// 引入两个组件
-import MyInput from './components/MyInput.vue'
-import MyButton from './components/MyButton.vue'
-import { computed, ref } from 'vue'
-// 通过变量控制渲染的组件
-const text = ref(true)
+  // 引入两个组件
+  import MyInput from './components/MyInput.vue'
+  import MyButton from './components/MyButton.vue'
+  import { computed, ref } from 'vue'
+  // 通过变量控制渲染的组件
+  const text = ref(true)
 
-// 点击按钮调用函数，改变变量控制渲染的组件
-function change() {
-  text.value = !text.value
-}
+  // 点击按钮调用函数，改变变量控制渲染的组件
+  function change() {
+    text.value = !text.value
+  }
 
-// 计算属性根据 text 的变量来返回不同的组件名称进行渲染
-const componentsName = computed(() => {
-  return text.value ? 'MyInput' : 'MyButton'
-})
+  // 计算属性根据 text 的变量来返回不同的组件名称进行渲染
+  const componentsName = computed(() => {
+    return text.value ? 'MyInput' : 'MyButton'
+  })
 </script>
 ```
 
@@ -685,13 +685,13 @@ const componentsName = computed(() => {
 </template>
 
 <script setup>
-function change1() {
-  console.log('change1')
-}
-function change2(event) {
-  event.stopPropagation()
-  console.log('change2')
-}
+  function change1() {
+    console.log('change1')
+  }
+  function change2(event) {
+    event.stopPropagation()
+    console.log('change2')
+  }
 </script>
 ```
 
@@ -705,12 +705,12 @@ function change2(event) {
 </template>
 
 <script setup>
-function change1() {
-  console.log('change1')
-}
-function change2() {
-  console.log('change2')
-}
+  function change1() {
+    console.log('change1')
+  }
+  function change2() {
+    console.log('change2')
+  }
 </script>
 ```
 
@@ -776,17 +776,17 @@ passive 修饰符的含义就是：默认行为在 js 内部不需要判断了�
 </template>
 
 <script setup>
-function onScroll() {
-  console.log('11')
-}
+  function onScroll() {
+    console.log('11')
+  }
 </script>
 
 <style scoped>
-#box {
-  height: 300px;
-  overflow-y: auto;
-  border: 5px solid black;
-}
+  #box {
+    height: 300px;
+    overflow-y: auto;
+    border: 5px solid black;
+  }
 </style>
 ```
 
@@ -803,8 +803,8 @@ function onScroll() {
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const text = ref('')
+  import { ref } from 'vue'
+  const text = ref('')
 </script>
 ```
 
@@ -847,9 +847,9 @@ const text = ref('')
 </template>
 
 <script setup>
-function key(event) {
-  console.log(event)
-}
+  function key(event) {
+    console.log(event)
+  }
 </script>
 ```
 
@@ -863,9 +863,9 @@ function key(event) {
 </template>
 
 <script setup>
-function key(event) {
-  console.log(event.key)
-}
+  function key(event) {
+    console.log(event.key)
+  }
 </script>
 ```
 
@@ -887,9 +887,9 @@ function key(event) {
 </template>
 
 <script setup>
-const change1 = () => console.log('change1')
-const change2 = () => console.log('change2')
-const change3 = () => console.log('change3')
+  const change1 = () => console.log('change1')
+  const change2 = () => console.log('change2')
+  const change3 = () => console.log('change3')
 </script>
 ```
 
@@ -903,19 +903,19 @@ vue3 中可以在 `style` 中使用 `v-bind` 来绑定 js 中的变量，比如�
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const text = ref('1')
-const color = ref('red')
-const add = () => {
-  text.value++
-  text.value % 2 === 0 ? (color.value = 'red') : (color.value = 'blue')
-}
+  import { ref } from 'vue'
+  const text = ref('1')
+  const color = ref('red')
+  const add = () => {
+    text.value++
+    text.value % 2 === 0 ? (color.value = 'red') : (color.value = 'blue')
+  }
 </script>
 
 <style scoped>
-h1 {
-  color: v-bind(color);
-}
+  h1 {
+    color: v-bind(color);
+  }
 </style>
 ```
 
@@ -929,16 +929,16 @@ h1 {
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-const text = ref(1)
-const add = () => text.value++
-watch(
-  () => text.value,
-  (newText, oldText) => {
-    // newText 是新值，oldText 是老值
-    console.log(newText, oldText)
-  }
-)
+  import { ref, watch } from 'vue'
+  const text = ref(1)
+  const add = () => text.value++
+  watch(
+    () => text.value,
+    (newText, oldText) => {
+      // newText 是新值，oldText 是老值
+      console.log(newText, oldText)
+    }
+  )
 </script>
 ```
 
@@ -995,9 +995,9 @@ export default {
     return {
       change,
       text,
-      arr,
+      arr
     }
-  },
+  }
 }
 ```
 

@@ -12,14 +12,14 @@
 ```js
 const user = {
   name: '张同学',
-  age: 38,
+  age: 38
 }
 
 Object.defineProperty(user, 'friend', {
   configurable: true, // 是否可以通过 delete 删除
   enumerable: true, // 是否可以循环
   writable: true, // 是否可以修改
-  value: [1, 2, 3, 4], // 添加的值
+  value: [1, 2, 3, 4] // 添加的值
 })
 
 console.log(user) // {name: '张同学', age: 38, friend: Array(4)}
@@ -35,11 +35,11 @@ const obj = {}
 Object.defineProperties(obj, {
   name: {
     value: '张同学',
-    configurable: true,
+    configurable: true
   },
   age: {
-    value: 12,
-  },
+    value: 12
+  }
 })
 
 console.log(obj) // {name: '张同学', age: 12}
@@ -119,7 +119,7 @@ const user = new User()
 const newProto = {
   satName() {
     console.log('你好')
-  },
+  }
 }
 
 Object.setPrototypeOf(user, newProto)
@@ -140,7 +140,7 @@ console.log(Object.create(null))
 ```js
 const obj = {
   name: '张三',
-  arr: [1, 2, 3, 4],
+  arr: [1, 2, 3, 4]
 }
 
 const newObj = Object.create(obj)
@@ -156,7 +156,7 @@ console.log(newObj.__proto__ === obj) // true
 const newProto = {
   sayName() {
     console.log('你好')
-  },
+  }
 }
 
 const user = Object.create(newProto)
@@ -179,13 +179,13 @@ Object
 
 ```js
 const z = {
-  name: '张三',
+  name: '张三'
 }
 
 const res = Object.create(z, {
   name: {
-    value: '张同学',
-  },
+    value: '张同学'
+  }
 })
 
 console.log(z.name) // 张同学
@@ -205,14 +205,14 @@ const o = Object.create(obj, {
     value: '2',
     enumerable: true,
     writable: false,
-    configurable: false,
+    configurable: false
   },
   c: {
     value: '3',
     enumerable: true,
     writable: false,
-    configurable: false,
-  },
+    configurable: false
+  }
 })
 console.log(o) // {b: '2', c: '3'}
 ```
@@ -261,7 +261,7 @@ const key1 = Symbol('key1')
 const key2 = Symbol('key2')
 const obj = {
   [key1]: '张三',
-  [key2]: 20,
+  [key2]: 20
 }
 
 for (const key in obj) {
@@ -277,7 +277,7 @@ const key1 = Symbol('key1')
 const key2 = Symbol('key2')
 const obj = {
   [key1]: '张三',
-  [key2]: 20,
+  [key2]: 20
 }
 
 for (const key of Object.getOwnPropertySymbols(obj)) {
@@ -295,7 +295,7 @@ for (const key of Object.getOwnPropertySymbols(obj)) {
 ```js
 const obj = {
   name: '张同学',
-  age: 39,
+  age: 39
 }
 
 console.log(Object.values(obj))
@@ -309,7 +309,7 @@ console.log(Object.values(obj))
 ```js
 const obj = {
   name: '张同学',
-  age: 39,
+  age: 39
 }
 
 console.log(Object.entries(arr))
@@ -332,7 +332,7 @@ console.log(Object.entries(arr))
 ```js
 const obj = {
   name: '张三',
-  age: 21,
+  age: 21
 }
 
 console.log(Object.getOwnPropertyDescriptor(obj, 'name'))
@@ -351,7 +351,7 @@ console.log(Object.getOwnPropertyDescriptor(obj, 'name'))
 ```js
 const obj = {
   name: '张三',
-  age: 21,
+  age: 21
 }
 
 console.log(Object.getOwnPropertyDescriptors(obj))
@@ -366,7 +366,7 @@ console.log(Object.getOwnPropertyDescriptors(obj))
 ```js
 const obj = {
   name: '张三',
-  age: 21,
+  age: 21
 }
 
 Object.preventExtensions(obj)
@@ -383,7 +383,7 @@ console.log(obj) // {name: '张三', age: 21}
 ```js
 const obj = {
   name: '张三',
-  age: 21,
+  age: 21
 }
 
 Object.seal(obj)
@@ -401,7 +401,7 @@ console.log(Object.isSealed(obj)) // true
 ```js
 const obj = {
   name: '张三',
-  age: 21,
+  age: 21
 }
 
 Object.freeze(obj)

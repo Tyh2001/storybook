@@ -5,9 +5,10 @@ export const sidebar = {
       link: 'docs/hello/hello',
       children: [
         { text: 'Hello', link: 'docs/hello/hello' },
-        { text: '关于我', link: 'docs/hello/about' },
+        { text: '关于我', link: 'docs/hello/about' }
       ]
-    }, {
+    },
+    {
       text: 'JavaScript',
       link: 'docs/javascript/basic',
       children: [
@@ -28,7 +29,8 @@ export const sidebar = {
         { text: '生成器', link: 'docs/javascript/generator' },
         { text: 'proxy 代理', link: 'docs/javascript/proxy' }
       ]
-    }, {
+    },
+    {
       text: 'Vue',
       link: 'docs/vue/vue2',
       children: [
@@ -37,14 +39,15 @@ export const sidebar = {
         { text: 'Vue3 API', link: 'docs/vue/vue3-api' },
         { text: 'Vue3 Router', link: 'docs/vue/vue3-router' },
         { text: 'Vuex', link: 'docs/vue/vuex' },
-        { text: 'Pinia', link: 'docs/vue/pinia' },
+        { text: 'Pinia', link: 'docs/vue/pinia' }
       ]
-    }, {
+    },
+    {
       text: 'TypeScript',
       link: 'docs/typescript/type',
       children: [
         { text: '类型', link: 'docs/typescript/type' },
-        { text: '其它', link: 'docs/typescript/other' },
+        { text: '其它', link: 'docs/typescript/other' }
       ]
     }
   ],
@@ -54,9 +57,10 @@ export const sidebar = {
       link: 'article/milepost/milepost-2021',
       children: [
         { text: '里程碑 2021', link: 'article/milepost/milepost-2021' },
-        { text: '里程碑 2022', link: 'article/milepost/milepost-2022' },
+        { text: '里程碑 2022', link: 'article/milepost/milepost-2022' }
       ]
-    }, {
+    },
+    {
       text: '我的文章',
       link: 'article/article/article-0',
       children: [
@@ -67,30 +71,48 @@ export const sidebar = {
         { text: 'GitHubPages 部署项目', link: 'article/article/article-4' },
         { text: 'highlightjs 使用方法', link: 'article/article/article-5' },
         { text: 'Node.js 版本切换', link: 'article/article/article-6' },
-        { text: 'Vue3 + pnpm 搭建 monorepo 项目', link: 'article/article/article-7' },
+        {
+          text: 'Vue3 + pnpm 搭建 monorepo 项目',
+          link: 'article/article/article-7'
+        },
         { text: 'Git 常用命令', link: 'article/article/article-8' },
         { text: 'Vue3 的源码怎么看', link: 'article/article/article-9' },
-        { text: 'Vite + TS 配置 .env 环境文件', link: 'article/article/article-10' },
+        {
+          text: 'Vite + TS 配置 .env 环境文件',
+          link: 'article/article/article-10'
+        }
       ]
-    }, {
+    },
+    {
       text: 'JavaScript 设计模式',
       link: 'article/design-mode/design-1',
       children: [
         { text: '基础知识', link: 'article/design-mode/design-1' },
         { text: '高阶函数', link: 'article/design-mode/design-2' },
         { text: '单例模式', link: 'article/design-mode/design-3' },
-        { text: '策略模式', link: 'article/design-mode/design-4' },
+        { text: '策略模式', link: 'article/design-mode/design-4' }
       ]
-    }, {
+    },
+    {
       text: 'Vue.js 设计与实现',
       link: 'article/vue-design/page-1',
       children: [
         { text: '第一章 权衡的艺术', link: 'article/vue-design/page-1' },
-        { text: '第二章 框架设计的核心要素', link: 'article/vue-design/page-2' },
-        { text: '第三章 Vue.js 3 的设计思路', link: 'article/vue-design/page-3' },
-        { text: '第四章 响应系统的作用与实现', link: 'article/vue-design/page-4' },
+        {
+          text: '第二章 框架设计的核心要素',
+          link: 'article/vue-design/page-2'
+        },
+        {
+          text: '第三章 Vue.js 3 的设计思路',
+          link: 'article/vue-design/page-3'
+        },
+        {
+          text: '第四章 响应系统的作用与实现',
+          link: 'article/vue-design/page-4'
+        }
       ]
-    }, {
+    },
+    {
       text: '前端面试题',
       link: 'article/ques/ques-new',
       children: [
@@ -99,7 +121,7 @@ export const sidebar = {
         { text: 'Html 相关', link: 'article/ques/ques-html' },
         { text: 'Css 相关', link: 'article/ques/ques-css' },
         { text: 'JavaScript 相关', link: 'article/ques/ques-javascript' },
-        { text: 'Vue2 相关', link: 'article/ques/ques-vue2' },
+        { text: 'Vue2 相关', link: 'article/ques/ques-vue2' }
       ]
     }
   ]

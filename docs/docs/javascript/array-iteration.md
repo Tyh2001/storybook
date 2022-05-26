@@ -145,7 +145,7 @@ arr.find((element, index, array) => {
 const arr = [
   { name: '张三', age: 12 },
   { name: '李四', age: 23 },
-  { name: '小明', age: 34 },
+  { name: '小明', age: 34 }
 ]
 
 const res = arr.find((element, index, array) => {
@@ -178,12 +178,12 @@ const arr1 = [
   { name: '小例', id: 3 },
   { name: '小李', id: 4 },
   { name: '小赵', id: 5 },
-  { name: '小萌', id: 6 },
+  { name: '小萌', id: 6 }
 ]
 
 const arr2 = [
   { name: '小例', id: 3 },
-  { name: '小萌', id: 6 },
+  { name: '小萌', id: 6 }
 ]
 
 function changeArr() {
@@ -218,7 +218,7 @@ console.log(changeArr())
 const arr = [
   { name: '张三', age: 12 },
   { name: '李四', age: 23 },
-  { name: '小明', age: 34 },
+  { name: '小明', age: 34 }
 ]
 
 const res = arr.findIndex((element, index, array) => {
@@ -262,7 +262,7 @@ const user = [
   { name: '小明1', fen: 78 },
   { name: '小明2', fen: 92 },
   { name: '小明3', fen: 37 },
-  { name: '小明4', fen: 56 },
+  { name: '小明4', fen: 56 }
 ]
 
 const res = user.every((item) => {

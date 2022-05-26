@@ -168,7 +168,7 @@ const obj2 = { width: 200, height: 200 }
 
 const obj3 = {
   ...obj1,
-  ...obj2,
+  ...obj2
 }
 
 console.log(obj3)
@@ -198,7 +198,7 @@ console.log(str.length) // 6
 // 因为对象不能使用 .leghtn 方法得到长度
 const obj = {
   name: '小明',
-  age: 12,
+  age: 12
 }
 console.log(obj.length) // undefined
 console.log(Array.from(obj)) // []
@@ -210,7 +210,7 @@ console.log(Array.from(obj)) // []
 const obj = {
   0: '小明',
   1: 12,
-  length: 2,
+  length: 2
 }
 console.log(obj.length) // 2
 console.log(Array.from(obj)) // ["小明", 12]

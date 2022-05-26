@@ -87,7 +87,7 @@ app.textContent = 'hello vue3'
 ```js
 const obj = {
   tag: 'div',
-  children: [{ tag: 'span', children: 'hello world' }],
+  children: [{ tag: 'span', children: 'hello world' }]
 }
 ```
 

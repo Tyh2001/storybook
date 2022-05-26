@@ -162,7 +162,7 @@ jQuery 发送 jsonp 请求实例：
 ```js
 $.ajax({
   url: 'http://abc.com/',
-  dataType: 'jsonp',
+  dataType: 'jsonp'
 })
   .done()
   .fail()

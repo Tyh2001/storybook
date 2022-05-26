@@ -36,7 +36,7 @@ const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get() {
     return 'hello'
-  },
+  }
 })
 
 console.log(foo.id) // 123
@@ -60,7 +60,7 @@ const proxy = new Proxy(foo, {
     console.log(targe) // {id: 123}
     console.log(property) // id
     console.log(receiver) // Proxy {id: 123}
-  },
+  }
 })
 
 console.log(proxy.id)
@@ -73,7 +73,7 @@ const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   get() {
     return Reflect.get(...arguments)
-  },
+  }
 })
 
 console.log(proxy.id) // 123
@@ -85,7 +85,7 @@ console.log(foo.id) // 123
 ```js
 const foo = { id: 123 }
 const proxy = new Proxy(foo, {
-  get: Reflect.get,
+  get: Reflect.get
 })
 
 console.log(proxy.id) // 123
@@ -107,7 +107,7 @@ console.log(foo.id) // 123
 ```js
 const foo = {
   name: '田同学',
-  age: 18,
+  age: 18
 }
 const proxy = new Proxy(foo, {
   get(targe, property, receiver) {
@@ -115,7 +115,7 @@ const proxy = new Proxy(foo, {
       return Reflect.get(...arguments) + '岁'
     }
     return Reflect.get(...arguments)
-  },
+  }
 })
 
 console.log(proxy.name) // 田同学
@@ -128,12 +128,12 @@ console.log(proxy.age) // 18岁
 
 ```js
 const foo = {
-  name: '田同学',
+  name: '田同学'
 }
 const revocable = Proxy.revocable(foo, {
   get() {
     return 'hello'
-  },
+  }
 })
 
 console.log(revocable.proxy.name) // hello
@@ -147,21 +147,21 @@ console.log(revocable.proxy.name) // 1.html:23 Uncaught ReferenceError: proxy is
 
 ```js
 const foo = {
-  name: '田同学',
+  name: '田同学'
 }
 
 const proxyA = new Proxy(foo, {
   get() {
     console.log('proxyA')
     return Reflect.get(...arguments)
-  },
+  }
 })
 
 const proxyB = new Proxy(proxyA, {
   get() {
     console.log('proxyB')
     return Reflect.get(...arguments)
-  },
+  }
 })
 
 console.log(proxyB.name)
@@ -187,7 +187,7 @@ const proxy = new Proxy(foo, {
     console.log(targe) // {id: 123}
     console.log(property) // id
     console.log(receiver) // Proxy {id: 123}
-  },
+  }
 })
 
 console.log(proxy.id)
@@ -210,7 +210,7 @@ const proxy = new Proxy(foo, {
     console.log(property) // id
     console.log(value) // 222
     console.log(receiver) // Proxy {id: 123}
-  },
+  }
 })
 
 proxy.id = 222
@@ -221,7 +221,7 @@ const foo = { id: 123 }
 const proxy = new Proxy(foo, {
   set(targe, property, value, receiver) {
     targe[property] = value + 10
-  },
+  }
 })
 
 proxy.id = 222
@@ -244,7 +244,7 @@ const proxy = new Proxy(foo, {
     console.log(target) // {id: 123}
     console.log(property) // id
     return Reflect.has(...arguments)
-  },
+  }
 })
 
 console.log('id' in proxy) // true
@@ -267,12 +267,12 @@ const proxy = new Proxy(foo, {
     console.log(property) // name
     console.log(descriptor) // {value: '田同学', enumerable: false}
     return Reflect.defineProperty(...arguments)
-  },
+  }
 })
 
 Object.defineProperty(proxy, 'name', {
   value: '田同学',
-  enumerable: false, // 禁止循环
+  enumerable: false // 禁止循环
 })
 
 for (const key in proxy) {
@@ -294,7 +294,7 @@ const proxy = new Proxy(foo, {
     console.log(target) // {id: 123}
     console.log(property) // name
     return Reflect.getOwnPropertyDescriptor(...arguments)
-  },
+  }
 })
 
 const res = Object.getOwnPropertyDescriptor(proxy, 'id')
@@ -315,7 +315,7 @@ const proxy = new Proxy(foo, {
     console.log(target) // {id: 123}
     console.log(property) // name
     return Reflect.deleteProperty(...arguments)
-  },
+  }
 })
 
 delete proxy.id
@@ -336,7 +336,7 @@ const proxy = new Proxy(foo, {
   ownKeys(target) {
     console.log(target) // {id: 123}
     return Reflect.ownKeys(...arguments)
-  },
+  }
 })
 
 console.log(Object.keys(proxy)) // ['id']
@@ -354,7 +354,7 @@ const proxy = new Proxy(foo, {
   getPrototypeOf(target) {
     console.log(target) // {id: 123}
     return Reflect.getPrototypeOf(...arguments)
-  },
+  }
 })
 
 console.log(Object.getPrototypeOf(proxy)) // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
@@ -374,7 +374,7 @@ const proxy = new Proxy(foo, {
     console.log(target) // {id: 123}
     console.log(property) // {age: 12}
     return Reflect.setPrototypeOf(...arguments)
-  },
+  }
 })
 
 console.log(Object.setPrototypeOf(proxy, { age: 12 })) // Proxy {id: 123}
@@ -392,7 +392,7 @@ const proxy = new Proxy(foo, {
   isExtensible(target) {
     console.log(target) // {id: 123}
     return Reflect.isExtensible(...arguments)
-  },
+  }
 })
 
 console.log(Object.isExtensible(proxy)) // true
@@ -410,7 +410,7 @@ const proxy = new Proxy(foo, {
   preventExtensions(target) {
     console.log(target) // {id: 123}
     return Reflect.preventExtensions(...arguments)
-  },
+  }
 })
 
 console.log(Object.preventExtensions(proxy)) // Proxy {id: 123}
@@ -432,7 +432,7 @@ const proxy = new Proxy(foo, {
     console.log(thisArg) // undefined
     console.log(argumentsList) // [Array(0)]
     return Reflect.apply(...arguments)
-  },
+  }
 })
 
 proxy()
@@ -454,7 +454,7 @@ const proxy = new Proxy(foo, {
     console.log(argumentsList) // []
     console.log(newTarget) // Proxy {length: 0, name: 'foo', arguments: null, caller: null, prototype: {…}}
     return Reflect.construct(...arguments)
-  },
+  }
 })
 
 new proxy()

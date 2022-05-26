@@ -33,11 +33,11 @@ module.exports = {
         ws: true, // 开启 webSocket 代理
         pathRewrite: {
           // 重写路径
-          '^/api': '',
-        },
-      },
-    },
-  },
+          '^/api': ''
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -65,7 +65,7 @@ module.exports = {
 
 ```js
 const router = new VueRouter({
-  routes,
+  routes
 })
 
 // 解决 冗余导航报错问题
@@ -128,18 +128,18 @@ bus.$on('自定义事件名称', (data) => {
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      text: '',
-    }
-  },
-  watch: {
-    text() {
-      console.log('text 值发生改变了！！')
+  export default {
+    data() {
+      return {
+        text: ''
+      }
     },
-  },
-}
+    watch: {
+      text() {
+        console.log('text 值发生改变了！！')
+      }
+    }
+  }
 </script>
 ```
 
@@ -153,23 +153,23 @@ export default {
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      text: '',
-    }
-  },
-  watch: {
-    // 使用对象写法，监视数据 text
-    text: {
-      // 使用 handler 方法，处理变化后的逻辑代码
-      handler() {
-        console.log('text 值发生改变了！！')
-      },
-      // immediate 这个属性值为 true 的时候，默认页面初始化完成之后执行一次上面的代码
-      immediate: true,
+  export default {
+    data() {
+      return {
+        text: ''
+      }
     },
-  },
-}
+    watch: {
+      // 使用对象写法，监视数据 text
+      text: {
+        // 使用 handler 方法，处理变化后的逻辑代码
+        handler() {
+          console.log('text 值发生改变了！！')
+        },
+        // immediate 这个属性值为 true 的时候，默认页面初始化完成之后执行一次上面的代码
+        immediate: true
+      }
+    }
+  }
 </script>
 ```

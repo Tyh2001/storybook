@@ -66,7 +66,7 @@ function dateFormat(date, format = 'YYYY-MM-DD HH:mm:ss') {
     DD: date.getDate(),
     HH: date.getHours(),
     mm: date.getMinutes(),
-    ss: date.getMinutes(),
+    ss: date.getMinutes()
   }
   // 用 for in 遍历出对象中的每一项 并使用 replace 替换
   for (const key in config) {

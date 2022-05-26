@@ -343,7 +343,7 @@ User.prototype = {
   age: 38,
   sayName() {
     console.log(this.name)
-  },
+  }
 }
 
 console.dir(User)
@@ -380,7 +380,7 @@ User.prototype = {
   age: 38,
   sayName() {
     console.log(this.name)
-  },
+  }
 }
 
 const l = new User.prototype.constructor('李四')
@@ -527,7 +527,7 @@ function object(o) {
 ```js
 const z = {
   name: '张三',
-  friend: ['a', 'b'],
+  friend: ['a', 'b']
 }
 
 const user1 = object(z)
@@ -548,7 +548,7 @@ console.log(z.friend) // (4) ['a', 'b', 'c', 'd']
 ```js
 const z = {
   name: '张三',
-  friend: ['a', 'b'],
+  friend: ['a', 'b']
 }
 
 const user1 = Object.create(z)
@@ -583,7 +583,7 @@ function createAnother(param) {
 
 const z = {
   name: '张三',
-  arr: [1, 3, 4],
+  arr: [1, 3, 4]
 }
 
 const res = createAnother(z)
@@ -705,7 +705,7 @@ function Admin(...params) {
 Admin.prototype = User.prototype.__proto__
 Object.defineProperty(Admin.prototype, 'constructor', {
   value: Admin,
-  enumerable: false,
+  enumerable: false
 })
 
 const admin = new Admin('张三', 18)
@@ -723,7 +723,7 @@ function extend(sub, sup) {
   sub.prototype = Object.create(sup.prototype)
   Object.defineProperty(sub.prototype, 'constructor', {
     value: sub,
-    enumerable: false,
+    enumerable: false
   })
 }
 

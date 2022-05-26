@@ -32,7 +32,7 @@ app.use((app) => {
       for (let i = 0; i < blocks.length; i++) {
         hljs.highlightElement(blocks[i])
       }
-    },
+    }
   })
 })
 app.mount('#app')

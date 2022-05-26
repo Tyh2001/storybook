@@ -57,7 +57,7 @@ const p = new Proxy(obj, {
   set(target, key, newVal) {
     target[key] = newVal // 赋值为新值
     set.forEach((fn) => fn()) // 调用副作用函数重新渲染页面
-  },
+  }
 })
 
 // 副作用函数
@@ -96,7 +96,7 @@ const obj = new Proxy(data, {
   set(target, key, newVal) {
     target[key] = newVal
     set.forEach((fn) => fn())
-  },
+  }
 })
 
 function effect(fn) {
@@ -171,7 +171,7 @@ const obj = new Proxy(data, {
     const effects = depsMap.get(key)
     // 执行每一个副作用函数
     effects && effects.forEach((fn) => fn())
-  },
+  }
 })
 ```
 

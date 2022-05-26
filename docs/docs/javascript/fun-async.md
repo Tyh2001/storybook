@@ -879,7 +879,7 @@ class myPromise {
           },
           onReject: (value) => {
             this.parse(promise, onReject(value), resolve, reject)
-          },
+          }
         })
       }
     })

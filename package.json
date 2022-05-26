@@ -3,11 +3,13 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "serve": "vitepress serve docs",
+    "prettier": "prettier --write ."
   },
   "license": "ISC",
   "dependencies": {
     "@docsearch/js": "3",
+    "prettier": "^2.6.2",
     "vitepress": "^0.22.4",
     "vue": "^3.2.33"
   }

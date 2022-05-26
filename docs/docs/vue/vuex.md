@@ -19,7 +19,7 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    text: '这是 vuex 中的数据',
+    text: '这是 vuex 中的数据'
   },
   mutations: {
     /**
@@ -29,8 +29,8 @@ const store = createStore({
      */
     changeText(state, data) {
       state.text = data
-    },
-  },
+    }
+  }
 })
 
 export default store
@@ -54,9 +54,9 @@ createApp(App).use(store).mount('#app')
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-const store = useStore()
-console.log(store.state.text)
+  import { useStore } from 'vuex'
+  const store = useStore()
+  console.log(store.state.text)
 </script>
 ```
 
@@ -69,11 +69,11 @@ console.log(store.state.text)
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-const store = useStore()
-function change() {
-  store.commit('changeText', '改变了！！')
-}
+  import { useStore } from 'vuex'
+  const store = useStore()
+  function change() {
+    store.commit('changeText', '改变了！！')
+  }
 </script>
 ```
 
@@ -92,13 +92,13 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    text: 1,
+    text: 1
   },
   mutations: {
     changeText(state, data) {
       state.text++
-    },
-  },
+    }
+  }
 })
 
 export default store
@@ -115,18 +115,18 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    text: 1,
+    text: 1
   },
   mutations: {
     changeText(state, data) {
       state.text++
-    },
+    }
   },
   getters: {
     double(state) {
       return state.text * 2
-    },
-  },
+    }
+  }
 })
 
 export default store
@@ -141,15 +141,15 @@ export default store
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-import { computed } from 'vue'
-const store = useStore()
-function change() {
-  store.commit('changeText')
-}
-const double = computed(() => {
-  return store.getters.double
-})
+  import { useStore } from 'vuex'
+  import { computed } from 'vue'
+  const store = useStore()
+  function change() {
+    store.commit('changeText')
+  }
+  const double = computed(() => {
+    return store.getters.double
+  })
 </script>
 ```
 
@@ -165,24 +165,24 @@ import axios from 'axios'
 
 const store = createStore({
   state: {
-    list: [],
+    list: []
   },
   mutations: {
     changeList(state, data) {
       state.list = data
-    },
+    }
   },
   actions: {
     // 解构出 commit 函数 用于提交 mutations
     loadList({ commit }) {
       axios({
         method: 'GET',
-        url: 'https://infinitymcn.com/citi/citi-form-backend/public/index.php/index/Vote/getVoteRes',
+        url: 'https://infinitymcn.com/citi/citi-form-backend/public/index.php/index/Vote/getVoteRes'
       }).then((res) => {
         commit('changeList', res.data)
       })
-    },
-  },
+    }
+  }
 })
 
 export default store
@@ -198,10 +198,10 @@ export default store
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-const store = useStore()
-function load() {
-  store.dispatch('loadList')
-}
+  import { useStore } from 'vuex'
+  const store = useStore()
+  function load() {
+    store.dispatch('loadList')
+  }
 </script>
 ```

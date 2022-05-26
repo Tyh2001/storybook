@@ -213,7 +213,7 @@ type User = Name & Age
 
 const user = {
   name: '张三',
-  age: 12,
+  age: 12
 }
 ```
 
@@ -230,7 +230,7 @@ type Age = {
 type User = Name | Age
 
 const user = {
-  name: '张三',
+  name: '张三'
 }
 ```
 
@@ -249,7 +249,7 @@ const arr: [number, string, number] = [1, '123', 3]
 ```ts
 enum isType {
   type1 = '男',
-  type2 = '女',
+  type2 = '女'
 }
 
 const res: isType = isType.type1
@@ -403,7 +403,7 @@ const user: UserInterface = {
   sayName(): string {
     return this.name
   },
-  sex: '男',
+  sex: '男'
 }
 ```
 
@@ -419,7 +419,7 @@ interface UserAge extends UserName {
 
 const user: UserAge = {
   name: 'admin',
-  age: 12,
+  age: 12
 }
 ```
 
@@ -446,7 +446,7 @@ class Admin implements UserName, UserAge {
 ```ts
 enum SexType {
   GIRL,
-  BOY,
+  BOY
 }
 
 interface User {
@@ -485,6 +485,6 @@ interface User {
 
 const pay: User = {
   num: 123,
-  name: '张三',
+  name: '张三'
 }
 ```

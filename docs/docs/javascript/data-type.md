@@ -9,7 +9,7 @@ const m = new Map()
 
 const m2 = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 console.log(m2)
 // Map(2) {'name' => '张三', 'age' => '12'}
@@ -20,7 +20,7 @@ console.log(m2)
 ```js
 const m2 = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 console.log(m2.size) // 2
 ```
@@ -52,7 +52,7 @@ console.log(mapList.get('name'))
 ```js
 const m2 = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 console.log(m2.has('name')) // true
 console.log(m2.has('name2')) // false
@@ -63,7 +63,7 @@ console.log(m2.has('name2')) // false
 ```js
 const m2 = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 m2.delete('name')
 console.log(m2) // Map(1) {'age' => '12'}
@@ -74,7 +74,7 @@ console.log(m2) // Map(1) {'age' => '12'}
 ```js
 const m2 = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 m2.clear()
 console.log(m2) // Map(0) {size: 0}
@@ -85,7 +85,7 @@ console.log(m2) // Map(0) {size: 0}
 ```js
 const m = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 
 console.log(m.keys()) // MapIterator {'name', 'age'}
@@ -96,7 +96,7 @@ console.log(m.keys()) // MapIterator {'name', 'age'}
 ```js
 const m = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 
 console.log(m.values()) // MapIterator {'张三', '12'}
@@ -112,7 +112,7 @@ const obj = {}
 const m = new Map([
   [fun, '这是函数'],
   [sy, '这是 Symbol'],
-  [obj, '这是 obj'],
+  [obj, '这是 obj']
 ])
 
 console.log(m.get(fun)) // 这是函数
@@ -139,7 +139,7 @@ Map(3)
 ```js
 const m = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 
 for (const item of m.entries()) {
@@ -160,7 +160,7 @@ console.log(m.entries === m[Symbol.iterator]) // true
 ```js
 const m = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 
 for (const item of m[Symbol.iterator]()) {
@@ -175,7 +175,7 @@ for (const item of m[Symbol.iterator]()) {
 ```js
 const m = new Map([
   ['name', '张三'],
-  ['age', '12'],
+  ['age', '12']
 ])
 
 m.forEach((item, value) => {
@@ -232,7 +232,7 @@ const obj = {}
 const str = new String('name')
 const wm = new WeakMap([
   [obj, '12'],
-  [str, '张三'],
+  [str, '张三']
 ])
 ```
 
@@ -355,23 +355,23 @@ console.log(Symbol.keyFor(a)) // 这是一段文字
 ```js
 const user1 = {
   name: '李四',
-  key: Symbol(),
+  key: Symbol()
 }
 
 const user2 = {
   name: '李四',
-  key: Symbol(),
+  key: Symbol()
 }
 
 const obj = {
   [user1.key]: {
     js: 100,
-    css: 20,
+    css: 20
   },
   [user2.key]: {
     js: 30,
-    css: 21,
-  },
+    css: 21
+  }
 }
 
 console.log(obj) // {Symbol(): {…}, Symbol(): {…}}
@@ -385,7 +385,7 @@ console.log(obj[user2.key]) // {js: 30, css: 21}
 const age = Symbol('age')
 const obj = {
   name: '张三',
-  [age]: 12,
+  [age]: 12
 }
 // 普通的方式遍历只能得到普通的值
 for (const key of Object.keys(obj)) {
@@ -415,7 +415,7 @@ for (const key of Reflect.ownKeys(obj)) {
 const obj = {
   name: '张同学',
   age: 39,
-  arr: [1, 2, 3, 4],
+  arr: [1, 2, 3, 4]
 }
 
 console.log(JSON.stringify(obj))
@@ -429,7 +429,7 @@ console.log(JSON.stringify(obj))
 const obj = {
   name: '张同学',
   age: 39,
-  arr: [1, 2, 3, 4],
+  arr: [1, 2, 3, 4]
 }
 
 console.log(JSON.stringify(obj, ['age']))
@@ -445,7 +445,7 @@ console.log(JSON.stringify(obj, ['age']))
 const obj = {
   name: '张同学',
   age: 39,
-  arr: [1, 2, 3, 4],
+  arr: [1, 2, 3, 4]
 }
 
 console.log(JSON.stringify(obj, null, 2))

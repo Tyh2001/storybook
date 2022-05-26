@@ -140,7 +140,7 @@ npm 的仓库在[这里](https://www.npmjs.com/package/tyh-ui)
 
 <script lang="ts" setup>
   defineProps({
-    num: Number,
+    num: Number
   })
 </script>
 ```

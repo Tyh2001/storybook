@@ -18,9 +18,9 @@ vue 是一个声明式的 UI 框架，也就是说用户在使用的时候需要
 const node = {
   tag: 'h1',
   props: {
-    onClick: change,
+    onClick: change
   },
-  children: [{ tag: 'span' }],
+  children: [{ tag: 'span' }]
 }
 ```
 
@@ -48,7 +48,7 @@ const node = {
 
 <script setup>
   defineProps({
-    num: Number,
+    num: Number
   })
 </script>
 ```
@@ -62,12 +62,12 @@ export default {
   props: {
     num: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { slots }) {
     return () => h('h' + props.num, {}, slots.default())
-  },
+  }
 }
 ```
 
@@ -81,8 +81,8 @@ export default {
 const node = {
   tag: 'div',
   props: {
-    onClick: () => alert('hello'),
-  },
+    onClick: () => alert('hello')
+  }
 }
 ```
 
@@ -131,9 +131,9 @@ const component = function () {
   return {
     tag: 'div',
     props: {
-      onClick: () => alert('hello'),
+      onClick: () => alert('hello')
     },
-    children: 'click me',
+    children: 'click me'
   }
 }
 ```
@@ -142,7 +142,7 @@ const component = function () {
 
 ```js
 const node = {
-  tag: component,
+  tag: component
 }
 ```
 
@@ -152,7 +152,7 @@ const node = {
 // 模拟虚拟 dom
 const node = {
   // tag 接收的是一个函数
-  tag: component,
+  tag: component
 }
 
 // 模拟组件函数
@@ -160,9 +160,9 @@ function component() {
   return {
     tag: 'div',
     props: {
-      onClick: () => alert('hello'),
+      onClick: () => alert('hello')
     },
-    children: 'click me',
+    children: 'click me'
   }
 }
 
@@ -236,7 +236,7 @@ render(node, document.body)
 export default {
   render() {
     return h('button', { onclick: change }, '按钮')
-  },
+  }
 }
 ```
 

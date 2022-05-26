@@ -242,7 +242,7 @@ console.log(user)
 ```js
 const user = {
   name: '张同学',
-  age: 12,
+  age: 12
 }
 
 user.age = 19999
@@ -255,7 +255,7 @@ console.log(user) // {name: '张同学', age: 19999}
 const user = {
   data: {
     name: '张同学',
-    age: 12,
+    age: 12
   },
   set age(val) {
     if (typeof val !== 'number' || val < 1 || val > 100) {
@@ -265,7 +265,7 @@ const user = {
   },
   get age() {
     return this.data.age
-  },
+  }
 }
 ```
 
@@ -277,7 +277,7 @@ const user = {
   age: 12,
   set info(val) {
     ;[this.name, this.age] = val.split(',')
-  },
+  }
 }
 
 user.info = '小明,14'
@@ -293,7 +293,7 @@ const request = {
   },
   get getToken() {
     return localStorage.getItem('token')
-  },
+  }
 }
 
 request.setToken = '12121dadasdada'
@@ -377,7 +377,7 @@ user.name = '张三'
 class User {
   constructor(age) {
     this.data = {
-      age,
+      age
     }
   }
   // 通过 setName 函数来修改属性值
@@ -624,7 +624,7 @@ const obj1 = {
   name: '张三',
   sayName() {
     console.log('我是张三')
-  },
+  }
 }
 
 const obj2 = {
@@ -632,7 +632,7 @@ const obj2 = {
   name: '李四',
   sayName() {
     console.log('我是李四')
-  },
+  }
 }
 
 console.dir(obj2)
@@ -646,7 +646,7 @@ const obj1 = {
   sayName() {
     // 当父级调用 sayName 的时候，这里的 this 指向的是当前对象 所以 name 就是 张三
     console.log(this.name)
-  },
+  }
 }
 
 const obj2 = {
@@ -655,7 +655,7 @@ const obj2 = {
   say() {
     // 这里调用 say 方法，我希望使用原型上 obj1 的方法
     this.__proto__.sayName()
-  },
+  }
 }
 
 obj2.say()
@@ -666,7 +666,7 @@ obj2.say()
 ```js
 const obj1 = {
   name: '张三',
-  sayName() {},
+  sayName() {}
 }
 
 const obj2 = {
@@ -674,7 +674,7 @@ const obj2 = {
   name: '李四',
   say() {
     this.__proto__.sayName.call(this)
-  },
+  }
 }
 
 obj2.say()
