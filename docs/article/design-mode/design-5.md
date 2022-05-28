@@ -118,4 +118,72 @@ const xHong = {
 xMing.sendFlower(xGang) // 收到花 Flower {}
 ```
 
-## 保护代理和虚拟代理
+## 虚拟代理
+
+还是上面例子，比如 `new Flower()` 是一个开销很大的操作，那么可以直接让小刚来执行
+
+```js
+// 花
+class Flower {}
+
+// 小刚
+const xGang = {
+  // 收到花
+  receiveFlower() {
+    // 监听小红心情
+    xHong.listenGoodMood(() => {
+      const flower = new Flower()
+      xHong.receiveFlower(flower)
+    })
+  }
+}
+
+// 小红
+const xHong = {
+  listenGoodMood(callback) {
+    // 2 秒后会心情好
+    setTimeout(() => {
+      callback()
+    }, 2000)
+  },
+  // 收到花
+  receiveFlower(flower) {
+    console.log('收到花', flower)
+  }
+}
+
+xGang.receiveFlower() // 收到花 Flower {}
+```
+
+## 虚拟代理实现图片预加载
+
+有时候由于图片过大和网络不佳，会导致图片加载很慢，通常是会展示一个空白的状态，或者是展示一个 `loading` 图片，等加载好之后再添加到 `img` 中去
+
+下面实现一个使用代理模式实现的图片预加载
+
+```js
+const myImage = (function () {
+  const img = document.createElement('img')
+  document.body.appendChild(img)
+  return function (src) {
+    img.src = src
+  }
+})()
+
+const proxyImg = (function () {
+  const img = new Image()
+
+  img.onload = function () {
+    myImage(this.src)
+  }
+
+  return function (src) {
+    myImage('./src/1.jpg')
+    img.src = src
+  }
+})()
+
+proxyImg(
+  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+)
+```
