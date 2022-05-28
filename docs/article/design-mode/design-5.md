@@ -187,3 +187,52 @@ proxyImg(
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 )
 ```
+
+## 缓存代理
+
+接下来通过一个阶乘来实现缓存代理
+
+下面是不使用代理的方式：
+
+```js
+function add() {
+  let res = 1
+  for (let i = 0; i < arguments.length; i++) {
+    res *= arguments[i]
+  }
+  return res
+}
+
+console.log(add(1, 2, 3)) // 6
+```
+
+接下来加入代理函数：
+
+```js
+function add() {
+  let res = 1
+  for (let i = 0; i < arguments.length; i++) {
+    res *= arguments[i]
+  }
+  return res
+}
+
+const proxyAdd = (function () {
+  const cache = {}
+  return function () {
+    const args = Array.prototype.join.call(arguments, ',')
+    // 如果缓存对象中存在则不需要运算直接返回
+    if (args in cache) {
+      return cache[args]
+    }
+    return (cache[args] = add.apply(this, arguments))
+  }
+})()
+
+console.log(proxyAdd(1, 2, 3)) // 6
+console.log(proxyAdd(1, 2, 3)) // 6
+```
+
+## 写在最后
+
+虽然代理模式非常有用，但我们在编写程序的时候，往往不需要先去预测是否需要使用代理模式。当真正发现不方便直接访问某个对象的时候，再编写代理也不迟
