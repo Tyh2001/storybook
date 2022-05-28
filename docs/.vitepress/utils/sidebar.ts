@@ -90,7 +90,10 @@ export const sidebar = {
         { text: '基础知识', link: 'article/design-mode/design-1' },
         { text: '高阶函数', link: 'article/design-mode/design-2' },
         { text: '单例模式', link: 'article/design-mode/design-3' },
-        { text: '策略模式', link: 'article/design-mode/design-4' }
+        { text: '策略模式', link: 'article/design-mode/design-4' },
+        { text: '代理模式', link: 'article/design-mode/design-5' },
+        { text: '迭代器模式', link: 'article/design-mode/design-6' },
+        { text: '发布订阅模式', link: 'article/design-mode/design-7' },
       ]
     },
     {
