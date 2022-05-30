@@ -100,3 +100,63 @@ salesOffice.trigger('size110', 1000000)
 ```
 
 ## 取消定义模式
+
+有时候我们也需要取消订阅，比如有一天小明不想买房子了，那么就需要取消订阅了，那么在之前的基础上，新增取消定义方法
+
+```js
+// 定义售楼处
+class SalesOffice {
+  constructor() {
+    this.list = {} // 电话册
+  }
+  // 记录订阅者
+  listen(key, fn) {
+    if (!this.list[key]) {
+      this.list[key] = []
+    }
+    this.list[key].push(fn)
+  }
+  // 发布消息
+  trigger() {
+    const key = Array.prototype.shift.call(arguments)
+    const fns = this.list[key]
+
+    if (!fns) {
+      return
+    }
+
+    fns.map((item) => {
+      item.apply(this, arguments)
+    })
+  }
+  // 取消订阅方法
+  remove(key, fn) {
+    const fns = this.list[key]
+
+    if (!fns) {
+      return
+    }
+
+    fns.forEach((item, index) => {
+      if (item === fn) {
+        fns.shift(index, 1)
+      }
+    })
+  }
+}
+
+const salesOffice = new SalesOffice()
+
+const ming = (price, size) => {
+  console.log(`小明订阅消息：${price}万`)
+}
+const gang = (price, size) => {
+  console.log(`小刚订阅消息：${price}万`)
+}
+
+salesOffice.listen('size88', ming)
+salesOffice.listen('size88', gang)
+salesOffice.remove('size88', ming) // 取消小明订阅
+
+salesOffice.trigger('size88', 2000000) // 小刚订阅消息：2000000万
+```
