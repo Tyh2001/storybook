@@ -160,3 +160,45 @@ salesOffice.remove('size88', ming) // 取消小明订阅
 
 salesOffice.trigger('size88', 2000000) // 小刚订阅消息：2000000万
 ```
+
+## 通用类
+
+综合上面例子，最终我们得到了一个通用类：
+
+```js
+class Event {
+  constructor() {
+    this.list = {}
+  }
+  listen(key, fn) {
+    if (!this.list[key]) {
+      this.list[key] = []
+    }
+    this.list[key].push(fn)
+  }
+  // 发布消息
+  trigger() {
+    const key = Array.prototype.shift.call(arguments)
+    const fns = this.list[key]
+
+    if (!fns) return
+    fns.map((item) => {
+      item.apply(this, arguments)
+    })
+  }
+  // 取消订阅方法
+  remove(key, fn) {
+    const fns = this.list[key]
+    if (!fns) {
+      return
+    }
+    fns.forEach((item, index) => {
+      if (item === fn) {
+        fns.shift(index, 1)
+      }
+    })
+  }
+}
+```
+
+## 模块间通信
