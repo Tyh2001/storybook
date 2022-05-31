@@ -115,3 +115,94 @@
 ```
 
 但是为了更好的使用命令模式，除了执行命令的方法外，后续可能还有撤销命令的操作
+
+改写 `RefreshMenuBarCommand` 函数为：
+
+```html
+<button id="btn1">刷新</button>
+<script>
+  const btn1 = document.getElementById('btn1')
+
+  function setCommand(btn, command) {
+    btn.addEventListener('click', () => {
+      command.execute()
+    })
+  }
+
+  const menuBar = {
+    refresh() {
+      console.log('刷新菜单')
+    }
+  }
+
+  function RefreshMenuBarCommand(receiver) {
+    return {
+      execute() {
+        receiver.refresh()
+      }
+    }
+  }
+
+  const refreshMenuBarCommand = RefreshMenuBarCommand(menuBar)
+  setCommand(btn1, refreshMenuBarCommand)
+</script>
+```
+
+## 重复命令
+
+我们以一个游戏的键位来模拟出重复的命令，下面输入 `WASD` 会分别输出相应的内容，内容会被记录下来，那么点击按钮的时候，会重复之前的操作
+
+```html
+<button id="start">播放</button>
+
+<script>
+  const Ryu = {
+    attack() {
+      console.log('攻击')
+    },
+    defense() {
+      console.log('防御')
+    },
+    jump() {
+      console.log('跳跃')
+    },
+    crouch() {
+      console.log('蹲下')
+    }
+  }
+
+  // 创建命令
+  function makeCommand(receiver, state) {
+    return function () {
+      receiver[state]()
+    }
+  }
+
+  const commands = {
+    119: 'jump',
+    115: 'crouch',
+    97: 'defense',
+    100: 'attack'
+  }
+
+  // 保存命令
+  const commandStack = []
+
+  document.addEventListener('keypress', (e) => {
+    const keyCode = e.keyCode
+    const command = makeCommand(Ryu, commands[keyCode])
+
+    if (command) {
+      command()
+      commandStack.push(command)
+    }
+  })
+
+  document.getElementById('start').addEventListener('click', () => {
+    let command
+    while ((command = commandStack.shift())) {
+      command()
+    }
+  })
+</script>
+```
