@@ -99,7 +99,8 @@ export const sidebar = {
         { text: '代理模式', link: 'article/design-mode/design-5' },
         { text: '迭代器模式', link: 'article/design-mode/design-6' },
         { text: '发布订阅模式', link: 'article/design-mode/design-7' },
-        { text: '命令模式', link: 'article/design-mode/design-8' }
+        { text: '命令模式', link: 'article/design-mode/design-8' },
+        { text: '组合模式', link: 'article/design-mode/design-9' },
       ]
     },
     {
