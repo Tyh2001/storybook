@@ -206,3 +206,54 @@
   })
 </script>
 ```
+
+## 宏命令
+
+宏命令是一组命令的集合，用于一次执行一批命令。
+
+例如你有一个万能遥控器，可以实现关门、开电脑、登陆 QQ 等操作，代码如下：
+
+```js
+const closeDoor = {
+  execute() {
+    console.log('关门')
+  }
+}
+
+const openPc = {
+  execute() {
+    console.log('开电脑')
+  }
+}
+
+const loginQQ = {
+  execute() {
+    console.log('登陆QQ')
+  }
+}
+
+function MacroCommand() {
+  return {
+    commandList: [],
+    add(command) {
+      this.commandList.push(command)
+    },
+    execute() {
+      this.commandList.map((item) => {
+        item.execute()
+      })
+    }
+  }
+}
+
+const macroCommand = MacroCommand()
+macroCommand.add(closeDoor)
+macroCommand.add(openPc)
+macroCommand.add(loginQQ)
+
+macroCommand.execute()
+
+// 关门
+// 开电脑
+// 登陆QQ
+```
