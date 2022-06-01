@@ -81,6 +81,10 @@ export const sidebar = {
         {
           text: 'Vite + TS 配置 .env 环境文件',
           link: 'article/article/article-10'
+        },
+        {
+          text: 'Vue3 开源组件库 Fighting Design 成员招募',
+          link: 'article/article/article-11'
         }
       ]
     },
