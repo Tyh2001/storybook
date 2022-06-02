@@ -151,3 +151,46 @@ macroCommand.execute()
   // 登陆QQ
 </script>
 ```
+
+## 安全问题
+
+在上面例子中，其实是存在一些安全问题的，因为很多时候并不清楚谁是组合对象谁是叶对象，但是它们在本质上是有区别的。比如试图在叶对象上再继续添加叶对象。解决方案是在叶对象上叶增加 `add` 方法，来抛出一个异常提示叶对象不能再继续添加，代码如下：
+
+```js
+function MacroCommand() {
+  return {
+    commandsList: [],
+    add(command) {
+      this.commandsList.push(command)
+    },
+    execute() {
+      this.commandsList.map((item) => {
+        item.execute()
+      })
+    }
+  }
+}
+
+const openAc = {
+  execute() {
+    console.log('打开空调')
+  },
+  add() {
+    throw new Error('叶对象上不能再继续添加叶对象')
+  }
+}
+
+const openTv = {
+  execute() {
+    console.log('打开电视')
+  },
+  add() {
+    throw new Error('叶对象上不能再继续添加叶对象')
+  }
+}
+
+const macroCommand = MacroCommand()
+
+macroCommand.add(openAc)
+openAc.add(openTv)
+```
