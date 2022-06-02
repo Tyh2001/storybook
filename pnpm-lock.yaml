@@ -1,13 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@docsearch/js': '3'
   prettier: ^2.6.2
   vitepress: ^0.22.4
   vue: ^3.2.33
 
 dependencies:
-  '@docsearch/js': 3.0.0
   prettier: 2.6.2
   vitepress: 0.22.4
   vue: 3.2.33
