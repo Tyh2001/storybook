@@ -194,3 +194,64 @@ const macroCommand = MacroCommand()
 macroCommand.add(openAc)
 openAc.add(openTv)
 ```
+
+## 扫描文件夹
+
+文件夹是非常符合组合模式来进行描述，下面是一个文件夹相关的例子：
+
+```js
+// 文件夹类
+class Folder {
+  constructor(name) {
+    this.name = name
+    this.files = []
+  }
+  add(file) {
+    this.files.push(file)
+  }
+  scan() {
+    console.log(`开始扫描文件夹：${this.name}`)
+    this.files.map((item) => {
+      item.scan()
+    })
+  }
+}
+
+// 文件类
+class File {
+  constructor(name) {
+    this.name = name
+  }
+  add() {
+    throw new Error(' 文件下面不能添加文件')
+  }
+  scan() {
+    console.log(`开始扫描文件夹：${this.name}`)
+  }
+}
+
+// 创建文件夹和文件对象，让它们进行组合
+const folder = new Folder('学习资料')
+const folder1 = new Folder('js 学习资料')
+const folder2 = new Folder('css 学习资料')
+
+const file1 = new File('vue.js 设计与实现')
+const file2 = new File('学习 JavaScript 数据结构与算法')
+const file3 = new File('css 选择器世界')
+
+folder1.add(file1)
+folder1.add(file2)
+folder2.add(file3)
+
+folder.add(folder1)
+folder.add(folder2)
+
+folder.scan()
+
+// 开始扫描文件夹：学习资料
+// 开始扫描文件夹：js 学习资料
+// 开始扫描文件夹：vue.js 设计与实现
+// 开始扫描文件夹：学习 JavaScript 数据结构与算法
+// 开始扫描文件夹：css 学习资料
+// 开始扫描文件夹：css 选择器世界
+```
