@@ -108,7 +108,7 @@ export const sidebar = {
         { text: '修饰者模式', link: 'article/design-mode/design-14' },
         { text: '状态模式', link: 'article/design-mode/design-15' },
         { text: '适配器模式', link: 'article/design-mode/design-16' },
-        { text: '设计原则', link: 'article/design-mode/design-17' },
+        { text: '设计原则', link: 'article/design-mode/design-17' }
       ]
     },
     {
