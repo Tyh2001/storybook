@@ -257,3 +257,87 @@ folder.scan()
 ```
 
 ## 引用父对象
+
+上面演示的文件夹例子中，有可以是要有删除文件的操作，有时候需要让请求从子节点往父节点上冒泡传递的。当我们需要删除某个文件的时候，实际上是从这个文件所在的上层文件夹中删除该文件的。
+
+下面来改写一下上面文件的例子，使扫描之前，我们可以移除一个具体的文件。
+
+```js
+// 文件夹类
+class Folder {
+  constructor(name) {
+    this.name = name
+    this.files = []
+    this.parent = null // 增加 parent 属性
+  }
+  add(file) {
+    file.parent = this
+    this.files.push(file)
+  }
+  scan() {
+    console.log(`开始扫描文件夹：${this.name}`)
+    this.files.map((item) => {
+      item.scan()
+    })
+  }
+  // 新增移除方法
+  remove() {
+    if (!this.parent) {
+      return
+    }
+    this.parent.files.map((item, index) => {
+      if (item === this) {
+        this.parent.files.splice(index, 1)
+      }
+    })
+  }
+}
+
+// 文件类
+class File {
+  constructor(name) {
+    this.name = name
+    this.parent = null
+  }
+  add() {
+    throw new Error(' 文件下面不能添加文件')
+  }
+  scan() {
+    console.log(`开始扫描文件夹：${this.name}`)
+  }
+  // 新增删除方法
+  remove() {
+    if (!this.parent) {
+      return
+    }
+    this.parent.files.map((item, index) => {
+      if (item === this) {
+        this.parent.files.splice(index, 1)
+      }
+    })
+  }
+}
+
+const folder = new Folder('学习资料')
+const folder1 = new Folder('js 学习资料')
+const folder2 = new Folder('css 学习资料')
+
+const file1 = new File('vue.js 设计与实现')
+const file2 = new File('学习 JavaScript 数据结构与算法')
+const file3 = new File('css 选择器世界')
+
+folder1.add(file1)
+folder1.add(file2)
+folder2.add(file3)
+
+folder.add(folder1)
+folder.add(folder2)
+
+folder2.remove()
+folder.scan()
+
+// 开始扫描文件夹：学习资料
+// 开始扫描文件夹：js 学习资料
+// 开始扫描文件夹：vue.js 设计与实现
+// 开始扫描文件夹：学习 JavaScript 数据结构与算法
+```
