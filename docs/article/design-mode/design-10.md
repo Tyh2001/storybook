@@ -272,4 +272,75 @@ tea.init()
 
 减少了加柠檬
 
-##
+## 其它写法
+
+```js
+function Beverage(params) {
+  const boilWater = function () {
+    console.log('把水烧沸')
+  }
+  const makeCoffee =
+    params.makeCoffee ||
+    function () {
+      throw new Error('子类必须重写父类方法')
+    }
+  const pourInCup =
+    params.pourInCup ||
+    function () {
+      throw new Error('子类必须重写父类方法')
+    }
+  const addCondiments =
+    params.addCondiments ||
+    function () {
+      throw new Error('子类必须重写父类方法')
+    }
+
+  class F {
+    init() {
+      boilWater()
+      makeCoffee()
+      pourInCup()
+      addCondiments()
+    }
+  }
+  return F
+}
+
+const Coffee = Beverage({
+  makeCoffee() {
+    console.log('用热水冲咖啡')
+  },
+  pourInCup() {
+    console.log('把咖啡倒进杯子')
+  },
+  addCondiments() {
+    console.log('加牛奶')
+  }
+})
+
+const Tea = new Beverage({
+  makeCoffee() {
+    console.log('用热水浸泡茶叶')
+  },
+  pourInCup() {
+    console.log('把茶水倒进被子')
+  },
+  addCondiments() {
+    console.log('加柠檬')
+  }
+})
+
+const tea = new Tea()
+const coffee = new Coffee()
+tea.init()
+coffee.init()
+
+// 把水烧沸
+// 用热水冲咖啡
+// 把咖啡倒进杯子
+// 加牛奶
+// 把水烧沸
+// 用热水浸泡茶叶
+// 把茶水倒进被子
+// 加柠檬
+```

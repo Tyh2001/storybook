@@ -101,7 +101,7 @@ export const sidebar = {
         { text: '发布订阅模式', link: 'article/design-mode/design-7' },
         { text: '命令模式', link: 'article/design-mode/design-8' },
         { text: '组合模式', link: 'article/design-mode/design-9' },
-        { text: '模板方法模式', link: 'article/design-mode/design-10' },
+        { text: '模板方法模式', link: 'article/design-mode/design-10' }
       ]
     },
     {
