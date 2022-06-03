@@ -197,3 +197,79 @@ tea.init()
 ```
 
 ## 钩子方法
+
+在上面类中的 `addCondiments` 方法，是不同的饮料会加入不同的调味料，但是有些人可能并不需要调味料，所以就需要加入钩子方法进行判断
+
+```js
+class Beverage {
+  boilWater() {
+    console.log('把水烧沸')
+  }
+  makeCoffee() {
+    throw new Error('子类必须重写父类方法')
+  }
+  pourInCup() {
+    throw new Error('子类必须重写父类方法')
+  }
+  addCondiments() {
+    throw new Error('子类必须重写父类方法')
+  }
+  // 钩子方法
+  customerWantsCondiments() {
+    return true
+  }
+  init() {
+    this.boilWater()
+    this.makeCoffee()
+    this.pourInCup()
+    if (this.customerWantsCondiments()) {
+      this.addCondiments()
+    }
+  }
+}
+
+class Coffee extends Beverage {
+  makeCoffee() {
+    console.log('用热水冲咖啡')
+  }
+  pourInCup() {
+    console.log('把咖啡倒进杯子')
+  }
+  addCondiments() {
+    console.log('加牛奶')
+  }
+}
+
+class Tea extends Beverage {
+  makeCoffee() {
+    console.log('用热水浸泡茶叶')
+  }
+  pourInCup() {
+    console.log('把茶水倒进被子')
+  }
+  addCondiments() {
+    console.log('加柠檬')
+  }
+  customerWantsCondiments() {
+    return false
+  }
+}
+
+const coffee = new Coffee()
+const tea = new Tea()
+
+coffee.init()
+tea.init()
+
+// 把水烧沸
+// 用热水冲咖啡
+// 把咖啡倒进杯子
+// 加牛奶
+// 把水烧沸
+// 用热水浸泡茶叶
+// 把茶水倒进被子
+```
+
+减少了加柠檬
+
+##
