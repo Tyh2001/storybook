@@ -4,7 +4,7 @@
 
 大家好，我是[田同学](https://github.com/Tyh2001)。一位开源组件库作者，有兴趣可以加我微信：`VirgoTyh`，一起共同学习。
 
-最近我在开始做了全新的 `Vue3` 开源组件库 [Fighting Design](https://github.com/Tyh2001/fighting-design)，可以带领各位一起参与开源组件库的开发，大家感兴趣的话可以参与到其中，欢迎加入！
+最近我在开始做了全新的 `Vue3` 开源组件库 [Fighting Design](https://github.com/FightingDesign/fighting-design)，可以带领各位一起参与开源组件库的开发，大家感兴趣的话可以参与到其中，欢迎加入！
 
 ## 关于 Fighting Design
 
@@ -55,9 +55,9 @@
 
 ## 相关链接
 
-- [官方仓库](https://github.com/Tyh2001/fighting-design)
+- [官方仓库](https://github.com/FightingDesign/fighting-design)
 - [官方文档](https://fighting.tianyuhao.cn)
-- [贡献指南](https://github.com/Tyh2001/fighting-design/blob/master/CONTRIBUTING.md)
+- [贡献指南](https://github.com/FightingDesign/fighting-design/blob/master/CONTRIBUTING.md)
 
 ## 联系我
 
