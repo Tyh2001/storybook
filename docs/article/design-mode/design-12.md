@@ -88,3 +88,5 @@ function orderNormal(code, pay, stock) {
 
 order500(1, true, 500) // 500 定金已经缴纳，得到 100 优惠券
 ```
+
+## 灵活可拆分职责链
