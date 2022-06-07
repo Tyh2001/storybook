@@ -90,3 +90,58 @@ order500(1, true, 500) // 500 定金已经缴纳，得到 100 优惠券
 ```
 
 ## 灵活可拆分职责链
+
+但是上面的方法中，如果还需在其中新增一个新的方法之后，就需要改动原函数，这种方式是违反开放封闭原则的，那么下面使用灵活可拆分的职责链来编写：
+
+```js
+function order500(code, pay, stock) {
+  if (code === 1 && pay) {
+    // 500 定金模式
+    console.log('500 定金已经缴纳，得到 100 优惠券')
+    return
+  }
+  return 'nextSuccessor'
+}
+
+function order200(code, pay, stock) {
+  if (code === 2 && pay) {
+    console.log('200 定金已经缴纳，得到 50 优惠券')
+    return
+  }
+  return 'nextSuccessor'
+}
+
+function orderNormal(code, pay, stock) {
+  if (stock > 0) {
+    console.log('普通购买，无优惠券')
+  } else {
+    console.log('手机库存不足')
+  }
+}
+
+class Chain {
+  constructor(fn) {
+    this.fn = fn
+    this.successor = null
+  }
+  setNextSuccessor(successor) {
+    return (this.setNextSuccessor = successor)
+  }
+  passRequest() {
+    const ret = this.fn.apply(this, arguments)
+    if (ret === 'nextSuccessor') {
+      return this.successor && this.successor.passRequest.apply(this, arguments)
+    }
+    return ret
+  }
+}
+
+const chainOrder500 = new Chain(order500)
+const chainOrder200 = new Chain(order200)
+const chainOrderNormal = new Chain(orderNormal)
+
+chainOrder500.setNextSuccessor(chainOrder200)
+chainOrder200.setNextSuccessor(chainOrderNormal)
+
+chainOrder500.passRequest(1, true, 500) // 500 定金已经缴纳，得到 100 优惠券
+```
