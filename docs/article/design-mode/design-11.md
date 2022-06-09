@@ -59,3 +59,68 @@ for (let i = 0; i < 50; i++) {
 改进后的例子中，就只是创建了两个对象就解决了问题
 
 ## 内部状态和外部状态
+
+- 内部状态存储于对象内部
+- 内部状态可以被一些对象共享
+- 内部状态独立于具体从场景，通常不会改变
+- 外部状态取决于具体场景，根据场景而变化，外部状态不能被共享
+
+## 对象爆炸
+
+下面例子中，是一个上传文件的例子，每上传一个文件都新建一个对象，如果对象过多，对于性能的损耗是极大的
+
+```js
+class UpLoad {
+  constructor(uploadType, fileName, fileSize) {
+    this.uploadType = uploadType
+    this.fileName = fileName
+    this.fileSize = fileSize
+  }
+  // 初始化
+  init() {
+    this.dom = document.createElement('div')
+    this.dom.innerHTML = `
+          <span>文件名称：${this.fileName} 文件大小：${this.fileName}</span>
+          <button class="delete">删除</button>
+        `
+    this.dom.querySelector('.delete').addEventListener(
+      'click',
+      () => {
+        this.delFile()
+      },
+      false
+    )
+    document.body.appendChild(this.dom)
+  }
+  // 删除
+  delFile() {
+    if (this.fileSize < 3000) {
+      return this.dom.parentNode.removeChild(this.dom)
+    }
+    if (window.confirm(`确定删除吗？${this.fileName}`)) {
+      return this.dom.parentNode.removeChild(this.dom)
+    }
+  }
+}
+
+function startUpload(uploadType, files) {
+  files.map((file, index) => {
+    const upload = new UpLoad(uploadType, file.fileName, file.fileSize)
+    upload.init()
+  })
+}
+
+startUpload('plugin', [
+  { fileName: '1.txt', fileSize: 1000 },
+  { fileName: '2.txt', fileSize: 3000 },
+  { fileName: '3.txt', fileSize: 5000 }
+])
+
+startUpload('plugin', [
+  { fileName: '4.txt', fileSize: 1000 },
+  { fileName: '5.txt', fileSize: 3000 },
+  { fileName: '6.txt', fileSize: 5000 }
+])
+```
+
+## 享元模式重构文件上传
