@@ -84,6 +84,10 @@ export const sidebar = {
         {
           text: 'Vue3 开源组件库 Fighting Design 成员招募',
           link: 'article/article/article-11'
+        },
+        {
+          text: '想参与开源贡献吗？Fighting Design 欢迎加入！',
+          link: 'article/article/article-12'
         }
       ]
     },
