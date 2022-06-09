@@ -5,7 +5,6 @@ export const sidebar = {
       link: 'docs/hello/hello',
       children: [
         { text: 'Hello', link: 'docs/hello/hello' },
-        { text: '关于我', link: 'docs/hello/about' },
         { text: '联盟录语', link: 'docs/hello/lol' }
       ]
     },
