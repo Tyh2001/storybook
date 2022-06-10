@@ -96,3 +96,6 @@ class Light {
 const light = new Light()
 light.init()
 ```
+
+这样后续扩展起来只需要新增即可，并不需要修改原函数
+
