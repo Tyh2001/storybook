@@ -41,5 +41,58 @@ light.init()
 下面使用状态模式改写，将每种状态都封装成单独的类
 
 ```js
+class State1 {
+  constructor(light) {
+    this.light = light
+  }
+  changeState() {
+    console.log('强光')
+    this.light.setState(this.light.state2)
+  }
+}
 
+class State2 {
+  constructor(light) {
+    this.light = light
+  }
+  changeState() {
+    console.log('弱光')
+    this.light.setState(this.light.state3)
+  }
+}
+
+class State3 {
+  constructor(light) {
+    this.light = light
+  }
+  changeState() {
+    console.log('关灯')
+    this.light.setState(this.light.state1)
+  }
+}
+
+class Light {
+  constructor() {
+    this.state1 = new State1(this)
+    this.state2 = new State2(this)
+    this.state3 = new State3(this)
+    this.button = null
+  }
+  init() {
+    const button = document.createElement('button')
+    button.innerText = '开关'
+    this.button = button
+    this.currentState = this.state1
+    document.body.appendChild(button)
+    button.addEventListener('click', () => {
+      this.currentState.changeState()
+    })
+  }
+  setState(newState) {
+    this.currentState = newState
+  }
+}
+
+const light = new Light()
+light.init()
 ```
