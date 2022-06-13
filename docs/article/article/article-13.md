@@ -1,6 +1,8 @@
 # Github 如何提交 PR？
 
-## 前言
+## Hello
+
+大家好，我是[田同学](https://github.com/Tyh2001)，大家可以加我微信 `VirgoTyh` 一起共同学习。
 
 `PR` 全称：`Pull Request`，提交了 `PR` 之后那么你就会成为贡献者其中的一员了，下面这篇文章向大家介绍一下 `Github` 上提交 `PR` 的方式
 
@@ -14,13 +16,13 @@
 
 ![](../images/24.jpg)
 
-这样你的账号上就会有一个和原仓库一模一样的仓库了，这样就可以进行修改了
+这样你的账号上就会有一个和原仓库一模一样的仓库了，就可以进行修改了
 
 ![](../images/25.jpg)
 
 ## Clone 仓库
 
-`Fork` 完之后，你就可以像 `Close` 自己的仓库一样，将仓库 `Clone` 到本地，然后就可以进行修改或运行
+`Fork` 完之后，你就可以像 `Close` 自己的仓库一样，将仓库 `Clone` 到本地，就可以本地进行修改或运行了
 
 ![](../images/26.jpg)
 
@@ -38,7 +40,7 @@ git push -u origin master
 
 ## Pull Requests
 
-推动到远程仓库之后，需要进入项目操作栏的 `Pull Requests` 菜单中，点击 `New pull requests` 发起一个新的 `PR`
+推送到远程仓库之后，需要进入项目操作栏的 `Pull Requests` 菜单中，点击 `New pull requests` 发起一个新的 `PR`
 
 ![](../images/27.jpg)
 
