@@ -88,6 +88,10 @@ export const sidebar = {
         {
           text: '想参与开源贡献吗？Fighting Design 欢迎加入！',
           link: 'article/article/article-12'
+        },
+        {
+          text: 'Github 如何提交 PR？',
+          link: 'article/article/article-13'
         }
       ]
     },
