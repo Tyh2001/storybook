@@ -106,7 +106,7 @@ change()
 
 ![](../images/12.jpg)
 
-记录的笔记在这里[原型链](https://tianyuhao.cn/blog/javascript/js-other.html#原型和原型链)
+记录的笔记在这里[原型链](https://tianyuhao.cn/blog/docs/javascript/fun-prototype.html)
 
 ## 2021-12-18
 
