@@ -92,6 +92,10 @@ export const sidebar = {
         {
           text: 'Github 如何提交 PR？',
           link: 'article/article/article-13'
+        },
+        {
+          text: '我是如何学习的？',
+          link: 'article/article/article-14'
         }
       ]
     },
