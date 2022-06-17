@@ -36,47 +36,6 @@
 
 其实并不是。看书真的会让你学到很多你不知道的东西，你会遇到很多你从来没有见过的代码写法。比如最近我在看的 `《JavaScript 设计模式与开发实践》` ，这本书我连续看了三遍，里面的一些很简单的逻辑，使用设计模式的方式来写，会让你感到惊讶，原来代码还能这么写！
 
-下面具一个迭代器模式的一个有一意思的例子，需要判断两个数组是否相等，代码如下：
-
-```js
-const arr1 = ['css', 'html', 'js', 'vue']
-const arr2 = ['css', 'react', 'ts', 'vue']
-
-function iterator(arr) {
-  let current = 0
-
-  const next = () => {
-    current += 1
-  }
-
-  const isDone = () => {
-    return current >= arr.length
-  }
-
-  const getItem = () => {
-    return arr[current]
-  }
-
-  return { next, isDone, getItem }
-}
-
-function computed(arr1, arr2) {
-  while (!arr1.isDone() && !arr2.isDone()) {
-    if (arr1.getItem() !== arr2.getItem()) {
-      throw new Error('arr1 和 arr2 不相等')
-    }
-    arr1.next()
-    arr2.next()
-  }
-  console.log('arr1 和 arr2 相等')
-}
-
-const iterator1 = iterator(arr1)
-const iterator2 = iterator(arr2)
-
-computed(iterator1, iterator2)
-```
-
 有关于看书，这里可以推荐一些不错的书籍，详情可以看我 [看书的分享](https://tianyuhao.cn/blog/article/article/article-3.html) 这篇文章。
 
 ## 面试学习
