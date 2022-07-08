@@ -3,7 +3,7 @@ export const sidebar = {
     {
       text: 'Hello',
       link: 'docs/hello/hello',
-      children: [
+      items: [
         { text: 'Hello', link: 'docs/hello/hello' },
         { text: '联盟录语', link: 'docs/hello/lol' }
       ]
@@ -11,7 +11,7 @@ export const sidebar = {
     {
       text: 'JavaScript',
       link: 'docs/javascript/basic',
-      children: [
+      items: [
         { text: '基础', link: 'docs/javascript/basic' },
         { text: 'DOM 相关', link: 'docs/javascript/dom' },
         { text: '函数', link: 'docs/javascript/function' },
@@ -33,7 +33,7 @@ export const sidebar = {
     {
       text: 'Vue',
       link: 'docs/vue/vue2',
-      children: [
+      items: [
         { text: 'Vue2 基础', link: 'docs/vue/vue2' },
         { text: 'Vue3 基础', link: 'docs/vue/vue3' },
         { text: 'Vue3 API', link: 'docs/vue/vue3-api' },
@@ -45,7 +45,7 @@ export const sidebar = {
     {
       text: 'TypeScript',
       link: 'docs/typescript/type',
-      children: [
+      items: [
         { text: '类型', link: 'docs/typescript/type' },
         { text: '其它', link: 'docs/typescript/other' }
       ]
@@ -55,7 +55,7 @@ export const sidebar = {
     {
       text: '里程碑',
       link: 'article/milepost/milepost-2021',
-      children: [
+      items: [
         { text: '里程碑 2021', link: 'article/milepost/milepost-2021' },
         { text: '里程碑 2022', link: 'article/milepost/milepost-2022' }
       ]
@@ -63,7 +63,7 @@ export const sidebar = {
     {
       text: '我的文章',
       link: 'article/article/article-0',
-      children: [
+      items: [
         { text: '杂项记录', link: 'article/article/article-0' },
         { text: '别再写循环套循环了', link: 'article/article/article-1' },
         { text: '关于组件库', link: 'article/article/article-2' },
@@ -102,7 +102,7 @@ export const sidebar = {
     {
       text: 'JavaScript 设计模式',
       link: 'article/design-mode/design-1',
-      children: [
+      items: [
         { text: '基础知识', link: 'article/design-mode/design-1' },
         { text: '高阶函数', link: 'article/design-mode/design-2' },
         { text: '单例模式', link: 'article/design-mode/design-3' },
@@ -125,7 +125,7 @@ export const sidebar = {
     {
       text: 'Vue.js 设计与实现',
       link: 'article/vue-design/page-1',
-      children: [
+      items: [
         { text: '第一章 权衡的艺术', link: 'article/vue-design/page-1' },
         {
           text: '第二章 框架设计的核心要素',
@@ -144,7 +144,7 @@ export const sidebar = {
     {
       text: '前端面试题',
       link: 'article/ques/ques-new',
-      children: [
+      items: [
         { text: '更新面试题', link: 'article/ques/ques-new' },
         { text: 'Web 相关', link: 'article/ques/ques-web' },
         { text: 'Html 相关', link: 'article/ques/ques-html' },
