@@ -59,7 +59,7 @@
 在项目 `根目录` 创建：`.github/workflows/main.yml`
 `main.yml`中写入下面代码段：
 
-```yml
+```
 name: build and deploy
 
 # 当 master 分支 push 代码的时候触发 workflow
