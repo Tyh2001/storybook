@@ -40,3 +40,23 @@ git merge dev
 # 将合并的分支提交到仓库
 git push
 ```
+
+## 回溯版本
+
+查看 `commit hash` 值
+
+```shell
+git reflog
+```
+
+回溯版本
+
+```shell
+git reset --hard xxxx
+```
+
+回溯命令
+
+```shell
+git push -f
+```
