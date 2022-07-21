@@ -15,7 +15,6 @@
 | git merge dev             | 把 dev 分支合并到 master 分支 |
 | git branch -d dev         | 删除 dev 分支                 |
 | git pull origin master    | 同步分支到本地                |
-| git pull origin master    | 同步分支到本地                |
 | git reset --hard 版本号   | 获取历史版本                  |
 
 ## 分支管理
