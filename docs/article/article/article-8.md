@@ -59,3 +59,13 @@ git reset --hard xxxx
 ```shell
 git push -f
 ```
+
+## 配置 Git SSH Key
+
+命令行输入：
+
+```shell
+ssh-keygen -t rsa -b 4096 -C "邮箱"
+```
+
+连续敲击3次回车，即可 `/c/Users/` 当前用户` /.ssh/` 目录中生成 `id_rsa` 和 `id_rsa.pub` 两个文件
