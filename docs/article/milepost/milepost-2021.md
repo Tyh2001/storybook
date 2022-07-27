@@ -73,7 +73,7 @@ change()
 
 ## 2021-12-11
 
-今日更新了 Table 表格组件，还算很完美，自己还是很满意的，[请点击这里查看](https://tianyuhao.cn/tyhui/v3/#/component/table)
+今日更新了 Table 表格组件，还算很完美，自己还是很满意的，[请点击这里查看](https://tianyuhao.cn/v3/components/table.html)
 
 ## 2021-12-14
 

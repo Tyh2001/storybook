@@ -21,7 +21,7 @@
 最近事情有点多，先记录一下
 
 1. 发布 vscode 插件
-2. tyh-ui 组件开发。[鼠标滑入弹出](https://github.com/Tyh2001/microtip)
+2. tyh-ui 组件开发。[鼠标滑入弹出](https://github.com/ghosh/microtip)
 3. 表单组件 尝试开发，参考红宝书部分
 4. 了解 `封装继承多状态`
 5. 看大圣的视频和课程
@@ -222,15 +222,15 @@ tyh-ui 最近又完善了好多东西，ts 的类型更加的严谨了。
 
 对于 `TypeScript` 最近也是慢慢在学习，在项目中使用基本上是没有问题，讯息渐进中。对于 `Pinia` 在项目中页使用了，目前感觉良好，只是会有一些小坑，不过都已经解决，后续有时间将这些小坑整理成文章发布一下。
 
-在开源上，我的全新组件库 [Fighting Design](https://github.com/Tyh2001/fighting-design) 已经正式的开始启动了，进度一直保持不错，现在的目录结构和开发方式和一些代码构建以及编写方面，相比较于 [tyh-ui2](https://github.com/Tyh2001/tyh-ui) 都做了很大程度的优化和健壮，配置也变得更加的灵活了，整体的 ui 也进行了优化。这次官网采用的是 `vitepress` 来写的，所以文档现在看起来会更加的舒适了，[文档](https://fighting.tianyuhao.cn/) 在这里。只不过现在打包还没有研究明白，等打包做好了之后，整体的项目就趋于稳定状态了，就可以一心一意的研发组件了，现在先全心搞一下打包，现将整体的脉络打通。
+在开源上，我的全新组件库 [Fighting Design](https://github.com/FightingDesign/fighting-design) 已经正式的开始启动了，进度一直保持不错，现在的目录结构和开发方式和一些代码构建以及编写方面，相比较于 [tyh-ui2](https://github.com/Tyh2001/tyh-ui) 都做了很大程度的优化和健壮，配置也变得更加的灵活了，整体的 ui 也进行了优化。这次官网采用的是 `vitepress` 来写的，所以文档现在看起来会更加的舒适了，[文档](https://fighting.tianyuhao.cn/) 在这里。只不过现在打包还没有研究明白，等打包做好了之后，整体的项目就趋于稳定状态了，就可以一心一意的研发组件了，现在先全心搞一下打包，现将整体的脉络打通。
 
-另外还开发了一个新的库，叫 [Tsmango](https://github.com/tyh2001/tsmango) 是一个可爱的芒果，它是一个实用的工具函数库，封装了一些我们常用的函数，以便提示我们的开发效率。只不过现在还是 `beta` 版本中，还在更新迭代。
+另外还开发了一个新的库，叫 [ts-mango](https://github.com/ts-mango/ts-mango) 是一个可爱的芒果，它是一个实用的工具函数库，封装了一些我们常用的函数，以便提示我们的开发效率。只不过现在还是 `beta` 版本中，还在更新迭代。
 
 ![](../images/22.jpg)
 
 ## 2022-05-18
 
-终于把 [Fighting Design](https://github.com/Tyh2001/fighting-design) 的打包做好了，npm 已经发布[测试版](https://www.npmjs.com/package/fighting-design)
+终于把 [Fighting Design](https://github.com/FightingDesign/fighting-design) 的打包做好了，npm 已经发布[测试版](https://www.npmjs.com/package/fighting-design)
 
 虽然实现的方式优点挫，后续再慢慢优化，先暂时这样，哈哈~~
 
