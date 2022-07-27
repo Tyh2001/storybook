@@ -115,11 +115,8 @@ export const sidebar = {
         { text: '模板方法模式', link: 'article/design-mode/design-10' },
         { text: '享元模式', link: 'article/design-mode/design-11' },
         { text: '职责链模式', link: 'article/design-mode/design-12' },
-        { text: '中介者模式', link: 'article/design-mode/design-13' },
-        { text: '修饰者模式', link: 'article/design-mode/design-14' },
-        { text: '状态模式', link: 'article/design-mode/design-15' },
-        { text: '适配器模式', link: 'article/design-mode/design-16' },
-        { text: '设计原则', link: 'article/design-mode/design-17' }
+        { text: '状态模式', link: 'article/design-mode/design-13' },
+        { text: '适配器模式', link: 'article/design-mode/design-14' }
       ]
     },
     {

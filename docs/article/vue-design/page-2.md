@@ -45,14 +45,6 @@ vue3 使用 [rollup.js](https://github.com/rollup/rollup)。Rollup 是一个用�
 
 Tree-Shaking 的作用就是可以消除哪些永远不会执行的代码，从而减少包的体积。
 
-3
-
-## 2.4 框架应该输出怎样的构建产物
-
-## 2.5 性能开关
-
-## 2.6 错误处理
-
-## 2.7 良好的 TypeScript 类型支持
+## 2.4 良好的 TypeScript 类型支持
 
 框架内部做了很多对于 TypeScript 的类型支持，并不是用 TypeScript 编写的框架，就一定对 TypeScript 由良好的支持，比如在 [runtime-core](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/apiDefineComponent.ts) 文件中，整个在浏览器可以运行的文件只要 3 行，但是全部的代码将近 200 行，其实这些代码都是在为类型支持所服务。由此可见，框架要做到完善的类型支持，还需要付出很大的努力。

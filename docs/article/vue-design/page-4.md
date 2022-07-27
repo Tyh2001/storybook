@@ -40,6 +40,8 @@ obj.text = 'hello world'
 
 之前介绍了，响应式系统需要的是，当副作用函数被调用时候，会获取 `obj.text` 的操作，那么当下一次修改数据时候，也可以希望能调用副作用函数重新赋值。vue3 中使用 [proxy](https://tianyuhao.cn/blog/javascript/proxy.html) 来实现对数据的代理，实现每一次操作都可以被监听到。下面来实现一个简单的例子进行演示基本的响应式系统：
 
+::: details 显示代码
+
 ```js
 // 原始数据
 const obj = { text: 'hello' }
@@ -72,11 +74,15 @@ setTimeout(() => {
 }, 3000)
 ```
 
+:::
+
 这就是一个基本的响应式系统的实现，但是这个逻辑还存在着很多问题，其实还远远的不够灵活。
 
 ## 4.3 设计一个完善的响应式系统
 
 在上个例子中，副作用函数名为 `effect`，但是如果副作用函数一旦不叫这个名字了，那么整个系统就会崩溃，接下来解决这个问题：
+
+::: details 显示代码
 
 ```js
 const data = { text: 'hello' }
@@ -112,6 +118,8 @@ setTimeout(() => {
 }, 2000)
 ```
 
+:::
+
 解决的方法是：通过一个全局的变量 `activeEffect` 来存储副作用函数，`effect` 变成了可以给 `activeEffect` 赋值的函数，并且调用传递进来的函数，并调用触发 `get`。
 
 可以通过打印发现，其实 `effect` 被调用了两次，一次是在页面刚加载的时候，还有一次是重新设置值的时候
@@ -132,6 +140,8 @@ setTimeout(() => {
 ```
 
 所以接下来要重新设置拦截器代码。那么接下来将会使用到：[Map()](https://tianyuhao.cn/blog/javascript/data-type.html#map)、[WeakMap()](https://tianyuhao.cn/blog/javascript/data-type.html#weakmap) 和 [Set()](https://tianyuhao.cn/blog/javascript/data-type.html#set)
+
+::: details 显示代码
 
 ```js
 const bucket = new WeakMap()
@@ -175,7 +185,11 @@ const obj = new Proxy(data, {
 })
 ```
 
+:::
+
 最终的数据结构如下：
+
+::: details 显示代码
 
 ```shell
 WeakMap
@@ -197,6 +211,8 @@ WeakMap
         [[Prototype]]: Map
   [[Prototype]]: WeakMap
 ```
+
+:::
 
 也许这样并不直观，下面的图描述了它们之间的关系
 

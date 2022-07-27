@@ -88,6 +88,8 @@ const node = {
 
 上面是一个虚拟 DOM，下面需要使用渲染器函数将其转换为真实 DOM
 
+::: details 显示代码
+
 ```js
 function render(node, root) {
   const el = document.createElement(node.tag)
@@ -113,6 +115,8 @@ function render(node, root) {
   root.appendChild(el)
 }
 ```
+
+:::
 
 那么 render 函数处理的逻辑分为三步：
 
@@ -147,6 +151,8 @@ const node = {
 ```
 
 那么这时在对于处理函数和字符串的时候，render 函数就需要做一些修改了：
+
+::: details 显示代码
 
 ```js
 // 模拟虚拟 dom
@@ -211,6 +217,8 @@ function render(node, root) {
 // 调用 render 函数
 render(node, document.body)
 ```
+
+:::
 
 ## 3.4 模板的工作原理
 
