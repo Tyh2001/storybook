@@ -68,4 +68,12 @@ git push -f
 ssh-keygen -t rsa -b 4096 -C "邮箱"
 ```
 
-连续敲击3次回车，即可 `/c/Users/` 当前用户` /.ssh/` 目录中生成 `id_rsa` 和 `id_rsa.pub` 两个文件
+连续敲击 3 次回车，即可 `/c/Users/` 当前用户` /.ssh/` 目录中生成 `id_rsa` 和 `id_rsa.pub` 两个文件
+
+## 关联存储库
+
+```shell
+git init
+
+git remote add origin xxxxx
+```
