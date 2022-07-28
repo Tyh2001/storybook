@@ -17,6 +17,7 @@
 ## tyh-theme-vscode
 
 仓库：https://github.com/Tyh2001/tyh-theme-vscode
+
 下载地址：https://marketplace.visualstudio.com/items?itemName=tyh-theme.tyh-theme
 
 🔥 Tyh-theme 是一个让人视觉舒适的 vscode 主题，内置的黑暗和明亮主题。
@@ -34,6 +35,7 @@
 ## ts-mango
 
 仓库：https://github.com/ts-mango/ts-mango
+
 官网：https://tianyuhao.cn/mango
 
 🥭 TsMango 是一个用 typescript 编写的实用函数库。
@@ -43,6 +45,7 @@
 ## tyh-blog
 
 仓库：https://github.com/Tyh2001/tyh-blog
+
 官网：https://tianyuhao.cn/blog
 
 🏆 我的博客，记录前端各种领域知识点，以及我的文章和里程碑。
@@ -68,6 +71,7 @@
 ## tyh-ui
 
 仓库：https://github.com/Tyh2001/tyh-ui
+
 官网：https://tianyuhao.cn/v3
 
 🛩️ 一个轻量级组件库，基于 vue3 + typescript，全面拥抱 vue3。
@@ -77,8 +81,18 @@
 ## fighting-design
 
 仓库：https://github.com/FightingDesign/fighting-design
+
 官网：https://fighting.tianyuhao.cn
 
 🌈 Fighting Design 是一款使用 TypeScript + Template 编写的 Vue3 组件库，看起来还不错。
 
-现在我主要维护的组件库，由社区团队共同维护，共同打造一个优质、便捷、功能强大的 vue3 组件库。
+现在我主要维护的组件库，由社区团队共同维护，共同打造一个优质、便捷、功能强大的 vue3 组件库。也欢迎大家加入共同开发！
+
+## 写在最后
+
+仓库欢迎大家 `Star`~
+
+也欢迎加我微信共同学习：
+
+- 微信：`VirgoTyh`（加好友邀请加入微信群）
+- Github: `https://github.com/Tyh2001`
