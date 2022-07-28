@@ -96,6 +96,10 @@ export const sidebar = {
         {
           text: '我是如何学习的？',
           link: 'article/article/article-14'
+        },
+        {
+          text: '分享一些我的开源项目',
+          link: 'article/article/article-15'
         }
       ]
     },
