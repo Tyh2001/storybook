@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <!-- <div id="home">
     <p align="center">
       <f-avatar :size="160" round src="https://tianyuhao.cn/images/my.png" />
     </p>
@@ -7,8 +7,12 @@
     <f-text align="center" size="25px" bold line-height="75px">Tyh2001</f-text>
 
     <p align="center">
-      <f-button href="/blog/docs/hello/hello.html" type="primary" round>😊快速开始</f-button>
-      <f-button href="https://github.com/Tyh2001" type="default" round>Github</f-button>
+      <f-button href="/blog/docs/hello/hello.html" type="primary" round>
+        😊快速开始
+      </f-button>
+      <f-button href="https://github.com/Tyh2001" type="default" round>
+        Github
+      </f-button>
     </p>
 
     <f-divider margin="32px" color="rgb(224, 224, 224)" />
@@ -24,24 +28,26 @@
     <f-text>📃 我的文章</f-text>
     <f-text>📆 里程碑</f-text>
     <f-text>🏆 前端面试题</f-text>
-  </div>
+  </div> -->
+
+  <a href="/docs/hello/hello.html">快速开始</a>
 </template>
 
 <style scoped>
-#home {
-  max-width: 620px;
-  margin: 40px auto;
-  box-sizing: border-box;
-  padding: 40px;
-  padding-bottom: 0;
-}
+  #home {
+    max-width: 620px;
+    margin: 40px auto;
+    box-sizing: border-box;
+    padding: 40px;
+    padding-bottom: 0;
+  }
 
-.f-button-default {
-  margin-left: 15px;
-}
+  .f-button-default {
+    margin-left: 15px;
+  }
 
-.f-text {
-  display: block;
-  line-height: 40px;
-}
+  .f-text {
+    display: block;
+    line-height: 40px;
+  }
 </style>

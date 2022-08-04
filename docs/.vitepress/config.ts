@@ -7,7 +7,7 @@ const config = defineConfig({
   title: 'Tyh',
   head: [['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/my.png' }]],
   description,
-  base: '/blog/',
+  // base: '/blog/',
   themeConfig: {
     logo: 'https://tianyuhao.cn/images/my.png',
     nav,
