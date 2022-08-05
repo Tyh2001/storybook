@@ -5,10 +5,10 @@ import { description } from './utils/description'
 
 const config = defineConfig({
   title: 'Tyh',
-  head: [['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/my.png' }]],
+  head: [['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my.png' }]],
   description,
   themeConfig: {
-    logo: 'https://tianyuhao.cn/images/my.png',
+    logo: 'https://tianyuhao.cn/images/auto/my.png',
     nav,
     sidebar,
     editLink: {

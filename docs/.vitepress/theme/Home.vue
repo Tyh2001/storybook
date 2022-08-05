@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <p align="center">
-      <img src="https://tianyuhao.cn/images/my.png" />
+      <img src="https://tianyuhao.cn/images/auto/my.png" />
     </p>
     <p class="title">Tyh2001</p>
 
