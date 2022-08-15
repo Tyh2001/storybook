@@ -36,7 +36,6 @@ export const sidebar = {
       items: [
         { text: 'Vue2 基础', link: 'docs/vue/vue2' },
         { text: 'Vue3 基础', link: 'docs/vue/vue3' },
-        { text: 'Vue3 API', link: 'docs/vue/vue3-api' },
         { text: 'Vue3 Router', link: 'docs/vue/vue3-router' },
         { text: 'Vuex', link: 'docs/vue/vuex' },
         { text: 'Pinia', link: 'docs/vue/pinia' }
@@ -48,6 +47,13 @@ export const sidebar = {
       items: [
         { text: '类型', link: 'docs/typescript/type' },
         { text: '其它', link: 'docs/typescript/other' }
+      ]
+    },
+    {
+      text: 'Nest',
+      link: 'docs/nest/nest-1',
+      items: [
+        { text: '基础', link: 'docs/nest/nest-1' },
       ]
     }
   ],
