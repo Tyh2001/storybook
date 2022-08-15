@@ -69,3 +69,48 @@ export class AppController {
   }
 }
 ```
+
+## 状态码
+
+状态码可以使用 `HttpCode` 修饰器进行实现
+
+```ts
+import { Controller, Get, HttpCode } from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/home/load')
+  @HttpCode(201)
+  getHello = (): string => {
+    return this.appService.getHello()
+  }
+}
+```
+
+:::danger
+注意，成功状态码包括 200、201 等，如果你定义了 404、500、203 等非正常状态码，那么会导致请求失败，或者路由访问失败。也就是说，就算代码写的没有问题，但是错误的状态码仍会导致抛出异常！
+:::
+
+## 请求头
+
+请求头需要使用 `Header` 修饰器进行来实现
+
+```ts
+import { Controller, Get, HttpCode, Header } from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/home/load')
+  @HttpCode(201)
+  @Header('Access-Control-Allow-Origin', '*')
+  getHello = (): string => {
+    return this.appService.getHello()
+  }
+}
+```
