@@ -114,3 +114,25 @@ export class AppController {
   }
 }
 ```
+
+## 获取 Params
+
+获取 `params` 参数需要使用 `Query` 修饰器进行实现
+
+```ts
+import { Controller, Get, HttpCode, Header,Query} from '@nestjs/common'
+import { AppService } from './app.service'
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/home/load')
+  @HttpCode(201)
+  @Header('Access-Control-Allow-Origin', '*')
+  getHello = (@Query() query): string => {
+    // console.log(quey.page) // 获取 query 中的参数
+    return this.appService.getHello()
+  }
+}
+```
