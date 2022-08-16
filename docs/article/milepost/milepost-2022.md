@@ -282,3 +282,11 @@ tyh-ui 最近又完善了好多东西，ts 的类型更加的严谨了。
 ## 2022-08-05
 
 昨天晚上将 `Fighting Design` 实现了服务器自动化拉取打包部署，效果非常不错，开森~~
+
+## 2022-08-16
+
+近期工作内容优点小多，下班之后都是在写代码，也没有玩游戏。
+
+最近在学习一个新的后端框架 [Nest.js](https://github.com/nestjs/nest)，是基于 node 的框架，全面天生基于 TypeScript 写起来非常不错，后续打算自己使用这个框架实现一个完整的后端。
+
+另外自己也写了一些 Nest 的笔记，记录在[这里](https://blog.tianyuhao.cn/docs/nest/nest-1.html)。
