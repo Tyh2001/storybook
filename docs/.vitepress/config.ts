@@ -5,7 +5,9 @@ import { description } from './utils/description'
 
 const config = defineConfig({
   title: 'Tyh',
-  head: [['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my.png' }]],
+  head: [
+    ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my.png' }]
+  ],
   description,
   themeConfig: {
     logo: 'https://tianyuhao.cn/images/auto/my.png',

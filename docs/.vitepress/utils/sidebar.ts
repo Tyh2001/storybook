@@ -52,9 +52,7 @@ export const sidebar = {
     {
       text: 'Nest',
       link: 'docs/nest/nest-1',
-      items: [
-        { text: '基础', link: 'docs/nest/nest-1' },
-      ]
+      items: [{ text: '基础', link: 'docs/nest/nest-1' }]
     }
   ],
   '/article/': [

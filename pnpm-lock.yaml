@@ -1,13 +1,13 @@
 lockfileVersion: 5.4
 
 specifiers:
-  fighting-design: 0.4.2-bate.8
+  fighting-design: 0.6.0-bate.2
   prettier: ^2.6.2
   vitepress: 1.0.0-alpha.4
   vue: ^3.2.33
 
 dependencies:
-  fighting-design: 0.4.2-bate.8
+  fighting-design: 0.6.0-bate.2
   prettier: 2.6.2
   vitepress: 1.0.0-alpha.4
   vue: 3.2.33
@@ -745,10 +745,10 @@ packages:
       }
     dev: false
 
-  /fighting-design/0.4.2-bate.8:
+  /fighting-design/0.6.0-bate.2:
     resolution:
       {
-        integrity: sha512-oVOQI8kbqoXP9vq/NVULj0l1LG3FBXg4h1y13qYH2UxM9M3sEpYxEICIUOnaTjsHH/fEAvjW3J3vemXEp9FjAQ==
+        integrity: sha512-LiNbwV4ZMn7xmhLc3HebIVK6OjspN8M6Il4G8JVDTSKIeZOMXKrRKvOpaL2HA4xiGVUhY2oD+MePWx+++M8WSQ==
       }
     dev: false
 
