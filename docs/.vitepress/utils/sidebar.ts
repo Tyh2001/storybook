@@ -104,6 +104,10 @@ export const sidebar = {
         {
           text: '分享一些我的开源项目',
           link: 'article/article/article-15'
+        },
+        {
+          text: '关于图片加载，你需要学习一下',
+          link: 'article/article/article-16'
         }
       ]
     },
