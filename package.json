@@ -11,6 +11,7 @@
     "fighting-design": "0.6.0-bate.2",
     "prettier": "^2.6.2",
     "vitepress": "1.0.0-alpha.4",
-    "vue": "^3.2.33"
+    "vue": "^3.2.33",
+    "vite": "^3.0.8"
   }
 }
