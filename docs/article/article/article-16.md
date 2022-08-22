@@ -303,3 +303,43 @@ export const loadImage = (node, prop, emit, callback) => {
   load.loadCreateImg()
 }
 ```
+
+## 测试使用
+
+写好的函数测试一下看看：
+
+```vue
+<script lang="ts" setup>
+  import { loadImage } from '../../packages/fighting-design/_utils'
+  import { ref, onMounted } from 'vue'
+
+  const myImg = ref(null as unknown as HTMLImageElement)
+
+  // 模拟 props
+  const props = {
+    src: 'https://tianyuha2o.cn/images/auto/my.jpg',
+    errSrc: 'https://tianyuhao.cn/images/auto/4.jpg',
+    lazy: true
+  }
+
+  onMounted(() => {
+    loadImage(myImg.value, props)
+  })
+</script>
+
+<template>
+  <img ref="myImg" src="" />
+</template>
+```
+
+可以看到，是成功执行的。
+
+## 完整代码
+
+完整代码可参考 [load-image](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-design/_utils/load-image.ts)
+
+## 写在最后
+
+这篇文章的图片加载设计，取自我带领社区小伙伴一起做的开源 `vue3` 组件库 [Fighting Design](https://github.com/FightingDesign/fighting-design) 中的部分源码，想参与开源组件库的开发也可以直接加我的微信：`VirgoTyh` 一起共同学习。
+
+欢迎大家多多`点赞` `评论` `Star`，还有什么需要完善的可以给我评论留言。不要镇怕写出不完美的代码，只要在后续迭代过程中`见招拆招`，代码就会变得越来越完善，框架也会变得越来越健壮。
