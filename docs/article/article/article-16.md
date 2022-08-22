@@ -142,7 +142,7 @@ onload = (evt) => {
 }
 ```
 
-但是 `src` 并不是始终可以加载成功的，所以还是需要动态的去将真正加载成功的 `src` 传给 `onload` 方法，那么真正加载成功的 `src` 也就是在 `load` 方法中。所以完善代码为：
+但是 `src` 并不是始终可以加载成功的，所以还是需要动态的去将真正加载成功的 `src` 传给 `onload` 方法，那么真正加载成功的 `src` 也就是在 `load` 方法中，并且还要加入成功的 `emit`。所以完善代码为：
 
 ```ts
 class Load {
@@ -172,6 +172,7 @@ class Load {
   // 新增 src 属性
   onload = (evt, src: string) => {
     this.node.src = src // 将真实 dom 的 src 赋值给传入的 src
+    this.emit('load', evt) // 新增
   }
   onerror = (evt) => {
     if (this.props.errSrc) {
@@ -180,5 +181,125 @@ class Load {
 
     this.emit('error', evt)
   }
+}
+```
+
+## 回调函数
+
+有些时候，我们还需要通过一个布尔值来判断图片是否加载成功，或者进行其它判断。
+
+`Fighting Design` 内部对图片加载失败做了特殊的样式处理来提示用户，所以需要一个布尔值和 `v-if` 来展示不同的状态，这里就涉及到了类的第四个参数，也就是一个可选的回调函数
+
+这样就可以在加载成功和加载失败的时候通过回调函数来返回一个布尔值判断是否加载成功，代码如下：
+
+```ts
+class Load {
+  constructor(node, props, emit, callback) {
+    this.node = node
+    this.props = props
+    this.emit = emit
+    this.callback = callback // 新增 callback 参数
+  }
+  loadCreateImg = (errSrc?: string) => {
+    const newImg = new Image()
+
+    if (errSrc) {
+      newImg.src = errSrc
+    } else {
+      newImg.src = this.props.src
+    }
+
+    newImg.addEventListener('error', (evt) => {
+      this.onerror(evt)
+    })
+
+    newImg.addEventListener('load', (evt) => {
+      this.onload(evt, newImg.src)
+    })
+  }
+  onload = (evt, src: string) => {
+    this.node.src = src
+    this.emit('load', evt)
+
+    // 如果 callback 存在，在加载成功的时候返回 true
+    if (this.callback) {
+      this.callback(true)
+    }
+  }
+  onerror = (evt) => {
+    if (this.props.errSrc) {
+      return this.loadCreateImg(this.props.errSrc)
+    }
+
+    this.emit('error', evt)
+    // 如果 callback 存在，在加载失败的时候返回 false
+    if (this.callback) {
+      this.callback(false)
+    }
+  }
+}
+```
+
+上面代码即可实现判断是否加载成功的需求。
+
+当然，回调函数你可以尽情的发挥想象做出更多的事情，这里仅提供部分用法。
+
+## 懒加载
+
+图片的懒加载，也是一个图片加载必备的功能了，这里我使用的是内置的 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) 接口，对于这个方法，这里不过多描述，各位可以通过 [MDN](https://developer.mozilla.org/zh-CN/) 进行学习。
+
+对于懒加载，因为这是一个可选的属性，并不是每次都需要，所以我将懒加载单独抽离出来的一个 `Lazy` 类进行实现，再将 `Lazy` 类继承到 `Load` 类，代码如下：
+
+```ts
+class Lazy extends Load {
+  constructor(img, props, emit, callback) {
+    // super 关键字调用
+    super(img, props, emit, callback)
+  }
+  observer = () => {
+    const observer = new IntersectionObserver(
+      (arr): void => {
+        // 如果进入可视区域
+        if (arr[0].isIntersecting) {
+          // 开始加载图片 调用父类
+          this.loadCreateImg()
+          observer.unobserve(this.node)
+        }
+      },
+      /**
+       * rootMargin 为触发懒加载的距离 通过 props 传入
+       * https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin
+       */
+      { rootMargin: this.props.rootMargin }
+    )
+    return observer
+  }
+  // 执行 懒加载
+  lazyCreateImg = (): void => {
+    // IntersectionObserver 内部方法，需要将 dom 节点传入
+    this.observer().observe(this.node)
+  }
+}
+```
+
+`IntersectionObserver` 接口可以判断 `dom` 元素是否进入可视区域，通过内置方法判断进入可视区域之后，执行父类的 `loadCreateImg` 方法进行加载，从而实现懒加载。
+
+## 对外接口
+
+对于 `Load` 类和 `Lazy` 类，`Fighting Design` 并没有直接暴露出去提供使用，而是暴露出了一个全新的 `loadImage` 函数，让它去根据是否为懒加载而实例化不同的类，再调用加载方法：
+
+```ts
+// 导出对外接口
+export const loadImage = (node, prop, emit, callback) => {
+  /**
+   * 如果传入了 lazy 则执行懒加载类
+   * 否则执行正常加载类
+   */
+  if (prop.lazy) {
+    const lazy = new Lazy(node, prop, emit, callback)
+    return lazy.lazyCreateImg()
+  }
+  const load = new Load(node, prop, emit, callback)
+  load.loadCreateImg()
 }
 ```
