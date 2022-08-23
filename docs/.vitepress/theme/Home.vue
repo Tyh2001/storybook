@@ -27,7 +27,7 @@
     <f-divider margin="32px" color="rgb(224, 224, 224)" />
     <f-text bold>写在前面</f-text>
     <f-text>🍉 最怕你一生碌碌无为，还安慰自己平凡可贵。</f-text>
-    <f-text>🎃 不要镇怕写出不完美的代码，只要在后续迭代过程中“见招拆招”，代码就会变得越来越完善，框架也会变得越来越健壮。</f-text>
+    <f-text>🎃 不要惧怕写出不完美的代码，只要在后续迭代过程中“见招拆招”，代码就会变得越来越完善，框架也会变得越来越健壮。</f-text>
 
     <f-divider margin="32px" color="rgb(224, 224, 224)" />
     <f-text bold>内容</f-text>
