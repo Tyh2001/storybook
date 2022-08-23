@@ -11,6 +11,12 @@ const config = defineConfig({
   description,
   themeConfig: {
     logo: 'https://tianyuhao.cn/images/auto/my.png',
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/Tyh2001/tyh-blog'
+      }
+    ],
     nav,
     sidebar,
     editLink: {
