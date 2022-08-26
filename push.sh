@@ -1,13 +1,9 @@
-# echo "this is a test shell" 
-
 git add .
 
-# echo -n "enter git message:" ---：
+message = $1
 
-# read name
-
-git commit -m "chore: 更新 push.sh"
+git commit -m "${message}"
 
 git push origin master
 
-echo "提交成功" 
+echo "tyh-blog 代码提交成功 🎉🎉🎉" 
