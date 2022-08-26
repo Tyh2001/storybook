@@ -4,7 +4,8 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "serve": "vitepress serve docs",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "push": "sh push.sh"
   },
   "license": "ISC",
   "dependencies": {
