@@ -108,6 +108,10 @@ export const sidebar = {
         {
           text: '关于图片加载，你需要学习一下',
           link: 'article/article/article-16'
+        },
+        {
+          text: '远程计算机或设备将不接受链接-解决方案',
+          link: 'article/article/article-17'
         }
       ]
     },
