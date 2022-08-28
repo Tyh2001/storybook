@@ -133,7 +133,9 @@ class Load {
 }
 ```
 
-但是上面代码依然有问题，我们发现，在 `onload` 加载成功的方法中，将真实 `dom` 始终赋值的始终 是 `src`：
+但是上面代码存在两个问题：
+
+1. 首先我们发现，在 `onload` 加载成功的方法中，将真实 `dom` 始终赋值的始终 是 `src`：
 
 ```ts
 onload = (evt) => {
@@ -142,9 +144,23 @@ onload = (evt) => {
 }
 ```
 
-但是 `src` 并不是始终可以加载成功的，所以还是需要动态的去将真正加载成功的 `src` 传给 `onload` 方法，那么真正加载成功的 `src` 也就是在 `load` 方法中。
+但是 `src` 并不是始终可以加载成功的，所以还是需要动态的去将真正加载成功的 `src` 传给 `onload` 方法，那么真正加载成功的 `src` 也就是在 `load` 方法中。并且还要加入成功的 `emit`。
 
-并且还要加入成功的 `emit`。所以完善代码为：
+2. 其次，在处理加载失败的 `onerror` 方法中，因为判断了如果存在 `errSrc` 就继续调用 `loadCreateImg` 加载方法重新加载。问题是，如果传入了 `errSrc` 那么 `if (this.props.errSrc)` 其实是始终为真的，这也就导致了死循环，会重复调用加载函数。
+
+```ts
+onerror = (evt) => {
+  // 判断始终为真
+  if (this.props.errSrc) {
+    return this.loadCreateImg(this.props.errSrc)
+  }
+
+  // 否则返回失败回调
+  this.emit('error', evt)
+}
+```
+
+所以就需要给它一个可以变为假的时机，那么修复方法为：在传给 `loadCreateImg` 方法之后，将 `errSrc` 清空，这样加载一次之后就可以判断为假了，所以完整代码为：
 
 ```ts
 class Load {
@@ -178,7 +194,9 @@ class Load {
   }
   onerror = (evt) => {
     if (this.props.errSrc) {
-      return this.loadCreateImg(this.props.errSrc)
+      this.loadCreateImg(this.props.errSrc)
+      this.props.errSrc = '' // 清空 errSrc 避免重复调用死循环
+      return
     }
 
     this.emit('error', evt)
@@ -230,7 +248,9 @@ class Load {
   }
   onerror = (evt) => {
     if (this.props.errSrc) {
-      return this.loadCreateImg(this.props.errSrc)
+      this.loadCreateImg(this.props.errSrc)
+      this.props.errSrc = ''
+      return
     }
 
     this.emit('error', evt)
@@ -344,4 +364,4 @@ export const loadImage = (node, prop, emit, callback) => {
 
 这篇文章的图片加载设计，取自我带领社区小伙伴一起做的开源 `vue3` 组件库 [Fighting Design](https://github.com/FightingDesign/fighting-design) 中的部分源码，想参与开源组件库的开发也可以直接加我的微信：`VirgoTyh` 一起共同学习。
 
-欢迎大家多多`点赞` `评论` `Star`，还有什么需要完善的可以给我评论留言。不要镇怕写出不完美的代码，只要在后续迭代过程中`见招拆招`，代码就会变得越来越完善，框架也会变得越来越健壮。
+欢迎大家多多`点赞` `评论` `Star`，还有什么需要完善的可以给我评论留言。不要惧怕写出不完美的代码，只要在后续迭代过程中`见招拆招`，代码就会变得越来越完善，框架也会变得越来越健壮。
