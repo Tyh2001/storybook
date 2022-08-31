@@ -302,3 +302,12 @@ Fighting Design 目前打包终于是完美了，目前已经解决了所有问�
 ## 2022-08-28
 
 最近写了一个小工具 [Button](https://github.com/Tyh2001/Button)，可以打造你的个性化按钮样式，可自定义样式，自动计算 hover 和 active，一键复制代码。
+
+## 2022-08-31
+
+今天发现，`fighting-design` 引入路径的问题已经解决了，感觉我之前都没有正确的找对问题 emmmmmm，接下来还有一些问题需要记录一下的：
+
+- 学习 nestjs
+- 开发一个 vue-template 模版
+- 测试 fighting-design 在 webpack 中吃效果
+- 研究一下浏览器兼容方面的问题
