@@ -1,4 +1,4 @@
-# Git 常用命令
+# Git 基础知识
 
 ## 常用命令
 
@@ -19,6 +19,8 @@
 
 ## 分支管理
 
+创建和切换
+
 ```shell
 # 创建 dev 分支
 git branch dev
@@ -27,7 +29,7 @@ git branch dev
 git checkout dev
 ```
 
-- 合并分支
+合并分支
 
 ```shell
 # 先切换为 master 分支
@@ -76,4 +78,27 @@ ssh-keygen -t rsa -b 4096 -C "邮箱"
 git init
 
 git remote add origin xxxxx
+```
+
+## 修改用户名和邮箱
+
+输入命令：
+
+```shell
+git config --global user.name 'xxxxx'
+git config --global user.email 'xxxxx@qq.com'
+```
+
+## 更改分支名
+
+修改本地分支名称：
+
+```shell
+git branch -m oldBranchName newBranchName
+```
+
+将改名后的本地分支推送到远程，并将本地分支与之关联
+
+```shell
+git push --set-upstream origin newBranchName
 ```

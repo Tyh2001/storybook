@@ -68,7 +68,6 @@ export const sidebar = {
       text: '我的文章',
       link: 'article/article/article-0',
       items: [
-        { text: '杂项记录', link: 'article/article/article-0' },
         { text: '别再写循环套循环了', link: 'article/article/article-1' },
         { text: '关于组件库', link: 'article/article/article-2' },
         { text: '看书的分享', link: 'article/article/article-3' },
@@ -79,7 +78,7 @@ export const sidebar = {
           text: 'Vue3 + pnpm 搭建 monorepo 项目',
           link: 'article/article/article-7'
         },
-        { text: 'Git 常用命令', link: 'article/article/article-8' },
+        { text: 'Git 基础知识', link: 'article/article/article-8' },
         { text: 'Vue3 的源码怎么看', link: 'article/article/article-9' },
         {
           text: 'Vite + TS 配置 .env 环境文件',
