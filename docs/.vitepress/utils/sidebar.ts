@@ -111,6 +111,14 @@ export const sidebar = {
         {
           text: '远程计算机或设备将不接受链接-解决方案',
           link: 'article/article/article-17'
+        },
+        {
+          text: 'Linux 初级自动化打包部署',
+          link: 'article/article/article-18'
+        },
+        {
+          text: 'Vue3 组件库 Fighting Design 欢迎加入',
+          link: 'article/article/article-19'
         }
       ]
     },
