@@ -65,6 +65,13 @@ export const sidebar = {
       ]
     },
     {
+      text: '年度总结',
+      link: 'article/annual-summary/2022',
+      items: [
+        { text: '2022 年度总结', link: 'article/annual-summary/2022' }
+      ]
+    },
+    {
       text: '我的文章',
       link: 'article/article/article-0',
       items: [
