@@ -9,13 +9,13 @@ specifiers:
   vue: ^3.2.33
 
 dependencies:
-  sass: 1.54.9
   vitepress: 1.0.0-alpha.4_sass@1.54.9
   vue: 3.2.38
 
 devDependencies:
   fighting-design: 0.7.0-alpha.1
   prettier: 2.7.1
+  sass: 1.54.9
   vite: 3.0.9_sass@1.54.9
 
 packages:

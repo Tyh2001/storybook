@@ -9,11 +9,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "sass": "^1.54.9",
     "vitepress": "1.0.0-alpha.4",
     "vue": "^3.2.33"
   },
   "devDependencies": {
+    "sass": "^1.54.9",
     "fighting-design": "0.7.0-alpha.1",
     "prettier": "^2.6.2",
     "vite": "^3.0.8"
