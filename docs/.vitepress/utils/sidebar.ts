@@ -38,7 +38,7 @@ export const sidebar = {
         { text: 'Vue3 基础', link: 'docs/vue/vue3' },
         { text: 'Vue3 Router', link: 'docs/vue/vue3-router' },
         { text: 'Vuex', link: 'docs/vue/vuex' },
-        { text: 'Pinia', link: 'docs/vue/pinia' }
+        { text: 'Pinia', link: 'docs/vue/pinia' },
       ]
     },
     {
@@ -53,6 +53,11 @@ export const sidebar = {
       text: 'Nest',
       link: 'docs/nest/nest-1',
       items: [{ text: '基础', link: 'docs/nest/nest-1' }]
+    },
+    {
+      text: 'React',
+      link: 'docs/react/react-1',
+      items: [{ text: '基础', link: 'docs/react/react-1' }]
     }
   ],
   '/article/': [
