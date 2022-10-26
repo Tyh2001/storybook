@@ -67,13 +67,16 @@ class FButton extends HTMLElement {
     shadowRoot.innerHTML = `
       <style>
         .f-button {
+          display: inline-flex;
           width: 100px;
           height: 35px;
-          background: #2d5af1;
-          color: #fff;
+          background: rgb(45, 90, 241);
+          color: rgb(255, 255, 255);
           border: none;
           outline: none;
           cursor: pointer;
+          justify-content: center;
+          align-items: center;
         }
       </style>
       <button class="f-button">
@@ -105,13 +108,16 @@ class FButton extends HTMLElement {
     shadowRoot.innerHTML = `
       <style>
         .f-button {
+          display: inline-flex;
           width: 100px;
           height: 35px;
-          background: #2d5af1;
-          color: #fff;
+          background: rgb(45, 90, 241);
+          color: rgb(255, 255, 255);
           border: none;
           outline: none;
           cursor: pointer;
+          justify-content: center;
+          align-items: center;
         }
       </style>
       <button class="f-button">
@@ -141,3 +147,288 @@ customElements.define('f-button', FButton)
   </body>
 </html>
 ```
+
+## 🚧 目前存在的问题
+
+上面代码已经实现了基础的 web components，但是存在很多的问题，比如：
+
+- 如果开发了其它的组件，每次都要新建一个影子 dom，没错都要设置模板和样式，这部分可封装起来
+- 外部修改不了 css 的样式，就算使用 `!important` 也覆盖不了影子 dom 中的样式
+- `innerHTML` 的性能是很差的，所以使用 `innerHTML` 并不是一个好主意
+- dom 结构也不能使用纯字符串的方式
+
+## 🌈 公共类
+
+对于公共类的抽离，我想到的是使用一种叫 `模板方法模式` 的 js 设计模式，这个设计模式我是在 [JavaScript 设计模与开发实践](https://github.com/Tyh2001/awesome-books) 这本书中学到的，简单的案例可参考我的看书笔记 [模板方法模式](https://blog.tianyuhao.cn/article/design-mode/design-10.html)。
+
+首先新建一个 `RenderShadow` 类，继承至 `HTMLElement`，内部的 `setupShadow` 方法用来实例化影子 dom，另外 `css` 和 `html` 方法，需要子类进行重写，也就是说这两个方法针对不同的组件，返回值也是不一样的，但是父类需要也需要提供这个方法，一旦子类没有重写父类的方法，就会报错
+
+```js
+class RenderShadow extends HTMLElement {
+  constructor() {
+    super()
+    // 初始化调用 setupShadow 方法
+    this.setupShadow()
+  }
+
+  // 初始化影子节点
+  setupShadow() {
+    const shadowRoot = this.attachShadow({ mode: 'open' })
+  }
+
+  // 处理 css
+  css() {
+    throw new Error('必须重写父类 css 方法')
+  }
+
+  // 处理 html
+  html() {
+    throw new Error('必须重写父类 html 方法')
+  }
+}
+```
+
+这样的话 `FButton` 类也需要更改了，就直接继承至 `RenderShadow` 公告类即可，并重写 `css` 和 `html` 方法：
+
+```js
+class FButton extends RenderShadow {
+  constructor() {
+    super()
+  }
+
+  css() {
+    return `
+      <style>
+        .f-button {
+          display: inline-flex;
+          width: 100px;
+          height: 35px;
+          background: rgb(45, 90, 241);
+          color: rgb(255, 255, 255);
+          border: none;
+          outline: none;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+        }
+      </style>
+    `
+  }
+
+  html() {
+    return `
+      <button class="f-button">
+        <slot></slot>
+      </button>
+    `
+  }
+}
+```
+
+`RenderShadow` 类就可获取到子类重写的方法，给影子节点设置元素和样式。
+
+但是先不要急着添加，还有更多的问题！！！
+
+## 🌀 处理 CSS
+
+现在的样式在外部的不能修改的，因为影子节点会把组件放在一个和外部`完全隔离`的环境，所以无论多大的权重，都不会对内部的 dom 产生影响，就好比原生 [iframe](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe) 标签一样，是一个隔离的环境。
+
+并且，目前在影子节点中有两个标签，一个是 style，一个是 button，这样的组件其实也是不美观的，如果样式很冗长，查看也不方法，所以上面的 css 出来方式，是不推荐的，我期望的样式添加是：外部可以自由修改，内部还不会嵌套 style 标签。
+
+对于样式的处理，我找了很多的源码，最后在 [lit](https://github.com/lit/lit) 库的 [css-tag.ts](https://github.com/lit/lit/blob/main/packages/reactive-element/src/css-tag.ts) 文件中找到了一些关键方法，也就是 [CSSStyleSheet](https://developer.mozilla.org/en-US/docs/Web/API/Document/adoptedStyleSheets)，该方法于查看和修改当前网页的 css。
+
+另外对于选择器，也不能仅仅的使用 class 类名进行选择了，针对影子节点，提供了 [:host()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:host_function) 的伪类选择器，处理 css 的代码如下：
+
+```js
+class RenderShadow extends HTMLElement {
+  constructor() {
+    super()
+    // 初始化调用 setupShadow 方法
+    this.setupShadow()
+  }
+
+  // 初始化影子节点
+  setupShadow() {
+    // 创建影子节点
+    const shadowRoot = this.attachShadow({ mode: 'open' })
+    // 创建一个空的构造样式表
+    const sheet = new CSSStyleSheet()
+    // 将规则应用于工作表
+    sheet.replaceSync(this.css())
+    // 将样式应用于影子节点
+    shadowRoot.adoptedStyleSheets = [sheet]
+  }
+
+  // 处理 css
+  css() {
+    throw new Error('必须重写父类 css 方法')
+  }
+
+  // ……
+}
+
+class FButton extends RenderShadow {
+  constructor() {
+    super()
+  }
+
+  css() {
+    // 返回使用 :host 伪类的样式
+    return `
+      :host {
+        display: inline-flex;
+        width: 100px;
+        height: 35px;
+        background: rgb(45, 90, 241);
+        color: rgb(255, 255, 255);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      }
+    `
+  }
+
+  // ……
+}
+
+customElements.define('f-button', FButton)
+```
+
+这样的样式处理，就可以实现既隐藏了 style 标签，而且外部的样式也可进行了修改
+
+## 🍭 处理 HTML
+
+对于 HTML 的处理，直接选择 [innerHTML](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/innerHTML)，对于性能、安全方面考虑，都是很差的。
+
+所以最优的解决方案，还是 [Document.createElement()](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement)，那么如果组件内部很多的 html 节点，分别创建出来标签，再追加节点，不免有些冗余，
+针对这一点，我想到了 `Vue3` 中的`虚拟 dom`，这里可以直接返回一个虚拟 dom 的树形结构，那么在真正返回使用的时候，再遍历这棵树，分别进行递归追加不就好了吗？
+
+写这样的一个函数并不难，如下 `render` 函数：
+
+```js
+const render = (obj, node) => {
+  const el = document.createElement(obj.tag)
+
+  if (obj.class) {
+    el.className = obj.class
+  }
+
+  if (typeof obj.children === 'string') {
+    const text = document.createTextNode(obj.children)
+    el.appendChild(text)
+  } else if (obj.children) {
+    obj.children.forEach((item) => render(item, el))
+  }
+
+  node.appendChild(el)
+}
+```
+
+针对于按钮组件的 dom 结构，就可以传入一个这样的对象：
+
+```js
+const btn = {
+  tag: 'button',
+  children: [{ tag: 'slot' }]
+}
+```
+
+但其实呢，dom 结构还可以更简化些，直接只是渲染个 slot 就好了：
+
+```js
+const btn = {
+  tag: 'slot'
+}
+```
+
+这样一来，重写了父类的 `html` 方法就可以直接调用 `render` 函数来实现对于 dom 结构的渲染，只需要将子类重写的方法返回值，和影子节点传给 `render` 函数即可，完整代码如下：
+
+```js
+// 渲染函数
+const render = (obj, node) => {
+  const el = document.createElement(obj.tag)
+
+  if (obj.class) {
+    el.className = obj.class
+  }
+
+  if (typeof obj.children === 'string') {
+    const text = document.createTextNode(obj.children)
+    el.appendChild(text)
+  } else if (obj.children) {
+    obj.children.forEach((item) => render(item, el))
+  }
+
+  node.appendChild(el)
+}
+
+// 渲染影子节点公共类
+class RenderShadow extends HTMLElement {
+  constructor() {
+    super()
+    // 初始化调用 setupShadow 方法
+    this.setupShadow()
+  }
+
+  // 初始化影子节点
+  setupShadow() {
+    // 创建影子节点
+    const shadowRoot = this.attachShadow({ mode: 'open' })
+    // 创建一个空的构造样式表
+    const sheet = new CSSStyleSheet()
+    // 将规则应用于工作表
+    sheet.replaceSync(this.css())
+    // 将样式应用于影子节点
+    shadowRoot.adoptedStyleSheets = [sheet]
+    // 渲染 html 节点
+    render(this.html(), shadowRoot)
+  }
+
+  // 处理 css
+  css() {
+    throw new Error('必须重写父类 css 方法')
+  }
+
+  // 处理 html
+  html() {
+    throw new Error('必须重写父类 html 方法')
+  }
+}
+
+// 自定义按钮类
+class FButton extends RenderShadow {
+  constructor() {
+    super()
+  }
+
+  css() {
+    // 返回使用 :host 伪类的样式
+    return `
+      :host {
+        display: inline-flex;
+        width: 100px;
+        height: 35px;
+        background: rgb(45, 90, 241);
+        color: rgb(255, 255, 255);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      }
+    `
+  }
+
+  html() {
+    return {
+      tag: 'slot'
+    }
+  }
+}
+
+customElements.define('f-button', FButton)
+```
+
+这样，就将渲染影子节点公共类进行了抽离，样式和 dom 节点也有了相对友好的处理。
