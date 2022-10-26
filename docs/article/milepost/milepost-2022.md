@@ -321,3 +321,7 @@ Fighting Design 目前打包终于是完美了，目前已经解决了所有问�
 今天是 9 月份的最后一天，明天就是十一国庆节了，今天请假没有上班，因为今天要回家了，一晃已经 10 个月没有回去了，明天早上到家。
 
 今天是个值得纪念的日子，因为今天 `Fighting Design` 登上了阮一峰老师的周刊，原文在[这里](https://www.ruanyifeng.com/blog/2022/09/weekly-issue-225.html) 今天是 `Star` 直线的上升，马上就快要到 200 了，继续加油~
+
+## 2022-10-26
+
+最近，研究了两天的 [web components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components),今天总算是有一些成果了，准备写篇文章分享一下，欢迎各位关注我的新库 [FightingDesign/web-components](https://github.com/FightingDesign/web-components)，来共同学习一波建立在 Web 标准之上的下一代的 UI 组件库。

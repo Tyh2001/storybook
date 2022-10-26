@@ -131,6 +131,10 @@ export const sidebar = {
         {
           text: 'Vue3 组件库 Fighting Design 欢迎加入',
           link: 'article/article/article-19'
+        },
+        {
+          text: '纯原生开发 Web Components 超详细分享',
+          link: 'article/article/article-20'
         }
       ]
     },
