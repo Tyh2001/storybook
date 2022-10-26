@@ -4,6 +4,12 @@
 
 大家好，我是[田同学](https://github.com/Tyh2001)，大家可以加我微信 `VirgoTyh` 一起共同学习。
 
+## 🍒 前言
+
+我是 vue3 开源组件库 [fighting-design)](https://github.com/FightingDesign/fighting-design) 的维护者。
+
+最近我正在研究 Web Components 的组件库，由于目前社区还没成熟，各种例子也少，网上的一些其它文章都太过于简单，优化太差，仅仅是实现，很多的 web components 库也是使用了第三方的支持。但是为了搞清楚其中的原理，还是直接来手写一波原生比较好，所以近期踩尽了坑，翻遍了 MDN，也撕了一些第三方库的源码，用了两天时间，从无到有总结了以下经验，前来分享一波~
+
 ## 💡 什么是 Web Components？
 
 `Web Components` 其实就是一套组件库。
@@ -161,6 +167,8 @@ customElements.define('f-button', FButton)
 
 对于公共类的抽离，我想到的是使用一种叫 `模板方法模式` 的 js 设计模式，这个设计模式我是在 [JavaScript 设计模与开发实践](https://github.com/Tyh2001/awesome-books) 这本书中学到的，简单的案例可参考我的看书笔记 [模板方法模式](https://blog.tianyuhao.cn/article/design-mode/design-10.html)。
 
+> 对于设计模式，大家可自行学习，这个模式也部署很难，但是效果确不错，使用重写的方式，可实现父类的统一性。如后续有些特殊组件不是所有函数都调用的话，也可以采用钩子函数的方式进行重写，也有相对好的拓展性。
+
 首先新建一个 `RenderShadow` 类，继承至 `HTMLElement`，内部的 `setupShadow` 方法用来实例化影子 dom，另外 `css` 和 `html` 方法，需要子类进行重写，也就是说这两个方法针对不同的组件，返回值也是不一样的，但是父类需要也需要提供这个方法，一旦子类没有重写父类的方法，就会报错
 
 ```js
@@ -303,7 +311,9 @@ customElements.define('f-button', FButton)
 对于 HTML 的处理，直接选择 [innerHTML](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/innerHTML)，对于性能、安全方面考虑，都是很差的。
 
 所以最优的解决方案，还是 [Document.createElement()](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement)，那么如果组件内部很多的 html 节点，分别创建出来标签，再追加节点，不免有些冗余，
-针对这一点，我想到了 `Vue3` 中的`虚拟 dom`，这里可以直接返回一个虚拟 dom 的树形结构，那么在真正返回使用的时候，再遍历这棵树，分别进行递归追加不就好了吗？
+针对这一点，我想到了 `vue3` 中的`虚拟 dom`，这里可以直接返回一个虚拟 dom 的树形结构，那么在真正返回使用的时候，再遍历这棵树，分别进行递归追加不就好了吗？
+
+> 这里对于手写虚拟 dom 节点，绝不是最优的解决方案，目前我先这样写，后续有想到更好的解决方案再进行更新
 
 写这样的一个函数并不难，如下 `render` 函数：
 
@@ -432,3 +442,11 @@ customElements.define('f-button', FButton)
 ```
 
 这样，就将渲染影子节点公共类进行了抽离，样式和 dom 节点也有了相对友好的处理。
+
+## 🌿 最后
+
+以上所有源码，可参考仓库 [web-components](https://github.com/FightingDesign/web-components)
+
+最近准备开发 Web Component 的组件库，感兴趣的同学也可以参与一波
+
+Vue3 件库 [fighting-design](https://github.com/FightingDesign/fighting-design) 也仍在更新中。
