@@ -4,7 +4,7 @@
       <f-avatar :size="150" round src="https://tianyuhao.cn/images/auto/my.png" />
     </f-text>
 
-    <f-text center size="25px" bold>Tyh2001</f-text>
+    <h3 class="title">Tyh2001</h3>
 
     <f-text center>
       <f-button href="/docs/hello/hello.html" type="primary" round>
@@ -40,6 +40,14 @@
   box-sizing: border-box;
   padding: 40px;
   padding-bottom: 0;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  line-height: 70px;
+  font-size: 22px;
 }
 
 .f-button-default {
