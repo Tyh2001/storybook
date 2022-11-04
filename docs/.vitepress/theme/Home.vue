@@ -4,16 +4,15 @@
       <f-avatar :size="150" round src="https://tianyuhao.cn/images/auto/my.png" />
     </f-text>
 
-
-    <f-text center>
-      <h3 class="title">Tyh2001</h3>
-      <f-button href="/docs/hello/hello.html" type="primary" round>
-        😊快速开始
-      </f-button>
-      <f-button class="github-btn" href="https://github.com/Tyh2001" type="default" round target="_blank">
-        Github
-      </f-button>
-    </f-text>
+    <p align="center">
+    <h3 class="title">Tyh2001</h3>
+    <f-button href="/docs/hello/hello.html" type="primary" round>
+      😊快速开始
+    </f-button>
+    <f-button href="https://github.com/Tyh2001" type="default" round target="_blank">
+      Github
+    </f-button>
+    </p>
 
     <f-divider margin="32px" color="rgb(224, 224, 224)" />
     <f-text bold>写在前面</f-text>
@@ -50,16 +49,12 @@
   font-size: 22px;
 }
 
-.f-button-default {
+.f-button__default {
   margin-left: 15px;
 }
 
 .f-text {
   display: block;
   line-height: 40px;
-}
-
-.github-btn {
-  margin-left: 10px;
 }
 </style>
