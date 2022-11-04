@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "sass": "^1.54.9",
-    "fighting-design": "0.7.1-alpha.1",
+    "fighting-design": "0.8.0-alpha.5",
     "prettier": "^2.6.2",
     "vite": "^3.0.8"
   }

@@ -325,3 +325,9 @@ Fighting Design 目前打包终于是完美了，目前已经解决了所有问�
 ## 2022-10-26
 
 最近，研究了两天的 [web components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components),今天总算是有一些成果了，准备写篇文章分享一下，欢迎各位关注我的新库 [FightingDesign/web-components](https://github.com/FightingDesign/web-components)，来共同学习一波建立在 Web 标准之上的下一代的 UI 组件库。
+
+## 2022-11-04
+
+最近一周真的干了好多的事情，也优化了很多代码，Web Components 也正式的开始了，已经将现有的 FightingDesign 内部的组件转换成为了 Web Components，虽然不是原生开发的，不过效果也还是不错的，目前还没有正式的上线，还在测试阶段，应该还有很多的坑需要踩。
+
+周一的时候和全栈然叔做了一波直播面对面的分享交流，详情可参考 []()，总体来说还是很不错的。
