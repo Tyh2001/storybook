@@ -6,5 +6,5 @@ title: Tyh
 <Home />
 
 <script setup>
-import Home from '@theme/Home.vue'
+import Home from '@theme/index.vue'
 </script>
