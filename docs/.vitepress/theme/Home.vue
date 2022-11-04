@@ -4,9 +4,9 @@
       <f-avatar :size="150" round src="https://tianyuhao.cn/images/auto/my.png" />
     </f-text>
 
-    <h3 class="title">Tyh2001</h3>
 
     <f-text center>
+      <h3 class="title">Tyh2001</h3>
       <f-button href="/docs/hello/hello.html" type="primary" round>
         😊快速开始
       </f-button>
