@@ -17,6 +17,12 @@ export default (): UserConfigExport => {
     optimizeDeps: {
       exclude: ['vitepress']
     },
+    ssr: {
+      format: 'cjs'
+    },
+    legacy: {
+      buildSsrCjsExternalHeuristics: true
+    },
     css: {
       postcss: {
         plugins: [
