@@ -27,7 +27,8 @@ export const sidebar = {
         { text: 'Class 类的使用', link: 'docs/javascript/fun-class' },
         { text: 'JavaScript API', link: 'docs/javascript/javascript-api' },
         { text: '生成器', link: 'docs/javascript/generator' },
-        { text: 'proxy 代理', link: 'docs/javascript/proxy' }
+        { text: 'proxy 代理', link: 'docs/javascript/proxy' },
+        { text: '事件循环', link: 'docs/javascript/event-loop' }
       ]
     },
     {
