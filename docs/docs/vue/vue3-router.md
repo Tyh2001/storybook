@@ -42,8 +42,11 @@ const route = useRoute()
 ```ts
 import { getCurrentInstance } from 'vue'
 
-const { proxy } = getCurrentInstance()
+import type { ComponentInternalInstance } from 'vue'
 
-console.log(proxy.$route)
-console.log(proxy.$router)
+const instance: ComponentInternalInstance =
+  getCurrentInstance() as ComponentInternalInstance
+
+console.log(instance.appContext.config.globalProperties.$route)
+console.log(instance.appContext.config.globalProperties.$router)
 ```
