@@ -6,7 +6,7 @@
 
 ## 😊 从何而来
 
-这篇文章，出自我自己的开源组件库 [fighting-design](https://github.com/FightingDesign/fighting-design) 中的 [Avatar 头像](https://fighting.tianyuhao.cn/components/avatar.html) 组件的 [load-image](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-design/_utils/load-image.ts) 类。
+这篇文章，出自我自己的开源组件库 [fighting-design](https://github.com/FightingDesign/fighting-design) 中的 [Avatar 头像](https://fighting.tianyuhao.cn/components/avatar.html) 组件的 [load-image](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-design/_utils/load-image/index.ts) 类。
 
 相比于其它的静态组件，像图片加载这种的组件，内部我做了很多的优化，对于图片的加载和错误的处理，我都尽可能的将每种可能出现的结果都考虑到，针对每种不确定的结果做出相应的提示，以便于提升用户体验。
 
@@ -160,7 +160,9 @@ onerror = (evt) => {
 }
 ```
 
-所以就需要给它一个可以变为假的时机，那么修复方法为：在传给 `loadCreateImg` 方法之后，将 `errSrc` 清空，这样加载一次之后就可以判断为假了，所以完整代码为：
+所以就需要给它一个可以变为假的时机，那么修复方法为：添加一个布尔值控制是否加载了 `errSrc`，所以在类方法中添加了 `loadErrSrc` 进行判断
+
+在传给 `loadCreateImg` 方法之后，将 `errSrc` 清空，这样加载一次之后就可以判断为假了，所以完整代码为：
 
 ```ts
 class Load {
@@ -168,6 +170,7 @@ class Load {
     this.node = node
     this.props = props
     this.emit = emit
+    this.loadErrSrc = false
   }
   loadCreateImg = (errSrc?: string) => {
     const newImg = new Image()
@@ -193,9 +196,9 @@ class Load {
     this.emit('load', evt) // 新增
   }
   onerror = (evt) => {
-    if (this.props.errSrc) {
+    if (this.props.errSrc && !this.loadErrSrc) {
       this.loadCreateImg(this.props.errSrc)
-      this.props.errSrc = '' // 清空 errSrc 避免重复调用死循环
+      this.loadErrSrc = true
       return
     }
 
@@ -326,42 +329,14 @@ export const loadImage = (node, prop, emit, callback) => {
 }
 ```
 
-## 🚩 测试使用
-
-写好的函数测试一下看看：
-
-```vue
-<script lang="ts" setup>
-  import { loadImage } from '../../packages/fighting-design/_utils'
-  import { ref, onMounted } from 'vue'
-
-  const myImg = ref(null as unknown as HTMLImageElement)
-
-  // 模拟 props
-  const props = {
-    src: 'https://tianyuha2o.cn/images/auto/my.jpg',
-    errSrc: 'https://tianyuhao.cn/images/auto/4.jpg',
-    lazy: true
-  }
-
-  onMounted(() => {
-    loadImage(myImg.value, props)
-  })
-</script>
-
-<template>
-  <img ref="myImg" src="" />
-</template>
-```
-
-可以看到，是成功执行的。
-
 ## 🏆 完整代码
 
-完整代码可参考 [load-image](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-design/_utils/load-image.ts)
+完整代码以及更多细节可参考 [load-image](https://github.com/FightingDesign/fighting-design/blob/master/packages/fighting-design/_utils/load-image/index.ts)
 
 ## 💪 写在最后
 
 这篇文章的图片加载设计，取自我带领社区小伙伴一起做的开源 `vue3` 组件库 [Fighting Design](https://github.com/FightingDesign/fighting-design) 中的部分源码，想参与开源组件库的开发也可以直接加我的微信：`VirgoTyh` 一起共同学习。
 
-欢迎大家多多`点赞` `评论` `Star`，还有什么需要完善的可以给我评论留言。不要惧怕写出不完美的代码，只要在后续迭代过程中`见招拆招`，代码就会变得越来越完善，框架也会变得越来越健壮。
+欢迎大家多多`点赞` `评论` `Star`，还有什么需要完善的可以给我评论留言。
+
+不要惧怕写出不完美的代码，只要在后续迭代过程中`见招拆招`，代码就会变得越来越完善，框架也会变得越来越健壮。
