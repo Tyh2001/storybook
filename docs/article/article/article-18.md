@@ -107,6 +107,8 @@ ll # 查看当前目录所有文件
 tar -cvzf 打包的文件名.tgz 打包路径 # 打包 tgz 格式
 
 zip -r 打包的文件名.zip 打包路径 # 打包 zip 格式
+
+ifconfig -a # 查看当前 ip
 ```
 
 ## ⏳ 错误处理
