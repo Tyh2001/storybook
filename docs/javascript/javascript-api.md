@@ -409,3 +409,20 @@ xhr.send(null)
 console.log(xhr.status)
 console.log(xhr.statusText)
 ```
+
+## SpeechSynthesisUtterance
+
+可使用语音读出传入的文字内容
+
+```html
+<button>say</button>
+
+<script>
+  document.querySelector('button').addEventListener('click', () => {
+    const text = '你好，请问你是谁？'
+    const msg = new SpeechSynthesisUtterance(text)
+
+    window.speechSynthesis.speak(msg)
+  })
+</script>
+```
