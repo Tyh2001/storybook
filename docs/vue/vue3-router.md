@@ -3,7 +3,7 @@
 ## 安装
 
 ```shell
-npm install vue-router@4
+npm install vue-router
 ```
 
 ## 快速上手
