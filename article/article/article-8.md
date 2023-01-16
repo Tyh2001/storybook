@@ -16,6 +16,7 @@
 | git branch -d dev         | 删除 dev 分支                 |
 | git pull origin master    | 同步分支到本地                |
 | git reset --hard 版本号   | 获取历史版本                  |
+| git remote add origin xxx | 关联远程仓库                  |
 
 ## 分支管理
 

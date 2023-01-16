@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { nav } from './utils/nav'
 import { sidebar } from './utils/sidebar'
 import { description } from './utils/description'
+import { tablePlugin } from './config/table'
 
 const config = defineConfig({
   title: 'Tyh',
@@ -22,6 +23,10 @@ const config = defineConfig({
     editLink: {
       pattern: 'https://github.com/Tyh2001/tyh-blog/blob/master/docs/:path'
     }
+  },
+  markdown: {
+    // 自定义 markdown 语法
+    config: md => tablePlugin(md)
   }
 })
 
