@@ -9,6 +9,7 @@ const config = defineConfig({
   head: [
     ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my.png' }]
   ],
+  cacheDir: '../../node_modules',
   description,
   themeConfig: {
     logo: 'https://tianyuhao.cn/images/auto/my.png',
