@@ -426,3 +426,7 @@ console.log(xhr.statusText)
   })
 </script>
 ```
+
+## Document.createDocumentFragment()
+
+可创建文档片段

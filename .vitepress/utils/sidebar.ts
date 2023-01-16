@@ -68,6 +68,7 @@ export const sidebar = {
     {
       text: '我的文章',
       items: [
+        { text: '记事本', link: '/article/article/article-0' },
         { text: '别再写循环套循环了', link: '/article/article/article-1' },
         { text: '关于组件库', link: '/article/article/article-2' },
         { text: '看书的分享', link: '/article/article/article-3' },
