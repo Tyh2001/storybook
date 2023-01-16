@@ -36,7 +36,7 @@ export const sidebar = {
         { text: 'Vue3 基础', link: '/docs/vue/vue3' },
         { text: 'Vue3 Router', link: '/docs/vue/vue3-router' },
         { text: 'Vuex', link: '/docs/vue/vuex' },
-        { text: 'Pinia', link: '/docs/vue/pinia' },
+        { text: 'Pinia', link: '/docs/vue/pinia' }
       ]
     },
     {
@@ -61,9 +61,7 @@ export const sidebar = {
     },
     {
       text: '年度总结',
-      items: [
-        { text: '2022 年度总结', link: '/article/annual-summary/2022' }
-      ]
+      items: [{ text: '2022 年度总结', link: '/article/annual-summary/2022' }]
     },
     {
       text: '我的文章',

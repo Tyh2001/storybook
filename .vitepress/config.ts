@@ -27,7 +27,7 @@ const config = defineConfig({
   },
   markdown: {
     // 自定义 markdown 语法
-    config: md => tablePlugin(md)
+    config: (md) => tablePlugin(md)
   }
 })
 
