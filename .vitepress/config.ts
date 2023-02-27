@@ -1,18 +1,18 @@
 import { defineConfig } from 'vitepress'
-import { nav } from './utils/nav'
-import { sidebar } from './utils/sidebar'
-import { description } from './utils/description'
-import { tablePlugin } from './config/table'
+import { nav } from './config/nav'
+import { sidebar } from './config/sidebar'
+import { description } from './config/description'
+import { PluginTable } from './plugin'
 
 const config = defineConfig({
   title: 'Tyh',
   head: [
-    ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my.png' }]
+    ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my2.png' }]
   ],
   cacheDir: '../../node_modules',
   description,
   themeConfig: {
-    logo: 'https://tianyuhao.cn/images/auto/my.png',
+    logo: 'https://tianyuhao.cn/images/auto/my2.png',
     socialLinks: [
       {
         icon: 'github',
@@ -27,7 +27,7 @@ const config = defineConfig({
   },
   markdown: {
     // 自定义 markdown 语法
-    config: (md) => tablePlugin(md)
+    config: (md) => PluginTable(md)
   }
 })
 
