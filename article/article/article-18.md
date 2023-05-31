@@ -109,6 +109,12 @@ tar -cvzf 打包的文件名.tgz 打包路径 # 打包 tgz 格式
 zip -r 打包的文件名.zip 打包路径 # 打包 zip 格式
 
 ifconfig -a # 查看当前 ip
+
+netstat -tnlp | grep tcp # 查看 TCP 监听端口
+
+sudo fuser -k 888/tcp # 停止 888 端口
+
+telnet xxx.x.xxx.xx 20038 # 检测指定地址的端口是否开启
 ```
 
 ## ⏳ 错误处理
