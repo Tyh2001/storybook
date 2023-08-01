@@ -34,7 +34,7 @@ jobs:
 
       # 打包文档
       - name: Build docs
-        run: pnpm build:docs
+        run: pnpm build
 
       # 向 Codecov 报告覆盖率
       - name: Report coverage to Codecov
