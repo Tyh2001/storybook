@@ -2,9 +2,9 @@
 
 <template>
   <f-main>
-    <f-text align="center" line-height="70px" bold block size="25px">
+    <!-- <f-text align="center" line-height="70px" bold block size="25px">
       <f-avatar class="avatar" :size="150" src="https://tianyuhao.cn/images/auto/my2.png" />
-    </f-text>
+    </f-text> -->
 
     <f-text align="center" style="margin-top: 20px">
       <f-button round type="primary" class="start" href="/docs/hello/hello.html">
