@@ -49,6 +49,13 @@ export const sidebar = {
     {
       text: 'Nest',
       items: [{ text: '基础', link: '/docs/nest/nest-1' }]
+    },
+    {
+      text: '服务端',
+      items: [
+        { text: '服务器配置', link: '/docs/server/server-1' },
+        { text: 'Mysql', link: '/docs/server/server-2' },
+      ]
     }
   ],
   '/article/': [
