@@ -38,7 +38,7 @@ jobs:
 
       # 创建并提交 CNAME 文件
       - name: Create CNAME file
-        run: echo 'blog.tianyuhao.cn' > F.vitepress/dist/CNAME
+        run: echo 'blog.tianyuhao.cn' > .vitepress/dist/CNAME
       - name: Commit CNAME file
         run: |
           git config --local user.email '1469442737@qq.com'
