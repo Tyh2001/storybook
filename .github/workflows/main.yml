@@ -36,6 +36,15 @@ jobs:
       - name: Build docs
         run: pnpm build
 
+      # 创建并提交 CNAME 文件
+      - name: Create CNAME file
+        run: echo 'blog.tianyuhao.cn' > F.vitepress/dist/CNAME
+      - name: Commit CNAME file
+        run: |
+          git config --local user.email '1469442737@qq.com'
+          git config --local user.name 'Tyh2001'
+          git add -f .vitepress/dist/CNAME
+
       # 向 Codecov 报告覆盖率
       - name: Report coverage to Codecov
         uses: codecov/codecov-action@v1
