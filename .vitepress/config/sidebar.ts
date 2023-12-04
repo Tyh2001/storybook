@@ -40,6 +40,10 @@ export const sidebar = {
       ]
     },
     {
+      text: 'React',
+      items: [{ text: 'React 基础', link: '/docs/react/react-1' }]
+    },
+    {
       text: 'TypeScript',
       items: [
         { text: '类型', link: '/docs/typescript/type' },
