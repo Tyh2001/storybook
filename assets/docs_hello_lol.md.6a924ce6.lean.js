@@ -1,0 +1,1 @@
+import{_ as e,o as p,c as t,a}from"./app.75ce72bc.js";const m=JSON.parse('{"title":"联盟录语","description":"","frontmatter":{},"headers":[],"relativePath":"docs/hello/lol.md"}'),o={name:"docs/hello/lol.md"},_=a("",13),s=[_];function r(c,n,d,l,i,h){return p(),t("div",null,s)}const u=e(o,[["render",r]]);export{m as __pageData,u as default};
