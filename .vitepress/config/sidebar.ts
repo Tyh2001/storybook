@@ -64,6 +64,12 @@ export const sidebar = {
         { text: '服务器配置', link: '/docs/server/server-1' },
         { text: 'Mysql', link: '/docs/server/server-2' },
       ]
+    },
+    {
+      text: '操作系统',
+      items: [
+        { text: 'Windows', link: '/docs/system/system-1' }
+      ]
     }
   ],
   '/article/': [
