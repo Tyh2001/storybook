@@ -77,33 +77,62 @@ export const App = () => {
 }
 ```
 
-## state 简化
+更多时候最好使用无状态的组件，因为有状态组件一旦触发它的生命周期函数，就会影响性能开销
 
-开发中尽量不是使用简化版本
+## 事件处理
+
+使用 `setState` 来更新 `state` 的状态
 
 ```tsx
 import React from 'react'
 
 class Button extends React.Component {
   state = {
-    name: '哈哈哈'
+    name: '哈哈哈',
+    text: 1
+  }
+
+  setText = () => {
+    this.setState({ text: this.state.text + 1 })
   }
 
   render() {
     return (
-      <button>
-        {this.props.text}
-        {this.state.name}
-      </button>
+      <div>
+        <h1>{this.state.text}</h1>
+        <button onClick={this.setText}>
+          {this.props.text}
+          {this.state.name}
+        </button>
+      </div>
     )
   }
 }
+```
 
-export const App = () => {
-  return (
-    <>
-      <Button text="按钮" />
-    </>
-  )
+## 数据绑定
+
+以文本框输入举例
+
+```tsx
+import React from 'react'
+
+export class App extends React.Component {
+  state = {
+    value: ''
+  }
+
+  onChange = (evt) => {
+    this.setState({ value: evt.target.value })
+  }
+
+  render() {
+    return (
+      <>
+        <h1>{this.state.value}</h1>
+        <input type="text" onChange={this.onChange} />
+      </>
+    )
+  }
 }
 ```
