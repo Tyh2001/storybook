@@ -17,6 +17,7 @@
 | git pull origin master    | 同步分支到本地                |
 | git reset --hard 版本号   | 获取历史版本                  |
 | git remote add origin xxx | 关联远程仓库                  |
+| git fetch --prune         | 同步远程分支                  |
 
 ## 分支管理
 
@@ -41,6 +42,12 @@ git merge dev
 
 # 将合并的分支提交到仓库
 git push
+```
+
+删除本地分支
+
+```shell
+git branch -d xxx
 ```
 
 ## 回溯版本
