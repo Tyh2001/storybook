@@ -47,3 +47,46 @@ npm i jsdom
 讲究 TDK
 
 分别是：title、description、Keywords
+
+## path 模块
+
+主要负责处理路径相关操作
+
+## os 模块
+
+主要和操作系统交互的操作
+
+`os.platform()` 获取操作平台
+`os.release()` 获取系统版本
+`os.version()` 获取系统版本号
+`os.homedir()` 获取用户所在目录
+
+`{open:true}` 的启动命令就是根据不同的操作系统调用不同的 shell 文件
+
+```js
+const os = require('os')
+const { exec } = require('child_process')
+
+const platform = os.platform()
+
+const open = (url) => {
+  if (platform === 'win32') {
+    exec(`start ${url}`)
+  } else if (platform === 'darwin') {
+    exec(`open ${url}`)
+  } else if (platform === 'linux') {
+    exec(`sdg-open ${url}`)
+  }
+}
+
+open('http://baidu.com')
+```
+
+## process
+
+`process.exit` 结束进程
+`process.env` 环境变量
+
+安装 cross-evt 配置环境变量
+
+## ffmpeg
