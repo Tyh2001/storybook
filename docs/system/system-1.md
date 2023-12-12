@@ -1,5 +1,12 @@
 # Windows 命令
 
+## 命令行工具
+
+windows 系统 主要有两个命令行工具
+
+- [PowerShell](https://docs.microsoft.com/en-us/powershell) PowerShell 是 Windows 系统自带的一种命令行工具，具有更强大的功能和更丰富的脚本支持。
+- [Cmder] Cmder 是一款 Windows 环境下非常简洁美观易用的 cmd 替代者，它属于一个跨平台的命令行增强工具，可以集成 windows batch, power shell, git, linux bash 等多种命令行于一体，支持了大部分的 Linux 命令。
+
 ## 目录操作
 
 ```shell

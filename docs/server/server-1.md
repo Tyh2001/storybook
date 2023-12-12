@@ -28,3 +28,13 @@ ln -s /node安装目录/bin/npm
 ```shell
 apt-get install git
 ```
+
+## 命令记录
+
+```shell
+# 查找 node 的安装目录
+which node
+
+# 如果一个 sh 文件不能执行，那么使用下面的命令即可执行文件
+chmod +x xxxx.sh
+```
