@@ -96,3 +96,19 @@ open('http://baidu.com')
 ## events
 
 针对事件操作，发布订阅模式
+
+## util
+
+内置工具模块
+
+## pngquant
+
+处理 png 图像，可压缩，类似 ffmpeg
+
+## fs
+
+读取文件
+
+## crypto
+
+加密模块
