@@ -90,3 +90,5 @@ open('http://baidu.com')
 安装 cross-evt 配置环境变量
 
 ## ffmpeg
+
+可以实现视频格式转换、添加水印、去除水印
