@@ -92,3 +92,7 @@ open('http://baidu.com')
 ## ffmpeg
 
 可以实现视频格式转换、添加水印、去除水印
+
+## events
+
+针对事件操作，发布订阅模式
