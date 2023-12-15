@@ -112,3 +112,68 @@ open('http://baidu.com')
 ## crypto
 
 加密模块
+
+对称加密
+
+```js
+const crypto = require('node:crypto')
+
+// console.log(crypto)
+
+const key = crypto.randomBytes(32)
+const iv = Buffer.from(crypto.randomBytes(16))
+
+// 算法
+// key
+// iv
+const cipher = crypto.createCipheriv('aes-256-cbc', key, iv)
+
+cipher.update('你好啊', 'utf-8')
+
+const result = cipher.final('hex')
+
+console.log(result)
+
+// 解密
+
+const de = crypto.createDecipheriv('aes-256-cbc', key, iv)
+
+de.update(result, 'hex', 'utf-8')
+
+const result2 = de.final('utf-8')
+
+console.log(result2)
+```
+
+非对称加密
+
+```js
+const crypto = require('node:crypto')
+
+// 公钥和私钥
+const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
+  modulusLength: 2048
+})
+
+// 公钥加密
+const encrypted = crypto.publicEncrypt(publicKey, Buffer.from('加密的内容'))
+
+console.log(encrypted.toString('hex'))
+
+// 私钥解密
+const decrypted = crypto.privateDecrypt(privateKey, encrypted)
+
+console.log(decrypted.toString())
+```
+
+哈希函数 - 不能解密
+
+```js
+const crypto = require('node:crypto')
+
+const hash = crypto.createHash('sha256') // 或者使用 md5
+
+hash.update('加密的内容')
+
+console.log(hash.digest('hex'))
+```
