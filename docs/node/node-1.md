@@ -177,3 +177,34 @@ hash.update('加密的内容')
 
 console.log(hash.digest('hex'))
 ```
+
+## zlib
+
+压缩文件模块
+
+## http
+
+启动服务
+
+```js
+const http = require('node:http')
+const url = require('node:url')
+
+const server = http.createServer((req, res) => {
+  const { pathname } = url.parse(req.url)
+  if (req.method === 'GET') {
+    if (pathname === '/login') {
+      res.end('登录')
+      return
+    }
+
+    res.end('GET')
+  } else if (req.method === 'POST') {
+    res.end('POST')
+  }
+})
+
+server.listen(98, () => {
+  console.log('运行中...')
+})
+```
