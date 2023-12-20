@@ -33,6 +33,7 @@ SHOW TABLES;
 -- 查看有那些数据库
 SHOW DATABASES;
 
+-- 创建数据库
 CREATE DATABASE 数据库名;
 
 -- 切换到指定的数据库
@@ -43,4 +44,19 @@ source /xxxx/xxxx/xxxx.sql
 
 -- 查看表的数据
 select * from 表名;
+
+-- 查看所有用户
+SELECT User FROM mysql.user;
+
+-- 将 abd 数据库名称修改为 def
+RENAME DATABASE abc TO def;
+
+-- 删除数据库
+DROP DATABASE xxx;
+```
+
+## 登录
+
+```shell
+mysql -u root -p
 ```

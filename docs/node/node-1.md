@@ -208,3 +208,12 @@ server.listen(98, () => {
   console.log('运行中...')
 })
 ```
+
+## 反向代理
+
+使用 [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware) 实现反向代理
+
+## 邮件服务
+
+js-yaml 配置账号密码
+nodemailer 发送邮件
