@@ -112,14 +112,16 @@ class Button extends React.Component {
 
 ## 数据绑定
 
-以文本框输入举例
+以文本框输入举例 `defaultValue` 可设置默认值
+
+单选框使用 `defayltChecked` 设置默认值
 
 ```tsx
 import React from 'react'
 
 export class App extends React.Component {
   state = {
-    value: ''
+    value: '123'
   }
 
   onChange = (evt) => {
@@ -130,7 +132,11 @@ export class App extends React.Component {
     return (
       <>
         <h1>{this.state.value}</h1>
-        <input type="text" onChange={this.onChange} />
+        <input
+          type="text"
+          defaultValue={this.state.value}
+          onChange={this.onChange}
+        />
       </>
     )
   }
