@@ -114,3 +114,39 @@ export class App extends Component {
 ```shell
 pnpm i prop-types
 ```
+
+```tsx
+import { Component } from 'react'
+import PropType from 'prop-types'
+
+class MyCom extends Component {
+  render = () => {
+    return <div>MyCom组件{this.props.text}</div>
+  }
+}
+
+// 参数校验
+MyCom.propTypes = {
+  text: PropType.string
+  // num: PropType.number.isRequired
+}
+
+// 设置组件参数默认值
+MyCom.defaultProps = {
+  num: 22222
+}
+
+export class App extends Component {
+  state = {
+    value: ''
+  }
+
+  render() {
+    return (
+      <>
+        <MyCom text={123} />
+      </>
+    )
+  }
+}
+```
