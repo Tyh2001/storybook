@@ -150,3 +150,5 @@ export class App extends Component {
   }
 }
 ```
+
+## 跨组件通信
