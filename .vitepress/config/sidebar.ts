@@ -82,7 +82,10 @@ export const sidebar = {
     },
     {
       text: '年度总结',
-      items: [{ text: '2022 年度总结', link: '/article/annual-summary/2022' }]
+      items: [
+        { text: '2022 年度总结', link: '/article/annual-summary/2022' },
+        { text: '2023 年度总结', link: '/article/annual-summary/2023' },
+      ]
     },
     {
       text: '我的文章',
