@@ -8,6 +8,12 @@
 
 js 由于三部分组件 ECMAscript、DOM、BOM
 
+## 查看可运行的命令
+
+```shll
+npm ls -g
+```
+
 ## 内置 API
 
 - \_\_dirname
