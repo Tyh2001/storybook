@@ -152,3 +152,132 @@ export class App extends Component {
 ```
 
 ## 跨组件通信
+
+- 可以使用组件的 props 层层传递的方式
+
+- 使用 [createContext](https://react.docschina.org/reference/react/createContext)
+
+```tsx
+// App.tsx
+import { Parent } from './Parent'
+import MainContext from './context'
+import React from 'react'
+
+export class App extends React.Component {
+  params = {
+    name: '张三',
+    age: 12
+  }
+
+  render() {
+    return (
+      <div>
+        <MainContext.Provider value={this.params}>
+          main
+          <Parent />
+        </MainContext.Provider>
+      </div>
+    )
+  }
+}
+```
+
+```tsx
+// Parent.tsx
+import { Child } from './Child'
+import React from 'react'
+import MainContext from './context'
+
+export class Parent extends React.Component {
+  static contextType = MainContext
+
+  render() {
+    console.log(this.context)
+
+    return (
+      <div>
+        父亲节点{this.context.name}
+        <Child />
+      </div>
+    )
+  }
+}
+```
+
+```tsx
+// Child.tsx
+import React from 'react'
+import MainContext from './context'
+
+export class Child extends React.Component {
+  // static contextType = MainContext
+
+  render() {
+    return (
+      <div>
+        <MainContext.Consumer>
+          {(context) => {
+            return <div> 孩子节点{context.age}</div>
+          }}
+        </MainContext.Consumer>
+      </div>
+    )
+  }
+}
+```
+
+```ts
+// context.ts
+import React from 'react'
+
+const MainContext = React.createContext({ name: '', age: 0 })
+
+export default MainContext
+```
+
+## 生命周期
+
+只有 `extends React.Component` 的组件才会有生命周期。
+
+- 组件初始化阶段 `constructor`
+- 组件加载阶段 `componentWillMount`
+- 组件更新阶段 `render`
+- 组建加载完成阶段 `componentDidMount`
+
+```tsx
+import React from 'react'
+
+class Button extends React.Component {
+  constructor(props: { text: string }) {
+    super(props)
+    this.state = {
+      ...props
+    }
+
+    console.log('1. 组件初始化')
+  }
+
+  componentWillMount() {
+    console.log('2. 组件加载之前')
+  }
+
+  render() {
+    console.log('3. 组件加载或者更新')
+    return <button>{this.state.text}</button>
+  }
+
+  componentDidMount() {
+    console.log('4. 组件加载之后，可以获取到 DOM 节点')
+  }
+}
+
+export class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Button text="按钮" />
+      </div>
+    )
+  }
+}
+```
