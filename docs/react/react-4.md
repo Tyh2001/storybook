@@ -281,3 +281,47 @@ export class App extends React.Component {
   }
 }
 ```
+
+## 高阶组件 HOC
+
+和高阶函数的感念一眼，传入一个函数组件，返回一个新的组件
+
+```tsx
+import { Component, ReactNode } from 'react'
+
+const PropsButton = (WrapCompoent) => {
+  return class extends Component {
+    state = {
+      text: ''
+    }
+
+    componentDidMount(): void {
+      this.setState({ text: '按钮' })
+    }
+
+    render(): ReactNode {
+      return <WrapCompoent buttonText={this.state.text}></WrapCompoent>
+    }
+  }
+}
+
+class _Button extends Component {
+  render() {
+    return <button>{this.props.buttonText}</button>
+  }
+}
+
+const Button = PropsButton(_Button)
+
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <Button />
+      </div>
+    )
+  }
+}
+```
+
+## 增强 Props
