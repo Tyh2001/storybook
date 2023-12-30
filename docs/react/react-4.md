@@ -325,3 +325,37 @@ export class App extends Component {
 ```
 
 ## 增强 Props
+
+```tsx
+import { Component } from 'react'
+
+const setProps = (ComponentNode) => {
+  return (props) => {
+    return <ComponentNode {...props} name="张三" />
+  }
+}
+
+class People extends Component {
+  render() {
+    return (
+      <div>
+        <div>姓名：{this.props.name}</div>
+        <div>年龄：{this.props.age}</div>
+        <div>爱好：{this.props.play}</div>
+      </div>
+    )
+  }
+}
+
+const Button = setProps(People)
+
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <Button age="12" play="足球" />
+      </div>
+    )
+  }
+}
+```
