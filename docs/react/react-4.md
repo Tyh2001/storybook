@@ -284,7 +284,7 @@ export class App extends React.Component {
 
 ## 高阶组件 HOC
 
-和高阶函数的感念一眼，传入一个函数组件，返回一个新的组件
+和高阶函数的感念一样，传入一个函数组件，返回一个新的组件
 
 ```tsx
 import { Component, ReactNode } from 'react'
