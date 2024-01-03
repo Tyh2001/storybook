@@ -2,4 +2,4 @@
 
 ## 简介
 
-redux 用于 react 中的全局状态管理
+[redux](https://www.github.com/reduxjs/redux) 用于 react 中的全局状态管理
