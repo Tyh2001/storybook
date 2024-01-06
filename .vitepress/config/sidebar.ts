@@ -71,7 +71,9 @@ export const sidebar = {
     {
       text: '操作系统',
       items: [
-        { text: 'Windows', link: '/docs/system/system-1' }
+        { text: 'Windows', link: '/docs/system/system-1' },
+        { text: 'PowerShell', link: '/docs/system/system-2' },
+        { text: 'MacOS', link: '/docs/system/system-3' },
       ]
     }
   ],
