@@ -60,3 +60,9 @@ DROP DATABASE xxx;
 ```shell
 mysql -u root -p
 ```
+
+## 错误日志
+
+- 服务器连接 mysql 失败
+
+错误日志：`Error: Access denied for user 'root'@'localhost'`，解决方案：[MySQL Error: : 'Access denied for user 'root'@'localhost'](https://stackoverflow.com/questions/41645309/mysql-error-access-denied-for-user-rootlocalhost)
