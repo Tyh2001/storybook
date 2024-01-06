@@ -22,6 +22,18 @@ mysql -u root -p
 
 # 退出 mysql shell
 quit;
+
+# 查看MySQL服务的状态
+sudo service mysql status
+
+# 启动 mysql
+sudo service mysql start
+
+# 停止 mysql
+sudo service mysql stop
+
+# 查看MySQL错误日志
+sudo less /var/log/mysql/error.log
 ```
 
 ## SQL 命令

@@ -47,7 +47,7 @@ export const sidebar = {
         { text: '样式处理', link: '/docs/react/react-3' },
         { text: '项目搭建', link: '/docs/react/react-4' },
         { text: 'API', link: '/docs/react/react-5' },
-        { text: 'Redux', link: '/docs/react/react-6' },
+        { text: 'Zustand', link: '/docs/react/react-6' },
       ]
     },
     {
@@ -71,7 +71,9 @@ export const sidebar = {
     {
       text: '操作系统',
       items: [
-        { text: 'Windows', link: '/docs/system/system-1' }
+        { text: 'Windows', link: '/docs/system/system-1' },
+        { text: 'PowerShell', link: '/docs/system/system-2' },
+        { text: 'MacOS', link: '/docs/system/system-3' },
       ]
     }
   ],
