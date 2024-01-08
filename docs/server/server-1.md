@@ -37,4 +37,14 @@ which node
 
 # 如果一个 sh 文件不能执行，那么使用下面的命令即可执行文件
 chmod +x xxxx.sh
+
+# 查看正在运行的端口
+netstat -tuln
+
+# 查看 1219 端口进程 id
+sudo lsof -i :1219
+
+# 结束指定 id 的端口进程
+sudo kill -9 <进程ID>
+
 ```
