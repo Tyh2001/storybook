@@ -23,6 +23,8 @@ import{_ as s,o as n,c as a,a as l}from"./app.9b2cb2a4.js";const C=JSON.parse('{
 <span class="line"></span>
 <span class="line"><span style="color:#676E95;font-style:italic;"># 重启 nginx</span></span>
 <span class="line"><span style="color:#FFCB6B;">sudo</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">systemctl</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">restart</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">nginx</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic;"># 重启 nginx</span></span>
+<span class="line"><span style="color:#FFCB6B;">nginx</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">-s</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">reload</span></span>
 <span class="line"><span style="color:#FFCB6B;">sudo</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">/etc/init.d/apache2</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">stop</span><span style="color:#BABED8;"> </span><span style="color:#676E95;font-style:italic;"># 如果重启失败了先执行这个先关闭 apache2</span></span>
 <span class="line"><span style="color:#FFCB6B;">sudo</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">systemctl</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">start</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">apache2</span><span style="color:#BABED8;"> </span><span style="color:#676E95;font-style:italic;"># 重新启动 apache2</span></span>
 <span class="line"></span></code></pre></div>`,4),e=[o];function t(c,r,y,B,i,E){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{C as __pageData,d as default};

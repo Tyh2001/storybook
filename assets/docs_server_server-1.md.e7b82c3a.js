@@ -18,5 +18,4 @@ import{_ as s,o as a,c as n,a as l}from"./app.9b2cb2a4.js";const D=JSON.parse('{
 <span class="line"></span>
 <span class="line"><span style="color:#676E95;font-style:italic;"># 结束指定 id 的端口进程</span></span>
 <span class="line"><span style="color:#FFCB6B;">sudo</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">kill</span><span style="color:#BABED8;"> </span><span style="color:#C3E88D;">-9</span><span style="color:#BABED8;"> </span><span style="color:#89DDFF;">&lt;</span><span style="color:#C3E88D;">进程I</span><span style="color:#BABED8;">D</span><span style="color:#89DDFF;">&gt;</span></span>
-<span class="line"></span>
 <span class="line"></span></code></pre></div>`,13),o=[p];function t(c,r,i,d,h,y){return a(),n("div",null,o)}const E=s(e,[["render",t]]);export{D as __pageData,E as default};
