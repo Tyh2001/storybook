@@ -15,8 +15,6 @@ which nginx
 # 检查是否配置正确
 sudo nginx -t
 
-# 重启 nginx
-
 # 删除
 sudo apt-get --purge remove nginx
 sudo apt-get autoremove
@@ -32,5 +30,6 @@ sudo apt-get autoremove
 
 # 重启 nginx
 sudo systemctl restart nginx
-sudo /etc/init.d/apache2 stop # 如果重启失败了先执行这个
+sudo /etc/init.d/apache2 stop # 如果重启失败了先执行这个先关闭 apache2
+sudo systemctl start apache2 # 重新启动 apache2
 ```
