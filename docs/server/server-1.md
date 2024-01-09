@@ -46,5 +46,4 @@ sudo lsof -i :1219
 
 # 结束指定 id 的端口进程
 sudo kill -9 <进程ID>
-
 ```

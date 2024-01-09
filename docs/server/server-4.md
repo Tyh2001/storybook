@@ -30,6 +30,8 @@ sudo apt-get autoremove
 
 # 重启 nginx
 sudo systemctl restart nginx
+# 重启 nginx
+nginx -s reload
 sudo /etc/init.d/apache2 stop # 如果重启失败了先执行这个先关闭 apache2
 sudo systemctl start apache2 # 重新启动 apache2
 ```
