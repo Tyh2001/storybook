@@ -111,3 +111,27 @@ CREATE TABLE `表名` (
   create_at timestamp DEFAULT CURRENT_TIMESTAMP
 )
 ```
+
+更新表名
+
+```sql
+ALTER TABLE `表名称` RENAME `新表名`
+```
+
+给表添加新的字段
+
+````sql
+ALTER TABLE `表名称` ADD COLUMU `key` varchar(255)
+```FF
+
+删除表的指定列
+
+```sql
+ALTER TABLE `表名称` DROP `key`
+````
+
+更改指定列
+
+```sql
+ALTER TABLE `表名称` MODIFY `key` varchar(100)
+```
