@@ -14,11 +14,12 @@ sudo systemctl start mysql
 # 设置 MySQL 服务在系统启动时自动启动
 sudo systemctl enable mysql
 
+# 使用用户为 root 的账号密码登陆
+mysql -u root -p
+
+
 # 检查 MySQL 服务状态
 sudo systemctl status mysql
-
-# 进入 MySQL Shell 设置 mysql 密码
-mysql -u root -p
 
 # 退出 mysql shell
 quit;
@@ -46,7 +47,10 @@ SHOW TABLES;
 SHOW DATABASES;
 
 -- 创建数据库
-CREATE DATABASE 数据库名;
+CREATE DATABASE `数据库名`;
+
+-- 如果没有就创建，否则就什么都不做
+CREATE DATABASE IF NOT EXISTS `数据库名`
 
 -- 切换到指定的数据库
 USE 数据库名;
@@ -78,3 +82,32 @@ mysql -u root -p
 - 服务器连接 mysql 失败
 
 错误日志：`Error: Access denied for user 'root'@'localhost'`，解决方案：[MySQL Error: : 'Access denied for user 'root'@'localhost'](https://stackoverflow.com/questions/41645309/mysql-error-access-denied-for-user-rootlocalhost)
+
+## 创建数据库
+
+创建一个指定字符集的数据库
+
+```sql
+CREATE DATABASES IF NOT EXISTS `数据库名`
+DEFAULT CHARACTER SET 'utf8mb4';
+```
+
+## 操作数据表
+
+创建表
+
+```sql
+-- NOT NULL 不能为空
+-- AUTO_INCREMENT 自增列
+-- PRIMARY KEY 设置为主键
+-- DEFAULT CURRENT_TIMESTAMP 字段创建时间
+
+-- 名称 类型 属性
+CREATE TABLE `表名` (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'ID',
+  name varchar(100) COMMENT '名字',
+  age int COMMENT '年龄',
+  address varchar(100),
+  create_at timestamp DEFAULT CURRENT_TIMESTAMP
+)
+```
