@@ -532,6 +532,48 @@ console.log(p2) // Promise {<pending>}
 console.log(p1 === p2) // false
 ```
 
+## Promise.withResolves()
+
+以往的痛点：如果 promose 的 `resolve` 或者 `reject` 是在其它函数中调用的，则需要先用变量接收一下，非常不方便
+
+这个新的方法就是解决在构造函数外面去调用的问题
+
+```js
+let res
+let rej
+
+const promise = new Promise((resolve, reject) => {
+  res = resolve
+  rej = reject
+})
+
+const text = () => {
+  res('成功了')
+}
+
+text()
+
+promise.then((res) => {
+  console.log(res)
+})
+```
+
+新方法：
+
+```js
+const { promise, resolve, reject } = Promise.withResolvers()
+
+const text = () => {
+  resolve('成功了')
+}
+
+text()
+
+promise.then((res) => {
+  console.log(res)
+})
+```
+
 ## Promise 异步捕获错误
 
 通常情况下，同步代码使用 `try catch` 来进行捕获错误
