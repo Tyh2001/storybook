@@ -7,6 +7,6 @@ export const nav = [
   {
     text: '文章记录',
     activeMatch: '/article/',
-    link: '/article/milepost/milepost-2021'
+    link: '/article/milepost/2021'
   }
 ]
