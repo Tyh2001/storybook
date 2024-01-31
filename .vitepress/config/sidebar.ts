@@ -85,8 +85,9 @@ export const sidebar = {
     {
       text: 'Swift',
       items: [
-        { text: '安装编辑器', link: '/docs/swift/1' },
-        { text: '打印 Hello Swift', link: '/docs/swift/2' },
+        { text: '安装环境', link: '/docs/swift/1' },
+        { text: '变量和常量', link: '/docs/swift/2' },
+        { text: '字符串方法', link: '/docs/swift/3' },
       ]
     }
   ],
