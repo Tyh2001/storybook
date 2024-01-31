@@ -17,6 +17,9 @@ export default (): UserConfigExport => {
     optimizeDeps: {
       exclude: ['vitepress']
     },
+    server: {
+      port: 3001
+    },
     ssr: {
       format: 'cjs'
     },
