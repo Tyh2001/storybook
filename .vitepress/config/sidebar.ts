@@ -70,8 +70,8 @@ export const sidebar = {
       items: [
         { text: '服务器配置', link: '/docs/server/1' },
         { text: 'Mysql', link: '/docs/server/2' },
-        { text: 'Redis', link: '/docs/server/2' },
-        { text: 'Nginx', link: '/docs/server/2' },
+        { text: 'Redis', link: '/docs/server/3' },
+        { text: 'Nginx', link: '/docs/server/4' },
       ]
     },
     {
