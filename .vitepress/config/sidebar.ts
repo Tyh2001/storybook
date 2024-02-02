@@ -88,7 +88,12 @@ export const sidebar = {
         { text: '安装环境', link: '/docs/swift/1' },
         { text: '变量和常量', link: '/docs/swift/2' },
         { text: '数据类型', link: '/docs/swift/3' },
-        { text: '字符串方法', link: '/docs/swift/4' },
+        { text: 'String 字符串', link: '/docs/swift/4' },
+        { text: 'Int 整数', link: '/docs/swift/5' },
+        { text: 'Double 双精度', link: '/docs/swift/6' },
+        { text: 'Bool 布尔', link: '/docs/swift/7' },
+        { text: '运算符', link: '/docs/swift/8' },
+        { text: 'Array 数组', link: '/docs/swift/9' },
       ]
     }
   ],
