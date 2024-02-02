@@ -1,10 +1,9 @@
-import { defineConfig } from 'vitepress'
 import { nav } from './config/nav'
 import { sidebar } from './config/sidebar'
 import { description } from './config/description'
 import { PluginTable } from './plugin'
 
-const config = defineConfig({
+export default {
   title: 'Tyh',
   head: [
     ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my2.png' }]
@@ -29,6 +28,4 @@ const config = defineConfig({
     // 自定义 markdown 语法
     config: (md) => PluginTable(md)
   }
-})
-
-export default config
+}
