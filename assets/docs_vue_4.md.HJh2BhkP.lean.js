@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.AX1JQ_e6.js";const c=JSON.parse('{"title":"Vuex","description":"","frontmatter":{},"headers":[],"relativePath":"docs/vue/4.md","filePath":"docs/vue/4.md"}'),t={name:"docs/vue/4.md"},h=n("",33),p=[h];function l(k,e,E,r,d,g){return a(),i("div",null,p)}const o=s(t,[["render",l]]);export{c as __pageData,o as default};

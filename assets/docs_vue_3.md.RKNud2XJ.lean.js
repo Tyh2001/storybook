@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.AX1JQ_e6.js";const u=JSON.parse('{"title":"Vue Router","description":"","frontmatter":{},"headers":[],"relativePath":"docs/vue/3.md","filePath":"docs/vue/3.md"}'),t={name:"docs/vue/3.md"},e=n("",12),h=[e];function l(p,k,r,o,d,c){return a(),i("div",null,h)}const E=s(t,[["render",l]]);export{u as __pageData,E as default};

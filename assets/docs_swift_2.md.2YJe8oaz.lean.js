@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as i,V as t}from"./chunks/framework.AX1JQ_e6.js";const u=JSON.parse('{"title":"变量和常量","description":"","frontmatter":{},"headers":[],"relativePath":"docs/swift/2.md","filePath":"docs/swift/2.md"}'),n={name:"docs/swift/2.md"},e=t("",10),h=[e];function l(p,k,d,r,o,c){return i(),a("div",null,h)}const E=s(n,[["render",l]]);export{u as __pageData,E as default};

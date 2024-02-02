@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as i,V as t}from"./chunks/framework.AX1JQ_e6.js";const E=JSON.parse('{"title":"样式","description":"","frontmatter":{},"headers":[],"relativePath":"docs/react/3.md","filePath":"docs/react/3.md"}'),n={name:"docs/react/3.md"},e=t("",19),l=[e];function p(h,c,d,r,o,k){return i(),a("div",null,l)}const u=s(n,[["render",p]]);export{E as __pageData,u as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,V as n}from"./chunks/framework.AX1JQ_e6.js";const F=JSON.parse('{"title":"项目搭建","description":"","frontmatter":{},"headers":[],"relativePath":"docs/react/4.md","filePath":"docs/react/4.md"}'),h={name:"docs/react/4.md"},p=n("",29),l=[p];function k(t,e,E,r,d,g){return a(),i("div",null,l)}const c=s(h,[["render",k]]);export{F as __pageData,c as default};
