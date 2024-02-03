@@ -1,1 +1,0 @@
-import{_ as a,c as e,o as t,V as s}from"./chunks/framework.AX1JQ_e6.js";const m=JSON.parse('{"title":"Zustand","description":"","frontmatter":{},"headers":[],"relativePath":"docs/react/6.md","filePath":"docs/react/6.md"}'),r={name:"docs/react/6.md"},n=s("",6),i=[n];function o(d,l,c,h,p,_){return t(),e("div",null,i)}const k=a(r,[["render",o]]);export{m as __pageData,k as default};

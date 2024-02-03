@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,V as n}from"./chunks/framework.AX1JQ_e6.js";const c=JSON.parse('{"title":"Int 整数","description":"","frontmatter":{},"headers":[],"relativePath":"docs/swift/5.md","filePath":"docs/swift/5.md"}'),h={name:"docs/swift/5.md"},t=n("",31),p=[t];function k(l,e,d,r,E,g){return a(),i("div",null,p)}const o=s(h,[["render",k]]);export{c as __pageData,o as default};

@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,V as n}from"./chunks/framework.AX1JQ_e6.js";const y=JSON.parse('{"title":"Nest 基础","description":"","frontmatter":{},"headers":[],"relativePath":"docs/nest/1.md","filePath":"docs/nest/1.md"}'),h={name:"docs/nest/1.md"},p=n("",29),l=[p];function t(k,e,r,E,d,g){return a(),i("div",null,l)}const c=s(h,[["render",t]]);export{y as __pageData,c as default};

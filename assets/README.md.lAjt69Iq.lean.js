@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as r,V as t}from"./chunks/framework.AX1JQ_e6.js";const u=JSON.parse('{"title":"Tyh Blog","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),o={name:"README.md"},n=t("",9),i=[n];function h(s,p,l,m,c,g){return r(),a("div",null,i)}const d=e(o,[["render",h]]);export{u as __pageData,d as default};

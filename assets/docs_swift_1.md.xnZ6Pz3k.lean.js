@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,V as t}from"./chunks/framework.AX1JQ_e6.js";const F=JSON.parse('{"title":"安装环境","description":"","frontmatter":{},"headers":[],"relativePath":"docs/swift/1.md","filePath":"docs/swift/1.md"}'),n={name:"docs/swift/1.md"},e=t("",24),l=[e];function h(p,k,o,r,d,c){return a(),i("div",null,l)}const u=s(n,[["render",h]]);export{F as __pageData,u as default};

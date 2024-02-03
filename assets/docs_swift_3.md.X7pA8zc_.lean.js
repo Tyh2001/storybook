@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,V as t}from"./chunks/framework.AX1JQ_e6.js";const c=JSON.parse('{"title":"数据类型","description":"","frontmatter":{},"headers":[],"relativePath":"docs/swift/3.md","filePath":"docs/swift/3.md"}'),h={name:"docs/swift/3.md"},n=t("",7),l=[n];function k(p,e,r,d,E,o){return a(),i("div",null,l)}const y=s(h,[["render",k]]);export{c as __pageData,y as default};
