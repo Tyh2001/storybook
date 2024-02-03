@@ -8,10 +8,11 @@ export default {
   head: [
     ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my2.png' }]
   ],
+  lastUpdated: true, // 最后更新时间
   cacheDir: '../../node_modules',
   description,
   themeConfig: {
-    logo: 'https://tianyuhao.cn/images/auto/my2.png',
+    logo: './theme/assets/tyh2001.png',
     socialLinks: [
       {
         icon: 'github',
@@ -25,6 +26,7 @@ export default {
     }
   },
   markdown: {
+    lineNumbers: true,
     // 自定义 markdown 语法
     config: (md) => PluginTable(md)
   }

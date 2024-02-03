@@ -8,6 +8,10 @@
   --vp-c-bg-alt: #242424; // 深色模式侧边栏
 }
 
+.vp-adaptive-theme {
+  background: rgb(246, 246, 247) !important;
+}
+
 .sidebar-link-item.active {
   background: rgba(82, 179, 94, 0.1);
 }
