@@ -4,15 +4,15 @@ import { description } from './config/description'
 import { PluginTable } from './plugin'
 
 export default {
-  title: 'Tyh',
+  title: 'Tyh2001',
   head: [
-    ['link', { rel: 'icon', href: 'https://tianyuhao.cn/images/auto/my2.png' }]
+    ['link', { rel: 'icon', href: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png' }]
   ],
   lastUpdated: true, // 最后更新时间
   cacheDir: '../../node_modules',
   description,
   themeConfig: {
-    logo: './theme/assets/tyh2001.png',
+    logo: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png',
     socialLinks: [
       {
         icon: 'github',
