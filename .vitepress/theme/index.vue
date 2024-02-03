@@ -11,6 +11,12 @@
       title: '田同学 2023 年度总结',
       banner:
         'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/2.jpg'
+    },
+    {
+      url: '/article/article/19',
+      title: 'Fighting Design 欢迎加入',
+      banner:
+        'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/3.jpg'
     }
   ]
 </script>
@@ -19,7 +25,33 @@
   <f-main>
     <!-- 头部 -->
     <div class="header">
-      <div class="header-title"></div>
+      <f-text align="center">
+        <f-avatar
+          class="avatar"
+          :size="110"
+          round
+          src="https://avatars.githubusercontent.com/u/73180970?v=4"
+        />
+      </f-text>
+
+      <f-text align="center" style="margin-top: 40px">
+        <f-button
+          round
+          type="primary"
+          class="start"
+          href="/docs/hello/hello.html"
+        >
+          快速开始
+        </f-button>
+        <f-button
+          round
+          href="https://github.com/Tyh2001"
+          target="_blank"
+          style="margin-left: 20px"
+        >
+          Github
+        </f-button>
+      </f-text>
     </div>
 
     <!-- 内容部分 -->
@@ -57,7 +89,15 @@
     padding: 40px;
     padding-bottom: 0;
 
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .body {
+      margin-top: 80px;
+
       .body-title {
         font-size: 22px;
         color: #111;

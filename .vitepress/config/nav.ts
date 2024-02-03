@@ -1,11 +1,11 @@
 export const nav = [
   {
-    text: '文档',
+    text: '笔记',
     activeMatch: '/docs/',
     link: '/docs/hello/hello'
   },
   {
-    text: '文章记录',
+    text: '文章',
     activeMatch: '/article/',
     link: '/article/milepost/2021'
   }
