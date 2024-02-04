@@ -94,6 +94,7 @@ export const sidebar = {
         { text: 'Bool 布尔', link: '/docs/swift/7' },
         { text: '运算符', link: '/docs/swift/8' },
         { text: 'Array 数组', link: '/docs/swift/9' },
+        { text: 'Set 集合', link: '/docs/swift/10' },
       ]
     }
   ],
