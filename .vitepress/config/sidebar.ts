@@ -97,6 +97,7 @@ export const sidebar = {
         { text: 'Set 集合', link: '/docs/swift/10' },
         { text: 'Dictionary 字典', link: '/docs/swift/11' },
         { text: 'Range 区间', link: '/docs/swift/12' },
+        { text: '元组', link: '/docs/swift/13' },
       ]
     }
   ],
