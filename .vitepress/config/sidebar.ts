@@ -96,6 +96,7 @@ export const sidebar = {
         { text: 'Array 数组', link: '/docs/swift/9' },
         { text: 'Set 集合', link: '/docs/swift/10' },
         { text: 'Dictionary 字典', link: '/docs/swift/11' },
+        { text: 'Range 区间', link: '/docs/swift/12' },
       ]
     }
   ],
