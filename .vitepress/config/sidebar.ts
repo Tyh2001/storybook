@@ -98,6 +98,8 @@ export const sidebar = {
         { text: 'Dictionary 字典', link: '/docs/swift/11' },
         { text: 'Range 区间', link: '/docs/swift/12' },
         { text: '元组', link: '/docs/swift/13' },
+        { text: '语句', link: '/docs/swift/14' },
+        { text: '函数', link: '/docs/swift/15' },
       ]
     }
   ],
