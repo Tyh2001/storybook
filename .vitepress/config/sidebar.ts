@@ -100,6 +100,7 @@ export const sidebar = {
         { text: '元组', link: '/docs/swift/13' },
         { text: '语句', link: '/docs/swift/14' },
         { text: '函数', link: '/docs/swift/15' },
+        { text: 'Enum 枚举', link: '/docs/swift/16' },
       ]
     }
   ],
