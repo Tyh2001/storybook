@@ -108,9 +108,9 @@ export const sidebar = {
     {
       text: '里程碑',
       items: [
-        { text: '里程碑 2021', link: '/article/milepost/2021' },
-        { text: '里程碑 2022', link: '/article/milepost/2022' },
-        { text: '里程碑 2024', link: '/article/milepost/2024' },
+        { text: '里程碑 2021', link: '/article/milestone/2021' },
+        { text: '里程碑 2022', link: '/article/milestone/2022' },
+        { text: '里程碑 2024', link: '/article/milestone/2024' },
       ]
     },
     {
