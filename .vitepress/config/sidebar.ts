@@ -180,6 +180,7 @@ export const sidebar = {
           link: '/article/article/20'
         },
         { text: '别再写循环套循环了', link: '/article/article/21' },
+        { text: '一起学习劳动法', link: '/article/article/22' },
       ]
     },
     {
