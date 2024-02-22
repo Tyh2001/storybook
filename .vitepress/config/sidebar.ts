@@ -101,6 +101,7 @@ export const sidebar = {
         { text: '语句', link: '/docs/swift/14' },
         { text: '函数', link: '/docs/swift/15' },
         { text: 'Enum 枚举', link: '/docs/swift/16' },
+        { text: '结构体', link: '/docs/swift/17' },
       ]
     }
   ],
