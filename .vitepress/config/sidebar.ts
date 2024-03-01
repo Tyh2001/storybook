@@ -43,10 +43,10 @@ export const sidebar = {
       text: 'React',
       items: [
         { text: '基础', link: '/docs/react/1' },
-        { text: 'Router', link: '/docs/react/2' },
-        { text: '样式处理', link: '/docs/react/3' },
-        { text: '项目搭建', link: '/docs/react/4' },
-        { text: 'API', link: '/docs/react/5' },
+        { text: '实际应用', link: '/docs/react/2' },
+        { text: 'API', link: '/docs/react/3' },
+        { text: '样式处理', link: '/docs/react/4' },
+        { text: 'Router', link: '/docs/react/5' },
         { text: 'Zustand', link: '/docs/react/6' },
       ]
     },
