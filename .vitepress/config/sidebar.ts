@@ -52,6 +52,13 @@ export const sidebar = {
       ]
     },
     {
+      text: '英语',
+      items: [
+        { text: '学习英语平台', link: '/docs/english/1' },
+        { text: '单词和短语', link: '/docs/english/2' },
+      ]
+    },
+    {
       text: 'TypeScript',
       items: [
         { text: '类型', link: '/docs/typescript/1' },
