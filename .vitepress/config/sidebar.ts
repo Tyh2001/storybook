@@ -48,6 +48,7 @@ export const sidebar = {
         { text: '样式处理', link: '/docs/react/4' },
         { text: 'Router', link: '/docs/react/5' },
         { text: 'Zustand', link: '/docs/react/6' },
+        { text: '生态库', link: '/docs/react/7' },
       ]
     },
     {
