@@ -43,11 +43,19 @@ export const sidebar = {
       text: 'React',
       items: [
         { text: '基础', link: '/docs/react/1' },
-        { text: 'Router', link: '/docs/react/2' },
-        { text: '样式处理', link: '/docs/react/3' },
-        { text: '项目搭建', link: '/docs/react/4' },
-        { text: 'API', link: '/docs/react/5' },
+        { text: '实际应用', link: '/docs/react/2' },
+        { text: 'API', link: '/docs/react/3' },
+        { text: '样式处理', link: '/docs/react/4' },
+        { text: 'Router', link: '/docs/react/5' },
         { text: 'Zustand', link: '/docs/react/6' },
+        { text: '生态库', link: '/docs/react/7' },
+      ]
+    },
+    {
+      text: '英语',
+      items: [
+        { text: '学习英语平台', link: '/docs/english/1' },
+        { text: '单词和短语', link: '/docs/english/2' },
       ]
     },
     {
