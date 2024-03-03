@@ -93,7 +93,7 @@ export const sidebar = {
     {
       text: 'Swift',
       items: [
-        { text: '安装环境', link: '/docs/swift/1' },
+        { text: '开篇', link: '/docs/swift/1' },
         { text: '变量和常量', link: '/docs/swift/2' },
         { text: '数据类型', link: '/docs/swift/3' },
         { text: 'String 字符串', link: '/docs/swift/4' },
