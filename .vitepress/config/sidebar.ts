@@ -9,6 +9,7 @@ export const sidebar = {
     },
     {
       text: 'JavaScript',
+      collapsed: true,
       items: [
         { text: '基础', link: '/docs/javascript/1' },
         { text: 'DOM', link: '/docs/javascript/2' },
@@ -31,6 +32,7 @@ export const sidebar = {
     },
     {
       text: 'Vue',
+      collapsed: true,
       items: [
         { text: 'Vue2 基础', link: '/docs/vue/1' },
         { text: 'Vue3 基础', link: '/docs/vue/2' },
@@ -41,6 +43,7 @@ export const sidebar = {
     },
     {
       text: 'React',
+      collapsed: true,
       items: [
         { text: '基础', link: '/docs/react/1' },
         { text: '实际应用', link: '/docs/react/2' },
@@ -92,6 +95,7 @@ export const sidebar = {
     },
     {
       text: 'Swift',
+      collapsed: true,
       items: [
         { text: '开篇', link: '/docs/swift/1' },
         { text: '变量和常量', link: '/docs/swift/2' },
@@ -110,8 +114,16 @@ export const sidebar = {
         { text: '函数', link: '/docs/swift/15' },
         { text: 'Enum 枚举', link: '/docs/swift/16' },
         { text: '结构体', link: '/docs/swift/17' },
-        { text: '案例', link: '/docs/swift/18' },
-        { text: '标签和样式', link: '/docs/swift/19' },
+      ]
+    },
+    {
+      text: 'SwiftUI',
+      collapsed: true,
+      items: [
+        { text: '组件和样式', link: '/docs/swift-ui/1' },
+        { text: '样式', link: '/docs/swift-ui/2' },
+        { text: '布局', link: '/docs/swift-ui/3' },
+        { text: '布局案例', link: '/docs/swift-ui/4' },
       ]
     }
   ],
@@ -196,6 +208,7 @@ export const sidebar = {
     },
     {
       text: 'JavaScript 设计模式',
+      collapsed: true,
       items: [
         { text: '基础知识', link: '/article/design-mode/1' },
         { text: '高阶函数', link: '/article/design-mode/2' },
@@ -215,6 +228,7 @@ export const sidebar = {
     },
     {
       text: 'Vue.js 设计与实现',
+      collapsed: true,
       items: [
         { text: '第一章 权衡的艺术', link: '/article/vue-design/1' },
         {
@@ -233,6 +247,7 @@ export const sidebar = {
     },
     {
       text: '前端面试题',
+      collapsed: true,
       items: [
         { text: '更新面试题', link: '/article/ques/1' },
         { text: 'Web 相关', link: '/article/ques/2' },
