@@ -131,9 +131,9 @@ export const sidebar = {
     {
       text: '里程碑',
       items: [
-        { text: '2021', link: '/article/milestone/1' },
-        { text: '2022', link: '/article/milestone/2' },
-        { text: '2024', link: '/article/milestone/3' },
+        { text: '2021 年', link: '/article/milestone/1' },
+        { text: '2022 年', link: '/article/milestone/2' },
+        { text: '2024 年', link: '/article/milestone/3' },
       ]
     },
     {
@@ -204,6 +204,7 @@ export const sidebar = {
         },
         { text: '别再写循环套循环了', link: '/article/article/21' },
         { text: '一起学习劳动法', link: '/article/article/22' },
+        { text: '开端', link: '/article/article/23' },
       ]
     },
     {
