@@ -35,22 +35,16 @@
       </f-text>
 
       <f-text align="center" style="margin-top: 40px">
-        <f-button
-          round
-          type="primary"
-          class="start"
-          href="/docs/hello/hello.html"
-        >
-          快速开始
-        </f-button>
-        <f-button
-          round
+        <a href="/docs/hello/hello.html">
+          <f-button round type="primary" class="start">快速开始</f-button>
+        </a>
+        <a
           href="https://github.com/Tyh2001"
           target="_blank"
           style="margin-left: 20px"
         >
-          Github
-        </f-button>
+          <f-button round>Github</f-button>
+        </a>
       </f-text>
     </div>
 
