@@ -3,8 +3,8 @@ export const sidebar = {
     {
       text: 'Hello',
       items: [
-        { text: 'Hello', link: '/docs/hello/hello' },
-        { text: '联盟录语', link: '/docs/hello/lol' }
+        { text: 'Hello', link: '/docs/hello/1' },
+        { text: '联盟录语', link: '/docs/hello/2' }
       ]
     },
     {

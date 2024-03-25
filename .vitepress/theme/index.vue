@@ -35,7 +35,7 @@
       </f-text>
 
       <f-text align="center" style="margin-top: 40px">
-        <a href="/docs/hello/hello.html">
+        <a href="/docs/hello/1.html">
           <f-button round type="primary" class="start">快速开始</f-button>
         </a>
         <a
