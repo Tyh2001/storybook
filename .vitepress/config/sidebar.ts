@@ -124,6 +124,8 @@ export const sidebar = {
         { text: '样式', link: '/docs/swift-ui/2' },
         { text: '布局', link: '/docs/swift-ui/3' },
         { text: '布局案例', link: '/docs/swift-ui/4' },
+        { text: '事件', link: '/docs/swift-ui/5' },
+        { text: '实战', link: '/docs/swift-ui/6' },
       ]
     }
   ],
