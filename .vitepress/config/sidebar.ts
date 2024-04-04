@@ -146,6 +146,12 @@ export const sidebar = {
       ]
     },
     {
+      text: '故事书',
+      items: [
+        { text: '梦境一', link: '/docs/storybook/1' }
+      ]
+    },
+    {
       text: '我的文章',
       items: [
         { text: '记事本', link: '/article/article/1' },
