@@ -151,6 +151,12 @@ export const sidebar = {
         { text: '介绍', link: '/article/storybook/1' },
         { text: '梦中的世界', link: '/article/storybook/2' },
         { text: '1953-12-05 ～ 2021-08-02', link: '/article/storybook/3' },
+        { text: '未成年的礼物', link: '/article/storybook/4' },
+        { text: '我开始好好学习了', link: '/article/storybook/5' },
+        { text: '我的爱好', link: '/article/storybook/6' },
+        { text: '我作为主播', link: '/article/storybook/7' },
+        { text: '去山东', link: '/article/storybook/8' },
+        { text: 'Soul', link: '/article/storybook/9' },
       ]
     },
     {
