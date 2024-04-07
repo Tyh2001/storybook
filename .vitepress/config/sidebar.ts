@@ -148,8 +148,9 @@ export const sidebar = {
     {
       text: '故事书',
       items: [
-        { text: '梦境一', link: '/article/storybook/1' },
-        { text: '1953-12-05 ～ 2021-08-02', link: '/article/storybook/2' },
+        { text: '介绍', link: '/article/storybook/1' },
+        { text: '梦中的世界', link: '/article/storybook/2' },
+        { text: '1953-12-05 ～ 2021-08-02', link: '/article/storybook/3' },
       ]
     },
     {
