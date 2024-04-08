@@ -157,6 +157,7 @@ export const sidebar = {
         { text: '我作为主播', link: '/article/storybook/7' },
         { text: '去山东', link: '/article/storybook/8' },
         { text: 'Soul', link: '/article/storybook/9' },
+        { text: '送鞭子', link: '/article/storybook/10' },
       ]
     },
     {
