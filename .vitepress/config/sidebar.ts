@@ -60,6 +60,7 @@ export const sidebar = {
         { text: '学习英语平台', link: '/docs/english/1' },
         { text: '单词和短语', link: '/docs/english/2' },
         { text: '词性类型', link: '/docs/english/3' },
+        { text: '计算机相关', link: '/docs/english/4' },
       ]
     },
     {
