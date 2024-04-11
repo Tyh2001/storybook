@@ -224,6 +224,8 @@ export const sidebar = {
         { text: '别再写循环套循环了', link: '/article/article/21' },
         { text: '一起学习劳动法', link: '/article/article/22' },
         { text: '开端', link: '/article/article/23' },
+        { text: 'Vue 模板的本质', link: '/article/article/24' },
+        { text: '丐版 M1 MacBook Air 使用感受', link: '/article/article/25' },
       ]
     },
     {
