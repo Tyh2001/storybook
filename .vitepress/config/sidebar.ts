@@ -128,6 +128,8 @@ export const sidebar = {
         { text: '布局案例', link: '/docs/swift-ui/4' },
         { text: '事件', link: '/docs/swift-ui/5' },
         { text: '实战', link: '/docs/swift-ui/6' },
+        { text: '基础库 Foundation', link: '/docs/swift-ui/7' },
+        { text: 'XCode 快捷键', link: '/docs/swift-ui/8' },
       ]
     }
   ],
