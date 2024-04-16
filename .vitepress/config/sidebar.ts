@@ -281,5 +281,13 @@ export const sidebar = {
         { text: 'Vue2 相关', link: '/article/ques/6' }
       ]
     }
+  ],
+  '/record/': [
+    {
+      text: '记录',
+      items: [
+        { text: '摘抄', link: '/record/extract/1' },
+      ]
+    }
   ]
 }
