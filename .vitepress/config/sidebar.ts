@@ -278,7 +278,8 @@ export const sidebar = {
         { text: 'Html 相关', link: '/article/ques/3' },
         { text: 'Css 相关', link: '/article/ques/4' },
         { text: 'JavaScript 相关', link: '/article/ques/5' },
-        { text: 'Vue2 相关', link: '/article/ques/6' }
+        { text: 'Vue2 相关', link: '/article/ques/6' },
+        { text: '面试问题', link: '/article/ques/7' },
       ]
     }
   ],
