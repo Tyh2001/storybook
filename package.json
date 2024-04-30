@@ -9,11 +9,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "vitepress": "1.0.1",
+    "vitepress": "1.1.4",
     "vue": "^3.4.3"
   },
   "devDependencies": {
-    "fighting-design": "0.67.4",
+    "fighting-design": "1.0.0-alpha.1",
     "markdown-it": "^13.0.1",
     "prettier": "^2.6.2",
     "sass": "^1.54.9",
