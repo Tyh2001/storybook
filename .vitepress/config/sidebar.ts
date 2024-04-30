@@ -287,7 +287,7 @@ export const sidebar = {
     {
       text: '记录',
       items: [
-        { text: '摘抄', link: '/record/extract/1' },
+        { text: '文案摘抄', link: '/record/extract/1' },
         { text: '游戏收藏', link: '/record/extract/2' },
       ]
     }
