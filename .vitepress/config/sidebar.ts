@@ -285,10 +285,18 @@ export const sidebar = {
   ],
   '/record/': [
     {
-      text: '记录',
+      text: '摘抄',
       items: [
         { text: '文案摘抄', link: '/record/extract/1' },
-        { text: '游戏收藏', link: '/record/extract/2' },
+      ]
+    },
+    {
+      text: '就是玩儿',
+      items: [
+        { text: '游戏收藏', link: '/record/play/1' },
+        { text: '旅行', link: '/record/play/2' },
+        { text: '2023 游玩路线', link: '/record/play/3' },
+        { text: '2024 游玩路线', link: '/record/play/4' },
       ]
     }
   ]
