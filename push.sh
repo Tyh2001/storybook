@@ -12,4 +12,4 @@ git commit -m "$1"
 git push
 
 # 打印成功信息
-echo "Changes have been committed and pushed with message: '$1'"
+echo "更改已提交并随消息推送: '$1'"
