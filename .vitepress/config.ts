@@ -6,7 +6,13 @@ import { PluginTable } from './plugin'
 export default {
   title: 'Tyh2001',
   head: [
-    ['link', { rel: 'icon', href: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png' }]
+    [
+      'link',
+      {
+        rel: 'icon',
+        href: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png'
+      }
+    ]
   ],
   lastUpdated: true, // 最后更新时间
   cacheDir: '../../node_modules',

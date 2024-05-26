@@ -51,7 +51,7 @@ export const sidebar = {
         { text: '样式处理', link: '/docs/react/4' },
         { text: 'Router', link: '/docs/react/5' },
         { text: 'Zustand', link: '/docs/react/6' },
-        { text: '生态库', link: '/docs/react/7' },
+        { text: '生态库', link: '/docs/react/7' }
       ]
     },
     {
@@ -60,7 +60,7 @@ export const sidebar = {
         { text: '学习英语平台', link: '/docs/english/1' },
         { text: '单词和短语', link: '/docs/english/2' },
         { text: '词性类型', link: '/docs/english/3' },
-        { text: '计算机相关', link: '/docs/english/4' },
+        { text: '计算机相关', link: '/docs/english/4' }
       ]
     },
     {
@@ -84,14 +84,14 @@ export const sidebar = {
         { text: '服务器配置', link: '/docs/server/1' },
         { text: 'Mysql', link: '/docs/server/2' },
         { text: 'Redis', link: '/docs/server/3' },
-        { text: 'Nginx', link: '/docs/server/4' },
+        { text: 'Nginx', link: '/docs/server/4' }
       ]
     },
     {
       text: '操作系统',
       items: [
         { text: 'Windows', link: '/docs/system/1' },
-        { text: 'MacOS', link: '/docs/system/2' },
+        { text: 'MacOS', link: '/docs/system/2' }
       ]
     },
     {
@@ -114,7 +114,7 @@ export const sidebar = {
         { text: '语句', link: '/docs/swift/14' },
         { text: '函数', link: '/docs/swift/15' },
         { text: 'Enum 枚举', link: '/docs/swift/16' },
-        { text: '结构体', link: '/docs/swift/17' },
+        { text: '结构体', link: '/docs/swift/17' }
       ]
     },
     {
@@ -129,7 +129,7 @@ export const sidebar = {
         { text: '实战', link: '/docs/swift-ui/6' },
         { text: '基础库 Foundation', link: '/docs/swift-ui/7' },
         { text: 'XCode 快捷键', link: '/docs/swift-ui/8' },
-        { text: '内置组件', link: '/docs/swift-ui/9' },
+        { text: '内置组件', link: '/docs/swift-ui/9' }
       ]
     }
   ],
@@ -139,14 +139,14 @@ export const sidebar = {
       items: [
         { text: '2021 年', link: '/article/milestone/1' },
         { text: '2022 年', link: '/article/milestone/2' },
-        { text: '2024 年', link: '/article/milestone/3' },
+        { text: '2024 年', link: '/article/milestone/3' }
       ]
     },
     {
       text: '年度总结',
       items: [
         { text: '2022 年度总结', link: '/article/annual-summary/2022' },
-        { text: '2023 年度总结', link: '/article/annual-summary/2023' },
+        { text: '2023 年度总结', link: '/article/annual-summary/2023' }
       ]
     },
     {
@@ -161,7 +161,7 @@ export const sidebar = {
         { text: '我作为主播', link: '/article/storybook/7' },
         { text: '去山东', link: '/article/storybook/8' },
         { text: 'Soul', link: '/article/storybook/9' },
-        { text: '送鞭子', link: '/article/storybook/10' },
+        { text: '送鞭子', link: '/article/storybook/10' }
       ]
     },
     {
@@ -227,7 +227,7 @@ export const sidebar = {
         { text: '一起学习劳动法', link: '/article/article/22' },
         { text: '开端', link: '/article/article/23' },
         { text: 'Vue 模板的本质', link: '/article/article/24' },
-        { text: '丐版 M1 MacBook Air 使用感受', link: '/article/article/25' },
+        { text: '丐版 M1 MacBook Air 使用感受', link: '/article/article/25' }
       ]
     },
     {
@@ -279,16 +279,14 @@ export const sidebar = {
         { text: 'Css 相关', link: '/article/ques/4' },
         { text: 'JavaScript 相关', link: '/article/ques/5' },
         { text: 'Vue2 相关', link: '/article/ques/6' },
-        { text: '面试问题', link: '/article/ques/7' },
+        { text: '面试问题', link: '/article/ques/7' }
       ]
     }
   ],
   '/record/': [
     {
       text: '摘抄',
-      items: [
-        { text: '文案摘抄', link: '/record/extract/1' },
-      ]
+      items: [{ text: '文案摘抄', link: '/record/extract/1' }]
     },
     {
       text: '就是玩儿',
@@ -296,7 +294,7 @@ export const sidebar = {
         { text: '游戏收藏', link: '/record/play/1' },
         { text: '旅行', link: '/record/play/2' },
         { text: '2023 游玩路线', link: '/record/play/3' },
-        { text: '2024 游玩路线', link: '/record/play/4' },
+        { text: '2024 游玩路线', link: '/record/play/4' }
       ]
     }
   ]
