@@ -4,19 +4,19 @@
       url: '/article/annual-summary/2022',
       title: '田同学 2022 年度总结',
       banner:
-        'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/1.jpg'
+        'https://raw.githubusercontent.com/Tyh2001/storybook/master/.vitepress/theme/assets/1.jpg'
     },
     {
       url: '/article/annual-summary/2023',
       title: '田同学 2023 年度总结',
       banner:
-        'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/2.jpg'
+        'https://raw.githubusercontent.com/Tyh2001/storybook/master/.vitepress/theme/assets/2.jpg'
     },
     {
       url: '/article/article/19',
       title: 'Fighting Design 欢迎加入',
       banner:
-        'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/3.jpg'
+        'https://raw.githubusercontent.com/Tyh2001/storybook/master/.vitepress/theme/assets/3.jpg'
     }
   ]
 </script>

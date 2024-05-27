@@ -4,13 +4,13 @@ import { description } from './config/description'
 import { PluginTable } from './plugin'
 
 export default {
-  title: 'Tyh2001',
+  title: ' ',
   head: [
     [
       'link',
       {
         rel: 'icon',
-        href: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png'
+        href: 'https://raw.githubusercontent.com/Tyh2001/storybook/master/.vitepress/theme/assets/tyh2001.png'
       }
     ]
   ],
@@ -18,17 +18,17 @@ export default {
   cacheDir: '../../node_modules',
   description,
   themeConfig: {
-    logo: 'https://raw.githubusercontent.com/Tyh2001/tyh-blog/master/.vitepress/theme/assets/tyh2001.png',
+    logo: 'https://raw.githubusercontent.com/Tyh2001/storybook/master/.vitepress/theme/assets/tyh2001.png',
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/Tyh2001/tyh-blog'
+        link: 'https://github.com/Tyh2001/storybook'
       }
     ],
     nav,
     sidebar,
     editLink: {
-      pattern: 'https://github.com/Tyh2001/tyh-blog/blob/master/docs/:path'
+      pattern: 'https://github.com/Tyh2001/storybook/blob/master/docs/:path'
     }
   },
   markdown: {
