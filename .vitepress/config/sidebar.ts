@@ -292,7 +292,7 @@ export const sidebar = {
       text: '就是玩儿',
       items: [
         { text: '游戏收藏', link: '/record/play/1' },
-        { text: '旅行', link: '/record/play/2' },
+        { text: '我想去的', link: '/record/play/2' },
         { text: '2023 游玩路线', link: '/record/play/3' },
         { text: '2024 游玩路线', link: '/record/play/4' }
       ]
