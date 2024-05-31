@@ -20,12 +20,6 @@ export default (): UserConfigExport => {
     server: {
       port: 3001
     },
-    ssr: {
-      format: 'cjs'
-    },
-    legacy: {
-      buildSsrCjsExternalHeuristics: true
-    },
     css: {
       postcss: {
         plugins: [
