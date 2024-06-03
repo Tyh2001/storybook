@@ -129,7 +129,8 @@ export const sidebar = {
         { text: '实战', link: '/docs/swift-ui/6' },
         { text: '基础库 Foundation', link: '/docs/swift-ui/7' },
         { text: 'XCode 快捷键', link: '/docs/swift-ui/8' },
-        { text: '内置组件', link: '/docs/swift-ui/9' }
+        { text: '内置组件', link: '/docs/swift-ui/9' },
+        { text: 'Combine', link: '/docs/swift-ui/10' }
       ]
     }
   ],
