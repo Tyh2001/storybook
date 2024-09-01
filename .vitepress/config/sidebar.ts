@@ -162,7 +162,8 @@ export const sidebar = {
         { text: '我作为主播', link: '/article/storybook/7' },
         { text: '去山东', link: '/article/storybook/8' },
         { text: 'Soul', link: '/article/storybook/9' },
-        { text: '送鞭子', link: '/article/storybook/10' }
+        { text: '送鞭子', link: '/article/storybook/10' },
+        { text: '奶奶', link: '/article/storybook/11' }
       ]
     },
     {
@@ -295,8 +296,7 @@ export const sidebar = {
         { text: '游戏收藏', link: '/record/play/1' },
         { text: '我想去的', link: '/record/play/2' },
         { text: '2023 游玩路线', link: '/record/play/3' },
-        { text: '2024 游玩路线', link: '/record/play/4' },
-        { text: '云南行', link: '/record/play/5' }
+        { text: '2024 游玩路线', link: '/record/play/4' }
       ]
     }
   ]
