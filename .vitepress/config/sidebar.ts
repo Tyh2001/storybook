@@ -148,7 +148,7 @@ export const sidebar = {
       items: [
         { text: '2022 年度总结', link: '/article/annual-summary/2022' },
         { text: '2023 年度总结', link: '/article/annual-summary/2023' },
-        { text: '2024 年度总结', link: '/article/annual-summary/2024' },
+        { text: '2024 年度总结', link: '/article/annual-summary/2024' }
       ]
     },
     {
@@ -162,7 +162,8 @@ export const sidebar = {
         { text: '我的爱好', link: '/article/storybook/6' },
         { text: '我作为主播', link: '/article/storybook/7' },
         { text: '去山东', link: '/article/storybook/8' },
-        { text: 'Soul', link: '/article/storybook/9' }
+        { text: 'Soul', link: '/article/storybook/9' },
+        { text: '除夕', link: '/article/storybook/10' }
       ]
     },
     {
